@@ -1,0 +1,14 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 10%;
+  height: 84.7vh;
+  background-color: #B9E8F6;
+  border: 1px solid #2587A5
+}
+
+.nonconnecte {
+
+}
+
