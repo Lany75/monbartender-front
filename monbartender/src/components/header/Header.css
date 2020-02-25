@@ -7,13 +7,19 @@
 .header {
   display: flex;
   flex-direction: row;
-
+  justify-content: space-between;
   height: 10vh;
   background-color: #B9E8F6;
 }
+.menutitre {
+  display: flex;
+  flex-direction: row;
+}
 
 .iconMenu{
-    margin: 5px 0px 5px 10px;
+  display: flex;
+  align-items: center;
+   margin-left: 15px;
 }
 
 .titre {
@@ -25,9 +31,14 @@
 }
 
 .iconLogin {
-  position: absolute;
+  display: flex;
+  align-items: center;
+  float: left;
+  /*position: absolute;
   right: 0;
-  top: 0;
-  margin: 5px 10px 5px 0px;
+  top: center;*/
+  
+  margin-right: 15px;
+  /*margin: 5px 10px 5px 0px;*/
 }
 

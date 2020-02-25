@@ -7,10 +7,13 @@ import "./Header.css";
 const Header = () => {
   return (
     <div className="header">
-      <div className="iconMenu">
-        <GiHamburgerMenu size={48} />
+      <div className="menutitre">
+        <div className="iconMenu">
+          <GiHamburgerMenu size={48} />
+        </div>
+        <div className="titre">Mon BarTender</div>
       </div>
-      <div className="titre">Mon BarTender</div>
+      <div>recherche par nom de cocktail</div>
       <div className="iconLogin">
         <FaUserAlt size={44} />
       </div>
@@ -19,12 +22,3 @@ const Header = () => {
 };
 
 export default Header;
-
-/*import { FaBeer } from 'react-icons/fa';
-
-class Question extends React.Component {
-  render() {
-    return <h3> Lets go for a <FaBeer />? </h3>
-  }
-}
-*/
