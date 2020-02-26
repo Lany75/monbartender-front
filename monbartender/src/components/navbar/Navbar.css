@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 25%;
+  width: 15vw;
   height: 84.7vh;
-  background-color: #B9E8F6;
+  background-color: #DAECF1;
   border: 1px solid #2587A5;
 }

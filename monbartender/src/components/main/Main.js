@@ -4,6 +4,8 @@ import Accueil from "../accueil/Accueil";
 import Recherche from "../recherche/Recherche";
 import ListeRecettes from "../listeRecettes/ListeRecettes";
 
+import "./Main.css";
+
 function Main() {
   return (
     <div className="main">
