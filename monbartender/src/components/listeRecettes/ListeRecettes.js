@@ -1,27 +1,23 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import "./ListeRecettes.css";
 
+// eslint-disable-next-line no-undef
+const apiBaseURL = process.env.REACT_APP_BASE_API;
+
 const ListeRecettes = () => {
   const [cocktails, setCocktails] = useState([]);
+  //const [idCocktail, setIdCocktail] = useState("");
 
   const getCocktailsdata = () => {
-    fetch("/api/cocktails")
+    fetch(`${apiBaseURL}/api/cocktails`)
       .then(reponse => {
         return reponse.json();
       })
       .then(data => {
         console.log(data);
         setCocktails(data);
-
-        /*const [{ id, nom, photo, etapesPreparation }] = data;
-        console.log("id", id);
-        console.log("nom", nom);
-        console.log("photo", photo);
-        console.log("etapesPreparation", etapesPreparation);*/
-
-        //setCocktails(data);
-        //console.log("cocktails : ", cocktails);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);
@@ -37,11 +33,19 @@ const ListeRecettes = () => {
       <div className="listeCocktails">
         {cocktails &&
           cocktails.map((c, index) => {
+            const to = "/" + c.id;
+
             return (
-              <div className='cocktail' key={index}>
-                <img className="imagecocktail" src={c.photo} />
-                <div className="nomcocktail">{c.nom}</div>
-              </div>
+              <Link to={to} key={index}>
+                <div className="cocktail">
+                  <img
+                    className="imagePageListeRecette"
+                    src={`${apiBaseURL}${c.photo}`}
+                    alt="un cocktail"
+                  />
+                  <div className="nomcocktail">{c.nom}</div>
+                </div>
+              </Link>
             );
           })}
       </div>

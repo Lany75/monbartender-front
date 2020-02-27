@@ -1,0 +1,19 @@
+.imagePageRecette{
+  width: 200px;
+  height: 300px;
+}
+
+.ingredientsVerre {
+  display: flex;
+  flex-direction: row;
+}
+
+.ingredients, .verre {
+margin: 50px;
+}
+
+.preparation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -13,7 +13,14 @@ const Header = () => {
         </div>
         <div className="titre">Mon BarTender</div>
       </div>
-      <div>recherche par nom de cocktail</div>
+      <div className="inputNom">
+        <input
+          type="text"
+          id="nomCocktail"
+          name="nomCocktail"
+          placeholder="nom du cocktail"
+        />
+      </div>
       <div className="iconLogin">
         <FaUserAlt size={44} />
       </div>

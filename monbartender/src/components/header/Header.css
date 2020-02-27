@@ -34,11 +34,11 @@
   display: flex;
   align-items: center;
   float: left;
-  /*position: absolute;
-  right: 0;
-  top: center;*/
-  
   margin-right: 15px;
-  /*margin: 5px 10px 5px 0px;*/
+}
+
+.inputNom{
+  display: flex;
+  align-items: center;
 }
 

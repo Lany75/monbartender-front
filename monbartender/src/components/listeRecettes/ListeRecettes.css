@@ -9,7 +9,7 @@ h2 {
   align-items: center;
   margin: 30px;
 }
-.imagecocktail{
+.imagePageListeRecette{
   width: 100px;
   height: 150px;
 }
@@ -19,8 +19,8 @@ h2 {
   width: 100px;
 }
 
-
 .listeCocktails {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
