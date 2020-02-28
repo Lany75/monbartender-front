@@ -1,28 +1,52 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import "./PageRecette.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
-const PageRecette = props => {
-  const [recetteCocktail, setRecetteCocktail] = useState([]);
+const initialState = {
+  nom: "",
+  photo: "",
+  etapesPreparation: "",
+  Verre: {
+    nom: ""
+  },
+  Ingredients: [
+    {
+      nom: ""
+    }
+  ]
+};
 
-  const getRecetteCocktail = () => {
-    fetch(`${apiBaseURL}/api/cocktails/${props.match.params.id}`)
+const PageRecette = () => {
+  const [recetteCocktail, setRecetteCocktail] = useState(initialState);
+  const { id } = useParams();
+
+  const getRecetteCocktail = cocktailId => {
+    fetch(`${apiBaseURL}/api/cocktails/${cocktailId}`)
       .then(reponse => {
         return reponse.json();
       })
       .then(data => {
+        console.log(data);
+
         setRecetteCocktail(data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);
       });
   };
+
   React.useEffect(() => {
-    getRecetteCocktail();
-  }, []);
+    getRecetteCocktail(id);
+  }, [id]);
+
+  console.log(
+    "recette Cocktail : --------------- ",
+    recetteCocktail.Ingredients
+  );
 
   return (
     <>
@@ -33,8 +57,22 @@ const PageRecette = props => {
         alt={recetteCocktail.nom}
       />
       <div className="ingredientsVerre">
-        <div className="ingredients">Ingredients</div>
-        <div className="verre">Verre :</div>
+        <div className="ingredients">
+          <h3>Ingredients</h3>
+          {
+            recetteCocktail.Ingredients && recetteCocktail.Ingredients.map((rc,index) => {
+              return (
+                <div key={index}>
+                  {rc.nom}
+                </div>
+              )
+            })
+          }
+        </div>
+        <div className="verre">
+          <h3>Verre</h3>
+          <p>{recetteCocktail.Verre.nom}</p>
+        </div>
       </div>
       <div className="preparation">
         <h2>Preparation</h2>

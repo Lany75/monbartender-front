@@ -1,9 +1,9 @@
 import React from "react";
-
-import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { TiHome } from "react-icons/ti";
 import { FaSearch, FaGlassMartiniAlt } from "react-icons/fa";
+
+import "./Navbar.css";
 
 const Navbar = () => {
   return (
