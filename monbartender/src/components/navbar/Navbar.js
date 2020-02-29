@@ -9,24 +9,32 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="nonconnecte">
-        <div className="navmenu">
-          <Link to="/">
-            <TiHome size={40} />
-            Accueil
-          </Link>
-        </div>
-        <div className="navmenu">
-          <Link to="/recherche">
-            <FaSearch size={30} />
-            Recherche par ingrédient
-          </Link>
-        </div>
-        <div className="navmenu">
-          <Link to="/recettes">
-            <FaGlassMartiniAlt size={30} />
-            Les recettes
-          </Link>
-        </div>
+        <Link to="/">
+          <div className="navmenu">
+            <div className="imgaccueil">
+              <TiHome size={40} />
+            </div>
+            <div className="txtaccueil">Accueil</div>
+          </div>
+        </Link>
+
+        <Link to="/recherche">
+          <div className="navmenu">
+            <div className="imgRecherche">
+              <FaSearch size={30} />
+            </div>
+            <div className="txtRecherche">Recherche par ingrédient</div>
+          </div>
+        </Link>
+
+        <Link to="/recettes">
+          <div className="navmenu">
+            <div className="imgRecherche">
+              <FaGlassMartiniAlt size={30} />
+            </div>
+            <div className="txtRecettes">Les recettes</div>
+          </div>
+        </Link>
       </div>
 
       <div className="connecte">

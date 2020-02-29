@@ -7,3 +7,11 @@
   background-color: #DAECF1;
   border: 1px solid #2587A5;
 }
+
+.navmenu {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin: 5px;
+}
