@@ -42,15 +42,7 @@
   align-items: center;
 }
 
-.navBarRetreci {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 5vw;
 
-}
 
-.divInvisible {
-  display: block;
-}
+
 

@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { TiHome } from "react-icons/ti";
-import { FaSearch, FaGlassMartiniAlt } from "react-icons/fa";
+import {
+  FaSearch,
+  FaGlassMartiniAlt,
+  FaRegUser,
+  FaWineBottle
+} from "react-icons/fa";
+import { MdFavoriteBorder } from "react-icons/md";
 
 import "./Navbar.css";
 
@@ -29,7 +35,7 @@ const Navbar = () => {
 
         <Link to="/recettes">
           <div className="navmenu">
-            <div className="imgRecherche">
+            <div className="imgRecettes">
               <FaGlassMartiniAlt size={30} />
             </div>
             <div className="txtRecettes">Les recettes</div>
@@ -37,10 +43,26 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="connecte">
-        <div className="profil">Mon profil</div>
-        <div className="bar">Mon bar</div>
-        <div className="favorites">Mes recettes favorites</div>
+      <div className="connecte ">
+        <div className="navmenu">
+          <div className="imgProfil">
+            <FaRegUser size={30} />
+          </div>
+          <div className="txtProfil">Mon profil</div>
+        </div>
+
+        <div className="navmenu">
+          <div className="imgBar">
+            <FaWineBottle size={30} />
+          </div>
+          <div className="txtBar">Mon bar</div>
+        </div>
+        <div className="navmenu">
+          <div className="imgBar">
+            <MdFavoriteBorder size={30} />
+          </div>
+          <div className="txtFavoris">Mes recettes favorites</div>
+        </div>
       </div>
     </div>
   );

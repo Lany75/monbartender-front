@@ -6,23 +6,38 @@ import "./Header.css";
 
 const Header = () => {
   const modifierCSSNavBarre = () => {
-    console.log("on a cliqué sur le menu");
-    const divtxtaccueil = document.getElementsByClassName("txtaccueil");
-    const divtxtRecherche = document.getElementsByClassName("txtRecherche");
-    const divtxtRecettes = document.getElementsByClassName("txtRecettes");
     const divNavBar = document.getElementsByClassName("navbar");
+    
+    const divTxtaccueil = document.getElementsByClassName("txtaccueil");
+    const divTxtRecherche = document.getElementsByClassName("txtRecherche");
+    const divTxtRecettes = document.getElementsByClassName("txtRecettes");
+    
+    const divTxtProfil = document.getElementsByClassName("txtProfil");
+    const divTxtBar = document.getElementsByClassName("txtBar");
+    const divTxtFavoris = document.getElementsByClassName("txtFavoris");
+   
+    if (divNavBar[0].classList.value === "navbar") {
+      divNavBar[0].classList.add("navBarRetreci");
+      
+      divTxtaccueil[0].classList.add("divInvisible");
+      divTxtRecherche[0].classList.add("divInvisible");
+      divTxtRecettes[0].classList.add("divInvisible");
 
-    console.log(divNavBar[0]);
-    if (divtxtaccueil[0].style.display === "none") {
-      divtxtaccueil[0].style.display = "block";
-      divtxtRecherche[0].style.display = "block";
-      divtxtRecettes[0].style.display = "block";
-      divNavBar[0].style.width = "15vw";
+      divTxtProfil[0].classList.add("divInvisible");
+      divTxtBar[0].classList.add("divInvisible");
+      divTxtFavoris[0].classList.add("divInvisible");
+
     } else {
-      divtxtaccueil[0].style.display = "none";
-      divtxtRecherche[0].style.display = "none";
-      divtxtRecettes[0].style.display = "none";
-      divNavBar[0].style.width = "5vw";
+      divNavBar[0].classList.remove("navBarRetreci");
+      
+      divTxtaccueil[0].classList.remove("divInvisible");
+      divTxtRecherche[0].classList.remove("divInvisible");
+      divTxtRecettes[0].classList.remove("divInvisible");
+
+      divTxtProfil[0].classList.remove("divInvisible");
+      divTxtBar[0].classList.remove("divInvisible");
+      divTxtFavoris[0].classList.remove("divInvisible");
+
     }
   };
 
