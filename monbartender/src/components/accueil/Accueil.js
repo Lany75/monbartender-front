@@ -37,6 +37,8 @@ const Accueil = () => {
   const to = "/" + cocktail.id;
   console.log("to :", to);
 
+  console.log("user", user);
+
   return (
     <>
       {user && <p>Salut, {user.displayName}</p>}

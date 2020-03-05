@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { TiHome } from "react-icons/ti";
 import {
@@ -10,8 +10,11 @@ import {
 import { MdFavoriteBorder } from "react-icons/md";
 
 import "./Navbar.css";
+import { AuthContext } from "../../context/authContext";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="navbar">
       <div className="nonconnecte">
@@ -43,27 +46,31 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="connecte ">
-        <div className="navmenu">
-          <div className="imgProfil">
-            <FaRegUser size={30} />
-          </div>
-          <div className="txtProfil">Mon profil</div>
-        </div>
+      {user && (
+        <>
+          <div className="connecte ">
+            <div className="navmenu">
+              <div className="imgProfil">
+                <FaRegUser size={30} />
+              </div>
+              <div className="txtProfil">Mon profil</div>
+            </div>
 
-        <div className="navmenu">
-          <div className="imgBar">
-            <FaWineBottle size={30} />
+            <div className="navmenu">
+              <div className="imgBar">
+                <FaWineBottle size={30} />
+              </div>
+              <div className="txtBar">Mon bar</div>
+            </div>
+            <div className="navmenu">
+              <div className="imgBar">
+                <MdFavoriteBorder size={30} />
+              </div>
+              <div className="txtFavoris">Mes recettes favorites</div>
+            </div>
           </div>
-          <div className="txtBar">Mon bar</div>
-        </div>
-        <div className="navmenu">
-          <div className="imgBar">
-            <MdFavoriteBorder size={30} />
-          </div>
-          <div className="txtFavoris">Mes recettes favorites</div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

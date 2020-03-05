@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 //import { FaUserAlt } from "react-icons/fa";
 
 import "./Header.css";
 import Auth from "../auth/Auth";
+import { AuthContext } from "../../context/authContext";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   //const [isModalVisible, setIsModalVisible] = React.useState(false);
 
   /*const connexion = () => {
@@ -15,36 +17,58 @@ const Header = () => {
   };*/
 
   const modifierCSSNavBarre = () => {
-    const divNavBar = document.getElementsByClassName("navbar");
+    if (user) {
+      const divNavBar = document.getElementsByClassName("navbar");
 
-    const divTxtaccueil = document.getElementsByClassName("txtaccueil");
-    const divTxtRecherche = document.getElementsByClassName("txtRecherche");
-    const divTxtRecettes = document.getElementsByClassName("txtRecettes");
+      const divTxtaccueil = document.getElementsByClassName("txtaccueil");
+      const divTxtRecherche = document.getElementsByClassName("txtRecherche");
+      const divTxtRecettes = document.getElementsByClassName("txtRecettes");
 
-    const divTxtProfil = document.getElementsByClassName("txtProfil");
-    const divTxtBar = document.getElementsByClassName("txtBar");
-    const divTxtFavoris = document.getElementsByClassName("txtFavoris");
+      const divTxtProfil = document.getElementsByClassName("txtProfil");
+      const divTxtBar = document.getElementsByClassName("txtBar");
+      const divTxtFavoris = document.getElementsByClassName("txtFavoris");
 
-    if (divNavBar[0].classList.value === "navbar") {
-      divNavBar[0].classList.add("navBarRetreci");
+      if (divNavBar[0].classList.value === "navbar") {
+        divNavBar[0].classList.add("navBarRetreci");
 
-      divTxtaccueil[0].classList.add("divInvisible");
-      divTxtRecherche[0].classList.add("divInvisible");
-      divTxtRecettes[0].classList.add("divInvisible");
+        divTxtaccueil[0].classList.add("divInvisible");
+        divTxtRecherche[0].classList.add("divInvisible");
+        divTxtRecettes[0].classList.add("divInvisible");
 
-      divTxtProfil[0].classList.add("divInvisible");
-      divTxtBar[0].classList.add("divInvisible");
-      divTxtFavoris[0].classList.add("divInvisible");
+        divTxtProfil[0].classList.add("divInvisible");
+        divTxtBar[0].classList.add("divInvisible");
+        divTxtFavoris[0].classList.add("divInvisible");
+      } else {
+        divNavBar[0].classList.remove("navBarRetreci");
+
+        divTxtaccueil[0].classList.remove("divInvisible");
+        divTxtRecherche[0].classList.remove("divInvisible");
+        divTxtRecettes[0].classList.remove("divInvisible");
+
+        divTxtProfil[0].classList.remove("divInvisible");
+        divTxtBar[0].classList.remove("divInvisible");
+        divTxtFavoris[0].classList.remove("divInvisible");
+      }
     } else {
-      divNavBar[0].classList.remove("navBarRetreci");
+      const divNavBar = document.getElementsByClassName("navbar");
 
-      divTxtaccueil[0].classList.remove("divInvisible");
-      divTxtRecherche[0].classList.remove("divInvisible");
-      divTxtRecettes[0].classList.remove("divInvisible");
+      const divTxtaccueil = document.getElementsByClassName("txtaccueil");
+      const divTxtRecherche = document.getElementsByClassName("txtRecherche");
+      const divTxtRecettes = document.getElementsByClassName("txtRecettes");
 
-      divTxtProfil[0].classList.remove("divInvisible");
-      divTxtBar[0].classList.remove("divInvisible");
-      divTxtFavoris[0].classList.remove("divInvisible");
+      if (divNavBar[0].classList.value === "navbar") {
+        divNavBar[0].classList.add("navBarRetreci");
+
+        divTxtaccueil[0].classList.add("divInvisible");
+        divTxtRecherche[0].classList.add("divInvisible");
+        divTxtRecettes[0].classList.add("divInvisible");
+      } else {
+        divNavBar[0].classList.remove("navBarRetreci");
+
+        divTxtaccueil[0].classList.remove("divInvisible");
+        divTxtRecherche[0].classList.remove("divInvisible");
+        divTxtRecettes[0].classList.remove("divInvisible");
+      }
     }
   };
 
