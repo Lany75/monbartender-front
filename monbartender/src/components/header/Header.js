@@ -1,17 +1,19 @@
 import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaUserAlt } from "react-icons/fa";
+//import { FaUserAlt } from "react-icons/fa";
 
 import "./Header.css";
+import Auth from "../auth/Auth";
 
 const Header = () => {
-  const connexion = () => {
+  //const [isModalVisible, setIsModalVisible] = React.useState(false);
+
+  /*const connexion = () => {
     console.log("on a cliqué sur le bouton de connexion");
+    if (isAuthenticated) console.log("on est authentifié");
+    else console.log("on n'est pas authentifié");
+  };*/
 
-
-  };
-
-  
   const modifierCSSNavBarre = () => {
     const divNavBar = document.getElementsByClassName("navbar");
 
@@ -67,16 +69,28 @@ const Header = () => {
           placeholder="nom du cocktail"
         />
       </div>
-      <div
-        className="iconLogin"
-        onClick={() => {
-          connexion();
-        }}
-      >
-        <FaUserAlt size={44} />
+      <div className="iconLogin">
+        <Auth />
       </div>
     </div>
   );
 };
 
 export default Header;
+
+/*<div
+        id="auth"
+        style={{
+          display: isModalVisible ? "block" : "none"
+        }}
+      >
+        <Auth isModalVisible />
+      </div> */
+//<FaUserAlt size={44} />
+
+/*onClick={() => {
+          connexion();
+        }}*/
+/*onClick={() => {
+          setIsModalVisible(prevState => !prevState);
+        }}*/

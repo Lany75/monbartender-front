@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import FirebaseAuthProvider from "./context/authContext";
 
 import "./App.css";
 
@@ -11,14 +12,16 @@ import Main from "./components/main/Main";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <div className="navMain">
-        <Navbar />
-        <Main />
-      </div>
-      <Footer />
-    </BrowserRouter>
+    <FirebaseAuthProvider>
+      <BrowserRouter>
+        <Header />
+        <div className="navMain">
+          <Navbar />
+          <Main />
+        </div>
+        <Footer />
+      </BrowserRouter>
+    </FirebaseAuthProvider>
   );
 }
 

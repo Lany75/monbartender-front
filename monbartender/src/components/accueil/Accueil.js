@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import "./Accueil.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -12,6 +13,7 @@ const initialState = {
 };
 
 const Accueil = () => {
+  const { user } = useContext(AuthContext);
   const [cocktail, setCocktail] = useState(initialState);
 
   const getCocktailAleatoiredata = () => {
@@ -33,10 +35,11 @@ const Accueil = () => {
 
   console.log("cocktail : ", cocktail);
   const to = "/" + cocktail.id;
-  console.log(to);
+  console.log("to :", to);
 
   return (
     <>
+      {user && <p>Salut, {user.displayName}</p>}
       <h2>Cocktails du moment</h2>
       <Link to={to}>
         <div className="cocktail">

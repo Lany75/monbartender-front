@@ -1,0 +1,13 @@
+.login {
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 30%;
+}
+
+.boutons {
+  display: flex;
+  flex-direction: column;
+}
