@@ -1,0 +1,22 @@
+.listeCocktails {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.cocktail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+}
+
+.imagePageListeRecette{
+  width: 100px;
+  height: 150px;
+}
+
+.nomcocktail{
+  text-align: center;
+  width: 100px;
+}

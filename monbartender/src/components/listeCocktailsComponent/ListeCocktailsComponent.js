@@ -1,9 +1,15 @@
+/* eslint-disable react/prop-types */
 import React from "react";
+import { Link } from "react-router-dom";
 
-const ListeRecettesParNom = () => {
+import "./ListeCocktailsComponent.css";
+
+// eslint-disable-next-line no-undef
+const apiBaseURL = process.env.REACT_APP_BASE_API;
+
+const ListeCocktailsComponent = ({ cocktails }) => {
   return (
     <>
-      <h2>Liste des recettes</h2>
       <div className="listeCocktails">
         {cocktails &&
           cocktails.map((c, index) => {
@@ -27,4 +33,4 @@ const ListeRecettesParNom = () => {
   );
 };
 
-export default ListeRecettesParNom;
+export default ListeCocktailsComponent;

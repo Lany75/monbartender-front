@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AuthContext } from "../../context/authContext";
 
+import "./IconMenu.css";
+
 const IconMenu = () => {
   const { user } = useContext(AuthContext);
 

@@ -4,6 +4,7 @@ import Accueil from "../accueil/Accueil";
 import Recherche from "../recherche/Recherche";
 import ListeRecettes from "../listeRecettes/ListeRecettes";
 import PageRecette from "../pageRecette/PageRecette";
+import InputRechercheParNom from "../inputRechercheParNom/InputRechercheParNom";
 
 import "./Main.css";
 
@@ -15,6 +16,7 @@ function Main() {
         <Route path="/recherche" component={Recherche} />
         <Route path="/recettes" component={ListeRecettes} />
         <Route path="/:id" component={PageRecette} />
+        <Route path="/rechercher?nom=Mojito" component={InputRechercheParNom} />
       </Switch>
     </div>
   );
