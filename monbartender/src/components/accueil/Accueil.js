@@ -33,11 +33,7 @@ const Accueil = () => {
     getCocktailAleatoiredata();
   }, []);
 
-  console.log("cocktail : ", cocktail);
   const to = "/" + cocktail.id;
-  console.log("to :", to);
-
-  console.log("user", user);
 
   return (
     <>

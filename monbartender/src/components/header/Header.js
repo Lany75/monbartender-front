@@ -1,20 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-//import { FaUserAlt } from "react-icons/fa";
 
 import "./Header.css";
 import Auth from "../auth/Auth";
 import { AuthContext } from "../../context/authContext";
 
+// eslint-disable-next-line no-undef
+const apiBaseURL = process.env.REACT_APP_BASE_API;
+
 const Header = () => {
   const { user } = useContext(AuthContext);
-  //const [isModalVisible, setIsModalVisible] = React.useState(false);
-
-  /*const connexion = () => {
-    console.log("on a cliqué sur le bouton de connexion");
-    if (isAuthenticated) console.log("on est authentifié");
-    else console.log("on n'est pas authentifié");
-  };*/
+  const [cocktails, setCocktails] = useState([]);
 
   const modifierCSSNavBarre = () => {
     if (user) {
@@ -72,6 +68,26 @@ const Header = () => {
     }
   };
 
+  const getCocktailsByName = () => {
+    const cocktailName = document.getElementById("nomCocktail").value;
+    console.log(
+      "URL du fetch : ",
+      apiBaseURL + "/api/cocktails/rechercher?" + cocktailName
+    );
+
+    fetch(`${apiBaseURL}/api/cocktails/rechercher?nom=${cocktailName}`)
+      .then(reponse => {
+        return reponse.json();
+      })
+      .then(data => {
+        console.log("data", data);
+        setCocktails(data);
+      })
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
+      });
+  };
+
   return (
     <div className="header">
       <div className="menutitre">
@@ -91,6 +107,7 @@ const Header = () => {
           id="nomCocktail"
           name="nomCocktail"
           placeholder="nom du cocktail"
+          onKeyUp={() => getCocktailsByName()}
         />
       </div>
       <div className="iconLogin">
@@ -101,20 +118,3 @@ const Header = () => {
 };
 
 export default Header;
-
-/*<div
-        id="auth"
-        style={{
-          display: isModalVisible ? "block" : "none"
-        }}
-      >
-        <Auth isModalVisible />
-      </div> */
-//<FaUserAlt size={44} />
-
-/*onClick={() => {
-          connexion();
-        }}*/
-/*onClick={() => {
-          setIsModalVisible(prevState => !prevState);
-        }}*/

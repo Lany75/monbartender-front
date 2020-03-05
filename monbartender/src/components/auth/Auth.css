@@ -6,8 +6,17 @@
   width: 30%;
   height: 30%;
 }
-
-.boutons {
+.connexion {
   display: flex;
   flex-direction: column;
 }
+
+.bouton {
+  margin: 5px;
+}
+
+/*
+.boutons {
+  display: flex;
+  flex-direction: column;
+}*/

@@ -5,17 +5,16 @@ import { AuthContext } from "../../context/authContext";
 
 const Auth = () => {
   const { user, signOut, signInWithGoogle } = useContext(AuthContext);
-  console.log("user", user);
 
   return (
-    <>
+    <div className="connexion">
       {user ? <p>Bonjour, {user.displayName}</p> : <p></p>}
       {user ? (
-        <button onClick={signOut}>Déconnexion</button>
+        <button className='bouton' onClick={signOut}>Déconnexion</button>
       ) : (
-        <button onClick={signInWithGoogle}>Connexion</button>
+        <button className='bouton' onClick={signInWithGoogle}>Connexion</button>
       )}
-    </>
+    </div>
   );
 };
 
