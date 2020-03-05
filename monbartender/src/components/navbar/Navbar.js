@@ -11,6 +11,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 
 import "./Navbar.css";
 import { AuthContext } from "../../context/authContext";
+import NavComponent from "../navComponent/NavComponent";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
@@ -19,55 +20,38 @@ const Navbar = () => {
     <div className="navbar">
       <div className="nonconnecte">
         <Link to="/">
-          <div className="navmenu">
-            <div className="imgaccueil">
-              <TiHome size={40} />
-            </div>
-            <div className="txtaccueil">Accueil</div>
-          </div>
+          <NavComponent name="Accueil" Icon={TiHome} iconSize={35} />
         </Link>
 
         <Link to="/recherche">
-          <div className="navmenu">
-            <div className="imgRecherche">
-              <FaSearch size={30} />
-            </div>
-            <div className="txtRecherche">Recherche par ingrédient</div>
-          </div>
+          <NavComponent
+            name="Recherche par ingrédient"
+            Icon={FaSearch}
+            iconSize={30}
+          />
         </Link>
 
         <Link to="/recettes">
-          <div className="navmenu">
-            <div className="imgRecettes">
-              <FaGlassMartiniAlt size={30} />
-            </div>
-            <div className="txtRecettes">Les recettes</div>
-          </div>
+          <NavComponent
+            name="Les recettes"
+            Icon={FaGlassMartiniAlt}
+            iconSize={30}
+          />
         </Link>
       </div>
 
       {user && (
         <>
           <div className="connecte ">
-            <div className="navmenu">
-              <div className="imgProfil">
-                <FaRegUser size={30} />
-              </div>
-              <div className="txtProfil">Mon profil</div>
-            </div>
+            <NavComponent name="Mon profil" Icon={FaRegUser} iconSize={30} />
 
-            <div className="navmenu">
-              <div className="imgBar">
-                <FaWineBottle size={30} />
-              </div>
-              <div className="txtBar">Mon bar</div>
-            </div>
-            <div className="navmenu">
-              <div className="imgBar">
-                <MdFavoriteBorder size={30} />
-              </div>
-              <div className="txtFavoris">Mes recettes favorites</div>
-            </div>
+            <NavComponent name="Mon bar" Icon={FaWineBottle} iconSize={30} />
+
+            <NavComponent
+              name="Mes recettes favorites"
+              Icon={MdFavoriteBorder}
+              iconSize={30}
+            />
           </div>
         </>
       )}
