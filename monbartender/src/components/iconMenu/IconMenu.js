@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AuthContext } from "../../context/authContext";
+//import { AuthContext } from "../../context/authContext";
 
 import "./IconMenu.css";
 
 const IconMenu = () => {
-  const { user } = useContext(AuthContext);
+  //const { user } = useContext(AuthContext);
 
   const modifierCSSNavBarre = () => {
     /*if (user) {
       const divNavBar = document.getElementsByClassName("navbar");
 
-      /const divTxtaccueil = document.getElementsByClassName("txtaccueil");
+      const divTxtaccueil = document.getElementsByClassName("txtaccueil");
       const divTxtRecherche = document.getElementsByClassName("txtRecherche");
       const divTxtRecettes = document.getElementsByClassName("txtRecettes");
 

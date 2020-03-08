@@ -4,19 +4,21 @@ import Accueil from "../accueil/Accueil";
 import Recherche from "../recherche/Recherche";
 import ListeRecettes from "../listeRecettes/ListeRecettes";
 import PageRecette from "../pageRecette/PageRecette";
-import InputRechercheParNom from "../inputRechercheParNom/InputRechercheParNom";
 
 import "./Main.css";
+import Bar from "../pageBar/PageBar";
+import ListeParNom from "../listeParNom/ListeParNom";
 
 function Main() {
   return (
     <div className="main">
       <Switch>
         <Route exact path="/" component={Accueil} />
-        <Route path="/recherche" component={Recherche} />
-        <Route path="/recettes" component={ListeRecettes} />
+        <Route path="/rechercherparingredients" component={Recherche} />
+        <Route exact path="/recettes" component={ListeRecettes} />
+        <Route path="/monbar" component={Bar} />
+        <Route path="/rechercherparnom" component={ListeParNom} />
         <Route path="/:id" component={PageRecette} />
-        <Route path="/rechercher?nom=Mojito" component={InputRechercheParNom} />
       </Switch>
     </div>
   );

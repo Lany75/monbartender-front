@@ -23,7 +23,7 @@ const Navbar = () => {
           <NavComponent name="Accueil" Icon={TiHome} iconSize={35} />
         </Link>
 
-        <Link to="/recherche">
+        <Link to="/rechercherparingredients">
           <NavComponent
             name="Recherche par ingrédient"
             Icon={FaSearch}
@@ -45,7 +45,9 @@ const Navbar = () => {
           <div className="connecte ">
             <NavComponent name="Mon profil" Icon={FaRegUser} iconSize={30} />
 
-            <NavComponent name="Mon bar" Icon={FaWineBottle} iconSize={30} />
+            <Link to="/monbar">
+              <NavComponent name="Mon bar" Icon={FaWineBottle} iconSize={30} />
+            </Link>
 
             <NavComponent
               name="Mes recettes favorites"

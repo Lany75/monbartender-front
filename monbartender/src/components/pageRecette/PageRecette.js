@@ -30,8 +30,6 @@ const PageRecette = () => {
         return reponse.json();
       })
       .then(data => {
-        console.log(data);
-
         setRecetteCocktail(data);
       })
       .catch(error => {
@@ -42,11 +40,6 @@ const PageRecette = () => {
   React.useEffect(() => {
     getRecetteCocktail(id);
   }, [id]);
-
-  console.log(
-    "recette Cocktail : --------------- ",
-    recetteCocktail.Ingredients
-  );
 
   return (
     <>
@@ -59,15 +52,10 @@ const PageRecette = () => {
       <div className="ingredientsVerre">
         <div className="ingredients">
           <h3>Ingredients</h3>
-          {
-            recetteCocktail.Ingredients && recetteCocktail.Ingredients.map((rc,index) => {
-              return (
-                <div key={index}>
-                  {rc.nom}
-                </div>
-              )
-            })
-          }
+          {recetteCocktail.Ingredients &&
+            recetteCocktail.Ingredients.map((rc, index) => {
+              return <div key={index}>{rc.nom}</div>;
+            })}
         </div>
         <div className="verre">
           <h3>Verre</h3>

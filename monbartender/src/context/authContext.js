@@ -17,7 +17,7 @@ export const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children, user = null, signOut, signInWithGoogle }) {
-  //console.log("user", user);
+  // console.log("user", user);
 
   return (
     <AuthContext.Provider value={{ user, signOut, signInWithGoogle }}>

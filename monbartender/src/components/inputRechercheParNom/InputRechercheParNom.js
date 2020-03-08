@@ -1,29 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./InputRechercheParNom.css";
 
+//import { CocktailContext } from "../../context/cocktailContext";
+import { useHistory } from "react-router-dom";
+//import ListeRecettesParNom from "../listeParNom/ListeParNom";
+
 // eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
+//const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const InputRechercheParNom = () => {
-  const [cocktails, setCocktails] = useState([]);
+  let history = useHistory();
+
+  // const { cocktails, addCocktails } = useContext(CocktailContext);
+  //const [cocktails, setCocktails] = useState([]);
 
   function RecupererCocktailParNom(e) {
     if (e.key === "Enter") {
-      const cocktailName = document.getElementById("nomCocktail").value;
+      //const cocktailName = document.getElementById("nomCocktail").value;
 
-      fetch(`${apiBaseURL}/api/cocktails/rechercher?nom=${cocktailName}`)
-        .then(reponse => {
-          return reponse.json();
-        })
-        .then(data => {
-          console.log("data", data);
-          setCocktails(data);
-          return cocktails;
-        })
-        .catch(error => {
-          console.log("vous avez une erreur : ", error);
-        });
+      history.push("/rechercherparnom");
     }
   }
 

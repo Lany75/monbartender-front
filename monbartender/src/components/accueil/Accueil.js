@@ -39,16 +39,18 @@ const Accueil = () => {
     <>
       {user && <p>Salut, {user.displayName}</p>}
       <h2>Cocktails du moment</h2>
-      <Link to={to}>
-        <div className="cocktail">
-          <img
-            className="imageRecetteAleatoire"
-            src={`${apiBaseURL}${cocktail.photo}`}
-            alt={cocktail.nom}
-          />
-          <div className="nomcocktail">{cocktail.nom}</div>
-        </div>
-      </Link>
+      {cocktail && (
+        <Link to={to}>
+          <div className="cocktail">
+            <img
+              className="imageRecetteAleatoire"
+              src={`${apiBaseURL}${cocktail.photo}`}
+              alt={cocktail.nom}
+            />
+            <div className="nomcocktail">{cocktail.nom}</div>
+          </div>
+        </Link>
+      )}
     </>
   );
 };

@@ -1,0 +1,29 @@
+.liste-bar {
+  margin-top: 50px;
+  padding-top: 30px;
+  border: solid grey;
+  width: 50%;
+  height: 50%;
+
+}
+
+.bar-component {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.suppression-ingredient {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+}
+
+.liste-deroulante {
+  margin: 50px;
+
+}
+
+.bouton-ajout {
+  margin: 50px;
+}
