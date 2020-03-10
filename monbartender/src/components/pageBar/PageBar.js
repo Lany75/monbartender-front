@@ -10,16 +10,25 @@ import AjoutIngredientComponent from "../ajoutIngredientComponent/AjoutIngredien
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const PageBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, accessToken } = useContext(AuthContext);
+  // console.log("user : ", user);
+  //console.log("accessToken : ", accessToken);
+
   const [bar, setBar] = useState();
 
   const getBarUser = () => {
     user &&
-      fetch(`${apiBaseURL}/api/bar/${user.email}`)
+      fetch(`${apiBaseURL}/api/bars/`, {
+        method: "GET",
+        headers: {
+          authorization: accessToken
+        }
+      })
         .then(reponse => {
           return reponse.json();
         })
         .then(data => {
+          console.log("data : ", data);
           setBar(data);
         })
         .catch(error => {
@@ -31,20 +40,25 @@ const PageBar = () => {
     getBarUser();
   }, [user]);
 
+  console.log("barrrrrrr : ", bar);
+
   return (
     <>
       {user ? (
         <>
           <h2>Mon bar</h2>
           <div className="liste-bar">
-            {bar &&
+            {bar && bar[0].Ingredients.length !== 0 ? (
               bar[0].Ingredients.map((b, index) => {
                 return (
                   <div key={index} className="bar-component">
                     <BarComponent nom={b.nom} />
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <div>Votre bar est vide ...</div>
+            )}
           </div>
           <AjoutIngredientComponent />
         </>

@@ -3,13 +3,15 @@ import React from "react";
 const AjoutIngredientComponent = () => {
   return (
     <>
+      {/*
       <div className="suppression-ingredient">
         <div className="liste-deroulante">
           <input placeholder="nouvel ingredient" />
         </div>
         <button className="bouton-ajout">Ajouter l&apos;ingredient</button>
-      </div>
-      <form action="/bars/ajouter" method="POST">
+      </div>*/}
+
+      <form action="/:mail" method="POST">
         <input
           className="liste-deroulante"
           type="text"

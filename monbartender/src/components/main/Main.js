@@ -6,7 +6,7 @@ import ListeRecettes from "../listeRecettes/ListeRecettes";
 import PageRecette from "../pageRecette/PageRecette";
 
 import "./Main.css";
-import Bar from "../pageBar/PageBar";
+import PageBar from "../pageBar/PageBar";
 import ListeParNom from "../listeParNom/ListeParNom";
 
 function Main() {
@@ -16,7 +16,7 @@ function Main() {
         <Route exact path="/" component={Accueil} />
         <Route path="/rechercherparingredients" component={Recherche} />
         <Route exact path="/recettes" component={ListeRecettes} />
-        <Route path="/monbar" component={Bar} />
+        <Route path="/monbar" component={PageBar} />
         <Route path="/rechercherparnom" component={ListeParNom} />
         <Route path="/:id" component={PageRecette} />
       </Switch>

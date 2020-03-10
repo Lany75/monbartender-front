@@ -38,7 +38,7 @@ const Accueil = () => {
   return (
     <>
       {user && <p>Salut, {user.displayName}</p>}
-      <h2>Cocktails du moment</h2>
+      <h2>Cocktails aléatoire</h2>
       {cocktail && (
         <Link to={to}>
           <div className="cocktail">

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ListeCocktailsComponent from "../listeCocktailsComponent/ListeCocktailsComponent";
+import ListeRecettes from "../listeRecettes/ListeRecettes";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -12,27 +13,36 @@ const ListeParNom = () => {
     .value.toLowerCase();
 
   const getCocktailByName = () => {
-    fetch(`${apiBaseURL}/api/cocktails/rechercher?nom=${cocktailName}`)
-      .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setCocktails(data);
-        document.getElementById("nomCocktail").value = "";
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
+    cocktailName &&
+      fetch(`${apiBaseURL}/api/cocktails/rechercher?nom=${cocktailName}`)
+        .then(reponse => {
+          return reponse.json();
+        })
+        .then(data => {
+          setCocktails(data);
+          document.getElementById("nomCocktail").value = "";
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
   };
 
   React.useEffect(() => {
     getCocktailByName();
-  }, [cocktails]);
+  }, [cocktailName]);
 
   return (
     <>
-      <h2>Liste des Recettes</h2>
-      {<ListeCocktailsComponent cocktails={cocktails} />}
+      {cocktailName ? (
+        <>
+          <h2>Liste des Recettes</h2>
+          {<ListeCocktailsComponent cocktails={cocktails} />}
+        </>
+      ) : (
+        <>
+          <ListeRecettes />
+        </>
+      )}
     </>
   );
 };

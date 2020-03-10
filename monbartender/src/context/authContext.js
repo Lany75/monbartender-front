@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 
 import withFirebaseAuth from "react-with-firebase-auth";
 import * as firebase from "firebase/app";
@@ -17,10 +17,25 @@ export const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children, user = null, signOut, signInWithGoogle }) {
-  // console.log("user", user);
+  const [accessToken, setAccessToken] = useState(null);
+  //console.log("user", user);
+
+  React.useEffect(() => {
+    if (user && !accessToken) {
+      user.getIdToken().then(res => {
+        console.log("res : ", res);
+
+        setAccessToken(res);
+      });
+    }
+  }, [user]);
+
+  //console.log("accessToken : ", accessToken);
 
   return (
-    <AuthContext.Provider value={{ user, signOut, signInWithGoogle }}>
+    <AuthContext.Provider
+      value={{ user, signOut, signInWithGoogle, accessToken }}
+    >
       {children}
     </AuthContext.Provider>
   );

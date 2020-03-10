@@ -4,6 +4,7 @@ import "./BarComponent.css";
 
 const BarComponent = ingredient => {
   const supprimerIngredient = () => {
+    console.log("ingredient.nom", ingredient.nom);
     console.log("bouton suppression ingredient cliqué");
   };
 
