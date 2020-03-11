@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import "./BarComponent.css";
 import { AuthContext } from "../../context/authContext";
+import { BarContext } from "../../context/barContext";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -9,7 +10,7 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 const BarComponent = ingredient => {
   const { user, accessToken } = useContext(AuthContext);
 
-  const [bar, setBar] = useState();
+  const { setBar } = useContext(BarContext);
 
   const supprimerIngredient = nomBouton => {
     const ingredientSupprime = document.getElementById(nomBouton + "-div")

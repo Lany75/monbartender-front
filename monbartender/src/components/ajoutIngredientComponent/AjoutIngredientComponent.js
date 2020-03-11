@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
+import { BarContext } from "../../context/barContext";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const AjoutIngredientComponent = () => {
   const { user, accessToken } = useContext(AuthContext);
+  const { bar, setBar } = useContext(BarContext);
   const [allIngredients, setAllIngredients] = useState();
   const [ingredientMonBar, setIngredientMonBar] = useState();
-  let history = useHistory();
   //console.log("user : ", user);
   //console.log("accessToken : ", accessToken);
 
@@ -24,15 +24,14 @@ const AjoutIngredientComponent = () => {
         })
         .then(data => {
           setAllIngredients(data);
-          return ingredientMonBar;
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
         });
   };
 
-  const ajouterIngredient = () => {
-    //event.preventDefault();
+  const ajouterIngredient = event => {
+    event.preventDefault();
     console.log("on a cliqué sur le bouton ajouter");
     const nouvelIngredient = document.getElementById(
       "liste-deroulante-ajout-ingredient"
@@ -52,8 +51,10 @@ const AjoutIngredientComponent = () => {
       })
       .then(data => {
         //console.log("data", data);
+        console.log("data : ", data);
         setIngredientMonBar(data);
-        history.push("/monbar");
+        setBar(data);
+        //history.push("/monbar");
       });
   };
 
