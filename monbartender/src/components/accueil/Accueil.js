@@ -16,7 +16,7 @@ const Accueil = () => {
   const { user } = useContext(AuthContext);
   const [cocktail, setCocktail] = useState(initialState);
 
-  const getCocktailAleatoiredata = () => {
+  const getCocktailAleatoire = () => {
     fetch(`${apiBaseURL}/api/cocktails/aleatoire`)
       .then(reponse => {
         return reponse.json();
@@ -30,7 +30,7 @@ const Accueil = () => {
   };
 
   React.useEffect(() => {
-    getCocktailAleatoiredata();
+    getCocktailAleatoire();
   }, []);
 
   const to = "/" + cocktail.id;

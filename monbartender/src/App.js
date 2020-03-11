@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import FirebaseAuthProvider from "./context/authContext";
 //import CocktailProvider from "./context/cocktailContext";
+//import BarProvider from "./context/barContext";
 
 import "./App.css";
 

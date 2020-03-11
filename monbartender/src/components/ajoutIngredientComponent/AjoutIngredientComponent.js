@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 
 // eslint-disable-next-line no-undef
@@ -6,11 +7,13 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const AjoutIngredientComponent = () => {
   const { user, accessToken } = useContext(AuthContext);
-  const [ingredients, setIngredients] = useState();
+  const [allIngredients, setAllIngredients] = useState();
+  const [ingredientMonBar, setIngredientMonBar] = useState();
+  let history = useHistory();
   //console.log("user : ", user);
   //console.log("accessToken : ", accessToken);
 
-  // Aller recuperer la liste de tous les ingredients de la table ingredients
+  // Recuperer la liste de tous les ingredients de la table ingredients
   const getAllIngredients = () => {
     user &&
       fetch(`${apiBaseURL}/api/ingredients/`, {
@@ -20,20 +23,21 @@ const AjoutIngredientComponent = () => {
           return reponse.json();
         })
         .then(data => {
-          setIngredients(data);
+          setAllIngredients(data);
+          return ingredientMonBar;
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
         });
   };
 
-  const ajouterIngredient = event => {
-    event.preventDefault();
+  const ajouterIngredient = () => {
+    //event.preventDefault();
     console.log("on a cliqué sur le bouton ajouter");
     const nouvelIngredient = document.getElementById(
       "liste-deroulante-ajout-ingredient"
     ).value;
-    console.log("nouvelIngredient : ", nouvelIngredient);
+    //console.log("nouvelIngredient : ", nouvelIngredient);
 
     // fetch sur la route post
     fetch(`${apiBaseURL}/api/ingredients/`, {
@@ -47,7 +51,9 @@ const AjoutIngredientComponent = () => {
         return reponse.json();
       })
       .then(data => {
-        console.log("data", data);
+        //console.log("data", data);
+        setIngredientMonBar(data);
+        history.push("/monbar");
       });
   };
 
@@ -55,40 +61,20 @@ const AjoutIngredientComponent = () => {
     getAllIngredients();
   }, [user]);
 
-  /*React.useEffect(() => {
+  /*    React.useEffect(() => {
     getAllIngredients();
-  }, [nouvelIngredient]);*/
+  }, [ingredients]);  */
 
   return (
     <>
-      {/*
-      <div className="suppression-ingredient">
-        <div className="liste-deroulante">
-          <input placeholder="nouvel ingredient" />
-        </div>
-        <button className="bouton-ajout">Ajouter l&apos;ingredient</button>
-      </div>*/}
-
-      {/*<form action="/:mail" method="POST">
-        <input
-          className="liste-deroulante"
-          type="text"
-          name="ingredient"
-          placeholder="nouvel ingredient"
-        />
-        <button className="bouton-ajout" type="submit">
-          Ajouter l&apos;ingredient
-        </button>
-    </form>*/}
-
       <form className="suppression-ingredient">
         <select
           className="liste-deroulante"
           id="liste-deroulante-ajout-ingredient"
           name="test"
         >
-          {ingredients &&
-            ingredients.map((i, index) => {
+          {allIngredients &&
+            allIngredients.map((i, index) => {
               return (
                 <option key={index} value={i.nom} name={i.nom}>
                   {i.nom}
@@ -96,12 +82,6 @@ const AjoutIngredientComponent = () => {
               );
             })}
         </select>
-
-        {/*<select className="liste-deroulante" name="test">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          </select>*/}
         <button className="bouton-ajout" onClick={ajouterIngredient}>
           Ajouter l&apos;ingredient
         </button>
