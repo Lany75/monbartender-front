@@ -28,7 +28,7 @@ const PageBar = () => {
           return reponse.json();
         })
         .then(data => {
-          console.log("data : ", data);
+          //console.log("data : ", data);
           setBar(data);
         })
         .catch(error => {
@@ -40,7 +40,7 @@ const PageBar = () => {
     getBarUser();
   }, [user]);
 
-  console.log("barrrrrrr : ", bar);
+  //console.log("barrrrrrr : ", bar);
 
   return (
     <>
