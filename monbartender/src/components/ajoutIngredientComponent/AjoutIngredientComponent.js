@@ -7,7 +7,7 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const AjoutIngredientComponent = () => {
   const { user, accessToken } = useContext(AuthContext);
-  const { bar, setBar } = useContext(BarContext);
+  const { setBar } = useContext(BarContext);
   const [allIngredients, setAllIngredients] = useState();
   const [ingredientMonBar, setIngredientMonBar] = useState();
   //console.log("user : ", user);
