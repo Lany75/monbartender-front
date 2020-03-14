@@ -9,8 +9,9 @@ const ListeParNom = () => {
   const [cocktails, setCocktails] = useState([]);
 
   const cocktailName = document
-    .getElementById("nomCocktail")
+    .getElementById("nom-cocktail-recherche")
     .value.toLowerCase();
+  //console.log("cocktailName : ", cocktailName);
 
   const getCocktailByName = () => {
     cocktailName &&
@@ -20,7 +21,7 @@ const ListeParNom = () => {
         })
         .then(data => {
           setCocktails(data);
-          document.getElementById("nomCocktail").value = "";
+          document.getElementById("nom-cocktail-recherche").value = "";
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
@@ -31,13 +32,21 @@ const ListeParNom = () => {
     getCocktailByName();
   }, [cocktailName]);
 
+  //console.log("cocktails : ", cocktails);
+
   return (
     <>
       {cocktailName ? (
-        <>
-          <h2>Liste des Recettes</h2>
-          {<ListeCocktailsComponent cocktails={cocktails} />}
-        </>
+        cocktails.length !== 0 ? (
+          <>
+            <h2>Liste des Recettes</h2>
+            {<ListeCocktailsComponent cocktails={cocktails} />}
+          </>
+        ) : (
+          <>
+            <ListeRecettes />
+          </>
+        )
       ) : (
         <>
           <ListeRecettes />

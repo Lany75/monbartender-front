@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
 
+import "./AjoutIngredientComponent.css";
+
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
@@ -9,9 +11,6 @@ const AjoutIngredientComponent = () => {
   const { user, accessToken } = useContext(AuthContext);
   const { setBar } = useContext(BarContext);
   const [allIngredients, setAllIngredients] = useState();
-  const [ingredientMonBar, setIngredientMonBar] = useState();
-  //console.log("user : ", user);
-  //console.log("accessToken : ", accessToken);
 
   // Recuperer la liste de tous les ingredients de la table ingredients
   const getAllIngredients = () => {
@@ -52,7 +51,6 @@ const AjoutIngredientComponent = () => {
       .then(data => {
         //console.log("data", data);
         console.log("data : ", data);
-        setIngredientMonBar(data);
         setBar(data);
         //history.push("/monbar");
       });

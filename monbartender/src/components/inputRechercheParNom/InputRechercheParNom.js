@@ -15,6 +15,9 @@ const InputRechercheParNom = () => {
   // const { cocktails, addCocktails } = useContext(CocktailContext);
   //const [cocktails, setCocktails] = useState([]);
 
+  /* const listeCocktail = ["cocktail 1", "cocktail 2", "cocktail 3"];
+  "#nom-cocktail-recherche".autocomplete({ source: listeCocktail });
+ */
   function RecupererCocktailParNom(e) {
     if (e.key === "Enter") {
       //const cocktailName = document.getElementById("nomCocktail").value;
@@ -27,8 +30,8 @@ const InputRechercheParNom = () => {
     <div className="inputNom">
       <input
         type="text"
-        id="nomCocktail"
-        name="nomCocktail"
+        id="nom-cocktail-recherche"
+        name="nom-cocktail-recherche"
         placeholder="nom du cocktail"
         //onKeyUp={() => getCocktailsByName()}
         onKeyPress={RecupererCocktailParNom}
