@@ -11,6 +11,9 @@ function BarProvider({ children }) {
   const { user, accessToken } = useContext(AuthContext);
   const [bar, setBar] = useState();
 
+  // console.log("user : ", user);
+  // console.log("accessToken : ", accessToken);
+
   const getBarUser = () => {
     user &&
       accessToken &&

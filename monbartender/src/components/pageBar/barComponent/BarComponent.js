@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 
 import "./BarComponent.css";
-import { AuthContext } from "../../context/authContext";
-import { BarContext } from "../../context/barContext";
+import { AuthContext } from "../../../context/authContext";
+import { BarContext } from "../../../context/barContext";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;

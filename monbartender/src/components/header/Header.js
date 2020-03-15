@@ -1,9 +1,9 @@
 import React from "react";
 
 import "./Header.css";
-import Auth from "../auth/Auth";
-import InputRechercheParNom from "../inputRechercheParNom/InputRechercheParNom";
-import IconMenu from "../iconMenu/IconMenu";
+import Auth from "./auth/Auth";
+import InputRechercheParNom from "./inputRechercheParNom/InputRechercheParNom";
+import IconMenu from "./iconMenu/IconMenu";
 
 const Header = () => {
   return (

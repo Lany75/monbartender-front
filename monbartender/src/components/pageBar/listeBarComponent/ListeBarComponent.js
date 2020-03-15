@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import BarComponent from "../barComponent/BarComponent";
-import { BarContext } from "../../context/barContext";
+import { BarContext } from "../../../context/barContext";
 
 const ListeBarComponent = () => {
   const { bar } = useContext(BarContext);

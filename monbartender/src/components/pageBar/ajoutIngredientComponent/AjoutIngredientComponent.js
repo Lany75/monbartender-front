@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../context/authContext";
-import { BarContext } from "../../context/barContext";
+import { AuthContext } from "../../../context/authContext";
+import { BarContext } from "../../../context/barContext";
 
 import "./AjoutIngredientComponent.css";
 

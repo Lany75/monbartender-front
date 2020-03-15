@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 //import axios from "axios";
 
 import "./Auth.css";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../../context/authContext";
 import { useHistory } from "react-router-dom";
 
 // eslint-disable-next-line no-undef

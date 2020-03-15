@@ -11,7 +11,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 
 import "./Navbar.css";
 import { AuthContext } from "../../context/authContext";
-import NavComponent from "../navComponent/NavComponent";
+import NavComponent from "./navComponent/NavComponent";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);

@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 
 import "./PageBar.css";
-import AjoutIngredientComponent from "../ajoutIngredientComponent/AjoutIngredientComponent";
-import ListeBarComponent from "../listeBarComponent/ListeBarComponent";
+import AjoutIngredientComponent from "./ajoutIngredientComponent/AjoutIngredientComponent";
+import ListeBarComponent from "./listeBarComponent/ListeBarComponent";
 
 // eslint-disable-next-line no-undef
 
