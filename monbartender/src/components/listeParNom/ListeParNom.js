@@ -10,13 +10,15 @@ const ListeParNom = () => {
   const [cocktails, setCocktails] = useState([]);
   let history = useHistory();
 
-  const cocktailName = document
-    .getElementById("nom-cocktail-recherche")
-    .value.toLowerCase();
-  //console.log("cocktailName : ", cocktailName);
+  const divcocktailName = document.getElementById("nom-cocktail-recherche");
+  let cocktailName;
+
+  if (divcocktailName) cocktailName = divcocktailName.value.toLowerCase();
+  console.log("cocktailName : ", cocktailName);
 
   const getCocktailByName = () => {
-    if (!cocktailName || cocktailName === "" || cocktailName === " ") {
+    if (!cocktailName) history.push("/");
+    if (cocktailName === "" || cocktailName === " ") {
       history.push("/recettes");
     }
 
@@ -37,8 +39,6 @@ const ListeParNom = () => {
   React.useEffect(() => {
     getCocktailByName();
   }, [cocktailName]);
-
-  //console.log("cocktails : ", cocktails);
 
   return (
     <>
