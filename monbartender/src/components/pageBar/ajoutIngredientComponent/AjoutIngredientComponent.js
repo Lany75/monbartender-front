@@ -50,7 +50,7 @@ const AjoutIngredientComponent = () => {
       })
       .then(data => {
         //console.log("data", data);
-        console.log("data : ", data);
+        //console.log("data : ", data);
         setBar(data);
         //history.push("/monbar");
       });

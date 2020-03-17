@@ -14,7 +14,7 @@ const ListeParNom = () => {
   let cocktailName;
 
   if (divcocktailName) cocktailName = divcocktailName.value.toLowerCase();
-  console.log("cocktailName : ", cocktailName);
+  //console.log("cocktailName : ", cocktailName);
 
   const getCocktailByName = () => {
     if (!cocktailName) history.push("/");
@@ -23,7 +23,7 @@ const ListeParNom = () => {
     }
 
     cocktailName &&
-      fetch(`${apiBaseURL}/api/cocktails/rechercher?nom=${cocktailName}`)
+      fetch(`${apiBaseURL}/api/cocktails/rechercherparnom?nom=${cocktailName}`)
         .then(reponse => {
           return reponse.json();
         })

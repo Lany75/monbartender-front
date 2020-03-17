@@ -6,7 +6,10 @@ import { BarContext } from "../../../context/barContext";
 const ListeBarComponent = () => {
   const { bar } = useContext(BarContext);
 
+  //console.log("bar", bar);
+
   if (bar) {
+    //console.log("barrrrrr : ", bar);
     bar.Ingredients.sort((a, b) => {
       return a.nom.localeCompare(b.nom);
     });
