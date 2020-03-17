@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 import "./RechercheParIngredientNonConnecte.css";
 import { useHistory } from "react-router-dom";
-import SelectComponentAllIngredients from "../rechercheParIngredientConnecte/selectComponentAllIngredients/SelectComponentAllIngredients";
+import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
+import ListeCocktailsComponent from "../../listeCocktailsComponent/ListeCocktailsComponent";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -14,9 +15,10 @@ const initialState = {
 
 const RechercheParIngredientNonConnecte = () => {
   const [cocktailAleatoire, setCocktailAleatoire] = useState(initialState);
-  const [cocktailParIngredient, setCocktailParIngredient] = useState(
+  /*  const [cocktailIdParIngredient, setCocktailIdParIngredient] = useState(
     initialState
-  );
+  );*/
+  const [cocktailsRecherche, setCocktailsRecherche] = useState();
   let history = new useHistory();
 
   const RechercheParIngredient = event => {
@@ -29,31 +31,49 @@ const RechercheParIngredientNonConnecte = () => {
     let nomIngredientdivSelect1 = document.getElementById("divSelect1").value;
     if (nomIngredientdivSelect1 === "choisissez un ingredient")
       nomIngredientdivSelect1 = "";
-    console.log("nomIngredientdivSelect1 : ", nomIngredientdivSelect1);
+    //console.log("nomIngredientdivSelect1 : ", nomIngredientdivSelect1);
     let nomIngredientdivSelect2 = document.getElementById("divSelect2").value;
     if (nomIngredientdivSelect2 === "choisissez un ingredient")
       nomIngredientdivSelect2 = "";
-    console.log("nomIngredientdivSelect1 : ", nomIngredientdivSelect2);
+    //console.log("nomIngredientdivSelect1 : ", nomIngredientdivSelect2);
     let nomIngredientdivSelect3 = document.getElementById("divSelect3").value;
     if (nomIngredientdivSelect3 === "choisissez un ingredient")
       nomIngredientdivSelect3 = "";
-    console.log("nomIngredientdivSelect1 : ", nomIngredientdivSelect3);
+    //console.log("nomIngredientdivSelect1 : ", nomIngredientdivSelect3);
 
-    fetch(
-      `${apiBaseURL}/api/cocktails/rechercherparingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}`
-    )
-      .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setCocktailParIngredient(data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
+    if (
+      nomIngredientdivSelect1 === "" &&
+      nomIngredientdivSelect2 === "" &&
+      nomIngredientdivSelect3 === ""
+    ) {
+      fetch(`${apiBaseURL}/api/cocktails`)
+        .then(reponse => {
+          return reponse.json();
+        })
+        .then(data => {
+          setCocktailsRecherche(data);
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
+      // history.push("/recettes");
+    } else {
+      fetch(
+        `${apiBaseURL}/api/cocktails/rechercherparingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}`
+      )
+        .then(reponse => {
+          return reponse.json();
+        })
+        .then(data => {
+          setCocktailsRecherche(data);
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
+    }
   };
 
-  console.log("cocktailParIngredient : ", cocktailParIngredient);
+  //console.log("cocktailIdParIngredient : ", cocktailsRecherche);
 
   const getCocktailAleatoire = () => {
     fetch(`${apiBaseURL}/api/cocktails/aleatoire`)
@@ -96,6 +116,13 @@ const RechercheParIngredientNonConnecte = () => {
         </button>
       </div>
       <button onClick={RecetteAuHasard}>Recette au hasard</button>
+
+      {cocktailsRecherche && (
+        <div className="resultat-recherche">
+          <h3>Résultat de votre recherche</h3>
+          <ListeCocktailsComponent cocktails={cocktailsRecherche} />
+        </div>
+      )}
     </>
   );
 };

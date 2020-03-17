@@ -1,7 +1,10 @@
+h2 {
+  align-items: center;
+}
 .recherche{
   display: flex;
   flex-direction: row;
-  
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -22,4 +25,17 @@ margin-bottom: 5px;
 .bouton-recherche-par-ingredient {
   height: 50px;
   width: 100px;
+}
+
+.resultat-recherche {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.ingredients{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
