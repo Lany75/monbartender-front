@@ -7,10 +7,21 @@ import InputRechercheParNom from "./inputRechercheParNom/InputRechercheParNom";
 import IconMenu from "./iconMenu/IconMenu";
 
 const Header = () => {
+  const toggleAffichageNavbar = () => {
+    const navbar = document.getElementById("navbar");
+    const classNavbar = navbar.getAttribute("class");
+    if (classNavbar === "invisible") {
+      navbar.setAttribute("class", "visible");
+    } else {
+      navbar.setAttribute("class", "invisible");
+    }
+  };
   return (
     <div className="header">
       <div className="menu-titre">
-        <IconMenu />
+        <div onClick={toggleAffichageNavbar}>
+          <IconMenu />
+        </div>
         <div id="titre">Mon BarTender</div>
       </div>
 
