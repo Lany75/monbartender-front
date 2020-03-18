@@ -1,0 +1,25 @@
+@media screen and (max-width: 768px) {
+  #formulaire-ajout-ingredient {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    margin-bottom: 50px;
+    margin-top: 30px;
+  }
+
+  #liste-deroulante-ajout-ingredient {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+ /*  .option-formulaire-ajout {
+    margin: 0px;
+  } */ 
+
+  #btn-ajout-ingredient {
+    font-size: 12px;
+    margin-left: 10px;
+    border-radius: 5px;
+  }
+
+}

@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px) {
+  #mon-bar {
+    display: flex;
+     flex-direction: column; 
+     align-items: center;
+  }
+
+  #liste-bar {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start;  */
+    /*margin-top: 50px;
+    padding-top: 30px;*/
+    border: solid grey;
+    width: 60%;
+    height: 250px;
+    overflow: scroll;
+    margin: 20px;
+  }
+}

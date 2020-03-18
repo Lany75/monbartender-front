@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "./SelectComponentAllIngredientsMobile.css";
+
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 

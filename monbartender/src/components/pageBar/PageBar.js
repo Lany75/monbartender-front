@@ -1,21 +1,19 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 
-import "./PageBar.css";
+import "./PageBarMobile.css";
 import AjoutIngredientComponent from "./ajoutIngredientComponent/AjoutIngredientComponent";
 import ListeBarComponent from "./listeBarComponent/ListeBarComponent";
-
-// eslint-disable-next-line no-undef
 
 const PageBar = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <>
+    <div id="mon-bar">
       {user ? (
         <>
           <h2>Mon Bar</h2>
-          <div className="liste-bar">
+          <div id="liste-bar">
             <ListeBarComponent />
           </div>
           <AjoutIngredientComponent />
@@ -23,7 +21,7 @@ const PageBar = () => {
       ) : (
         <h2>Chargement ...</h2>
       )}
-    </>
+    </div>
   );
 };
 export default PageBar;

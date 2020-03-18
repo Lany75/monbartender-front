@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import "./BarComponent.css";
+import "./BarComponentMobile.css";
 import { AuthContext } from "../../../context/authContext";
 import { BarContext } from "../../../context/barContext";
 
@@ -33,17 +33,13 @@ const BarComponent = ingredient => {
         });
   };
 
-  // React.useEffect(() => {
-  //   console.log("raffraichissement de l'affichage du bar");
-  // }, [bar]);
-
   return (
     <>
-      <div className="bar" id={ingredient.nom + "-div"}>
+      <div className="nom-ingredient-bar" id={ingredient.nom + "-div"}>
         {ingredient.nom}
       </div>
       <button
-        className="bar"
+        className="btn-suppression-ingredient"
         onClick={() => supprimerIngredient(ingredient.nom)}
       >
         X

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import "./RechercheParIngredientNonConnecte.css";
+import "./RechercheParIngredientNonConnecteMobile.css";
+
 import { useHistory } from "react-router-dom";
 import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
 import ListeCocktailsComponent from "../../listeCocktailsComponent/ListeCocktailsComponent";
@@ -97,10 +98,10 @@ const RechercheParIngredientNonConnecte = () => {
   }, []);
 
   return (
-    <>
+    <div id="page-recherche">
       <h2>Recherche par ingredients</h2>
-      <div className="recherche">
-        <div className="ingredients">
+      <div id="recherche">
+        <div id="choix-ingredients">
           <h3>Ingredients du cocktail</h3>
           <div id="selection-ingredient">
             <SelectComponentAllIngredients id="divSelect1" />
@@ -108,22 +109,26 @@ const RechercheParIngredientNonConnecte = () => {
             <SelectComponentAllIngredients id="divSelect3" />
           </div>
         </div>
-        <button
-          className="bouton-recherche-par-ingredient"
-          onClick={RechercheParIngredient}
-        >
-          Rechercher les recettes
-        </button>
+        <div id="div-btn-recherche">
+          <button
+            id="btn-recherche-par-ingredient"
+            onClick={RechercheParIngredient}
+          >
+            Rechercher les recettes
+          </button>
+        </div>
       </div>
-      <button onClick={RecetteAuHasard}>Recette au hasard</button>
+      <button id="btn-hasard" onClick={RecetteAuHasard}>
+        Recette au hasard
+      </button>
 
       {cocktailsRecherche && (
-        <div className="resultat-recherche">
+        <div id="resultat-recherche">
           <h3>Résultat de votre recherche</h3>
           <ListeCocktailsComponent cocktails={cocktailsRecherche} />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../context/authContext";
 import { BarContext } from "../../../context/barContext";
 
-import "./AjoutIngredientComponent.css";
+import "./AjoutIngredientComponentMobile.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -66,22 +66,27 @@ const AjoutIngredientComponent = () => {
 
   return (
     <>
-      <form className="suppression-ingredient">
+      <form id="formulaire-ajout-ingredient">
         <select
-          className="liste-deroulante"
+          //className="liste-deroulante"
           id="liste-deroulante-ajout-ingredient"
           name="test"
         >
           {allIngredients &&
             allIngredients.map((i, index) => {
               return (
-                <option key={index} value={i.nom} name={i.nom}>
+                <option
+                  // className="option-formulaire-ajout"
+                  key={index}
+                  value={i.nom}
+                  name={i.nom}
+                >
                   {i.nom}
                 </option>
               );
             })}
         </select>
-        <button className="bouton-ajout" onClick={ajouterIngredient}>
+        <button id="btn-ajout-ingredient" onClick={ajouterIngredient}>
           Ajouter l&apos;ingredient
         </button>
       </form>
