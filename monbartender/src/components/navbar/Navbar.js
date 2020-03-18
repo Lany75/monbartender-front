@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 
-import "./Navbar.css";
+import "./NavbarMobile.css";
 import { AuthContext } from "../../context/authContext";
 import NavComponent from "./navComponent/NavComponent";
 
@@ -17,17 +17,17 @@ const Navbar = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="navbar">
-      <div className="nonconnecte">
+    <div id="navbar">
+      <div id="non-connecte">
         <Link to="/">
-          <NavComponent name="Accueil" Icon={TiHome} iconSize={35} />
+          <NavComponent name="Accueil" Icon={TiHome} /*iconSize={35}*/ />
         </Link>
 
         <Link to="/rechercherparingredients">
           <NavComponent
             name="Recherche par ingrédient"
             Icon={FaSearch}
-            iconSize={30}
+            /* iconSize={30} */
           />
         </Link>
 
@@ -35,27 +35,31 @@ const Navbar = () => {
           <NavComponent
             name="Les recettes"
             Icon={FaGlassMartiniAlt}
-            iconSize={30}
+            /* iconSize={30} */
           />
         </Link>
       </div>
 
       {user && (
-        <>
-          <div className="connecte ">
-            <NavComponent name="Mon profil" Icon={FaRegUser} iconSize={30} />
+        <div id="connecte">
+          <NavComponent
+            name="Mon profil"
+            Icon={FaRegUser} /* iconSize={30} */
+          />
 
-            <Link to="/monbar">
-              <NavComponent name="Mon bar" Icon={FaWineBottle} iconSize={30} />
-            </Link>
-
+          <Link to="/monbar">
             <NavComponent
-              name="Mes recettes favorites"
-              Icon={MdFavoriteBorder}
-              iconSize={30}
+              name="Mon bar"
+              Icon={FaWineBottle} /* iconSize={30} */
             />
-          </div>
-        </>
+          </Link>
+
+          <NavComponent
+            name="Mes recettes favorites"
+            Icon={MdFavoriteBorder}
+            /* iconSize={30} */
+          />
+        </div>
       )}
     </div>
   );

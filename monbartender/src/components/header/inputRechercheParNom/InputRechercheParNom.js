@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./InputRechercheParNom.css";
+import "./InputRechercheParNomMobile.css";
 
 //import { CocktailContext } from "../../context/cocktailContext";
 import { useHistory } from "react-router-dom";
@@ -31,16 +31,16 @@ const InputRechercheParNom = () => {
   }
 
   return (
-    <div className="inputNom">
-      <input
-        type="text"
-        id="nom-cocktail-recherche"
-        name="nom-cocktail-recherche"
-        placeholder="nom du cocktail"
-        //onKeyUp={() => getCocktailsByName()}
-        onKeyPress={RecupererCocktailParNom}
-      />
-    </div>
+    // <div className="inputNom">
+    <input
+      type="text"
+      id="nom-cocktail-recherche"
+      name="nom-cocktail-recherche"
+      placeholder="nom du cocktail"
+      //onKeyUp={() => getCocktailsByName()}
+      onKeyPress={RecupererCocktailParNom}
+    />
+    //</div>
   );
 };
 

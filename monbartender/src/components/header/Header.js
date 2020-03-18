@@ -1,6 +1,7 @@
 import React from "react";
 
-import "./Header.css";
+import "./HeaderDesktop.css";
+import "./HeaderMobile.css";
 import Auth from "./auth/Auth";
 import InputRechercheParNom from "./inputRechercheParNom/InputRechercheParNom";
 import IconMenu from "./iconMenu/IconMenu";
@@ -8,16 +9,14 @@ import IconMenu from "./iconMenu/IconMenu";
 const Header = () => {
   return (
     <div className="header">
-      <div className="menutitre">
+      <div className="menu-titre">
         <IconMenu />
-        <div className="titre">Mon BarTender</div>
+        <div id="titre">Mon BarTender</div>
       </div>
 
       <InputRechercheParNom />
 
-      <div className="auth">
-        <Auth />
-      </div>
+      <Auth />
     </div>
   );
 };

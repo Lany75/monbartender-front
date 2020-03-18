@@ -1,17 +1,18 @@
 import React from "react";
 
-import "./Footer.css";
+import "./FooterMobile.css";
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <p className="abus">
+    <div id="footer">
+      <p id="message-abus">
         L&apos;abus d&apos;alcool est dangereux pour la santé, à consommer avec
         modération
       </p>
-      <div className="cml">
-        <div className="contact">Contact</div>
-        <div className="mentionslegales">Mentions légales</div>
+      <div id="c-ml-r">
+        <div>Contact</div>
+        <div>Mentions légales</div>
+        <div>Remerciements</div>
       </div>
     </div>
   );

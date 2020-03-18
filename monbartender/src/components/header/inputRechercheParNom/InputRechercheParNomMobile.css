@@ -1,0 +1,9 @@
+@media screen and (max-width: 768px) {
+  #nom-cocktail-recherche{
+  border-radius: 20px;
+  width: 40%;
+  font-size: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  } 
+}

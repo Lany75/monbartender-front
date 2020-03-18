@@ -2,7 +2,8 @@ import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 //import { AuthContext } from "../../context/authContext";
 
-import "./IconMenu.css";
+import "./IconMenuDesktop.css";
+import "./IconMenuMobile.css";
 
 const IconMenu = () => {
   //const { user } = useContext(AuthContext);
@@ -65,12 +66,13 @@ const IconMenu = () => {
 
   return (
     <div
-      className="iconMenu"
+      id="icon-menu"
       onClick={() => {
         modifierCSSNavBarre();
       }}
     >
-      <GiHamburgerMenu size={48} />
+      <GiHamburgerMenu />
+      {/* <GiHamburgerMenu size={48} /> */}
     </div>
   );
 };

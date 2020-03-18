@@ -1,10 +1,11 @@
-/* @font-face {
+@font-face {
   font-family: 'Pirata One';
   font-style: normal;
   src: url('../../assets/police/PirataOne-Regular.ttf')
 }
 
-.header {
+@media screen and (min-width: 769px) {
+/* .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -31,5 +32,5 @@
   align-items: center;
   float: left;
   margin-right: 15px;
+} */
 }
- */

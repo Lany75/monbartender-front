@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./ListeCocktailsComponent.css";
+import "./ListeCocktailsComponentMobile.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -10,7 +10,7 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 const ListeCocktailsComponent = ({ cocktails }) => {
   return (
     <>
-      <div className="listeCocktails">
+      <div id="liste-cocktails">
         {cocktails &&
           cocktails.map((c, index) => {
             const to = "/" + c.id;
@@ -19,11 +19,11 @@ const ListeCocktailsComponent = ({ cocktails }) => {
               <Link to={to} key={index}>
                 <div className="cocktail">
                   <img
-                    className="imagePageListeRecette"
+                    className="img-cocktail"
                     src={`${apiBaseURL}${c.photo}`}
                     alt="un cocktail"
                   />
-                  <div className="nomcocktail">{c.nom}</div>
+                  <div className="nom-cocktail">{c.nom}</div>
                 </div>
               </Link>
             );

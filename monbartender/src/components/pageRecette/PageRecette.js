@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import "./PageRecette.css";
+import "./PageRecetteMobile.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -42,31 +42,35 @@ const PageRecette = () => {
   }, [id]);
 
   return (
-    <>
+    <div id="recette-cocktail">
       <h2>{recetteCocktail.nom}</h2>
       <img
-        className="imagePageRecette"
+        className="img-cocktail-recette"
         src={`${apiBaseURL}${recetteCocktail.photo}`}
         alt={recetteCocktail.nom}
       />
-      <div className="ingredientsVerre">
-        <div className="ingredients">
+      <div id="ingredients-verre">
+        <div id="liste-ingredients">
           <h3>Ingredients</h3>
           {recetteCocktail.Ingredients &&
             recetteCocktail.Ingredients.map((rc, index) => {
-              return <div key={index}>{rc.nom}</div>;
+              return (
+                <div className="ingredient" key={index}>
+                  {rc.nom}
+                </div>
+              );
             })}
         </div>
-        <div className="verre">
+        <div id="verre">
           <h3>Verre</h3>
-          <p>{recetteCocktail.Verre.nom}</p>
+          <div id="nom-verre">{recetteCocktail.Verre.nom}</div>
         </div>
       </div>
-      <div className="preparation">
-        <h2>Preparation</h2>
+      <div className="etapes-preparation">
+        <h3>Preparation</h3>
         <p>{recetteCocktail.etapesPreparation}</p>
       </div>
-    </>
+    </div>
   );
 };
 

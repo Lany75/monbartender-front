@@ -17,7 +17,7 @@ function App() {
       <BarProvider>
         <BrowserRouter>
           <Header />
-          <div className="navMain">
+          <div className="nav-main">
             <Navbar />
             <Main />
           </div>

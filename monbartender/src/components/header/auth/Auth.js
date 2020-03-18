@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 //import axios from "axios";
 
-import "./Auth.css";
+import "./AuthMobile.css";
 import { AuthContext } from "../../../context/authContext";
 import { useHistory } from "react-router-dom";
 
@@ -24,14 +24,14 @@ const Auth = () => {
   };
 
   return (
-    <div className="connexion">
+    <div id="auth">
       {user ? <p>Bonjour, {user.displayName}</p> : <p></p>}
       {user ? (
-        <button className="bouton" onClick={deconnexion}>
+        <button className="auth-bouton" onClick={deconnexion}>
           Déconnexion
         </button>
       ) : (
-        <button className="bouton" onClick={connexion}>
+        <button className="auth-bouton" onClick={connexion}>
           Connexion
         </button>
       )}

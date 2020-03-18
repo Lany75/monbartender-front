@@ -1,4 +1,4 @@
-.liste-bar {
+/* .liste-bar {
   margin-top: 50px;
   padding-top: 30px;
   border: solid grey;
@@ -17,7 +17,7 @@ overflow: scroll;
   display: flex;
   flex-direction: row;
   /* justify-content: space-around; */
-}
+/*}
 
 .liste-deroulante {
   margin: 50px;
@@ -26,4 +26,4 @@ overflow: scroll;
 
 .bouton-ajout {
   margin: 50px;
-}
+} */
