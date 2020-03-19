@@ -1,14 +1,15 @@
 import React from "react";
 
-import "./FooterMobile.css";
+import "./Footer.css";
+import "./FooterDesktop.css";
 
 const Footer = () => {
   return (
     <div id="footer">
-      <p id="message-abus">
+      <div id="message-abus">
         L&apos;abus d&apos;alcool est dangereux pour la santé, à consommer avec
         modération
-      </p>
+      </div>
       <div id="c-ml-r">
         <div>Contact</div>
         <div>Mentions légales</div>

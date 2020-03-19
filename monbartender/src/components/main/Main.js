@@ -4,7 +4,6 @@ import Accueil from "../accueil/Accueil";
 import ListeRecettes from "../listeRecettes/ListeRecettes";
 import PageRecette from "../pageRecette/PageRecette";
 
-import "./Main.css";
 import PageBar from "../pageBar/PageBar";
 import ListeParNom from "../listeParNom/ListeParNom";
 import RechercheParIngredient from "../rechercheParIngredient/RechercheParIngredient";

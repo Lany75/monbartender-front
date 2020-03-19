@@ -1,6 +1,7 @@
 import React from "react";
 
-import "./NavComponentMobile.css";
+import "./NavComponent.css";
+import "./NavComponentDesktop.css";
 
 // eslint-disable-next-line react/prop-types
 const NavComponent = ({ name, Icon, iconSize }) => {

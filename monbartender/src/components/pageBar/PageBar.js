@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 
-import "./PageBarMobile.css";
+import "./PageBar.css";
+import "./PageBarDesktop.css";
+
 import AjoutIngredientComponent from "./ajoutIngredientComponent/AjoutIngredientComponent";
 import ListeBarComponent from "./listeBarComponent/ListeBarComponent";
 

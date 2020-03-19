@@ -3,7 +3,8 @@ import React, { useContext } from "react";
 import BarComponent from "../barComponent/BarComponent";
 import { BarContext } from "../../../context/barContext";
 
-import "./ListeBarComponentMobile.css";
+import "./ListeBarComponent.css";
+import "./ListeBarComponentDesktop.css";
 
 const ListeBarComponent = () => {
   const { bar } = useContext(BarContext);

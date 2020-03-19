@@ -1,4 +1,4 @@
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 769px) {
   #mon-bar {
     display: flex;
      flex-direction: column; 

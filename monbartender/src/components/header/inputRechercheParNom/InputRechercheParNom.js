@@ -1,6 +1,7 @@
 import React from "react";
 
-import "./InputRechercheParNomMobile.css";
+import "./InputRechercheParNom.css";
+import "./InputRechercheParNomDesktop.css";
 
 //import { CocktailContext } from "../../context/cocktailContext";
 import { useHistory } from "react-router-dom";

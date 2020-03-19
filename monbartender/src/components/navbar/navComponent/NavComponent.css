@@ -1,8 +1,16 @@
-/* .nav-item
-{
+.nav-item {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
-  margin: 10px;
-} */
+  margin-right: 5px;
+  margin-left: 5px; 
+} 
+
+.icon-nav-item {
+  font-size: 20px;
+} 
+
+.txt-nav-item {
+  font-size: 10px;
+  text-align: center;
+}

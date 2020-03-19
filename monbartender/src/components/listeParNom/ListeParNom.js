@@ -3,7 +3,8 @@ import ListeCocktailsComponent from "../listeCocktailsComponent/ListeCocktailsCo
 import ListeRecettes from "../listeRecettes/ListeRecettes";
 import { useHistory } from "react-router-dom";
 
-import "./ListeParNomMobile.css";
+import "./ListeParNom.css";
+import "./ListeParNomDesktop.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;

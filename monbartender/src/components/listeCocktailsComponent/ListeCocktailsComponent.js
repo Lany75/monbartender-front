@@ -2,7 +2,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./ListeCocktailsComponentMobile.css";
+import "./ListeCocktailsComponent.css";
+import "./ListeCocktailsComponentDesktop.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;

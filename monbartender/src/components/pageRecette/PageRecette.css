@@ -1,23 +1,42 @@
-/* .imagePageRecette{
+h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+  
+.img-cocktail-recette {
   width: 200px;
   height: 300px;
 }
 
-.ingredientsVerre {
+#recette-cocktail{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#ingredients-verre {
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
 }
 
-.ingredients, .verre {
-margin: 50px;
+#liste-ingredients {
+  margin-right: 20px;
 }
 
-.preparation {
+#verre {
+  margin-left: 20px;
+}
+
+#nom-verre, .ingredient{
+  font-size: 12px;
+}
+
+.etapes-preparation {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-
-h3 {
-  font-size: 16px;
-} */

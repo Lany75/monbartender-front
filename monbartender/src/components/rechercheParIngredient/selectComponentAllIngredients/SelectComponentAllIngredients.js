@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import "./SelectComponentAllIngredientsMobile.css";
+import "./SelectComponentAllIngredients.css";
+import "./SelectComponentAllIngredientsDesktop.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;

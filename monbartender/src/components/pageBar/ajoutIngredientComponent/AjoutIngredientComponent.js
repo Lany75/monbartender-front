@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../context/authContext";
 import { BarContext } from "../../../context/barContext";
 
-import "./AjoutIngredientComponentMobile.css";
+import "./AjoutIngredientComponent.css";
+import "./AjoutIngredientComponentDesktop.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;

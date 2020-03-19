@@ -9,7 +9,8 @@ import {
 } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 
-import "./NavbarMobile.css";
+import "./Navbar.css";
+import "./NavbarDesktop.css";
 import { AuthContext } from "../../context/authContext";
 import NavComponent from "./navComponent/NavComponent";
 

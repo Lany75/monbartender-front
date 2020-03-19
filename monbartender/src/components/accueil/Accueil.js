@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-
-import "./AccueilMobile.css";
 import { Link } from "react-router-dom";
+
+import "./Accueil.css";
+import "./AccueilDesktop.css";
+
 //import { AuthContext } from "../../context/authContext";
 
 // eslint-disable-next-line no-undef

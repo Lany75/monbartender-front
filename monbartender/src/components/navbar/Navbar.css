@@ -1,49 +1,24 @@
- #navbar {
-  transition-property: all;
-  transition-duration: 1s;
-  display: flex;
-  flex-direction: column;
-/*justify-content: center;*/
-
-/*  width:180px;
-  /*height: 84.7vh;*/
- background-color: #DAECF1;
+#navbar-css {
+  background-color: #DAECF1;
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around; 
 }
 
-#nonconnecte {
+#non-connecte {
   display: flex;
-  flex-direction: column;
-  margin-top: 80px;
-  margin-bottom: 80px;
+  flex-direction: row;
 }
 
 #connecte {
   display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  margin-bottom: 120px;
+  flex-direction: row;  
 }
 
-.navBarRetreci {
-  transition-property: all;
-  transition-duration: 1s;
-  display: flex;
-  flex-direction: column;
-  /*justify-content: space-around;*/
-/*align-items: center;*/
-  width: 4%;
-  background-color: #DAECF1;
+.visible {
+  display: block;
 }
 
-.navmenu {
-  display: flex;
-  flex-direction: row;
-  /*justify-content: start;*/
-  align-items: center;
-  margin: 10px;
-}
-
-.divInvisible {
+.invisible {
   display: none;
 }
- 

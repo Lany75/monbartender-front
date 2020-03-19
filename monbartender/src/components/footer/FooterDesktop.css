@@ -1,0 +1,16 @@
+@media screen and (min-width: 769px) {
+  #footer {
+    font-size: 15px;
+  }
+
+  #message-abus {
+    text-align: center;
+  }
+
+  #c-ml-r {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+  }
+}

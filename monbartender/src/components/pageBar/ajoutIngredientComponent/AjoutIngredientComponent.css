@@ -1,3 +1,17 @@
-/* .bouton-ajout {
-  border-radius: 10px;
-} */
+#formulaire-ajout-ingredient {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+#liste-deroulante-ajout-ingredient {
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+#btn-ajout-ingredient {
+  font-size: 12px;
+  margin-left: 10px;
+  border-radius: 5px;
+}

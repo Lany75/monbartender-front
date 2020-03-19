@@ -1,3 +1,8 @@
-/* .bar {
-  margin: 10px
-} */
+.nom-ingredient-bar{
+  font-size: 15px;
+}
+
+.btn-suppression-ingredient {
+  font-size: 10px;
+  border-radius: 5px;
+}

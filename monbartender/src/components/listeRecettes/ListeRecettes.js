@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 import ListeCocktailsComponent from "../listeCocktailsComponent/ListeCocktailsComponent";
 
+import "./ListeRecettes.css";
+import "./ListeRecettesDesktop.css";
+
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 

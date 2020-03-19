@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import "./PageRecetteMobile.css";
+import "./PageRecette.css";
+import "./PageRecetteDesktop.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;

@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 
-import "./BarComponentMobile.css";
+import "./BarComponent.css";
+import "./BarComponentDesktop.css";
+
 import { AuthContext } from "../../../context/authContext";
 import { BarContext } from "../../../context/barContext";
 

@@ -1,35 +1,21 @@
-/* @font-face {
-  font-family: 'Pirata One';
-  font-style: normal;
-  src: url('../../assets/police/PirataOne-Regular.ttf')
-}
-
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 10vh;
+  align-items: center;
   background-color: #DAECF1;
+  /* height: 65px; */
+  height: 10%;
 }
 
-.menutitre {
+.menu-titre {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.titre {
-  display: flex;
-  align-items: center;
-  font-size: 40px;
+  #titre {
+  font-size: 25px;
   font-family: 'Pirata One';
-  margin-left: 50px;
-}
-
-.auth {
-  display: flex;
-  align-items: center;
-  float: left;
-  margin-right: 15px;
-}
- */
+  margin-left: 5px;
+} 

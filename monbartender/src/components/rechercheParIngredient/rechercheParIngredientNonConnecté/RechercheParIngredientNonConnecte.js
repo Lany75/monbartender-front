@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import "./RechercheParIngredientNonConnecteMobile.css";
+import "./RechercheParIngredientNonConnecte.css";
+import "./RechercheParIngredientNonConnecteDesktop.css";
 
 import { useHistory } from "react-router-dom";
 import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";

@@ -1,23 +1,22 @@
-/* .listeCocktails {
+#liste-cocktails {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cocktail {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px;
+  margin: 25px; 
 }
 
-.imagePageListeRecette{
+.img-cocktail {
   width: 100px;
   height: 150px;
 }
 
-.nomcocktail{
-  text-align: center;
-  width: 100px;
+.nom-cocktail {
+  font-size: 20px;
 }
- */

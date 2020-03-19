@@ -1,0 +1,16 @@
+@media screen and (min-width: 769px) {
+ .nav-item {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+  margin-left: 5px; 
+  } 
+
+  .icon-nav-item {
+    font-size: 20px;
+  }
+
+  .txt-nav-item {
+    font-size: 10px;
+  }
+}
