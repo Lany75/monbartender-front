@@ -50,6 +50,24 @@
   margin-bottom: 20px;
 }
 
-#preparation {
-  font-size: 12px;
+#etapes {
+  font-size: 10px;
+}
+
+.num-etape {
+  display: flex;
+  flex-direction: row;
+  /* font-size: 12px; */
+  width: 100%;
+}
+
+.titre-etape {
+  font-weight: bold;
+  width: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.texte-etape {
+  width: 250px;
 }

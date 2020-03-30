@@ -32,6 +32,7 @@ const PageRecette = () => {
       })
       .then(data => {
         setRecetteCocktail(data);
+        console.log("data : ", data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);
@@ -67,9 +68,75 @@ const PageRecette = () => {
           <div id="nom-verre">{recetteCocktail.Verre.nom}</div>
         </div>
       </div>
+      {/* <div className="etapes-preparation">
+        <div id="titre-etapes-preparation">Preparation</div>
+        <div id="preparation">{recetteCocktail.etapesPreparation}</div>
+      </div> */}
       <div className="etapes-preparation">
         <div id="titre-preparation">Preparation</div>
-        <div id="preparation">{recetteCocktail.etapesPreparation}</div>
+        {/* <div id="preparation">{recetteCocktail.etapesPreparation}</div> */}
+        <div id="etapes">
+          {recetteCocktail.EtapesPreparation &&
+            recetteCocktail.EtapesPreparation.etape1 && (
+              <div className="num-etape">
+                <div className="titre-etape">Etape 1 : </div>
+                <div className="texte-etape">
+                  {recetteCocktail.EtapesPreparation &&
+                    recetteCocktail.EtapesPreparation.etape1}
+                </div>
+              </div>
+            )}
+          {recetteCocktail.EtapesPreparation &&
+            recetteCocktail.EtapesPreparation.etape2 && (
+              <div className="num-etape">
+                <div className="titre-etape">Etape 2 : </div>
+                <div className="texte-etape">
+                  {recetteCocktail.EtapesPreparation &&
+                    recetteCocktail.EtapesPreparation.etape2}
+                </div>
+              </div>
+            )}
+          {recetteCocktail.EtapesPreparation &&
+            recetteCocktail.EtapesPreparation.etape3 && (
+              <div className="num-etape">
+                <div className="titre-etape">Etape 3 : </div>
+                <div className="texte-etape">
+                  {recetteCocktail.EtapesPreparation &&
+                    recetteCocktail.EtapesPreparation.etape3}
+                </div>
+              </div>
+            )}
+          {recetteCocktail.EtapesPreparation &&
+            recetteCocktail.EtapesPreparation.etape4 && (
+              <div className="num-etape">
+                <div className="titre-etape">Etape 4 : </div>
+                <div>
+                  {recetteCocktail.EtapesPreparation &&
+                    recetteCocktail.EtapesPreparation.etape4}
+                </div>
+              </div>
+            )}
+          {recetteCocktail.EtapesPreparation &&
+            recetteCocktail.EtapesPreparation.etape5 && (
+              <div className="num-etape">
+                <div className="titre-etape">Etape 5 : </div>
+                <div className="texte-etape">
+                  {recetteCocktail.EtapesPreparation &&
+                    recetteCocktail.EtapesPreparation.etape5}
+                </div>
+              </div>
+            )}
+          {recetteCocktail.EtapesPreparation &&
+            recetteCocktail.EtapesPreparation.etape6 && (
+              <div className="num-etape">
+                <div className="titre-etape">Etape 6 : </div>
+                <div className="texte-etape">
+                  {recetteCocktail.EtapesPreparation &&
+                    recetteCocktail.EtapesPreparation.etape6}
+                </div>
+              </div>
+            )}
+        </div>
       </div>
     </div>
   );
