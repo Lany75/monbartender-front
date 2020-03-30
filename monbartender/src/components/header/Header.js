@@ -8,7 +8,7 @@ import InputRechercheParNom from "./inputRechercheParNom/InputRechercheParNom";
 import IconMenu from "./iconMenu/IconMenu";
 
 const Header = () => {
-  const toggleAffichageNavbar = () => {
+  /* const toggleAffichageNavbar = () => {
     const navbar = document.getElementById("navbar");
     //const divTxtNavBar = document.getElementsbyClassName("txt-nav-item");
     // console.log("divTxtNavBar", divTxtNavBar);
@@ -18,7 +18,7 @@ const Header = () => {
     } else {
       navbar.setAttribute("class", "invisible");
     }
-  };
+  }; */
 
   const toggleOuvertureMenu = () => {
     // console.log("ouverture navbar");

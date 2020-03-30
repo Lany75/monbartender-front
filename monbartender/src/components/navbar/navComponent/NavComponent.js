@@ -8,7 +8,7 @@ const NavComponent = ({ name, Icon }) => {
   return (
     <div className="nav-item">
       <div className="icon-nav-item">
-        <Icon /* size={iconSize} */ />
+        <Icon />
       </div>
       <div className="txt-nav-item invisible">{name}</div>
     </div>
