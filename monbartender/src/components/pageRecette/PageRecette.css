@@ -1,6 +1,15 @@
-h3 {
+#titre-cocktail {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#titre-ingredients, #titre-preparation, #titre-verre {
   font-size: 15px;
   margin-bottom: 10px;
+  text-decoration: underline;
 }
   
 .img-cocktail-recette {
@@ -39,4 +48,8 @@ h3 {
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+#preparation {
+  font-size: 12px;
 }

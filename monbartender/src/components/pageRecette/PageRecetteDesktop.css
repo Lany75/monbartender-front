@@ -1,36 +1,14 @@
 @media screen and (min-width: 769px) {
-  h3 {
-    font-size: 15px;
-    margin-bottom: 10px;
+  #titre-cocktail { 
+    font-size: 30px;
   }
   
-  .img-cocktail-recette {
-    width: 200px;
-    height: 300px;
-  }
-  #recette-cocktail{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  #ingredients-verre {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-  }
-
-  #liste-ingredients {
-    margin-right: 20px;
-  }
-
-  #verre {
-    margin-left: 20px;
+  #titre-ingredients, #titre-preparation, #titre-verre {
+    font-size: 25px;
   }
 
   #nom-verre, .ingredient{
-    font-size: 12px;
+    font-size: 22px;
   }
 
   .etapes-preparation {
@@ -39,5 +17,9 @@
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+
+  #preparation {
+    font-size: 22px;
   }
 }

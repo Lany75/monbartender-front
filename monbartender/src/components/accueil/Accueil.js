@@ -40,7 +40,7 @@ const Accueil = () => {
   return (
     <>
       {/*user && <p>Salut, {user.displayName}</p>*/}
-      <h2>Cocktail aléatoire</h2>
+      <div id="titre-cocktail-aleatoire">Cocktail aléatoire</div>
       {cocktail && (
         <Link to={to}>
           <div className="cocktail-aleatoire">

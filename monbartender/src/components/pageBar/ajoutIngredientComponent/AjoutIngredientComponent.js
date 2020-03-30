@@ -32,13 +32,10 @@ const AjoutIngredientComponent = () => {
 
   const ajouterIngredient = event => {
     event.preventDefault();
-    console.log("on a cliqué sur le bouton ajouter");
     const nouvelIngredient = document.getElementById(
       "liste-deroulante-ajout-ingredient"
     ).value;
-    //console.log("nouvelIngredient : ", nouvelIngredient);
 
-    // fetch sur la route post
     fetch(`${apiBaseURL}/api/ingredients/`, {
       method: "POST",
       headers: {
@@ -50,10 +47,7 @@ const AjoutIngredientComponent = () => {
         return reponse.json();
       })
       .then(data => {
-        //console.log("data", data);
-        //console.log("data : ", data);
         setBar(data);
-        //history.push("/monbar");
       });
   };
 
@@ -61,27 +55,14 @@ const AjoutIngredientComponent = () => {
     getAllIngredients();
   }, [user]);
 
-  /*    React.useEffect(() => {
-    getAllIngredients();
-  }, [ingredients]);  */
-
   return (
     <>
       <form id="formulaire-ajout-ingredient">
-        <select
-          //className="liste-deroulante"
-          id="liste-deroulante-ajout-ingredient"
-          name="test"
-        >
+        <select id="liste-deroulante-ajout-ingredient" name="test">
           {allIngredients &&
             allIngredients.map((i, index) => {
               return (
-                <option
-                  // className="option-formulaire-ajout"
-                  key={index}
-                  value={i.nom}
-                  name={i.nom}
-                >
+                <option key={index} value={i.nom} name={i.nom}>
                   {i.nom}
                 </option>
               );

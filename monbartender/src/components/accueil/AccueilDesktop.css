@@ -1,22 +1,11 @@
 @media screen and (min-width: 769px) {
-  h2 {
-    font-size: 20px;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  .cocktail-aleatoire {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  #titre-cocktail-aleatoire {
+    font-size: 30px;
   }
 
   .img-cocktail-aleatoire {
-   /*  display: flex;
-    align-items: center; */
-    width: 100px;
-    height: 150px;
+    width: 200px;
+    height: 300px;
   }
   
   .nom-cocktail-aleatoire {

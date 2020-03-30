@@ -18,7 +18,7 @@ const Navbar = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div id="navbar" className="invisible">
+    <div id="navbar" /* className="invisible" */>
       <div id="navbar-css">
         <div id="non-connecte">
           <Link to="/">

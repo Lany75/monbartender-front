@@ -1,20 +1,20 @@
 @media screen and (min-width: 769px) {
-  
   #navbar-css {
+    height: 100%;
   background-color: #DAECF1;
   display: flex; 
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around; 
   }
 
   #non-connecte {
     display: flex;
-    flex-direction: row;  
+    flex-direction: column;  
   }
 
   #connecte {
     display: flex;
-    flex-direction: row;  
+    flex-direction: column;  
   }
 
   .visible {

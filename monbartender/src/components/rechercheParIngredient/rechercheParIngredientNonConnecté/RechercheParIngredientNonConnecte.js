@@ -100,10 +100,10 @@ const RechercheParIngredientNonConnecte = () => {
 
   return (
     <div id="page-recherche">
-      <h2>Recherche par ingredients</h2>
+      <div id="titre-recherche-ingredient">Recherche par ingredients</div>
       <div id="recherche">
         <div id="choix-ingredients">
-          <h3>Ingredients du cocktail</h3>
+          <div id="titre-ingredient-cocktail">Ingredients du cocktail</div>
           <div id="selection-ingredient">
             <SelectComponentAllIngredients id="divSelect1" />
             <SelectComponentAllIngredients id="divSelect2" />
@@ -125,7 +125,7 @@ const RechercheParIngredientNonConnecte = () => {
 
       {cocktailsRecherche && (
         <div id="resultat-recherche">
-          <h3>Résultat de votre recherche</h3>
+          <div id="titre-resultat-recherche">Résultat de votre recherche</div>
           <ListeCocktailsComponent cocktails={cocktailsRecherche} />
         </div>
       )}

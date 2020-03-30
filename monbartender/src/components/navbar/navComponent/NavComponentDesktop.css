@@ -1,16 +1,17 @@
 @media screen and (min-width: 769px) {
  .nav-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-right: 5px;
   margin-left: 5px; 
   } 
 
   .icon-nav-item {
-    font-size: 20px;
+    font-size: 35px;
   }
 
   .txt-nav-item {
-    font-size: 10px;
+    font-size: 15px;
+    text-align: start;
   }
 }

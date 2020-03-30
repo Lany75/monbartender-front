@@ -14,7 +14,7 @@ const PageBar = () => {
     <div id="mon-bar">
       {user ? (
         <>
-          <h2>Mon Bar</h2>
+          <div id="titre-mon-bar">Mon Bar</div>
           <div id="liste-bar">
             <ListeBarComponent />
           </div>

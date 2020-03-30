@@ -19,10 +19,21 @@ const Header = () => {
       navbar.setAttribute("class", "invisible");
     }
   };
+
+  const toggleOuvertureMenu = () => {
+    // console.log("ouverture navbar");
+    const divsTxtNavItem = document.getElementsByClassName("txt-nav-item");
+    // console.log(divsTxtNavItem);
+    for (let i = 0; i < divsTxtNavItem.length; i++) {
+      divsTxtNavItem[i].classList.toggle("invisible");
+      divsTxtNavItem[i].classList.toggle("visible");
+    }
+  };
+
   return (
     <div className="header">
       <div className="menu-titre">
-        <div onClick={toggleAffichageNavbar}>
+        <div onClick={toggleOuvertureMenu}>
           <IconMenu />
         </div>
         <div id="titre">Mon BarTender</div>

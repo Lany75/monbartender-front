@@ -7,12 +7,16 @@ import PageRecette from "../pageRecette/PageRecette";
 import PageBar from "../pageBar/PageBar";
 import ListeParNom from "../listeParNom/ListeParNom";
 import RechercheParIngredient from "../rechercheParIngredient/RechercheParIngredient";
+import PageConnexion from "../header/auth/pageConnexion/PageConnexion";
+
+import "./Main.css";
 
 function Main() {
   return (
     <div className="main">
       <Switch>
         <Route exact path="/" component={Accueil} />
+        <Route exact path="/connexion" component={PageConnexion} />
         <Route
           path="/rechercherparingredients"
           component={RechercheParIngredient}

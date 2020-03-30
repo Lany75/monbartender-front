@@ -1,4 +1,4 @@
-h2 {
+#titre-cocktail-aleatoire {
   font-size: 20px;
   text-align: center;
   margin-top: 20px;
@@ -17,5 +17,5 @@ h2 {
 }
   
 .nom-cocktail-aleatoire {
-  font-size: 20px;
+  font-size: 15px;
 }

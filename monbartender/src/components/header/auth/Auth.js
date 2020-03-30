@@ -11,13 +11,13 @@ import { useHistory } from "react-router-dom";
 //const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const Auth = () => {
-  const { user, signOut, signInWithGoogle } = useContext(AuthContext);
+  const { user, signOut } = useContext(AuthContext);
 
   let history = useHistory();
   //console.log("accessToken dans Auth : ", accessToken);
 
   const connexion = async () => {
-    await signInWithGoogle();
+    history.push("/connexion");
   };
 
   const deconnexion = () => {

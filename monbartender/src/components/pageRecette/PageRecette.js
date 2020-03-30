@@ -44,7 +44,7 @@ const PageRecette = () => {
 
   return (
     <div id="recette-cocktail">
-      <h2>{recetteCocktail.nom}</h2>
+      <div id="titre-cocktail">{recetteCocktail.nom}</div>
       <img
         className="img-cocktail-recette"
         src={`${apiBaseURL}${recetteCocktail.photo}`}
@@ -52,7 +52,7 @@ const PageRecette = () => {
       />
       <div id="ingredients-verre">
         <div id="liste-ingredients">
-          <h3>Ingredients</h3>
+          <div id="titre-ingredients">Ingredients</div>
           {recetteCocktail.Ingredients &&
             recetteCocktail.Ingredients.map((rc, index) => {
               return (
@@ -63,13 +63,13 @@ const PageRecette = () => {
             })}
         </div>
         <div id="verre">
-          <h3>Verre</h3>
+          <div id="titre-verre">Verre</div>
           <div id="nom-verre">{recetteCocktail.Verre.nom}</div>
         </div>
       </div>
       <div className="etapes-preparation">
-        <h3>Preparation</h3>
-        <p>{recetteCocktail.etapesPreparation}</p>
+        <div id="titre-preparation">Preparation</div>
+        <div id="preparation">{recetteCocktail.etapesPreparation}</div>
       </div>
     </div>
   );
