@@ -13,9 +13,11 @@ import "./Navbar.css";
 import "./NavbarDesktop.css";
 import { AuthContext } from "../../context/authContext";
 import NavComponent from "./navComponent/NavComponent";
+import { BarContext } from "../../context/barContext";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+  const { bar } = useContext(BarContext);
 
   return (
     <div id="navbar" /* className="invisible" */>
@@ -63,6 +65,7 @@ const Navbar = () => {
             />
           </div>
         )}
+        {user && bar && bar.droits === true && <div id="gerant">Gestion</div>}
       </div>
     </div>
   );

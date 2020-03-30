@@ -17,7 +17,6 @@ const ListeParNom = () => {
   let cocktailName;
 
   if (divcocktailName) cocktailName = divcocktailName.value.toLowerCase();
-  //console.log("cocktailName : ", cocktailName);
 
   const getCocktailByName = () => {
     if (!cocktailName) history.push("/");

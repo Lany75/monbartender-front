@@ -14,7 +14,6 @@ const Auth = () => {
   const { user, signOut } = useContext(AuthContext);
 
   let history = useHistory();
-  //console.log("accessToken dans Auth : ", accessToken);
 
   const connexion = async () => {
     history.push("/connexion");

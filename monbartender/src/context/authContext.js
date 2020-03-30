@@ -18,7 +18,6 @@ export const AuthContext = createContext();
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children, user = null, signOut, signInWithGoogle }) {
   const [accessToken, setAccessToken] = useState(null);
-  //console.log("user", user);
 
   React.useEffect(() => {
     if (user && !accessToken) {
@@ -29,8 +28,6 @@ function AuthProvider({ children, user = null, signOut, signInWithGoogle }) {
       });
     }
   }, [user]);
-
-  //console.log("accessToken : ", accessToken);
 
   return (
     <AuthContext.Provider

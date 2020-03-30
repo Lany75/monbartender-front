@@ -10,7 +10,6 @@ const SelectComponentAllIngredients = props => {
   const [allIngredients, setAllIngredients] = useState();
   // eslint-disable-next-line react/prop-types
   const idDivSelect = props.id;
-  //console.log("idDivSelect : ", idDivSelect);
 
   const getAllIngredients = () => {
     fetch(`${apiBaseURL}/api/ingredients/`)
@@ -24,8 +23,6 @@ const SelectComponentAllIngredients = props => {
         console.log("vous avez une erreur : ", error);
       });
   };
-
-  //console.log("ingredients : ", allIngredients);
 
   React.useEffect(() => {
     getAllIngredients();

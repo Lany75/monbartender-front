@@ -32,7 +32,6 @@ const PageRecette = () => {
       })
       .then(data => {
         setRecetteCocktail(data);
-        console.log("data : ", data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);
@@ -68,13 +67,8 @@ const PageRecette = () => {
           <div id="nom-verre">{recetteCocktail.Verre.nom}</div>
         </div>
       </div>
-      {/* <div className="etapes-preparation">
-        <div id="titre-etapes-preparation">Preparation</div>
-        <div id="preparation">{recetteCocktail.etapesPreparation}</div>
-      </div> */}
       <div className="etapes-preparation">
         <div id="titre-preparation">Preparation</div>
-        {/* <div id="preparation">{recetteCocktail.etapesPreparation}</div> */}
         <div id="etapes">
           {recetteCocktail.EtapesPreparation &&
             recetteCocktail.EtapesPreparation.etape1 && (
@@ -110,7 +104,7 @@ const PageRecette = () => {
             recetteCocktail.EtapesPreparation.etape4 && (
               <div className="num-etape">
                 <div className="titre-etape">Etape 4 : </div>
-                <div>
+                <div className="texte-etape">
                   {recetteCocktail.EtapesPreparation &&
                     recetteCocktail.EtapesPreparation.etape4}
                 </div>
