@@ -11,7 +11,6 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const BarComponent = ingredient => {
   const { user, accessToken } = useContext(AuthContext);
-
   const { setBar } = useContext(BarContext);
 
   const supprimerIngredient = nomBouton => {
@@ -20,13 +19,15 @@ const BarComponent = ingredient => {
 
     user &&
       accessToken &&
-      fetch(`${apiBaseURL}/api/ingredients/`, {
-        method: "DELETE",
-        headers: {
-          authorization: accessToken,
-          ingredientSupprime: ingredientSupprime
+      fetch(
+        `${apiBaseURL}/api/ingredients/supprimer?ingredient=${ingredientSupprime}`,
+        {
+          method: "DELETE",
+          headers: {
+            authorization: accessToken
+          }
         }
-      })
+      )
         .then(reponse => {
           return reponse.json();
         })

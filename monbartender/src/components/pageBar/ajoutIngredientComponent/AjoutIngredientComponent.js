@@ -1,4 +1,8 @@
 import React, { useContext, useState } from "react";
+
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+
 import { AuthContext } from "../../../context/authContext";
 import { BarContext } from "../../../context/barContext";
 
@@ -12,6 +16,8 @@ const AjoutIngredientComponent = () => {
   const { user, accessToken } = useContext(AuthContext);
   const { setBar } = useContext(BarContext);
   const [allIngredients, setAllIngredients] = useState();
+
+  //  const inputNvlIng = document.getElementById("nvl-ingredient");
 
   // Recuperer la liste de tous les ingredients de la table ingredients
   const getAllIngredients = () => {
@@ -32,17 +38,19 @@ const AjoutIngredientComponent = () => {
 
   const ajouterIngredient = event => {
     event.preventDefault();
-    const nouvelIngredient = document.getElementById(
-      "liste-deroulante-ajout-ingredient"
-    ).value;
+    const nouvelIngredient = document
+      .getElementById("input-ajout-ingredient")
+      .value.toLowerCase();
 
-    fetch(`${apiBaseURL}/api/ingredients/`, {
-      method: "POST",
-      headers: {
-        authorization: accessToken,
-        nouvelingredient: nouvelIngredient
+    fetch(
+      `${apiBaseURL}/api/ingredients/ajouter?ingredient=${nouvelIngredient}`,
+      {
+        method: "POST",
+        headers: {
+          authorization: accessToken
+        }
       }
-    })
+    )
       .then(reponse => {
         return reponse.json();
       })
@@ -53,21 +61,26 @@ const AjoutIngredientComponent = () => {
 
   React.useEffect(() => {
     getAllIngredients();
-  }, [user]);
+  }, []);
 
   return (
     <>
       <form id="formulaire-ajout-ingredient">
-        <select id="liste-deroulante-ajout-ingredient" name="test">
-          {allIngredients &&
-            allIngredients.map((i, index) => {
-              return (
-                <option key={index} value={i.nom} name={i.nom}>
-                  {i.nom}
-                </option>
-              );
-            })}
-        </select>
+        {allIngredients && (
+          <Autocomplete
+            id="input-ajout-ingredient"
+            options={allIngredients}
+            getOptionLabel={option => option.nom}
+            style={{ width: 300 }}
+            renderInput={params => (
+              <TextField
+                {...params}
+                label="Nouvel ingrédient"
+                variant="outlined"
+              />
+            )}
+          />
+        )}
         <button id="btn-ajout-ingredient" onClick={ajouterIngredient}>
           Ajouter l&apos;ingredient
         </button>

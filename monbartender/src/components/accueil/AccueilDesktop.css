@@ -1,8 +1,8 @@
-@media screen and (min-width: 769px) {
-  #titre-cocktail-aleatoire {
+ @media screen and (min-width: 769px) {
+  #titre-cocktail-moment {
     font-size: 30px;
   }
-
+/*
   .img-cocktail-aleatoire {
     width: 200px;
     height: 300px;
@@ -10,5 +10,5 @@
   
   .nom-cocktail-aleatoire {
     font-size: 20px;
-  }
-}
+  }*/
+} 

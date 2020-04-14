@@ -21,7 +21,7 @@ const PageBar = () => {
           <AjoutIngredientComponent />
         </>
       ) : (
-        <h2>Chargement ...</h2>
+        <h2>Vous devez vous connecter pour accéder à cette page</h2>
       )}
     </div>
   );

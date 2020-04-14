@@ -1,0 +1,31 @@
+@media screen and (min-width: 769px) {
+  #titre-cocktail-aleatoire {
+    font-size: 30px;
+  }
+
+  #div-cocktail-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cocktail-aleatoire {
+    margin-right: 100px;
+  }
+
+
+  .img-cocktail-aleatoire {
+    width: 200px;
+    height: 300px;
+  }
+  
+  .nom-cocktail-aleatoire {
+    font-size: 20px;
+  }
+
+  #btn-autre-cocktail {
+    margin-left: 100px;
+    font-size: 22px;
+  }
+}

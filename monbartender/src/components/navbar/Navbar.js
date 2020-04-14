@@ -5,9 +5,11 @@ import {
   FaSearch,
   FaGlassMartiniAlt,
   FaRegUser,
-  FaWineBottle
+  FaWineBottle,
+  FaCarrot
 } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
+import { GiRollingDices } from "react-icons/gi";
 
 import "./Navbar.css";
 import "./NavbarDesktop.css";
@@ -20,52 +22,47 @@ const Navbar = () => {
   const { bar } = useContext(BarContext);
 
   return (
-    <div id="navbar" /* className="invisible" */>
+    <div id="navbar">
       <div id="navbar-css">
         <div id="non-connecte">
           <Link to="/">
-            <NavComponent name="Accueil" Icon={TiHome} /*iconSize={35}*/ />
+            <NavComponent name="Accueil" Icon={TiHome} />
           </Link>
 
           <Link to="/rechercherparingredients">
-            <NavComponent
-              name="Recherche par ingrédient"
-              Icon={FaSearch}
-              /* iconSize={30} */
-            />
+            <NavComponent name="Recherche par ingrédient" Icon={FaSearch} />
           </Link>
 
           <Link to="/recettes">
-            <NavComponent
-              name="Les recettes"
-              Icon={FaGlassMartiniAlt}
-              /* iconSize={30} */
-            />
+            <NavComponent name="Les recettes" Icon={FaGlassMartiniAlt} />
+          </Link>
+
+          <Link to="/aleatoire">
+            <NavComponent name="Au hasard" Icon={GiRollingDices} />
           </Link>
         </div>
 
         {user && (
           <div id="connecte">
-            <NavComponent
-              name="Mon profil"
-              Icon={FaRegUser} /* iconSize={30} */
-            />
+            <NavComponent name="Mon profil" Icon={FaRegUser} />
 
             <Link to="/monbar">
-              <NavComponent
-                name="Mon bar"
-                Icon={FaWineBottle} /* iconSize={30} */
-              />
+              <NavComponent name="Mon bar" Icon={FaWineBottle} />
             </Link>
 
             <NavComponent
               name="Mes recettes favorites"
               Icon={MdFavoriteBorder}
-              /* iconSize={30} */
             />
           </div>
         )}
-        {user && bar && bar.droits === true && <div id="gerant">Gestion</div>}
+        {user && bar && bar.droits === true && (
+          <div id="gerant">
+            <Link to="/gestion">
+              <NavComponent name="Gestion" Icon={FaCarrot} />
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

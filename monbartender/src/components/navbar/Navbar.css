@@ -8,16 +8,21 @@
 #non-connecte {
   display: flex;
   flex-direction: row;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 3px;
+  margin-right: 5px;
 }
 
 #connecte {
   display: flex;
   flex-direction: row;  
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
+
+ #gerant { 
+  margin-left: 3px;
+  margin-right: 5px;
+} 
 
 .visible {
   display: block;

@@ -9,7 +9,7 @@
   #non-connecte {
     display: flex;
     flex-direction: column;  
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 50px;
   }
 
@@ -17,8 +17,13 @@
     display: flex;
     flex-direction: column;  
     margin-top: 50px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
   }
+
+  #gerant {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  } 
 
   .visible {
     display: block;
