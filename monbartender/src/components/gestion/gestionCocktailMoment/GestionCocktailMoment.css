@@ -1,0 +1,41 @@
+#gestion-cocktails-moment{
+  background-color: yellow;
+  border-style: double;
+  margin: 10px 0px 10px 0px;
+}
+
+#titre-btn-cocktail-moment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px;
+}
+
+.item-cocktail-moment {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+   align-items: center; 
+  margin: 4px;
+}
+
+#img-cocktail-moment {
+  width: 50px;
+  height: 75px;
+}
+
+#nom-id-cocktail-moment {
+  display: flex;
+  flex-direction: column;
+}
+
+#id-cocktail-moment {
+  font-size: 10px;
+}
+
+#btn-remplacer-cocktail-moment {
+  border-radius: 5px;
+  font-size: 10px;
+  height: 20px;
+}

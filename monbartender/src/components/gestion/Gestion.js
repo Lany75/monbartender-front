@@ -1,16 +1,20 @@
 import React from "react";
 //import { Link } from "react-router-dom";
 
+import "./Gestion.css";
+import "./GestionDesktop.css";
+import GestionCocktailMoment from "./gestionCocktailMoment/GestionCocktailMoment";
+
 const Gestion = () => {
   return (
-    <div>
-      <div>Gestion</div>
-      <div id="gestion-cocktail-moment">
-        <div>Cocktail du moment</div>
-
-        {/* <Link to="/gestion/cocktail-moment">modification cocktail du moment</Link> */}
+    <>
+      <div id="titre-gestion">Gestion</div>
+      <div id="gestion">
+        <GestionCocktailMoment />
+        <div id="gestion-ingredients">Gestion ingrédients</div>
+        <div id="gestion-cocktails">Gestion Cocktails</div>
       </div>
-    </div>
+    </>
   );
 };
 

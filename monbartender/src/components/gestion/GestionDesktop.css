@@ -1,6 +1,9 @@
 @media screen and (min-width: 769px) {
-  .text-etape {
-    width: 1000px;
-    margin-left: 20px;
+  #titre-gestion {
+    font-size: 30px;
+  }
+
+  #gestion {
+    flex-direction: row;
   }
 }

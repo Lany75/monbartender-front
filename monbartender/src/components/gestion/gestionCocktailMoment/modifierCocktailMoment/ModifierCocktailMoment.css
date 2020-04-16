@@ -1,0 +1,14 @@
+.cocktail-modifie {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#btn-validation-modif {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  border-radius: 10px;
+}

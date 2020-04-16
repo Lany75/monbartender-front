@@ -12,6 +12,7 @@ import PageConnexion from "../header/auth/pageConnexion/PageConnexion";
 import "./Main.css";
 import CocktailAleatoire from "../cocktailAleatoire/CocktailAleatoire";
 import Gestion from "../gestion/Gestion";
+import ModifierCocktailMoment from "../gestion/gestionCocktailMoment/modifierCocktailMoment/ModifierCocktailMoment";
 //import GestionCocktailMoment from "../gestion/gestionCocktailMoment/GestionCocktailMoment";
 
 function Main() {
@@ -29,7 +30,12 @@ function Main() {
         <Route path="/rechercherparnom" component={ListeParNom} />
         <Route path="/aleatoire" component={CocktailAleatoire} />
         <Route path="/monbar" component={PageBar} />
+        <Route
+          path="/gestion/modifier-cocktail-moment/"
+          component={ModifierCocktailMoment}
+        />
         <Route path="/gestion" component={Gestion} />
+
         {/* <Route
           path="/gestion/cocktail-moment"
           component={GestionCocktailMoment}

@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import FirebaseAuthProvider from "./context/authContext";
-//import CocktailProvider from "./context/cocktailContext";
 import BarProvider from "./context/barContext";
+import CocktailProvider from "./context/cocktailContext";
 
 import "./App.css";
 
@@ -15,14 +15,16 @@ function App() {
   return (
     <FirebaseAuthProvider>
       <BarProvider>
-        <BrowserRouter>
-          <Header />
-          <div className="nav-main">
-            <Navbar />
-            <Main />
-          </div>
-          <Footer />
-        </BrowserRouter>
+        <CocktailProvider>
+          <BrowserRouter>
+            <Header />
+            <div className="nav-main">
+              <Navbar />
+              <Main />
+            </div>
+            <Footer />
+          </BrowserRouter>
+        </CocktailProvider>
       </BarProvider>
     </FirebaseAuthProvider>
   );
