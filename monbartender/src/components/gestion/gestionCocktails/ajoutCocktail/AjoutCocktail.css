@@ -1,0 +1,24 @@
+#div-photo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+#div-ingredients{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+#box-ingredient{
+  display: flex;
+  flex-direction: column;
+}
+
+
+#div-etapes-preparation {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+} 

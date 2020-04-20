@@ -7,21 +7,19 @@ import { CocktailContext } from "../../../../context/cocktailContext";
 import { AuthContext } from "../../../../context/authContext";
 
 import "./ModifierCocktailMoment.css";
+import "./ModifierCocktailMomentDesktop.css";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const ModifierCocktailMoment = () => {
-  const { user } = useContext(AuthContext);
+  const { user, accessToken } = useContext(AuthContext);
   const {
     listeCocktails,
     listeCocktailsMoment,
     setListeCocktailsMoment
   } = useContext(CocktailContext);
   let history = useHistory();
-
-  // console.log("listeCocktails : ", listeCocktails);
-  // console.log("listeCocktailsMoment : ", listeCocktailsMoment);
 
   const remplacerCocktails = () => {
     const cocktail1 = listeCocktailsMoment[0].nom;
@@ -37,36 +35,32 @@ const ModifierCocktailMoment = () => {
       alert("Cette modification ne peut pas etre faite");
     else {
       if (boxValue1 !== "") {
-        fetch(
-          `${apiBaseURL}/api/gestion/cocktails-du-moment?nomAncienCocktail=${cocktail1}&nomNouveauCocktail=${boxValue1}`,
-          {
-            method: "PUT"
-          }
-        )
-          .then(reponse => {
-            return reponse.json();
-          })
-          .then(data => {
-            setListeCocktailsMoment(data);
-          });
+        modifierCocktailMoment(cocktail1, boxValue1);
       }
 
       if (boxValue2 !== "") {
-        fetch(
-          `${apiBaseURL}/api/gestion/cocktails-du-moment?nomAncienCocktail=${cocktail2}&nomNouveauCocktail=${boxValue2}`,
-          {
-            method: "PUT"
-          }
-        )
-          .then(reponse => {
-            return reponse.json();
-          })
-          .then(data => {
-            setListeCocktailsMoment(data);
-          });
+        modifierCocktailMoment(cocktail2, boxValue2);
       }
       history.push("/gestion");
     }
+  };
+
+  const modifierCocktailMoment = (ancienCocktail, nouveauCocktail) => {
+    fetch(
+      `${apiBaseURL}/api/gestion/cocktails-du-moment?nomAncienCocktail=${ancienCocktail}&nomNouveauCocktail=${nouveauCocktail}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: accessToken
+        }
+      }
+    )
+      .then(reponse => {
+        return reponse.json();
+      })
+      .then(data => {
+        setListeCocktailsMoment(data);
+      });
   };
 
   return (

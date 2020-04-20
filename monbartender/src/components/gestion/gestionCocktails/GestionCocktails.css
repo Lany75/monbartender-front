@@ -1,0 +1,41 @@
+#gestion-cocktails {
+  background-color: rgb(36, 177, 170);
+  border-style: double;
+  margin: 10px 0px 10px 0px;
+}
+
+#titre-btn-cocktail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px;
+}
+
+#btn-ajouter-cocktail {
+  border-radius: 5px;
+  font-size: 10px;
+  height: 20px;
+}
+
+.item-cocktail {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+   align-items: center; 
+  margin: 4px;
+}
+
+#img-cocktail {
+  width: 50px;
+  height: 75px;
+}
+
+#nom-id-cocktail {
+  display: flex;
+  flex-direction: column;
+}
+
+#id-cocktail {
+  font-size: 10px;
+}

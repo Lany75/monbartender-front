@@ -3,22 +3,22 @@ import React, { useState } from "react";
 import "./RechercheParIngredientNonConnecte.css";
 import "./RechercheParIngredientNonConnecteDesktop.css";
 
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
 import ListeCocktailsComponent from "../../listeCocktailsComponent/ListeCocktailsComponent";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
-const initialState = {
+/* const initialState = {
   nom: "",
   photo: ""
-};
+}; */
 
 const RechercheParIngredientNonConnecte = () => {
-  const [cocktailAleatoire, setCocktailAleatoire] = useState(initialState);
+  // const [cocktailAleatoire, setCocktailAleatoire] = useState(initialState);
   const [cocktailsRecherche, setCocktailsRecherche] = useState();
-  let history = new useHistory();
+  // let history = new useHistory();
 
   const RechercheParIngredient = event => {
     event.preventDefault();
@@ -65,7 +65,7 @@ const RechercheParIngredientNonConnecte = () => {
     }
   };
 
-  const getCocktailAleatoire = () => {
+  /*   const getCocktailAleatoire = () => {
     fetch(`${apiBaseURL}/api/cocktails/aleatoire`)
       .then(reponse => {
         return reponse.json();
@@ -76,15 +76,15 @@ const RechercheParIngredientNonConnecte = () => {
       .catch(error => {
         console.log("vous avez une erreur : ", error);
       });
-  };
+  }; */
 
-  const RecetteAuHasard = () => {
+  /*  const RecetteAuHasard = () => {
     history.push("/" + cocktailAleatoire.id);
-  };
+  }; */
 
-  React.useEffect(() => {
+  /*  React.useEffect(() => {
     getCocktailAleatoire();
-  }, []);
+  }, []); */
 
   return (
     <div id="page-recherche">
@@ -107,9 +107,9 @@ const RechercheParIngredientNonConnecte = () => {
           </button>
         </div>
       </div>
-      <button id="btn-hasard" onClick={RecetteAuHasard}>
+      {/*  <button id="btn-hasard" onClick={RecetteAuHasard}>
         Recette au hasard
-      </button>
+      </button> */}
 
       {cocktailsRecherche && (
         <div id="resultat-recherche">

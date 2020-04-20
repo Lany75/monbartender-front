@@ -1,0 +1,17 @@
+@media screen and (min-width: 769px) {
+#div-photo {
+  justify-content: flex-start;
+}
+
+#box-ingredient{
+
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#div-etapes-preparation {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+} 
+}

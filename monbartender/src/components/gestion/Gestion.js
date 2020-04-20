@@ -4,6 +4,7 @@ import React from "react";
 import "./Gestion.css";
 import "./GestionDesktop.css";
 import GestionCocktailMoment from "./gestionCocktailMoment/GestionCocktailMoment";
+import GestionCocktails from "./gestionCocktails/GestionCocktails";
 
 const Gestion = () => {
   return (
@@ -12,7 +13,7 @@ const Gestion = () => {
       <div id="gestion">
         <GestionCocktailMoment />
         <div id="gestion-ingredients">Gestion ingrédients</div>
-        <div id="gestion-cocktails">Gestion Cocktails</div>
+        <GestionCocktails />
       </div>
     </>
   );

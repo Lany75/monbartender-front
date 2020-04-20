@@ -13,6 +13,7 @@ import "./Main.css";
 import CocktailAleatoire from "../cocktailAleatoire/CocktailAleatoire";
 import Gestion from "../gestion/Gestion";
 import ModifierCocktailMoment from "../gestion/gestionCocktailMoment/modifierCocktailMoment/ModifierCocktailMoment";
+import AjoutCocktail from "../gestion/gestionCocktails/ajoutCocktail/AjoutCocktail";
 //import GestionCocktailMoment from "../gestion/gestionCocktailMoment/GestionCocktailMoment";
 
 function Main() {
@@ -34,6 +35,7 @@ function Main() {
           path="/gestion/modifier-cocktail-moment/"
           component={ModifierCocktailMoment}
         />
+        <Route path="/gestion/ajouter-cocktail/" component={AjoutCocktail} />
         <Route path="/gestion" component={Gestion} />
 
         {/* <Route
