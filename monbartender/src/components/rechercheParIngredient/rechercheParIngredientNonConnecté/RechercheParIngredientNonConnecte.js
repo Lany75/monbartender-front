@@ -3,22 +3,14 @@ import React, { useState } from "react";
 import "./RechercheParIngredientNonConnecte.css";
 import "./RechercheParIngredientNonConnecteDesktop.css";
 
-// import { useHistory } from "react-router-dom";
 import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
 import ListeCocktailsComponent from "../../listeCocktailsComponent/ListeCocktailsComponent";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
-/* const initialState = {
-  nom: "",
-  photo: ""
-}; */
-
 const RechercheParIngredientNonConnecte = () => {
-  // const [cocktailAleatoire, setCocktailAleatoire] = useState(initialState);
   const [cocktailsRecherche, setCocktailsRecherche] = useState();
-  // let history = new useHistory();
 
   const RechercheParIngredient = event => {
     event.preventDefault();
@@ -65,27 +57,6 @@ const RechercheParIngredientNonConnecte = () => {
     }
   };
 
-  /*   const getCocktailAleatoire = () => {
-    fetch(`${apiBaseURL}/api/cocktails/aleatoire`)
-      .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setCocktailAleatoire(data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-  }; */
-
-  /*  const RecetteAuHasard = () => {
-    history.push("/" + cocktailAleatoire.id);
-  }; */
-
-  /*  React.useEffect(() => {
-    getCocktailAleatoire();
-  }, []); */
-
   return (
     <div id="page-recherche">
       <div id="titre-recherche-ingredient">Recherche par ingredients</div>
@@ -107,9 +78,6 @@ const RechercheParIngredientNonConnecte = () => {
           </button>
         </div>
       </div>
-      {/*  <button id="btn-hasard" onClick={RecetteAuHasard}>
-        Recette au hasard
-      </button> */}
 
       {cocktailsRecherche && (
         <div id="resultat-recherche">
