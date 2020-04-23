@@ -22,7 +22,7 @@ const AjoutIngredientComponent = () => {
   // Recuperer la liste de tous les ingredients de la table ingredients
   const getAllIngredients = () => {
     user &&
-      fetch(`${apiBaseURL}/api/ingredients/`, {
+      fetch(`${apiBaseURL}/api/v1/ingredients/`, {
         method: "GET"
       })
         .then(reponse => {
@@ -42,15 +42,12 @@ const AjoutIngredientComponent = () => {
       .getElementById("input-ajout-ingredient")
       .value.toLowerCase();
 
-    fetch(
-      `${apiBaseURL}/api/ingredients/ajouter?ingredient=${nouvelIngredient}`,
-      {
-        method: "POST",
-        headers: {
-          authorization: accessToken
-        }
+    fetch(`${apiBaseURL}/api/v1/ingredients/${nouvelIngredient}`, {
+      method: "POST",
+      headers: {
+        authorization: accessToken
       }
-    )
+    })
       .then(reponse => {
         return reponse.json();
       })

@@ -26,7 +26,7 @@ const PageRecette = () => {
   const { id } = useParams();
 
   const getRecetteCocktail = cocktailId => {
-    fetch(`${apiBaseURL}/api/cocktails/${cocktailId}`)
+    fetch(`${apiBaseURL}/api/v1/cocktails/${cocktailId}`)
       .then(reponse => {
         return reponse.json();
       })

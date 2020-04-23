@@ -7,14 +7,12 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 const Test = () => {
   const [cocktails, setCocktails] = useState([]);
 
-  const cocktailName = document
-    .getElementById("nomCocktail")
-    .value;
+  const cocktailName = document.getElementById("nomCocktail").value;
   console.log("cocktailName : ", cocktailName);
   document.getElementById("nomCocktail").value = "";
 
   const getCocktailByName = () => {
-    fetch(`${apiBaseURL}/api/cocktails/rechercher?nom=${cocktailName}`)
+    fetch(`${apiBaseURL}/api/v1/cocktails/rechercher?nom=${cocktailName}`)
       .then(reponse => {
         return reponse.json();
       })

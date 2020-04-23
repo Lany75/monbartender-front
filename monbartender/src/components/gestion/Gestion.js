@@ -40,7 +40,7 @@ const Gestion = () => {
   const getAllVerres = () => {
     // on récupère tous les verres existants dans la base de données
 
-    fetch(`${apiBaseURL}/api/verres/`, {
+    fetch(`${apiBaseURL}/api/v1/verres/`, {
       method: "GET"
     })
       .then(reponse => {

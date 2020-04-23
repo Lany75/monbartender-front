@@ -47,7 +47,7 @@ const ModifierCocktailMoment = () => {
 
   const modifierCocktailMoment = (ancienCocktail, nouveauCocktail) => {
     fetch(
-      `${apiBaseURL}/api/gestion/cocktails-du-moment?nomAncienCocktail=${ancienCocktail}&nomNouveauCocktail=${nouveauCocktail}`,
+      `${apiBaseURL}/api/v1/gestion/cocktails-du-moment?nomAncienCocktail=${ancienCocktail}&nomNouveauCocktail=${nouveauCocktail}`,
       {
         method: "PUT",
         headers: {

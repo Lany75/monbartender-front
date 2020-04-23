@@ -10,7 +10,7 @@ function CocktailProvider({ children }) {
   const [listeCocktailsMoment, setListeCocktailsMoment] = useState();
 
   const getListeCocktails = () => {
-    fetch(`${apiBaseURL}/api/cocktails`, {
+    fetch(`${apiBaseURL}/api/v1/cocktails`, {
       method: "GET"
     })
       .then(reponse => {
@@ -25,7 +25,7 @@ function CocktailProvider({ children }) {
   };
 
   const getCocktailsMoment = () => {
-    fetch(`${apiBaseURL}/api/cocktails/cocktail-du-moment`)
+    fetch(`${apiBaseURL}/api/v1/cocktails/cocktail-du-moment`)
       .then(reponse => {
         return reponse.json();
       })
@@ -36,6 +36,9 @@ function CocktailProvider({ children }) {
         console.log("vous avez une erreur : ", error);
       });
   };
+
+  // console.log("listeCocktails : ", listeCocktails);
+  // console.log("listeCocktailsMoment : ", listeCocktailsMoment);
 
   React.useEffect(() => {
     getListeCocktails();

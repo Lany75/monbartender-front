@@ -12,7 +12,7 @@ const SelectComponentAllIngredients = props => {
   const idDivSelect = props.id;
 
   const getAllIngredients = () => {
-    fetch(`${apiBaseURL}/api/ingredients/`)
+    fetch(`${apiBaseURL}/api/v1/ingredients/`)
       .then(reponse => {
         return reponse.json();
       })
