@@ -17,7 +17,7 @@ const CocktailAleatoire = () => {
   const [cocktailAleatoire, setCocktailAleatoire] = useState(initialState);
 
   const getCocktailAleatoire = () => {
-    fetch(`${apiBaseURL}/api/cocktails/aleatoire`)
+    fetch(`${apiBaseURL}/api/v1/cocktails/aleatoire`)
       .then(reponse => {
         return reponse.json();
       })

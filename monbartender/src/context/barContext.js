@@ -14,7 +14,7 @@ function BarProvider({ children }) {
   const getBarUser = () => {
     user &&
       accessToken &&
-      fetch(`${apiBaseURL}/api/bars/`, {
+      fetch(`${apiBaseURL}/api/v1/bars/`, {
         method: "GET",
         headers: {
           authorization: accessToken
@@ -30,6 +30,8 @@ function BarProvider({ children }) {
           console.log("vous avez une erreur : ", error);
         });
   };
+
+  console.log("bar: ", bar);
 
   React.useEffect(() => {
     getBarUser();

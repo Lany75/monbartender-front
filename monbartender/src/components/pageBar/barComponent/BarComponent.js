@@ -19,15 +19,12 @@ const BarComponent = ingredient => {
 
     user &&
       accessToken &&
-      fetch(
-        `${apiBaseURL}/api/ingredients/supprimer?ingredient=${ingredientSupprime}`,
-        {
-          method: "DELETE",
-          headers: {
-            authorization: accessToken
-          }
+      fetch(`${apiBaseURL}/api/v1/ingredients/${ingredientSupprime}`, {
+        method: "DELETE",
+        headers: {
+          authorization: accessToken
         }
-      )
+      })
         .then(reponse => {
           return reponse.json();
         })

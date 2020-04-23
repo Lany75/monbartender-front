@@ -25,7 +25,9 @@ const ListeParNom = () => {
     }
 
     cocktailName &&
-      fetch(`${apiBaseURL}/api/cocktails/rechercherparnom?nom=${cocktailName}`)
+      fetch(
+        `${apiBaseURL}/api/v1/cocktails/rechercherparnom?nom=${cocktailName}`
+      )
         .then(reponse => {
           return reponse.json();
         })

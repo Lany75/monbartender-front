@@ -25,7 +25,7 @@ const AjoutCocktail = () => {
   const getAllVerres = () => {
     // on récupère tous les verres existants dans la base de données
 
-    fetch(`${apiBaseURL}/api/verres/`, {
+    fetch(`${apiBaseURL}/api/v1/verres/`, {
       method: "GET"
     })
       .then(reponse => {
@@ -40,7 +40,7 @@ const AjoutCocktail = () => {
   };
 
   const getAllIngredients = () => {
-    fetch(`${apiBaseURL}/api/ingredients/`)
+    fetch(`${apiBaseURL}/api/v1/ingredients/`)
       .then(reponse => {
         return reponse.json();
       })

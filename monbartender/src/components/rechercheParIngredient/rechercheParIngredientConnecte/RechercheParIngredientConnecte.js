@@ -29,7 +29,7 @@ const RechercheParIngredientConnecte = () => {
       nomIngredientdivSelect2 === "" &&
       nomIngredientdivSelect3 === ""
     ) {
-      fetch(`${apiBaseURL}/api/cocktails`)
+      fetch(`${apiBaseURL}/api/v1/cocktails`)
         .then(reponse => {
           return reponse.json();
         })
@@ -41,7 +41,7 @@ const RechercheParIngredientConnecte = () => {
         });
     } else {
       fetch(
-        `${apiBaseURL}/api/cocktails/rechercherparingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}`
+        `${apiBaseURL}/api/v1/cocktails/rechercherparingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}`
       )
         .then(reponse => {
           return reponse.json();
