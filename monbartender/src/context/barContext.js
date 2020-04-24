@@ -31,8 +31,6 @@ function BarProvider({ children }) {
         });
   };
 
-  console.log("bar: ", bar);
-
   React.useEffect(() => {
     getBarUser();
   }, [user, accessToken]);

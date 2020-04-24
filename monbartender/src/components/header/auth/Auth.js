@@ -16,6 +16,7 @@ const Auth = () => {
   let history = useHistory();
 
   const connexion = async () => {
+    console.log("j'ai appuyé sur le bouton connection");
     history.push("/connexion");
   };
 
