@@ -8,7 +8,6 @@ const Test = () => {
   const [cocktails, setCocktails] = useState([]);
 
   const cocktailName = document.getElementById("nomCocktail").value;
-  console.log("cocktailName : ", cocktailName);
   document.getElementById("nomCocktail").value = "";
 
   const getCocktailByName = () => {
@@ -17,7 +16,6 @@ const Test = () => {
         return reponse.json();
       })
       .then(data => {
-        console.log("data", data);
         setCocktails(data);
       })
       .catch(error => {

@@ -27,9 +27,6 @@ const SelectComponentIngredientsBar = props => {
       });
   };
 
-  //  bar && console.log("bar", bar.Ingredients.length);
-  //allIngredients && console.log("allIngredients : ", allIngredients);
-
   React.useEffect(() => {
     getAllIngredients();
   }, []);

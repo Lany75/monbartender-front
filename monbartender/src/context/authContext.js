@@ -20,9 +20,6 @@ function AuthProvider({ children, user = null, signOut, signInWithGoogle }) {
   const [accessToken, setAccessToken] = useState(null);
 
   React.useEffect(() => {
-    console.log("user : ", user);
-    console.log("accessToken : ", accessToken);
-
     if (user && !accessToken) {
       user.getIdToken().then(res => {
         console.log("token : ", res);

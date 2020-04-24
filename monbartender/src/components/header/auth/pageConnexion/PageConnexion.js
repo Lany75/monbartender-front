@@ -7,16 +7,12 @@ import "./PageConnexion.css";
 import "./PageConnexionDesktop.css";
 
 const PageConnexion = () => {
-  console.log("on est dans PageConnexion");
-
   const { signInWithGoogle } = useContext(AuthContext);
 
   let history = useHistory();
 
   const connexion = async () => {
-    console.log("on a cliqué sur le bouton connexion avec google");
     await signInWithGoogle();
-    console.log("on a fait signInWithGoogle");
 
     history.push("/");
   };

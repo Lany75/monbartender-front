@@ -37,9 +37,6 @@ function CocktailProvider({ children }) {
       });
   };
 
-  // console.log("listeCocktails : ", listeCocktails);
-  // console.log("listeCocktailsMoment : ", listeCocktailsMoment);
-
   React.useEffect(() => {
     getListeCocktails();
     getCocktailsMoment();
