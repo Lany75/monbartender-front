@@ -2,19 +2,15 @@
   margin: 0;
   padding: 0;
 }
-html {
-  height: 100%;
-
+html, body {
+  height: 100vh;
+  width: 100vw;
 }
-
 body {
   font-family: 'Niramit';
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
-  position: relative;
-  min-height: 100%;
 }
 
 code {
