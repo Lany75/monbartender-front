@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import Axios from "axios";
 export const CocktailContext = createContext();
 
 // eslint-disable-next-line no-undef
@@ -10,7 +11,7 @@ function CocktailProvider({ children }) {
   const [listeCocktailsMoment, setListeCocktailsMoment] = useState();
 
   const getListeCocktails = () => {
-    fetch(`${apiBaseURL}/api/v1/cocktails`, {
+    /*     fetch(`${apiBaseURL}/api/v1/cocktails`, {
       method: "GET"
     })
       .then(reponse => {
@@ -18,6 +19,14 @@ function CocktailProvider({ children }) {
       })
       .then(data => {
         setListeCocktails(data);
+      })
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
+      }); */
+
+    Axios.get(`${apiBaseURL}/api/v1/cocktails`)
+      .then(reponse => {
+        setListeCocktails(reponse.data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);

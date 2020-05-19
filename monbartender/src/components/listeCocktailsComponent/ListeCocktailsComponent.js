@@ -14,7 +14,7 @@ const ListeCocktailsComponent = ({ cocktails }) => {
       <div id="liste-cocktails">
         {cocktails &&
           cocktails.map((c, index) => {
-            const to = "/" + c.id;
+            const to = "/cocktail/" + c.id;
 
             return (
               <Link to={to} key={index}>

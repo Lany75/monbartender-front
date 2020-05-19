@@ -27,7 +27,6 @@ function Main() {
           component={RechercheParIngredient}
         />
         <Route exact path="/recettes" component={ListeRecettes} />
-
         <Route path="/rechercherparnom" component={ListeParNom} />
         <Route path="/aleatoire" component={CocktailAleatoire} />
         <Route path="/monbar" component={PageBar} />
@@ -42,7 +41,7 @@ function Main() {
           path="/gestion/cocktail-moment"
           component={GestionCocktailMoment}
         /> */}
-        <Route path="/:id" component={PageRecette} />
+        <Route path="/cocktail/:id" component={PageRecette} />
       </Switch>
     </div>
   );

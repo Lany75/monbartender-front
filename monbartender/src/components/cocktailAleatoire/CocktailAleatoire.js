@@ -33,7 +33,7 @@ const CocktailAleatoire = () => {
     getCocktailAleatoire();
   }, []);
 
-  const to = "/" + cocktailAleatoire.id;
+  const to = "/cocktail/" + cocktailAleatoire.id;
 
   return (
     <>
