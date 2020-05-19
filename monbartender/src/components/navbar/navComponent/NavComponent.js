@@ -10,7 +10,7 @@ const NavComponent = ({ name, Icon }) => {
       <div className="icon-nav-item">
         <Icon />
       </div>
-      <div className="txt-nav-item invisible">{name}</div>
+      <div className="txt-nav-item visible">{name}</div>
     </div>
   );
 };
