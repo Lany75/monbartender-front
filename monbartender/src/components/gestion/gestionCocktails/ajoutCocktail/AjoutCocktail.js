@@ -4,6 +4,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import "./AjoutCocktail.css";
 import "./AjoutCocktailDesktop.css";
+import Axios from "axios";
 
 /*, { useContext, useState } 
 import { Button, TextField, TextareaAutosize, Input } from "@material-ui/core";
@@ -24,15 +25,9 @@ const AjoutCocktail = () => {
 
   const getAllVerres = () => {
     // on récupère tous les verres existants dans la base de données
-
-    fetch(`${apiBaseURL}/api/v1/verres/`, {
-      method: "GET"
-    })
+    Axios.get(`${apiBaseURL}/api/v1/verres/`)
       .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setVerres(data);
+        setVerres(reponse.data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);
@@ -40,12 +35,9 @@ const AjoutCocktail = () => {
   };
 
   const getAllIngredients = () => {
-    fetch(`${apiBaseURL}/api/v1/ingredients/`)
+    Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
       .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setIngredients(data);
+        setIngredients(reponse.data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);

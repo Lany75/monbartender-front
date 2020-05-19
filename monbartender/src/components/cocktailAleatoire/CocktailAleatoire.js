@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./CocktailAleatoire.css";
 import "./CocktailAleatoireDesktop.css";
+import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -17,12 +18,9 @@ const CocktailAleatoire = () => {
   const [cocktailAleatoire, setCocktailAleatoire] = useState(initialState);
 
   const getCocktailAleatoire = () => {
-    fetch(`${apiBaseURL}/api/v1/cocktails/aleatoire`)
+    Axios.get(`${apiBaseURL}/api/v1/cocktails/aleatoire`)
       .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setCocktailAleatoire(data);
+        setCocktailAleatoire(reponse.data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);

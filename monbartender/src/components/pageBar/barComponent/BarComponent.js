@@ -5,6 +5,7 @@ import "./BarComponentDesktop.css";
 
 import { AuthContext } from "../../../context/authContext";
 import { BarContext } from "../../../context/barContext";
+import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -19,17 +20,16 @@ const BarComponent = ingredient => {
 
     user &&
       accessToken &&
-      fetch(`${apiBaseURL}/api/v1/ingredients/${ingredientSupprime}`, {
-        method: "DELETE",
+      Axios.delete(`${apiBaseURL}/api/v1/ingredients/${ingredientSupprime}`, {
         headers: {
           authorization: accessToken
         }
       })
         .then(reponse => {
-          return reponse.json();
+          setBar(reponse.data);
         })
-        .then(data => {
-          setBar(data);
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
         });
   };
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import "./SelectComponentAllIngredients.css";
 import "./SelectComponentAllIngredientsDesktop.css";
+import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -12,12 +13,9 @@ const SelectComponentAllIngredients = props => {
   const idDivSelect = props.id;
 
   const getAllIngredients = () => {
-    fetch(`${apiBaseURL}/api/v1/ingredients/`)
+    Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
       .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setAllIngredients(data);
+        setAllIngredients(reponse.data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);

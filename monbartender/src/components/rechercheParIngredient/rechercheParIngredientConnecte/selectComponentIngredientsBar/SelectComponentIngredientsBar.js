@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import "./SelectComponentIngredientsBar.css";
 import "./SelectComponentIngredientsBarDesktop.css";
 import { BarContext } from "../../../../context/barContext";
+import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -15,12 +16,10 @@ const SelectComponentIngredientsBar = props => {
   const idDivSelect = props.id;
 
   const getAllIngredients = () => {
-    fetch(`${apiBaseURL}/api/v1/ingredients/`)
+    Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
       .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setAllIngredients(data);
+        setAllIngredients(reponse.data);
+        console.log("Axiooos c'est lequelll ??");
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);

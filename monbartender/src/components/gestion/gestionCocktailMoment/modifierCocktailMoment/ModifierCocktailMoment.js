@@ -8,6 +8,7 @@ import { AuthContext } from "../../../../context/authContext";
 
 import "./ModifierCocktailMoment.css";
 import "./ModifierCocktailMomentDesktop.css";
+import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -30,7 +31,7 @@ const ModifierCocktailMoment = () => {
 
     if (
       (boxValue2 === "" && boxValue1 === cocktail2) ||
-      (boxValue1 === "" && boxValue2 == cocktail1)
+      (boxValue1 === "" && boxValue2 === cocktail1)
     )
       alert("Cette modification ne peut pas etre faite");
     else {
@@ -46,20 +47,20 @@ const ModifierCocktailMoment = () => {
   };
 
   const modifierCocktailMoment = (ancienCocktail, nouveauCocktail) => {
-    fetch(
+    Axios.put(
       `${apiBaseURL}/api/v1/gestion/cocktails-du-moment?nomAncienCocktail=${ancienCocktail}&nomNouveauCocktail=${nouveauCocktail}`,
+      {},
       {
-        method: "PUT",
         headers: {
           authorization: accessToken
         }
       }
     )
       .then(reponse => {
-        return reponse.json();
+        setListeCocktailsMoment(reponse.data);
       })
-      .then(data => {
-        setListeCocktailsMoment(data);
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
       });
   };
 

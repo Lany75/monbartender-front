@@ -5,6 +5,7 @@ import "./RechercheParIngredientNonConnecteDesktop.css";
 
 import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
 import ListeCocktailsComponent from "../../listeCocktailsComponent/ListeCocktailsComponent";
+import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -31,25 +32,19 @@ const RechercheParIngredientNonConnecte = () => {
       nomIngredientdivSelect2 === "" &&
       nomIngredientdivSelect3 === ""
     ) {
-      fetch(`${apiBaseURL}/api/v1/cocktails`)
+      Axios.get(`${apiBaseURL}/api/v1/cocktails`)
         .then(reponse => {
-          return reponse.json();
-        })
-        .then(data => {
-          setCocktailsRecherche(data);
+          setCocktailsRecherche(reponse.data);
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
         });
     } else {
-      fetch(
+      Axios.get(
         `${apiBaseURL}/api/v1/cocktails/rechercherparingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}`
       )
         .then(reponse => {
-          return reponse.json();
-        })
-        .then(data => {
-          setCocktailsRecherche(data);
+          setCocktailsRecherche(reponse.data);
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);

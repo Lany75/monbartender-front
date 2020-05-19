@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import "./PageRecette.css";
 import "./PageRecetteDesktop.css";
+import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -26,12 +27,9 @@ const PageRecette = () => {
   const { id } = useParams();
 
   const getRecetteCocktail = cocktailId => {
-    fetch(`${apiBaseURL}/api/v1/cocktails/${cocktailId}`)
+    Axios.get(`${apiBaseURL}/api/v1/cocktails/${cocktailId}`)
       .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setRecetteCocktail(data);
+        setRecetteCocktail(reponse.data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);

@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import "./ListeParNom.css";
 import "./ListeParNomDesktop.css";
+import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -25,14 +26,11 @@ const ListeParNom = () => {
     }
 
     cocktailName &&
-      fetch(
+      Axios.get(
         `${apiBaseURL}/api/v1/cocktails/rechercherparnom?nom=${cocktailName}`
       )
         .then(reponse => {
-          return reponse.json();
-        })
-        .then(data => {
-          setCocktails(data);
+          setCocktails(reponse.data);
           document.getElementById("nom-cocktail-recherche").value = "";
         })
         .catch(error => {

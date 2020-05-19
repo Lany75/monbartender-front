@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import { AuthContext } from "./authContext";
+import Axios from "axios";
 
 export const BarContext = createContext();
 
@@ -14,17 +15,13 @@ function BarProvider({ children }) {
   const getBarUser = () => {
     user &&
       accessToken &&
-      fetch(`${apiBaseURL}/api/v1/bars/`, {
-        method: "GET",
+      Axios.get(`${apiBaseURL}/api/v1/bars/`, {
         headers: {
           authorization: accessToken
         }
       })
         .then(reponse => {
-          return reponse.json();
-        })
-        .then(data => {
-          setBar(data);
+          setBar(reponse.data);
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);

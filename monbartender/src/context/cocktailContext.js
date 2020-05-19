@@ -11,19 +11,6 @@ function CocktailProvider({ children }) {
   const [listeCocktailsMoment, setListeCocktailsMoment] = useState();
 
   const getListeCocktails = () => {
-    /*     fetch(`${apiBaseURL}/api/v1/cocktails`, {
-      method: "GET"
-    })
-      .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setListeCocktails(data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      }); */
-
     Axios.get(`${apiBaseURL}/api/v1/cocktails`)
       .then(reponse => {
         setListeCocktails(reponse.data);
@@ -34,12 +21,9 @@ function CocktailProvider({ children }) {
   };
 
   const getCocktailsMoment = () => {
-    fetch(`${apiBaseURL}/api/v1/cocktails/cocktail-du-moment`)
+    Axios.get(`${apiBaseURL}/api/v1/cocktails/cocktail-du-moment`)
       .then(reponse => {
-        return reponse.json();
-      })
-      .then(data => {
-        setListeCocktailsMoment(data);
+        setListeCocktailsMoment(reponse.data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);

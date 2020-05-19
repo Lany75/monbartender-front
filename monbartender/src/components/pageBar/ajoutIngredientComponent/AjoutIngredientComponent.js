@@ -8,6 +8,7 @@ import { BarContext } from "../../../context/barContext";
 
 import "./AjoutIngredientComponent.css";
 import "./AjoutIngredientComponentDesktop.css";
+import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -22,14 +23,9 @@ const AjoutIngredientComponent = () => {
   // Recuperer la liste de tous les ingredients de la table ingredients
   const getAllIngredients = () => {
     user &&
-      fetch(`${apiBaseURL}/api/v1/ingredients/`, {
-        method: "GET"
-      })
+      Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
         .then(reponse => {
-          return reponse.json();
-        })
-        .then(data => {
-          setAllIngredients(data);
+          setAllIngredients(reponse.data);
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
@@ -42,17 +38,20 @@ const AjoutIngredientComponent = () => {
       .getElementById("input-ajout-ingredient")
       .value.toLowerCase();
 
-    fetch(`${apiBaseURL}/api/v1/ingredients/${nouvelIngredient}`, {
-      method: "POST",
-      headers: {
-        authorization: accessToken
+    Axios.post(
+      `${apiBaseURL}/api/v1/ingredients/${nouvelIngredient}`,
+      {},
+      {
+        headers: {
+          authorization: accessToken
+        }
       }
-    })
+    )
       .then(reponse => {
-        return reponse.json();
+        setBar(reponse.data);
       })
-      .then(data => {
-        setBar(data);
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
       });
   };
 
