@@ -29,7 +29,7 @@ const Navbar = () => {
             <NavComponent name="Accueil" Icon={TiHome} />
           </Link>
 
-          <Link to="/rechercherparingredients">
+          <Link to="/rechercher-par-ingredient">
             <NavComponent name="Recherche par ingrédient" Icon={FaSearch} />
           </Link>
 

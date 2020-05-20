@@ -39,7 +39,7 @@ const RechercheParIngredientConnecte = () => {
         });
     } else {
       Axios.get(
-        `${apiBaseURL}/api/v1/cocktails/rechercherparingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}`
+        `${apiBaseURL}/api/v1/cocktails/rechercher-par-ingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}`
       )
         .then(reponse => {
           setCocktailsRecherche(reponse.data);

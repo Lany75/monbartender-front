@@ -10,7 +10,7 @@ const InputRechercheParNom = () => {
 
   function RecupererCocktailParNom(e) {
     if (e.key === "Enter") {
-      history.push("/rechercherparnom");
+      history.push("/rechercher-par-nom");
     }
   }
 

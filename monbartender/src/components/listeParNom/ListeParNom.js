@@ -27,7 +27,7 @@ const ListeParNom = () => {
 
     cocktailName &&
       Axios.get(
-        `${apiBaseURL}/api/v1/cocktails/rechercherparnom?nom=${cocktailName}`
+        `${apiBaseURL}/api/v1/cocktails/rechercher-par-nom?nom=${cocktailName}`
       )
         .then(reponse => {
           setCocktails(reponse.data);

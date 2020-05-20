@@ -23,11 +23,11 @@ function Main() {
         <Route exact path="/" component={Accueil} />
         <Route exact path="/connexion" component={PageConnexion} />
         <Route
-          path="/rechercherparingredients"
+          path="/rechercher-par-ingredient"
           component={RechercheParIngredient}
         />
         <Route exact path="/recettes" component={ListeRecettes} />
-        <Route path="/rechercherparnom" component={ListeParNom} />
+        <Route path="/rechercher-par-nom" component={ListeParNom} />
         <Route path="/aleatoire" component={CocktailAleatoire} />
         <Route path="/monbar" component={PageBar} />
         <Route
