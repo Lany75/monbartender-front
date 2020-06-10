@@ -14,6 +14,7 @@ import CocktailAleatoire from "../cocktailAleatoire/CocktailAleatoire";
 import Gestion from "../gestion/Gestion";
 import ModifierCocktailMoment from "../gestion/gestionCocktailMoment/modifierCocktailMoment/ModifierCocktailMoment";
 import AjoutCocktail from "../gestion/gestionCocktails/ajoutCocktail/AjoutCocktail";
+import Page404 from "../page404/Page404";
 //import GestionCocktailMoment from "../gestion/gestionCocktailMoment/GestionCocktailMoment";
 
 function Main() {
@@ -36,12 +37,9 @@ function Main() {
         />
         <Route path="/gestion/ajouter-cocktail/" component={AjoutCocktail} />
         <Route path="/gestion" component={Gestion} />
-
-        {/* <Route
-          path="/gestion/cocktail-moment"
-          component={GestionCocktailMoment}
-        /> */}
         <Route path="/cocktail/:id" component={PageRecette} />
+        {/* <Route render={() => <div>Y a rien par ici</div>} /> */}
+        <Route component={Page404} />
       </Switch>
     </div>
   );
