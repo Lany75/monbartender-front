@@ -15,7 +15,6 @@ const PageConnexion = () => {
     await signInWithGoogle();
 
     const divTxtNavItem = document.getElementsByClassName("txt-nav-item");
-    console.log(divTxtNavItem);
     for (let i = 0; i < divTxtNavItem.length; i++) {
       divTxtNavItem[i].classList.remove("invisible");
       divTxtNavItem[i].classList.add("visible");

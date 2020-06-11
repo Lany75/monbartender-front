@@ -2,6 +2,12 @@
   #titre-cocktail { 
     font-size: 30px;
   }
+
+  #ingredients-verre {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   
   #titre-ingredients, #titre-preparation, #titre-verre {
     font-size: 25px;
@@ -9,6 +15,8 @@
 
   #nom-verre, .ingredient{
     font-size: 22px;
+    display: flex;
+    flex-direction: row;
   }
 
   #etapes {

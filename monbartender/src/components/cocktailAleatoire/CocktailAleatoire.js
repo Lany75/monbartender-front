@@ -8,14 +8,15 @@ import Axios from "axios";
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
-const initialState = {
+/* const initialState = {
   id: "",
   nom: "",
   photo: ""
-};
+}; */
 
 const CocktailAleatoire = () => {
-  const [cocktailAleatoire, setCocktailAleatoire] = useState(initialState);
+  const [cocktailAleatoire, setCocktailAleatoire] = useState();
+  let to;
 
   const getCocktailAleatoire = () => {
     Axios.get(`${apiBaseURL}/api/v1/cocktails/aleatoire`)
@@ -31,9 +32,11 @@ const CocktailAleatoire = () => {
     getCocktailAleatoire();
   }, []);
 
-  const to = "/cocktail/" + cocktailAleatoire.id;
+  if (cocktailAleatoire) {
+    to = "/cocktail/" + cocktailAleatoire.id;
+  }
 
-  return (
+  return cocktailAleatoire ? (
     <>
       <div id="titre-cocktail-aleatoire">Cocktail aléatoire</div>
       <div id="div-cocktail-btn">
@@ -58,6 +61,8 @@ const CocktailAleatoire = () => {
         </div>
       </div>
     </>
+  ) : (
+    <div>Chargement</div>
   );
 };
 

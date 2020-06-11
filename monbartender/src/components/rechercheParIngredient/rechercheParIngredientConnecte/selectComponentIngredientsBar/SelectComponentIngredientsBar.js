@@ -19,7 +19,6 @@ const SelectComponentIngredientsBar = props => {
     Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
       .then(reponse => {
         setAllIngredients(reponse.data);
-        console.log("Axiooos c'est lequelll ??");
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);

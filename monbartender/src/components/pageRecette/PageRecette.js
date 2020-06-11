@@ -8,23 +8,33 @@ import Axios from "axios";
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
-const initialState = {
+/* const initialStateRC = {
+  id: "",
   nom: "",
   photo: "",
   etapesPreparation: "",
   Verre: {
+    id: "",
     nom: ""
   },
   Ingredients: [
     {
+      id: "",
       nom: ""
     }
   ]
 };
+const initialStateQ = {
+  ingredientId: "",
+  quantite: "",
+  unite: ""
+}; */
 
 const PageRecette = () => {
-  const [recetteCocktail, setRecetteCocktail] = useState(initialState);
+  const [recetteCocktail, setRecetteCocktail] = useState();
+  const [quantite, setQuantite] = useState();
   const { id } = useParams();
+  let q, u;
 
   const getRecetteCocktail = cocktailId => {
     Axios.get(`${apiBaseURL}/api/v1/cocktails/${cocktailId}`)
@@ -36,11 +46,25 @@ const PageRecette = () => {
       });
   };
 
+  const getQuantiteIngredient = cocktailId => {
+    // récupération de la quantité de ingredientId dans cocktailId
+    Axios.get(
+      `${apiBaseURL}/api/v1/ingredients/quantite?cocktailId=${cocktailId}`
+    )
+      .then(reponse => {
+        setQuantite(reponse.data);
+      })
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
+      });
+  };
+
   React.useEffect(() => {
     getRecetteCocktail(id);
+    getQuantiteIngredient(id);
   }, [id]);
 
-  return (
+  return recetteCocktail && quantite ? (
     <div id="recette-cocktail">
       <div id="titre-cocktail">{recetteCocktail.nom}</div>
       <img
@@ -53,9 +77,22 @@ const PageRecette = () => {
           <div id="titre-ingredients">Ingredients</div>
           {recetteCocktail.Ingredients &&
             recetteCocktail.Ingredients.map((rc, index) => {
+              for (let i = 0; i < quantite.length; i++) {
+                if (quantite[i].ingredientId === rc.id) {
+                  q = quantite[i].quantite;
+                  u = quantite[i].unite;
+                }
+              }
+
               return (
                 <div className="ingredient" key={index}>
-                  {rc.nom}
+                  <div>{rc.nom} </div>
+                  {q && (
+                    <>
+                      <div>&nbsp;({q}</div>
+                      <div>&nbsp;{u})</div>
+                    </>
+                  )}
                 </div>
               );
             })}
@@ -131,6 +168,8 @@ const PageRecette = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <div>Chargement</div>
   );
 };
 
