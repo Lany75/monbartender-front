@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 
 import "./SelectComponentIngredientsBar.css";
 import "./SelectComponentIngredientsBarDesktop.css";
-import { BarContext } from "../../../../context/barContext";
+import { BarContext } from "../../../context/barContext";
 import Axios from "axios";
 
 // eslint-disable-next-line no-undef

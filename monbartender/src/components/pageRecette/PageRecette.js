@@ -33,6 +33,7 @@ const initialStateQ = {
 const PageRecette = () => {
   const [recetteCocktail, setRecetteCocktail] = useState();
   const [quantite, setQuantite] = useState();
+  const [nbrVerre, setNbrVerre] = useState(1);
   const { id } = useParams();
   let q, u;
 
@@ -47,7 +48,6 @@ const PageRecette = () => {
   };
 
   const getQuantiteIngredient = cocktailId => {
-    // récupération de la quantité de ingredientId dans cocktailId
     Axios.get(
       `${apiBaseURL}/api/v1/ingredients/quantite?cocktailId=${cocktailId}`
     )
@@ -57,6 +57,12 @@ const PageRecette = () => {
       .catch(error => {
         console.log("vous avez une erreur : ", error);
       });
+  };
+
+  const recupererNbrVerre = () => {
+    //console.log("fonction recupererNbrVerre");
+    setNbrVerre(parseInt(document.getElementById("nbr-verre").value));
+    //console.log(nbrVerre);
   };
 
   React.useEffect(() => {
@@ -74,7 +80,20 @@ const PageRecette = () => {
       />
       <div id="ingredients-verre">
         <div id="liste-ingredients">
-          <div id="titre-ingredients">Ingredients</div>
+          <div id="titre-quantite">
+            <div id="titre-ingredients">Ingredients</div>
+            <div>
+              <form>
+                <select id="nbr-verre" onChange={recupererNbrVerre}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </form>
+            </div>
+          </div>
           {recetteCocktail.Ingredients &&
             recetteCocktail.Ingredients.map((rc, index) => {
               for (let i = 0; i < quantite.length; i++) {
@@ -89,7 +108,7 @@ const PageRecette = () => {
                   <div>{rc.nom} </div>
                   {q && (
                     <>
-                      <div>&nbsp;({q}</div>
+                      <div>&nbsp;({q * nbrVerre}</div>
                       <div>&nbsp;{u})</div>
                     </>
                   )}

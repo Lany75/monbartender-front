@@ -13,6 +13,17 @@
     font-size: 25px;
   }
 
+  #titre-quantite {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #nbr-verre {
+    margin-left: 30px;
+    font-size: 20px;
+    /* align-items: center; */
+  }
+
   #nom-verre, .ingredient{
     font-size: 22px;
     display: flex;
