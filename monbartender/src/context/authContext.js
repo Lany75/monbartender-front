@@ -6,7 +6,6 @@ import "firebase/auth";
 import firebaseConfig from "../firebaseConfig";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-
 const firebaseAppAuth = firebaseApp.auth();
 
 const providers = {
@@ -29,7 +28,13 @@ function AuthProvider({ children, user = null, signOut, signInWithGoogle }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, signOut, signInWithGoogle, accessToken }}
+      value={{
+        user,
+        signOut,
+        signInWithGoogle,
+        accessToken,
+        setAccessToken
+      }}
     >
       {children}
     </AuthContext.Provider>

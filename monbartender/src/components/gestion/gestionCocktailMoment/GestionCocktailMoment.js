@@ -34,6 +34,7 @@ const GestionCocktailMoment = () => {
                 <img
                   id="img-cocktail-moment"
                   src={`${apiBaseURL}${cm.photo}`}
+                  alt="un cocktail du moment"
                 />
                 <div id="nom-id-cocktail-moment">
                   <div id="nom-cocktail-moment">{cm.nom}</div>

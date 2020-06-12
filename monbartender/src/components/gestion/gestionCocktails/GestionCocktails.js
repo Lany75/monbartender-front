@@ -28,7 +28,11 @@ const GestionCocktails = () => {
             listeCocktails.map((cm, index) => {
               return (
                 <li className="item-cocktail" key={index}>
-                  <img id="img-cocktail" src={`${apiBaseURL}${cm.photo}`} />
+                  <img
+                    id="img-cocktail"
+                    src={`${apiBaseURL}${cm.photo}`}
+                    alt="un cocktail"
+                  />
                   <div id="nom-id-cocktail">
                     <div id="nom-cocktail">{cm.nom}</div>
                     <div id="id-cocktail">{cm.id}</div>

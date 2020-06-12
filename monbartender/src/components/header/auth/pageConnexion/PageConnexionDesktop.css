@@ -1,5 +1,18 @@
 @media screen and (min-width: 769px) {
-  #mail-utilisateur, #mdp-utilisateur {
+  #connexion-inscription {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 100px;
+    font-size: 30px;
+  }
+
+  #connexion, #inscription{
+    margin: 50px;
+    padding: 20px;
+  }
+
+  #mail-utilisateur-connexion, #mdp-utilisateur-connexion, #mail-utilisateur-inscription, #mdp-utilisateur-inscription, #nom-utilisateur-inscription {
     margin: 5px;
     font-size: 20px;
   }

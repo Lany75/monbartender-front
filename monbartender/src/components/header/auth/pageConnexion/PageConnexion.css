@@ -1,7 +1,15 @@
-#connexion {
+#connexion-inscription {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#connexion, #inscription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid black;
+  margin: 10px;
 }
 
 #connexion-google {
@@ -9,13 +17,18 @@
   margin-bottom: 50px;
 }
 
-.inputs-connexion {
+.inputs-connexion, .inputs-inscription{
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
+  padding: 10px;
 }
 
-#mail-utilisateur, #mdp-utilisateur {
-  margin: 5px;
+.inputs-inscription {
+  margin-top: 50px;
+}
+
+#mail-utilisateur-connexion, #mdp-utilisateur-connexion, #mail-utilisateur-inscription, #mdp-utilisateur-inscription, #nom-utilisateur-inscription {
+  margin: 2px;
   font-size: 10px;
 }

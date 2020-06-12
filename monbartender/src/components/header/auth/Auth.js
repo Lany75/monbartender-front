@@ -6,12 +6,15 @@ import "./AuthDesktop.css";
 
 import { AuthContext } from "../../../context/authContext";
 import { useHistory } from "react-router-dom";
+import { BarContext } from "../../../context/barContext";
 
 // eslint-disable-next-line no-undef
 //const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const Auth = () => {
-  const { user, signOut } = useContext(AuthContext);
+  const { signOut, setAccessToken } = useContext(AuthContext);
+  let { user } = useContext(AuthContext);
+  const { setBar } = useContext(BarContext);
 
   let history = useHistory();
 
@@ -21,6 +24,9 @@ const Auth = () => {
 
   const deconnexion = () => {
     signOut();
+    setBar(null);
+    setAccessToken(null);
+    user = null;
     history.push("/");
   };
 
