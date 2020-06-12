@@ -6,14 +6,14 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
 
-import "./AjoutIngredientComponent.css";
-import "./AjoutIngredientComponentDesktop.css";
+import "./AjoutIngredientBar.css";
+import "./AjoutIngredientBarDesktop.css";
 import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
-const AjoutIngredientComponent = () => {
+const AjoutIngredientBar = () => {
   const { user, accessToken } = useContext(AuthContext);
   const { setBar } = useContext(BarContext);
   const [allIngredients, setAllIngredients] = useState();
@@ -85,4 +85,4 @@ const AjoutIngredientComponent = () => {
   );
 };
 
-export default AjoutIngredientComponent;
+export default AjoutIngredientBar;

@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/authContext";
 import "./PageBar.css";
 import "./PageBarDesktop.css";
 
-import AjoutIngredientComponent from "../ajoutIngredientComponent/AjoutIngredientComponent";
+import AjoutIngredientBar from "../ajoutIngredientBar/AjoutIngredientBar";
 import ListeBarComponent from "../listeBarComponent/ListeBarComponent";
 
 const PageBar = () => {
@@ -18,7 +18,7 @@ const PageBar = () => {
           <div id="liste-bar">
             <ListeBarComponent />
           </div>
-          <AjoutIngredientComponent />
+          <AjoutIngredientBar />
         </>
       ) : (
         <h2>Vous devez vous connecter pour accéder à cette page</h2>

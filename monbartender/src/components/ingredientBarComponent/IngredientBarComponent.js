@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
-import "./BarComponent.css";
-import "./BarComponentDesktop.css";
+import "./IngredientBarComponent.css";
+import "./IngredientBarComponentDesktop.css";
 
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
@@ -10,7 +10,7 @@ import Axios from "axios";
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
-const BarComponent = ingredient => {
+const IngredientBarComponent = ingredient => {
   const { user, accessToken } = useContext(AuthContext);
   const { setBar } = useContext(BarContext);
 
@@ -48,4 +48,4 @@ const BarComponent = ingredient => {
   );
 };
 
-export default BarComponent;
+export default IngredientBarComponent;

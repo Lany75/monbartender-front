@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import BarComponent from "../barComponent/BarComponent";
+import IngredientBarComponent from "../ingredientBarComponent/IngredientBarComponent";
 import { BarContext } from "../../context/barContext";
 
 import "./ListeBarComponent.css";
@@ -25,7 +25,7 @@ const ListeBarComponent = () => {
         bar.Ingredients.map((b, index) => {
           return (
             <div key={index} id="bar-component">
-              <BarComponent nom={b.nom} />
+              <IngredientBarComponent nom={b.nom} />
             </div>
           );
         })
