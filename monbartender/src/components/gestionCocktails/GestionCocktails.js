@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CocktailContext } from "../../../context/cocktailContext";
+import { CocktailContext } from "../../context/cocktailContext";
 
 import "./GestionCocktails.css";
 import "./GestionCocktailsDesktop.css";

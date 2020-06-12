@@ -7,13 +7,14 @@ import PageRecette from "../pageRecette/PageRecette";
 import PageBar from "../pageBar/PageBar";
 import ListeParNom from "../listeParNom/ListeParNom";
 import RechercheParIngredient from "../rechercheParIngredient/RechercheParIngredient";
-import PageConnexion from "../header/auth/pageConnexion/PageConnexion";
+import PageConnexion from "../pageConnexion/PageConnexion";
 
 import "./Main.css";
 import CocktailAleatoire from "../cocktailAleatoire/CocktailAleatoire";
 import Gestion from "../gestion/Gestion";
-import ModifierCocktailMoment from "../gestion/gestionCocktailMoment/modifierCocktailMoment/ModifierCocktailMoment";
-import AjoutCocktail from "../gestion/gestionCocktails/ajoutCocktail/AjoutCocktail";
+import ModifierCocktailMoment from "../modifierCocktailMoment/ModifierCocktailMoment";
+
+import AjoutCocktail from "../ajoutCocktail/AjoutCocktail";
 import Page404 from "../page404/Page404";
 //import GestionCocktailMoment from "../gestion/gestionCocktailMoment/GestionCocktailMoment";
 

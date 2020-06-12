@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import "./GestionCocktailMoment.css";
 import "./GestionCocktailMomentDesktop.css";
-import { CocktailContext } from "../../../context/cocktailContext";
+import { CocktailContext } from "../../context/cocktailContext";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;

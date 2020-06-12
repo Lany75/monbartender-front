@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import ListeCocktailsComponent from "../../listeCocktailsComponent/ListeCocktailsComponent";
+import ListeCocktailsComponent from "../listeCocktailsComponent/ListeCocktailsComponent";
 import SelectComponentIngredientsBar from "../selectComponentIngredientsBar/SelectComponentIngredientsBar";
 import Axios from "axios";
 

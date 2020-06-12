@@ -3,8 +3,8 @@ import React, { useContext, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-import { AuthContext } from "../../../context/authContext";
-import { BarContext } from "../../../context/barContext";
+import { AuthContext } from "../../context/authContext";
+import { BarContext } from "../../context/barContext";
 
 import "./AjoutIngredientComponent.css";
 import "./AjoutIngredientComponentDesktop.css";

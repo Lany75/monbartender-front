@@ -3,8 +3,8 @@ import React from "react";
 
 import "./Gestion.css";
 import "./GestionDesktop.css";
-import GestionCocktailMoment from "./gestionCocktailMoment/GestionCocktailMoment";
-import GestionCocktails from "./gestionCocktails/GestionCocktails";
+import GestionCocktailMoment from "../gestionCocktailMoment/GestionCocktailMoment";
+import GestionCocktails from "../gestionCocktails/GestionCocktails";
 
 const Gestion = () => {
   return (

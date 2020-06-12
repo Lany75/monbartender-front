@@ -14,7 +14,7 @@ import { GiRollingDices } from "react-icons/gi";
 import "./Navbar.css";
 import "./NavbarDesktop.css";
 import { AuthContext } from "../../context/authContext";
-import NavComponent from "./navComponent/NavComponent";
+import NavComponent from "../navComponent/NavComponent";
 import { BarContext } from "../../context/barContext";
 
 const Navbar = () => {

@@ -4,8 +4,8 @@ import { AuthContext } from "../../context/authContext";
 import "./PageBar.css";
 import "./PageBarDesktop.css";
 
-import AjoutIngredientComponent from "./ajoutIngredientComponent/AjoutIngredientComponent";
-import ListeBarComponent from "./listeBarComponent/ListeBarComponent";
+import AjoutIngredientComponent from "../ajoutIngredientComponent/AjoutIngredientComponent";
+import ListeBarComponent from "../listeBarComponent/ListeBarComponent";
 
 const PageBar = () => {
   const { user } = useContext(AuthContext);

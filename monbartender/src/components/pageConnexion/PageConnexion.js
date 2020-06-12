@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-import { AuthContext } from "../../../../context/authContext";
+import { AuthContext } from "../../context/authContext";
 
 import "./PageConnexion.css";
 import "./PageConnexionDesktop.css";

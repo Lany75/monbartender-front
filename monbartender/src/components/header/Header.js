@@ -3,8 +3,8 @@ import React from "react";
 import "./Header.css";
 import "./HeaderDesktop.css";
 
-import Auth from "./auth/Auth";
-import InputRechercheParNom from "./inputRechercheParNom/InputRechercheParNom";
+import Auth from "../auth/Auth";
+import InputRechercheParNom from "../inputRechercheParNom/InputRechercheParNom";
 
 const Header = () => {
   return (

@@ -3,8 +3,8 @@ import React, { useContext } from "react";
 import "./BarComponent.css";
 import "./BarComponentDesktop.css";
 
-import { AuthContext } from "../../../context/authContext";
-import { BarContext } from "../../../context/barContext";
+import { AuthContext } from "../../context/authContext";
+import { BarContext } from "../../context/barContext";
 import Axios from "axios";
 
 // eslint-disable-next-line no-undef

@@ -4,7 +4,7 @@ import "./RechercheParIngredientNonConnecte.css";
 import "./RechercheParIngredientNonConnecteDesktop.css";
 
 import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
-import ListeCocktailsComponent from "../../listeCocktailsComponent/ListeCocktailsComponent";
+import ListeCocktailsComponent from "../listeCocktailsComponent/ListeCocktailsComponent";
 import Axios from "axios";
 
 // eslint-disable-next-line no-undef

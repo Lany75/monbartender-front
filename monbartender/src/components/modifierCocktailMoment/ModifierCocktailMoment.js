@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
 
-import { CocktailContext } from "../../../../context/cocktailContext";
-import { AuthContext } from "../../../../context/authContext";
+import { CocktailContext } from "../../context/cocktailContext";
+import { AuthContext } from "../../context/authContext";
 
 import "./ModifierCocktailMoment.css";
 import "./ModifierCocktailMomentDesktop.css";
