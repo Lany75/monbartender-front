@@ -1,0 +1,28 @@
+@media screen and (min-width: 769px) {
+  #gestion-cocktails-moment {
+    width: 500px;
+  }
+
+  #titre-btn-cocktail-moment{
+    font-size: 30px;
+  }
+
+  #btn-remplacer-cocktail-moment {
+    width: 120px;
+    height: 30px;
+    font-size: 20px;
+  }
+
+  #img-cocktail-moment {
+    width: 100px;
+    height: 150px;
+  }
+
+  #nom-cocktail-moment {
+    font-size: 25px;
+  }
+  
+  #id-cocktail-moment {
+    font-size: 15px;
+  }
+}

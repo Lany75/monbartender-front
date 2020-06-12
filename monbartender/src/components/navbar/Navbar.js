@@ -22,8 +22,8 @@ const Navbar = () => {
   const { bar } = useContext(BarContext);
 
   return (
-    <div id="navbar">
-      <div id="navbar-css">
+    <>
+      <div id="navbar">
         <div id="non-connecte">
           <Link to="/">
             <NavComponent name="Accueil" Icon={TiHome} />
@@ -64,7 +64,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

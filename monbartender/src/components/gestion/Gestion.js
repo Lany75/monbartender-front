@@ -12,7 +12,7 @@ const Gestion = () => {
       <div id="titre-gestion">Gestion</div>
       <div id="gestion">
         <GestionCocktailMoment />
-        <div id="gestion-ingredients">Gestion ingrédients</div>
+        <div id="gestion-ingredients">Liste ingrédients</div>
         <GestionCocktails />
       </div>
     </>

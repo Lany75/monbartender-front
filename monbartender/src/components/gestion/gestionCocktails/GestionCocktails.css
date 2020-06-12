@@ -2,6 +2,7 @@
   background-color: rgb(36, 177, 170);
   border-style: double;
   margin: 10px 0px 10px 0px;
+  width: 320px;
 }
 
 #titre-btn-cocktail {
@@ -21,7 +22,6 @@
 .item-cocktail {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-around; */
    align-items: center; 
   margin: 4px;
 }

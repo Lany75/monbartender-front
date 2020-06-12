@@ -1,9 +1,16 @@
 @media screen and (min-width: 769px) {
   #titre-gestion {
-    font-size: 30px;
+    font-size: 50px;
   }
 
   #gestion {
     flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  #gestion-ingredients {
+    width: 500px;
+
   }
 }

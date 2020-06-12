@@ -1,4 +1,4 @@
-#navbar-css {
+#navbar {
   background-color: #DAECF1;
   display: flex; 
   flex-direction: row;
@@ -19,15 +19,7 @@
   margin-right: 3px;
 }
 
- #gerant { 
+#gerant { 
   margin-left: 3px;
   margin-right: 5px;
 } 
-
-.visible {
-  display: block;
-}
-
-.invisible {
-  display: none;
-}

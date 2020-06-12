@@ -1,0 +1,28 @@
+@media screen and (min-width: 769px) {
+  #gestion-cocktails {
+    width: 500px;
+  }
+
+  #titre-btn-cocktail {
+    font-size: 30px;
+  }
+
+  #btn-ajouter-cocktail {
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+  }
+
+  #img-cocktail {
+    width: 100px;
+    height: 150px;
+  }
+
+  #nom-cocktail {
+    font-size: 25px;
+  }
+
+  #id-cocktail {
+    font-size: 15px;
+  }
+}

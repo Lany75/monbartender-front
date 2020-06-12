@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { CocktailContext } from "../../../context/cocktailContext";
 
 import "./GestionCocktails.css";
+import "./GestionCocktailsDesktop.css";
 import { useHistory } from "react-router-dom";
 
 // eslint-disable-next-line no-undef

@@ -7,11 +7,13 @@
 #gestion {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  align-items: center;
 }
 
 #gestion-ingredients {
+  width: 320px;
   background-color: rgb(55, 187, 55);
   border-style: double;
+  margin: 10px 0px 10px 0px;
 }
 

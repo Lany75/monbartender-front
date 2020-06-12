@@ -15,6 +15,8 @@
 #connexion-google {
   margin-top: 30px;
   margin-bottom: 50px;
+  width: 300px;
+  height: 50px;
 }
 
 .inputs-connexion, .inputs-inscription{
