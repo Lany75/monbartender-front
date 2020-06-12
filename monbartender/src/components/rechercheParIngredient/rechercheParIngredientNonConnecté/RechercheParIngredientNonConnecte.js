@@ -15,6 +15,7 @@ const RechercheParIngredientNonConnecte = () => {
 
   const RechercheParIngredient = event => {
     event.preventDefault();
+
     let nomIngredientdivSelect1 = document.getElementById("divSelect1").value;
     if (nomIngredientdivSelect1 === "choisissez un ingredient")
       nomIngredientdivSelect1 = "";
@@ -69,7 +70,7 @@ const RechercheParIngredientNonConnecte = () => {
             id="btn-recherche-par-ingredient"
             onClick={RechercheParIngredient}
           >
-            Rechercher les recettes
+            Lancer la recherche ...
           </button>
         </div>
       </div>

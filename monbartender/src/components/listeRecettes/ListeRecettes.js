@@ -11,7 +11,7 @@ const ListeRecettes = () => {
 
   return (
     <>
-      <h2>Liste des recettes</h2>
+      <div id="titre-liste-recettes">Liste des recettes</div>
       <ListeCocktailsComponent cocktails={listeCocktails} />
     </>
   );

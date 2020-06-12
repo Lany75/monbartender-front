@@ -1,7 +1,9 @@
 #titre-gestion {
-  text-align: center;
   font-size: 20px;
-  margin: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 #gestion {

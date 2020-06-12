@@ -1,12 +1,7 @@
-/* #liste-recettes {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
-
-h2 {
+#titre-liste-recettes {
   font-size: 20px;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  font-weight: bold;
 }
