@@ -32,7 +32,14 @@ const Auth = () => {
 
   return (
     <div id="auth">
-      {user ? <div id="user">Bonjour, {user.displayName}</div> : <div></div>}
+      {user ? (
+        <div id="user">
+          <div>Bonjour,</div>
+          <div> {user.displayName}</div>
+        </div>
+      ) : (
+        <div></div>
+      )}
       {user ? (
         <button className="auth-bouton" onClick={deconnexion}>
           Déconnexion

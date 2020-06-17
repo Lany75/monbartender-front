@@ -2,7 +2,7 @@
   background-color: #DAECF1;
   display: flex; 
   flex-direction: row;
-  /* justify-content: space-around;  */
+  justify-content: space-between;
 }
 
 #non-connecte {
