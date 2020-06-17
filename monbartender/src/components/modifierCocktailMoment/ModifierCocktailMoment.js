@@ -9,12 +9,14 @@ import { AuthContext } from "../../context/authContext";
 import "./ModifierCocktailMoment.css";
 import "./ModifierCocktailMomentDesktop.css";
 import Axios from "axios";
+import { BarContext } from "../../context/barContext";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const ModifierCocktailMoment = () => {
   const { user, accessToken } = useContext(AuthContext);
+  const { bar } = useContext(BarContext);
   const {
     listeCocktails,
     listeCocktailsMoment,
@@ -66,7 +68,7 @@ const ModifierCocktailMoment = () => {
 
   return (
     <>
-      {user ? (
+      {user && bar && bar.droits === true ? (
         <>
           <div>Remplacer :</div>
           {listeCocktailsMoment &&
