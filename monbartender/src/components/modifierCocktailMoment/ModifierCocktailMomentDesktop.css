@@ -1,7 +1,21 @@
 @media screen and (min-width: 769px) {
+  #titre-modif-cocktail-moment {
+    font-size: 30px;
+  }
+
+  #txt-remplacer {
+    font-size: 20px;
+  }
+  
   .cocktail-modifie {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    font-size: 25px;
+  }
+
+  #btn-validation-modif {
+    width: 150px;
+    font-size: 20px;
   }
 }

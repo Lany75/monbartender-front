@@ -1,8 +1,28 @@
+#titre-ajout-cocktail {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#nom-nv-cocktail {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 #div-photo {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 10px;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#verre-nv-cocktail {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #div-ingredients{
@@ -11,14 +31,53 @@
   margin: 10px;
 }
 
-#box-ingredient{
+#ingr-bouton, #etapes-bouton {
+  display: flex;
+  flex-direction: row;
+}
+#btn-ajout-supp{
+  margin-left: 30px;
+  width: 20px;
+  height: 20px;
+}
+
+#box-ingredient, #box-etapes{
   display: flex;
   flex-direction: column;
 }
 
+.ingredient-quantite {
+  display: flex;
+  flex-direction: column;
+}
+
+.quantite-ajout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.quantite-nv-ingredient, .unite-nv-ingredient {
+  /* padding: 5px; */
+  width: 60px;
+  /* margin-right: 5px; */
+  /* height: 100px;  */
+}
 
 #div-etapes-preparation {
   display: flex;
   flex-direction: column;
   margin: 10px;
 } 
+
+.etape-nv-cocktail {
+  margin-top: 10px;
+   /* height: 100px; */
+}
+
+.visible {
+  display: block
+}
+.invisible {
+  display: none;
+}

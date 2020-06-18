@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { TextField, TextareaAutosize } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import "./AjoutCocktail.css";
@@ -7,16 +7,7 @@ import "./AjoutCocktailDesktop.css";
 import Axios from "axios";
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
-
-/*, { useContext, useState } 
-import { Button, TextField, TextareaAutosize, Input } from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-
-import { AuthContext } from "../../context/authContext";
-import { BarContext } from "../../context/barContext";
-
-import "./Gestion.css";
-import "./GestionDesktop.css";*/
+import IngredientNvCockComponent from "../ingredientNvCockComponent/IngredientNvCockComponent";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -26,6 +17,7 @@ const AjoutCocktail = () => {
   const { bar } = useContext(BarContext);
   const [verres, setVerres] = useState();
   const [ingredients, setIngredients] = useState();
+  //let nbrIngredient = 0;
 
   const getAllVerres = () => {
     // on récupère tous les verres existants dans la base de données
@@ -48,6 +40,65 @@ const AjoutCocktail = () => {
       });
   };
 
+  const AjoutDivIngredient = () => {
+    /* const nomElement = "IngredientNvCockComponent";
+    const divIngredients = document.getElementById("box-ingredient");
+    const divNvIngr = document.createElement(nomElement);
+    divNvIngr.setAttribute("labelIngredient", "Ingrédient 2");
+    console.log(divNvIngr);
+    divIngredients.append(divNvIngr); */
+
+    //return <IngredientNvCockComponent labelIngredient="Ingrédient 2" />;
+    /*    nbrIngredient += 1;
+    const divIngredients = document.getElementById("box-ingredient");
+    const nvIngredient = document.createElement("div");
+    // console.log(nvIngredient);
+
+    //nvIngredient.textContent = "essai " + nbrIngredient;
+    divIngredients.append(nvIngredient); */
+
+    const divIngredients = document.getElementsByClassName(
+      "ingredient-quantite invisible"
+    );
+
+    if (divIngredients.length > 0) {
+      divIngredients[0].classList.replace("invisible", "visible");
+    }
+  };
+
+  const SupprimeDivIngredient = () => {
+    const divIngredients = document.getElementsByClassName(
+      "ingredient-quantite visible"
+    );
+
+    if (divIngredients.length > 1) {
+      divIngredients[divIngredients.length - 1].classList.replace(
+        "visible",
+        "invisible"
+      );
+    }
+  };
+
+  const AjoutDivEtape = () => {
+    const divEtapes = document.getElementsByClassName(
+      "etape-nv-cocktail invisible"
+    );
+
+    if (divEtapes.length > 0) {
+      divEtapes[0].classList.replace("invisible", "visible");
+    }
+  };
+
+  const SupprimeDivEtape = () => {
+    const divEtapes = document.getElementsByClassName(
+      "etape-nv-cocktail visible"
+    );
+
+    if (divEtapes.length > 1) {
+      divEtapes[divEtapes.length - 1].classList.replace("visible", "invisible");
+    }
+  };
+
   React.useEffect(() => {
     getAllVerres();
     getAllIngredients();
@@ -57,10 +108,10 @@ const AjoutCocktail = () => {
     <>
       {user && bar && bar.droits === true ? (
         <>
-          <div>Ajout de cocktail</div>
-          {/* <form method="POST" id="ajout-cocktail"> */}
-          <TextField id="nom-nv-cocktail" label="Nom du cocktail" />
-
+          <div id="titre-ajout-cocktail">Ajout de cocktail</div>
+          <div id="nom-nv-cocktail">
+            <TextField label="Nom du cocktail" />
+          </div>
           <div id="div-photo">
             <div>Photo</div>
             <input
@@ -72,238 +123,284 @@ const AjoutCocktail = () => {
           </div>
 
           {verres && (
-            <Autocomplete
-              id="verre-nv-cocktail"
-              // freeSolo
-              options={verres}
-              getOptionLabel={option => option.nom}
-              style={{ width: 300 }}
-              renderInput={params => <TextField {...params} label="Verre" />}
-            />
+            <div id="verre-nv-cocktail">
+              <Autocomplete
+                options={verres}
+                getOptionLabel={option => option.nom}
+                style={{ width: 300 }}
+                renderInput={params => <TextField {...params} label="Verre" />}
+              />
+            </div>
           )}
 
           <div id="div-ingredients">
-            <div>Ingrédients</div>
-            <div id="box-ingredient">
-              <Autocomplete
-                className="ingredient-nv-cocktail"
-                freeSolo
-                options={ingredients}
-                getOptionLabel={option => option.nom}
-                style={{ width: 300 }}
-                renderInput={params => (
-                  <TextField {...params} label="Ingrédient 1" />
-                )}
-              />
-              <Autocomplete
-                className="ingredient-nv-cocktail"
-                freeSolo
-                options={ingredients}
-                getOptionLabel={option => option.nom}
-                style={{ width: 300 }}
-                renderInput={params => (
-                  <TextField {...params} label="Ingrédient 2" />
-                )}
-              />
-              <Autocomplete
-                className="ingredient-nv-cocktail"
-                freeSolo
-                options={ingredients}
-                getOptionLabel={option => option.nom}
-                style={{ width: 300 }}
-                renderInput={params => (
-                  <TextField {...params} label="Ingrédient 3" />
-                )}
-              />
-              <Autocomplete
-                className="ingredient-nv-cocktail"
-                freeSolo
-                options={ingredients}
-                getOptionLabel={option => option.nom}
-                style={{ width: 300 }}
-                renderInput={params => (
-                  <TextField {...params} label="Ingrédient 4" />
-                )}
-              />
-              <Autocomplete
-                className="ingredient-nv-cocktail"
-                freeSolo
-                options={ingredients}
-                getOptionLabel={option => option.nom}
-                style={{ width: 300 }}
-                renderInput={params => (
-                  <TextField {...params} label="Ingrédient 5" />
-                )}
-              />
-              <Autocomplete
-                className="ingredient-nv-cocktail"
-                freeSolo
-                options={ingredients}
-                getOptionLabel={option => option.nom}
-                style={{ width: 300 }}
-                renderInput={params => (
-                  <TextField {...params} label="Ingrédient 6" />
-                )}
-              />
-              {/* <TextField className="ingredient-nv-cocktail" label="ingrédient 6" /> */}
+            <div id="ingr-bouton">
+              <div>Ingrédients (10 maximum)</div>
+              <button id="btn-ajout-supp" onClick={AjoutDivIngredient}>
+                +
+              </button>
+              <button id="btn-ajout-supp" onClick={SupprimeDivIngredient}>
+                -
+              </button>
             </div>
-            {/* <button
-          onClick={() => {
-            document.createElement("input");
-          }}
-        >
-          Ajouter
-        </button> */}
+            <div id="box-ingredient">
+              <IngredientNvCockComponent
+                classe="ingredient-quantite visible"
+                labelIngredient="Ingrédient 1"
+              />
+              {/* <div className="ingredient-quantite visible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 1" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div> */}
+
+              <div className="ingredient-quantite invisible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 2" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div>
+
+              <div className="ingredient-quantite invisible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 3" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div>
+
+              <div className="ingredient-quantite invisible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 4" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div>
+
+              <div className="ingredient-quantite invisible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 5" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div>
+
+              <div className="ingredient-quantite invisible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 6" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div>
+
+              <div className="ingredient-quantite invisible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 7" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div>
+
+              <div className="ingredient-quantite invisible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 8" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div>
+
+              <div className="ingredient-quantite invisible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 9" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div>
+
+              <div className="ingredient-quantite invisible">
+                <Autocomplete
+                  className="ingredient-nv-cocktail"
+                  freeSolo
+                  options={ingredients}
+                  getOptionLabel={option => option.nom}
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField {...params} label="Ingrédient 10" />
+                  )}
+                />
+                <div className="quantite-ajout">
+                  <TextField
+                    className="quantite-nv-ingredient"
+                    label="quantité"
+                  />
+                  <TextField className="unite-nv-ingredient" label="unité" />
+                </div>
+              </div>
+            </div>
           </div>
 
           <div id="div-etapes-preparation">
-            <div>Etapes de Préparation</div>
-            <TextareaAutosize
-              className="etape-nv-cocktail"
-              rowsMin={2}
-              aria-label="Etape 1"
-              placeholder="Etape 1"
-            />
-            <TextareaAutosize
-              className="etape-nv-cocktail"
-              rowsMin={2}
-              aria-label="Etape 2"
-              placeholder="Etape 2"
-            />
-            <TextareaAutosize
-              className="etape-nv-cocktail"
-              rowsMin={2}
-              aria-label="Etape 3"
-              placeholder="Etape 3"
-            />
-            <TextareaAutosize
-              className="etape-nv-cocktail"
-              rowsMin={2}
-              aria-label="Etape 4"
-              placeholder="Etape 4"
-            />
-            <TextareaAutosize
-              className="etape-nv-cocktail"
-              rowsMin={2}
-              aria-label="Etape 5"
-              placeholder="Etape 5"
-            />
-            <TextareaAutosize
-              className="etape-nv-cocktail"
-              rowsMin={2}
-              aria-label="Etape 6"
-              placeholder="Etape 6"
-            />
-            {/* <button
-          onClick={() => {
-            document.createElement("input");
-          }}
-        >
-          Ajouter
-        </button> */}
+            <div id="etapes-bouton">
+              <div>Etapes Préparation (6 maximum)</div>
+              <button id="btn-ajout-supp" onClick={AjoutDivEtape}>
+                +
+              </button>
+              <button id="btn-ajout-supp" onClick={SupprimeDivEtape}>
+                -
+              </button>
+            </div>
+            <div id="box-etapes">
+              <textarea
+                className="etape-nv-cocktail visible"
+                rows="4"
+                placeholder="Etape 1"
+              />
+              <textarea
+                className="etape-nv-cocktail invisible"
+                rows="4"
+                placeholder="Etape 2"
+              />
+              <textarea
+                className="etape-nv-cocktail invisible"
+                rows="4"
+                placeholder="Etape 3"
+              />
+              <textarea
+                className="etape-nv-cocktail invisible"
+                rows="4"
+                placeholder="Etape 4"
+              />
+              <textarea
+                className="etape-nv-cocktail invisible"
+                rows="4"
+                placeholder="Etape 5"
+              />
+              <textarea
+                className="etape-nv-cocktail invisible"
+                rows="4"
+                placeholder="Etape 6"
+              />
+            </div>
           </div>
 
           <button>Ajouter !!</button>
-
-          {/* </form> */}
         </>
       ) : (
         <div>Vous devez avoir les droits pour accéder à cette page</div>
       )}
     </>
   );
-
-  /*  const { user } = useContext(AuthContext);
-  const { bar } = useContext(BarContext);
-
-
-  
-
-  // console.log("verres : ", verres);
-
-   */
-
-  /*   return (
-    {<>
-      {user && bar && bar.droits === true ? (
-        <>
-          <div id="titre-ajout-cocktail">Ajout d&apos;un nouveau cocktail</div>
-          <form id="ajout-cocktail">
-            <TextField id="nom-nv-cocktail" label="Nom du cocktail" />
-
-            <div id="div-photo">
-              <div>Photo</div>
-              <Button variant="contained" size="small">
-                selectionnez un fichier
-              </Button>
-            </div>
-
-            {verres && (
-              <Autocomplete
-                id="verre-nv-cocktail"
-                // freeSolo
-                options={verres}
-                getOptionLabel={option => option.nom}
-                style={{ width: 300 }}
-                renderInput={params => <TextField {...params} label="verre" />}
-              />
-            )}
-
-            <div>Ingrédients</div>
-
-            <div id="etapes-preparation">
-              <div id="titre-etapes-preparation">Etapes de préparation</div>
-              <div id="etapes">
-                <TextareaAutosize
-                  className="text-etape"
-                  rowsMin={2}
-                  aria-label="Etape 1"
-                  placeholder="Etape 1"
-                />
-                <TextareaAutosize
-                  className="text-etape"
-                  rowsMin={2}
-                  aria-label="Etape 2"
-                  placeholder="Etape 2"
-                />
-                <TextareaAutosize
-                  className="text-etape"
-                  rowsMin={2}
-                  aria-label="Etape 3"
-                  placeholder="Etape 3"
-                />
-                <TextareaAutosize
-                  className="text-etape"
-                  rowsMin={2}
-                  aria-label="Etape 4"
-                  placeholder="Etape 4"
-                />
-                <TextareaAutosize
-                  className="text-etape"
-                  rowsMin={2}
-                  aria-label="Etape 5"
-                  placeholder="Etape 5"
-                />
-                <TextareaAutosize
-                  className="text-etape"
-                  rowsMin={2}
-                  aria-label="Etape 6"
-                  placeholder="Etape 6"
-                />
-              </div>
-            </div>
-            <div id="btn-ajout-nouveau-cocktail">
-              <Button variant="contained">
-                c&apos;est parti pour l&apos;ajout !!
-              </Button>
-            </div>
-          </form>
-        </>
-      ) : (
-        <div>Seul l&apos;administrateur a accès à cette page</div>
-      )}
-    </>}
-  ); */
 };
 
 export default AjoutCocktail;

@@ -70,7 +70,10 @@ const ModifierCocktailMoment = () => {
     <>
       {user && bar && bar.droits === true ? (
         <>
-          <div>Remplacer :</div>
+          <div id="titre-modif-cocktail-moment">
+            Modification des cocktails du moment
+          </div>
+          <div id="txt-remplacer">Remplacer :</div>
           {listeCocktailsMoment &&
             listeCocktails &&
             listeCocktailsMoment.map((cm, index) => {

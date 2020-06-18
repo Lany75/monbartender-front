@@ -34,6 +34,21 @@
   margin-right: 20px;
 }
 
+#titre-quantite {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+}
+
+#nbr-verre {
+  margin-left: 10px;
+}
+
+.ingredient {
+  display: flex;
+  flex-direction: row;
+}
+
 #verre {
   margin-left: 20px;
 }

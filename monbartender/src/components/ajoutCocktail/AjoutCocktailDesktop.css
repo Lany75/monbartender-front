@@ -1,12 +1,20 @@
 @media screen and (min-width: 769px) {
-#div-photo {
+  #titre-ajout-cocktail {
+    font-size: 30px;
+  }
+
+  #div-photo {
   justify-content: flex-start;
 }
 
 #box-ingredient{
+  /* flex-direction: row; */
+  justify-content: flex-start;
+  /* flex-wrap: wrap; */
+}
 
-  flex-direction: row;
-  justify-content: space-around;
+.ingredient-nv-cocktail{
+  margin-left: 15px;
 }
 
 #div-etapes-preparation {

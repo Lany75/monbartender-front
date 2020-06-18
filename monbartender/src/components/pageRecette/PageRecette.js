@@ -8,28 +8,6 @@ import Axios from "axios";
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
-/* const initialStateRC = {
-  id: "",
-  nom: "",
-  photo: "",
-  etapesPreparation: "",
-  Verre: {
-    id: "",
-    nom: ""
-  },
-  Ingredients: [
-    {
-      id: "",
-      nom: ""
-    }
-  ]
-};
-const initialStateQ = {
-  ingredientId: "",
-  quantite: "",
-  unite: ""
-}; */
-
 const PageRecette = () => {
   const [recetteCocktail, setRecetteCocktail] = useState();
   const [quantite, setQuantite] = useState();
@@ -60,9 +38,7 @@ const PageRecette = () => {
   };
 
   const recupererNbrVerre = () => {
-    //console.log("fonction recupererNbrVerre");
     setNbrVerre(parseInt(document.getElementById("nbr-verre").value));
-    //console.log(nbrVerre);
   };
 
   React.useEffect(() => {
@@ -83,15 +59,15 @@ const PageRecette = () => {
           <div id="titre-quantite">
             <div id="titre-ingredients">Ingredients</div>
             <div>
-              <form>
-                <select id="nbr-verre" onChange={recupererNbrVerre}>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </form>
+              {/* <form> */}
+              <select id="nbr-verre" onChange={recupererNbrVerre}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              {/* </form> */}
             </div>
           </div>
           {recetteCocktail.Ingredients &&

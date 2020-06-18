@@ -11,7 +11,6 @@ import { BarContext } from "../../context/barContext";
 const Gestion = () => {
   const { user } = useContext(AuthContext);
   const { bar } = useContext(BarContext);
-  console.log(bar);
 
   return (
     <>
