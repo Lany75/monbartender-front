@@ -1,0 +1,21 @@
+.ingredient-quantite {
+  display: flex;
+  flex-direction: column;
+}
+
+.quantite-ajout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.quantite-nv-ingredient, .unite-nv-ingredient {
+  width: 60px;
+}
+
+.visible {
+  display: flex block
+}
+.invisible {
+  display: none;
+}

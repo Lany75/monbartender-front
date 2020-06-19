@@ -46,24 +46,6 @@
   flex-direction: column;
 }
 
-.ingredient-quantite {
-  display: flex;
-  flex-direction: column;
-}
-
-.quantite-ajout {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.quantite-nv-ingredient, .unite-nv-ingredient {
-  /* padding: 5px; */
-  width: 60px;
-  /* margin-right: 5px; */
-  /* height: 100px;  */
-}
-
 #div-etapes-preparation {
   display: flex;
   flex-direction: column;
@@ -72,12 +54,6 @@
 
 .etape-nv-cocktail {
   margin-top: 10px;
-   /* height: 100px; */
+  width: 300px;
 }
 
-.visible {
-  display: block
-}
-.invisible {
-  display: none;
-}

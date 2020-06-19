@@ -3,11 +3,14 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
 import Axios from "axios";
 
+import "./IngredientNvCockComponent.css";
+import "./IngredientNvCockComponentDesktop.css";
+
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 // eslint-disable-next-line react/prop-types
-const IngredientNvCockComponent = ({ /*  classe, */ labelIngredient }) => {
+const IngredientNvCockComponent = ({ classe, labelIngredient }) => {
   const [ingredients, setIngredients] = useState();
 
   const getAllIngredients = () => {
@@ -25,7 +28,7 @@ const IngredientNvCockComponent = ({ /*  classe, */ labelIngredient }) => {
   }, []);
 
   return (
-    <div className="ingredient-quantite visible">
+    <div className={classe}>
       {ingredients && (
         <>
           <Autocomplete
@@ -39,8 +42,12 @@ const IngredientNvCockComponent = ({ /*  classe, */ labelIngredient }) => {
             )}
           />
           <div className="quantite-ajout">
-            <TextField className="quantite-nv-ingredient" label="quantité" />
-            <TextField className="unite-nv-ingredient" label="unité" />
+            <div className="quantite-nv-ingredient">
+              <TextField label="quantité" />
+            </div>
+            <div className="unite-nv-ingredient">
+              <TextField label="unité" />
+            </div>
           </div>
         </>
       )}

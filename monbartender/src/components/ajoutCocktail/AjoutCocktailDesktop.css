@@ -5,21 +5,20 @@
 
   #div-photo {
   justify-content: flex-start;
-}
+  }
 
-#box-ingredient{
-  /* flex-direction: row; */
-  justify-content: flex-start;
-  /* flex-wrap: wrap; */
-}
+  #box-ingredient{
+    justify-content: flex-start;
+  }
 
-.ingredient-nv-cocktail{
-  margin-left: 15px;
-}
+  #div-etapes-preparation {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  } 
 
-#div-etapes-preparation {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-} 
+  .etape-nv-cocktail {
+    margin-top: 10px;
+    width: 1400px;
+  }
 }

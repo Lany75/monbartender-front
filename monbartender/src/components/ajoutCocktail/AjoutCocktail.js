@@ -16,7 +16,7 @@ const AjoutCocktail = () => {
   const { user } = useContext(AuthContext);
   const { bar } = useContext(BarContext);
   const [verres, setVerres] = useState();
-  const [ingredients, setIngredients] = useState();
+  // const [ingredients, setIngredients] = useState();
   //let nbrIngredient = 0;
 
   const getAllVerres = () => {
@@ -30,7 +30,7 @@ const AjoutCocktail = () => {
       });
   };
 
-  const getAllIngredients = () => {
+  /*  const getAllIngredients = () => {
     Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
       .then(reponse => {
         setIngredients(reponse.data);
@@ -38,7 +38,7 @@ const AjoutCocktail = () => {
       .catch(error => {
         console.log("vous avez une erreur : ", error);
       });
-  };
+  }; */
 
   const AjoutDivIngredient = () => {
     /* const nomElement = "IngredientNvCockComponent";
@@ -101,7 +101,7 @@ const AjoutCocktail = () => {
 
   React.useEffect(() => {
     getAllVerres();
-    getAllIngredients();
+    //   getAllIngredients();
   }, []);
 
   return (
@@ -148,205 +148,51 @@ const AjoutCocktail = () => {
                 classe="ingredient-quantite visible"
                 labelIngredient="Ingrédient 1"
               />
-              {/* <div className="ingredient-quantite visible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 1" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div> */}
 
-              <div className="ingredient-quantite invisible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 2" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div>
+              <IngredientNvCockComponent
+                classe="ingredient-quantite invisible"
+                labelIngredient="Ingrédient 2"
+              />
 
-              <div className="ingredient-quantite invisible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 3" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div>
+              <IngredientNvCockComponent
+                classe="ingredient-quantite invisible"
+                labelIngredient="Ingrédient 3"
+              />
 
-              <div className="ingredient-quantite invisible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 4" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div>
+              <IngredientNvCockComponent
+                classe="ingredient-quantite invisible"
+                labelIngredient="Ingrédient 4"
+              />
 
-              <div className="ingredient-quantite invisible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 5" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div>
+              <IngredientNvCockComponent
+                classe="ingredient-quantite invisible"
+                labelIngredient="Ingrédient 5"
+              />
 
-              <div className="ingredient-quantite invisible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 6" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div>
+              <IngredientNvCockComponent
+                classe="ingredient-quantite invisible"
+                labelIngredient="Ingrédient 6"
+              />
 
-              <div className="ingredient-quantite invisible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 7" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div>
+              <IngredientNvCockComponent
+                classe="ingredient-quantite invisible"
+                labelIngredient="Ingrédient 7"
+              />
 
-              <div className="ingredient-quantite invisible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 8" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div>
+              <IngredientNvCockComponent
+                classe="ingredient-quantite invisible"
+                labelIngredient="Ingrédient 8"
+              />
 
-              <div className="ingredient-quantite invisible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 9" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div>
+              <IngredientNvCockComponent
+                classe="ingredient-quantite invisible"
+                labelIngredient="Ingrédient 9"
+              />
 
-              <div className="ingredient-quantite invisible">
-                <Autocomplete
-                  className="ingredient-nv-cocktail"
-                  freeSolo
-                  options={ingredients}
-                  getOptionLabel={option => option.nom}
-                  style={{ width: 300 }}
-                  renderInput={params => (
-                    <TextField {...params} label="Ingrédient 10" />
-                  )}
-                />
-                <div className="quantite-ajout">
-                  <TextField
-                    className="quantite-nv-ingredient"
-                    label="quantité"
-                  />
-                  <TextField className="unite-nv-ingredient" label="unité" />
-                </div>
-              </div>
+              <IngredientNvCockComponent
+                classe="ingredient-quantite invisible"
+                labelIngredient="Ingrédient 10"
+              />
             </div>
           </div>
 
@@ -394,7 +240,7 @@ const AjoutCocktail = () => {
             </div>
           </div>
 
-          <button>Ajouter !!</button>
+          <button id="btn-ajout-nv-cocktail">Ajouter !!</button>
         </>
       ) : (
         <div>Vous devez avoir les droits pour accéder à cette page</div>

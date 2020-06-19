@@ -1,0 +1,26 @@
+@media screen and (min-width: 769px) {
+  .ingredient-quantite {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .ingredient-nv-cocktail{
+    margin-left: 15px;
+  }
+
+  .quantite-ajout {
+    /* display: flex; */
+    /* justify-content: space-between; */
+    margin-left: 20px;
+
+  }
+ 
+  .quantite-nv-ingredient, .unite-nv-ingredient {
+    margin-right: 10px;
+    margin-left: 10px;
+  } 
+
+  .invisible {
+    display: none;
+  } 
+}

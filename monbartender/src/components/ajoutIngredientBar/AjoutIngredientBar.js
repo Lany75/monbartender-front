@@ -67,7 +67,7 @@ const AjoutIngredientBar = () => {
             id="input-ajout-ingredient"
             options={allIngredients}
             getOptionLabel={option => option.nom}
-            style={{ width: 300 }}
+            style={{ width: 200 }}
             renderInput={params => (
               <TextField
                 {...params}
