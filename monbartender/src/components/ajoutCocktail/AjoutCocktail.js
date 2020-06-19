@@ -16,11 +16,45 @@ const AjoutCocktail = () => {
   const { user } = useContext(AuthContext);
   const { bar } = useContext(BarContext);
   const [verres, setVerres] = useState();
-  // const [ingredients, setIngredients] = useState();
-  //let nbrIngredient = 0;
+  const [nbIng, setNbIng] = useState(1);
+  const [nbEtape, setNbEtape] = useState(1);
+  const tableauIng = [];
+  const tableauEtapes = [];
+  //let nbIng = 1;
+  //let nbEtape = 1;
+
+  const mesIngredients = [];
+  const mesEtapes = [];
+
+  for (let i = 1; i <= nbIng; i++) {
+    const id = "ingredient-" + i;
+    const label = "Ingrédient " + i;
+
+    mesIngredients.push(
+      <IngredientNvCockComponent
+        classe="ingredient-quantite"
+        id={id}
+        labelIngredient={label}
+        key={i}
+      />
+    );
+  }
+
+  for (let e = 1; e <= nbEtape; e++) {
+    const id = "etape-" + e;
+    const placeholder = "Etape " + e;
+    mesEtapes.push(
+      <textarea
+        className="etape-nv-cocktail"
+        id={id}
+        rows="4"
+        placeholder={placeholder}
+        key={e}
+      />
+    );
+  }
 
   const getAllVerres = () => {
-    // on récupère tous les verres existants dans la base de données
     Axios.get(`${apiBaseURL}/api/v1/verres/`)
       .then(reponse => {
         setVerres(reponse.data);
@@ -30,78 +64,71 @@ const AjoutCocktail = () => {
       });
   };
 
-  /*  const getAllIngredients = () => {
-    Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
-      .then(reponse => {
-        setIngredients(reponse.data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-  }; */
-
   const AjoutDivIngredient = () => {
-    /* const nomElement = "IngredientNvCockComponent";
-    const divIngredients = document.getElementById("box-ingredient");
-    const divNvIngr = document.createElement(nomElement);
-    divNvIngr.setAttribute("labelIngredient", "Ingrédient 2");
-    console.log(divNvIngr);
-    divIngredients.append(divNvIngr); */
-
-    //return <IngredientNvCockComponent labelIngredient="Ingrédient 2" />;
-    /*    nbrIngredient += 1;
-    const divIngredients = document.getElementById("box-ingredient");
-    const nvIngredient = document.createElement("div");
-    // console.log(nvIngredient);
-
-    //nvIngredient.textContent = "essai " + nbrIngredient;
-    divIngredients.append(nvIngredient); */
-
-    const divIngredients = document.getElementsByClassName(
-      "ingredient-quantite invisible"
-    );
-
-    if (divIngredients.length > 0) {
-      divIngredients[0].classList.replace("invisible", "visible");
-    }
+    if (nbIng < 10) setNbIng(nbIng + 1);
   };
-
   const SupprimeDivIngredient = () => {
-    const divIngredients = document.getElementsByClassName(
-      "ingredient-quantite visible"
-    );
-
-    if (divIngredients.length > 1) {
-      divIngredients[divIngredients.length - 1].classList.replace(
-        "visible",
-        "invisible"
-      );
-    }
+    if (nbIng > 1) setNbIng(nbIng - 1);
   };
 
   const AjoutDivEtape = () => {
-    const divEtapes = document.getElementsByClassName(
-      "etape-nv-cocktail invisible"
-    );
-
-    if (divEtapes.length > 0) {
-      divEtapes[0].classList.replace("invisible", "visible");
-    }
+    if (nbEtape < 6) setNbEtape(nbEtape + 1);
+  };
+  const SupprimeDivEtape = () => {
+    if (nbEtape > 1) setNbEtape(nbEtape - 1);
   };
 
-  const SupprimeDivEtape = () => {
-    const divEtapes = document.getElementsByClassName(
-      "etape-nv-cocktail visible"
-    );
-
-    if (divEtapes.length > 1) {
-      divEtapes[divEtapes.length - 1].classList.replace("visible", "invisible");
+  const ajoutCocktailBD = () => {
+    const nomNvCocktail = document.getElementById("nom-nv").value;
+    if (nomNvCocktail === "" || !nomNvCocktail) {
+      console.log("nom du cocktail obligatoire");
+      return;
     }
+    console.log("nom cocktail : ", nomNvCocktail);
+    const photo = "/api/images/cocktail1.jpg";
+    const verre = document.getElementById("verre-nv").value;
+    if (verre === "" || !verre) {
+      console.log("verre obligatoire");
+      return;
+    }
+    console.log("nom verre : ", verre);
+
+    for (let i = 1; i <= nbIng; i++) {
+      const ing = document.getElementById("input-ingredient-" + i);
+      const quant = document.getElementById("quantite-ingredient-" + i);
+      const unit = document.getElementById("unite-ingredient-" + i);
+
+      if (ing.value && ing.value !== "") {
+        tableauIng.push({
+          nomIng: ing.value,
+          quantiteIng: quant.value,
+          uniteIng: unit.value
+        });
+      }
+    }
+    if (tableauIng.length === 0) {
+      console.log("1 ingrédient minimum");
+      return;
+    }
+    console.log(tableauIng);
+
+    for (let i = 1; i <= nbEtape; i++) {
+      //const numEtape='etape'+i;
+      const etape = document.getElementById("etape-" + i);
+      //console.log(etape.value);
+      if (etape.value && etape.value !== "") tableauEtapes.push(etape.value);
+    }
+
+    if (tableauEtapes.length === 0) {
+      console.log("1 étape minimum");
+      return;
+    }
+
+    console.log(tableauEtapes);
   };
 
   React.useEffect(() => {
     getAllVerres();
-    //   getAllIngredients();
   }, []);
 
   return (
@@ -110,7 +137,7 @@ const AjoutCocktail = () => {
         <>
           <div id="titre-ajout-cocktail">Ajout de cocktail</div>
           <div id="nom-nv-cocktail">
-            <TextField label="Nom du cocktail" />
+            <TextField id="nom-nv" label="Nom du cocktail" />
           </div>
           <div id="div-photo">
             <div>Photo</div>
@@ -125,6 +152,7 @@ const AjoutCocktail = () => {
           {verres && (
             <div id="verre-nv-cocktail">
               <Autocomplete
+                id="verre-nv"
                 options={verres}
                 getOptionLabel={option => option.nom}
                 style={{ width: 300 }}
@@ -143,57 +171,8 @@ const AjoutCocktail = () => {
                 -
               </button>
             </div>
-            <div id="box-ingredient">
-              <IngredientNvCockComponent
-                classe="ingredient-quantite visible"
-                labelIngredient="Ingrédient 1"
-              />
 
-              <IngredientNvCockComponent
-                classe="ingredient-quantite invisible"
-                labelIngredient="Ingrédient 2"
-              />
-
-              <IngredientNvCockComponent
-                classe="ingredient-quantite invisible"
-                labelIngredient="Ingrédient 3"
-              />
-
-              <IngredientNvCockComponent
-                classe="ingredient-quantite invisible"
-                labelIngredient="Ingrédient 4"
-              />
-
-              <IngredientNvCockComponent
-                classe="ingredient-quantite invisible"
-                labelIngredient="Ingrédient 5"
-              />
-
-              <IngredientNvCockComponent
-                classe="ingredient-quantite invisible"
-                labelIngredient="Ingrédient 6"
-              />
-
-              <IngredientNvCockComponent
-                classe="ingredient-quantite invisible"
-                labelIngredient="Ingrédient 7"
-              />
-
-              <IngredientNvCockComponent
-                classe="ingredient-quantite invisible"
-                labelIngredient="Ingrédient 8"
-              />
-
-              <IngredientNvCockComponent
-                classe="ingredient-quantite invisible"
-                labelIngredient="Ingrédient 9"
-              />
-
-              <IngredientNvCockComponent
-                classe="ingredient-quantite invisible"
-                labelIngredient="Ingrédient 10"
-              />
-            </div>
+            <div id="box-ingredient">{mesIngredients}</div>
           </div>
 
           <div id="div-etapes-preparation">
@@ -206,41 +185,12 @@ const AjoutCocktail = () => {
                 -
               </button>
             </div>
-            <div id="box-etapes">
-              <textarea
-                className="etape-nv-cocktail visible"
-                rows="4"
-                placeholder="Etape 1"
-              />
-              <textarea
-                className="etape-nv-cocktail invisible"
-                rows="4"
-                placeholder="Etape 2"
-              />
-              <textarea
-                className="etape-nv-cocktail invisible"
-                rows="4"
-                placeholder="Etape 3"
-              />
-              <textarea
-                className="etape-nv-cocktail invisible"
-                rows="4"
-                placeholder="Etape 4"
-              />
-              <textarea
-                className="etape-nv-cocktail invisible"
-                rows="4"
-                placeholder="Etape 5"
-              />
-              <textarea
-                className="etape-nv-cocktail invisible"
-                rows="4"
-                placeholder="Etape 6"
-              />
-            </div>
+            <div id="box-etapes">{mesEtapes}</div>
           </div>
 
-          <button id="btn-ajout-nv-cocktail">Ajouter !!</button>
+          <button id="btn-ajout-nv-cocktail" onClick={ajoutCocktailBD}>
+            Ajouter !!
+          </button>
         </>
       ) : (
         <div>Vous devez avoir les droits pour accéder à cette page</div>

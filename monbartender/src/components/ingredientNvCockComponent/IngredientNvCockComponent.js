@@ -10,8 +10,12 @@ import "./IngredientNvCockComponentDesktop.css";
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 // eslint-disable-next-line react/prop-types
-const IngredientNvCockComponent = ({ classe, labelIngredient }) => {
+const IngredientNvCockComponent = ({ classe, id, labelIngredient }) => {
   const [ingredients, setIngredients] = useState();
+  //const idElement = id;
+  const inputId = "input-" + id;
+  const quantId = "quantite-" + id;
+  const unitId = "unite-" + id;
 
   const getAllIngredients = () => {
     Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
@@ -33,6 +37,7 @@ const IngredientNvCockComponent = ({ classe, labelIngredient }) => {
         <>
           <Autocomplete
             className="ingredient-nv-cocktail"
+            id={inputId}
             freeSolo
             options={ingredients}
             getOptionLabel={option => option.nom}
@@ -43,10 +48,10 @@ const IngredientNvCockComponent = ({ classe, labelIngredient }) => {
           />
           <div className="quantite-ajout">
             <div className="quantite-nv-ingredient">
-              <TextField label="quantité" />
+              <TextField id={quantId} label="quantité" />
             </div>
             <div className="unite-nv-ingredient">
-              <TextField label="unité" />
+              <TextField id={unitId} label="unité" />
             </div>
           </div>
         </>
