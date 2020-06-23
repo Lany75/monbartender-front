@@ -9,6 +9,8 @@ import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
 import IngredientNvCockComponent from "../ingredientNvCockComponent/IngredientNvCockComponent";
 
+import { refStorage } from "../../firebaseConfig";
+
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
@@ -20,8 +22,6 @@ const AjoutCocktail = () => {
   const [nbEtape, setNbEtape] = useState(1);
   const tableauIng = [];
   const tableauEtapes = [];
-  //let nbIng = 1;
-  //let nbEtape = 1;
 
   const mesIngredients = [];
   const mesEtapes = [];
@@ -79,19 +79,38 @@ const AjoutCocktail = () => {
   };
 
   const ajoutCocktailBD = () => {
-    const nomNvCocktail = document.getElementById("nom-nv").value;
-    if (nomNvCocktail === "" || !nomNvCocktail) {
+    let nouveauCocktail = new URLSearchParams();
+    let refImageCocktail;
+
+    const divNomCocktail = document.getElementById("nom-nv");
+    if (divNomCocktail.value === "" || !divNomCocktail.value) {
       console.log("nom du cocktail obligatoire");
       return;
     }
-    console.log("nom cocktail : ", nomNvCocktail);
-    const photo = "/api/images/cocktail1.jpg";
+    nouveauCocktail.append("nom", divNomCocktail.value);
+    // nouveauCocktail.nom = divNomCocktail.value;
+
+    let photo = document.getElementById("photo-cocktail").files[0];
+    //console.log("photo : ", photo);
+    if (!photo) {
+      refImageCocktail = "/api/images/cocktail1.jpg";
+    } else {
+      refImageCocktail = "img_cocktail/" + photo.name;
+      // initialisation de la référence de l'image
+      const imgRef = refStorage.child("img_cocktail/" + photo.name);
+      //envoi de la photo sur firebase storage
+      imgRef.put(photo);
+    }
+    nouveauCocktail.append("photo", refImageCocktail);
+    // nouveauCocktail.photo = refImageCocktail;
+
     const verre = document.getElementById("verre-nv").value;
     if (verre === "" || !verre) {
       console.log("verre obligatoire");
       return;
     }
-    console.log("nom verre : ", verre);
+    nouveauCocktail.append("verre", verre);
+    // nouveauCocktail.verre = verre;
 
     for (let i = 1; i <= nbIng; i++) {
       const ing = document.getElementById("input-ingredient-" + i);
@@ -110,12 +129,11 @@ const AjoutCocktail = () => {
       console.log("1 ingrédient minimum");
       return;
     }
-    console.log(tableauIng);
+    nouveauCocktail.append("ingredients", tableauIng);
+    // nouveauCocktail.ingredients = tableauIng;
 
     for (let i = 1; i <= nbEtape; i++) {
-      //const numEtape='etape'+i;
       const etape = document.getElementById("etape-" + i);
-      //console.log(etape.value);
       if (etape.value && etape.value !== "") tableauEtapes.push(etape.value);
     }
 
@@ -123,8 +141,29 @@ const AjoutCocktail = () => {
       console.log("1 étape minimum");
       return;
     }
+    nouveauCocktail.append("etapes", tableauEtapes);
+    // nouveauCocktail.etapes = tableauEtapes;
+    console.log("nv cocktail : ", nouveauCocktail);
 
-    console.log(tableauEtapes);
+    /*   Axios({
+      method: "post",
+      url: `${apiBaseURL}/api/v1/gestion/cocktails`,
+      data: nouveauCocktail
+    })
+      .then(reponse => {
+        console.log(reponse);
+      })
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
+      }); */
+
+    Axios.post(`${apiBaseURL}/api/v1/gestion/cocktails`, nouveauCocktail)
+      .then(reponse => {
+        console.log(reponse);
+      })
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
+      });
   };
 
   React.useEffect(() => {

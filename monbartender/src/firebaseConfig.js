@@ -1,5 +1,8 @@
+import * as firebase from "firebase/app";
+import "firebase/storage";
+
 /* eslint-disable no-undef */
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -9,4 +12,10 @@ var firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID
 };
 
-export default firebaseConfig;
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseAppAuth = firebaseApp.auth();
+
+const refStorage = firebase.storage().ref();
+
+export { firebase, refStorage, firebaseAppAuth as default };
+//export default firebaseConfig;
