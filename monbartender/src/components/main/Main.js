@@ -16,7 +16,6 @@ import ModifierCocktailMoment from "../modifierCocktailMoment/ModifierCocktailMo
 
 import AjoutCocktail from "../ajoutCocktail/AjoutCocktail";
 import Page404 from "../page404/Page404";
-//import GestionCocktailMoment from "../gestion/gestionCocktailMoment/GestionCocktailMoment";
 
 function Main() {
   return (

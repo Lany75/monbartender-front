@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import "./PageRecette.css";
 import "./PageRecetteDesktop.css";
 import Axios from "axios";
+import ImageCocktail from "../imageCocktail/ImageCocktail";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -49,17 +50,17 @@ const PageRecette = () => {
   return recetteCocktail && quantite ? (
     <div id="recette-cocktail">
       <div id="titre-cocktail">{recetteCocktail.nom}</div>
-      <img
-        className="img-cocktail-recette"
-        src={`${apiBaseURL}${recetteCocktail.photo}`}
-        alt={recetteCocktail.nom}
+      <ImageCocktail
+        classe="img-cocktail"
+        reference={recetteCocktail.photo}
+        nom={recetteCocktail.nom}
       />
+
       <div id="ingredients-verre">
         <div id="liste-ingredients">
           <div id="titre-quantite">
             <div id="titre-ingredients">Ingredients</div>
             <div>
-              {/* <form> */}
               <select id="nbr-verre" onChange={recupererNbrVerre}>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -67,7 +68,6 @@ const PageRecette = () => {
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-              {/* </form> */}
             </div>
           </div>
           {recetteCocktail.Ingredients &&

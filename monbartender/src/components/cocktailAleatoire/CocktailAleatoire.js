@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./CocktailAleatoire.css";
 import "./CocktailAleatoireDesktop.css";
 import Axios from "axios";
+import ImageCocktail from "../imageCocktail/ImageCocktail";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -43,10 +44,10 @@ const CocktailAleatoire = () => {
         {cocktailAleatoire && (
           <div className="cocktail-aleatoire">
             <Link to={to}>
-              <img
-                className="img-cocktail-aleatoire"
-                src={`${apiBaseURL}${cocktailAleatoire.photo}`}
-                alt={cocktailAleatoire.nom}
+              <ImageCocktail
+                classe="img-cocktail"
+                reference={cocktailAleatoire.photo}
+                nom={cocktailAleatoire.nom}
               />
               <div className="nom-cocktail-aleatoire">
                 {cocktailAleatoire.nom}

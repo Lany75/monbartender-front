@@ -4,9 +4,7 @@ import { CocktailContext } from "../../context/cocktailContext";
 import "./GestionCocktails.css";
 import "./GestionCocktailsDesktop.css";
 import { useHistory } from "react-router-dom";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
+import ImageCocktail from "../imageCocktail/ImageCocktail";
 
 const GestionCocktails = () => {
   const { listeCocktails } = useContext(CocktailContext);
@@ -29,11 +27,12 @@ const GestionCocktails = () => {
             listeCocktails.map((cm, index) => {
               return (
                 <li className="item-cocktail" key={index}>
-                  <img
-                    id="img-cocktail"
-                    src={`${apiBaseURL}${cm.photo}`}
-                    alt="un cocktail"
+                  <ImageCocktail
+                    classe="img-cocktail-gestion"
+                    reference={cm.photo}
+                    nom={cm.nom}
                   />
+
                   <div id="nom-id-cocktail">
                     <div id="nom-cocktail">{cm.nom}</div>
                     <div id="id-cocktail">{cm.id}</div>
