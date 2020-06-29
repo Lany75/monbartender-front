@@ -11,7 +11,7 @@ const Footer = () => {
         modération
       </div>
       <div id="c-ml-r">
-        <div>Contact</div>
+        <a href="mailto:mlanie.parry@gmail.com">Contact</a>
         <div>Mentions légales</div>
         <div>Remerciements</div>
       </div>
