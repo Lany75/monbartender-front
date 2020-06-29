@@ -9,9 +9,9 @@ const ImageCocktail = props => {
   // eslint-disable-next-line react/prop-types
   const { classe, reference, nom } = props;
 
-  const getImageFirebase = reference => {
+  const getImageFirebase = async reference => {
     const imgRef = firebase.storage().ref(reference);
-    imgRef.getDownloadURL().then(url => {
+    await imgRef.getDownloadURL().then(url => {
       setImgUrl(url);
     });
   };
