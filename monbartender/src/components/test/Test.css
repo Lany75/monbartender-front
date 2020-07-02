@@ -1,0 +1,67 @@
+#titre-ajout-cocktail {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#formulaire-ajout-cocktail {
+  display: flex;
+  flex-direction: column;
+}
+
+#nom-nouveau-cocktail, #photo-nouveau-cocktail, #verre-nouveau-cocktail {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#label-nom-nv-cock, #label-photo-nv-cock, #label-verre-nv-cock {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#input-nom-nv-cock, #input-photo-nv-cock, #select-verre-nv-cock {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#ingredient-nouveau-cocktail, #etape-nouveau-cocktail {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#div-titre-ingredients, #div-titre-etapes {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#ingredients-cocktail, #etapes-preparation{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.ingredients {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+#label-nom-ingredient-nv-cock, #select-nom-ingredient-nv-cock, #label-quantite-ingredient-nv-cock, #input-quantite-ingredient-nv-cock, #label-unite-ingredient-nv-cock, #input-unite-ingredient-nv-cock {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#label-etape-nv-cock {
+  margin-left: 25px;
+  margin-right: 5px;
+}
+
+#btn-ajout-cocktail {
+  width: 150px;
+  margin-top: 30px;
+  margin-left: 50px;
+}

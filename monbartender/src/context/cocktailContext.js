@@ -37,7 +37,12 @@ function CocktailProvider({ children }) {
 
   return (
     <CocktailContext.Provider
-      value={{ listeCocktails, listeCocktailsMoment, setListeCocktailsMoment }}
+      value={{
+        listeCocktails,
+        setListeCocktails,
+        listeCocktailsMoment,
+        setListeCocktailsMoment
+      }}
     >
       {children}
     </CocktailContext.Provider>

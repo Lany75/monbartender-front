@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { useHistory } from "react-router-dom";
 
 import "./AjoutCocktail.css";
 import "./AjoutCocktailDesktop.css";
@@ -8,21 +9,26 @@ import Axios from "axios";
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
 import IngredientNvCockComponent from "../ingredientNvCockComponent/IngredientNvCockComponent";
+//import * as yup from "yup"; // c'est un packet qui te permet de definir un schema de donnée pour pourvoir les enregistres avant des les envoyer
 
+//import Test from "../test/Test";
 import { refStorage } from "../../firebaseConfig";
+import { CocktailContext } from "../../context/cocktailContext";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const AjoutCocktail = () => {
-  const { user } = useContext(AuthContext);
+  let history = useHistory();
+  //const [nomNvCocktail, setNomNvCocktail] = useState();
+  const { user, accessToken } = useContext(AuthContext);
   const { bar } = useContext(BarContext);
+  const { setListeCocktails } = useContext(CocktailContext);
   const [verres, setVerres] = useState();
   const [nbIng, setNbIng] = useState(1);
   const [nbEtape, setNbEtape] = useState(1);
   const tableauIng = [];
   const tableauEtapes = [];
-
   const mesIngredients = [];
   const mesEtapes = [];
 
@@ -79,7 +85,13 @@ const AjoutCocktail = () => {
   };
 
   const ajoutCocktailBD = () => {
-    let nouveauCocktail = new URLSearchParams();
+    const nouveauCocktail = {
+      nom: "",
+      photo: "",
+      verre: "",
+      ingredients: [{ nomIng: "", quantiteIng: "", uniteIng: "" }],
+      etapes: []
+    };
     let refImageCocktail;
 
     const divNomCocktail = document.getElementById("nom-nv");
@@ -87,11 +99,9 @@ const AjoutCocktail = () => {
       console.log("nom du cocktail obligatoire");
       return;
     }
-    nouveauCocktail.append("nom", divNomCocktail.value);
-    // nouveauCocktail.nom = divNomCocktail.value;
+    nouveauCocktail.nom = divNomCocktail.value;
 
     let photo = document.getElementById("photo-cocktail").files[0];
-    //console.log("photo : ", photo);
     if (!photo) {
       refImageCocktail = "/api/images/cocktail1.jpg";
     } else {
@@ -101,16 +111,14 @@ const AjoutCocktail = () => {
       //envoi de la photo sur firebase storage
       imgRef.put(photo);
     }
-    nouveauCocktail.append("photo", refImageCocktail);
-    // nouveauCocktail.photo = refImageCocktail;
+    nouveauCocktail.photo = refImageCocktail;
 
     const verre = document.getElementById("verre-nv").value;
     if (verre === "" || !verre) {
       console.log("verre obligatoire");
       return;
     }
-    nouveauCocktail.append("verre", verre);
-    // nouveauCocktail.verre = verre;
+    nouveauCocktail.verre = verre;
 
     for (let i = 1; i <= nbIng; i++) {
       const ing = document.getElementById("input-ingredient-" + i);
@@ -129,8 +137,7 @@ const AjoutCocktail = () => {
       console.log("1 ingrédient minimum");
       return;
     }
-    nouveauCocktail.append("ingredients", tableauIng);
-    // nouveauCocktail.ingredients = tableauIng;
+    nouveauCocktail.ingredients = tableauIng;
 
     for (let i = 1; i <= nbEtape; i++) {
       const etape = document.getElementById("etape-" + i);
@@ -141,29 +148,23 @@ const AjoutCocktail = () => {
       console.log("1 étape minimum");
       return;
     }
-    nouveauCocktail.append("etapes", tableauEtapes);
-    // nouveauCocktail.etapes = tableauEtapes;
-    console.log("nv cocktail : ", nouveauCocktail);
+    nouveauCocktail.etapes = tableauEtapes;
+    //console.log("nv cocktail : ", nouveauCocktail);
 
-    /*   Axios({
-      method: "post",
-      url: `${apiBaseURL}/api/v1/gestion/cocktails`,
-      data: nouveauCocktail
+    Axios.post(`${apiBaseURL}/api/v1/gestion/cocktails`, nouveauCocktail, {
+      headers: {
+        authorization: accessToken
+      }
     })
       .then(reponse => {
-        console.log(reponse);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      }); */
-
-    Axios.post(`${apiBaseURL}/api/v1/gestion/cocktails`, nouveauCocktail)
-      .then(reponse => {
-        console.log(reponse);
+        //console.log(reponse.data);
+        setListeCocktails(reponse.data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);
       });
+
+    history.push("/gestion");
   };
 
   React.useEffect(() => {
@@ -172,6 +173,7 @@ const AjoutCocktail = () => {
 
   return (
     <>
+      {/*  <Test /> */}
       {user && bar && bar.droits === true ? (
         <>
           <div id="titre-ajout-cocktail">Ajout de cocktail</div>

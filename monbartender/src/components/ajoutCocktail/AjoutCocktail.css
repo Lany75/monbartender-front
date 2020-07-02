@@ -14,10 +14,11 @@
 #div-photo {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   margin-top: 20px;
   margin-left: 5px;
   margin-right: 5px;
+  /* font-size: 20px; */
 }
 
 #verre-nv-cocktail {
@@ -55,5 +56,21 @@
 .etape-nv-cocktail {
   margin-top: 10px;
   width: 300px;
+}
+
+
+#formulaire-ajout{
+  display: flex;
+  flex-direction: column;
+}
+
+#btn-envoyer {
+  margin-top: 50px;
+  width: 300px;
+  font-size: 15px;
+}
+
+#photo-cocktail{
+  font-size: 15px;
 }
 

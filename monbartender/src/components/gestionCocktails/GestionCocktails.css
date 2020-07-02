@@ -31,6 +31,7 @@
 #nom-id-cocktail {
   display: flex;
   flex-direction: column;
+  width: 230px;
 }
 
 #id-cocktail {

@@ -2,6 +2,7 @@ import React from "react";
 
 import "./Footer.css";
 import "./FooterDesktop.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -12,8 +13,9 @@ const Footer = () => {
       </div>
       <div id="c-ml-r">
         <a href="mailto:mlanie.parry@gmail.com">Contact</a>
-        <div>Mentions légales</div>
-        <div>Remerciements</div>
+        <Link to="/mentions-legales">
+          <div>Mentions légales</div>
+        </Link>
       </div>
     </div>
   );
