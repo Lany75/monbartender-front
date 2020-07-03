@@ -6,11 +6,13 @@ import "./GestionCocktailsDesktop.css";
 import { useHistory } from "react-router-dom";
 import ImageCocktail from "../imageCocktail/ImageCocktail";
 import Axios from "axios";
+import { AuthContext } from "../../context/authContext";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const GestionCocktails = () => {
+  const { accessToken } = useContext(AuthContext);
   const { listeCocktails, setListeCocktails } = useContext(CocktailContext);
   let history = useHistory();
 
@@ -21,7 +23,11 @@ const GestionCocktails = () => {
   const supprimerCocktail = cocktailId => {
     //console.log("on supprime le cocktail", cocktailId);
 
-    Axios.delete(`${apiBaseURL}/api/v1/cocktails/${cocktailId}`)
+    Axios.delete(`${apiBaseURL}/api/v1/gestion/${cocktailId}`, {
+      headers: {
+        authorization: accessToken
+      }
+    })
       .then(reponse => {
         //console.log(reponse.data);
         setListeCocktails(reponse.data);

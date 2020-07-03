@@ -18,6 +18,7 @@ const MentionsLegales = () => {
           <li>Jenny Pace</li>
           <li>Rhianon Lassila</li>
           <li>Tai&apos;s Captures</li>
+          <li>Michael Oeser</li>
         </ul>
       </div>
     </div>

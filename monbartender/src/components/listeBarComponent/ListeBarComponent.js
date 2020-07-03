@@ -9,7 +9,7 @@ import "./ListeBarComponentDesktop.css";
 const ListeBarComponent = () => {
   const { bar } = useContext(BarContext);
 
-  if (bar) {
+  if (bar && bar.Ingredients) {
     bar.Ingredients.sort((a, b) => {
       return a.nom.localeCompare(b.nom);
     });
@@ -19,7 +19,7 @@ const ListeBarComponent = () => {
     <>
       {!bar ? (
         <div className="message">Chargement du bar ...</div>
-      ) : bar.Ingredients.length === 0 ? (
+      ) : !bar.Ingredients || bar.Ingredients.length === 0 ? (
         <div className="message">Votre bar est vide</div>
       ) : (
         bar.Ingredients.map((b, index) => {

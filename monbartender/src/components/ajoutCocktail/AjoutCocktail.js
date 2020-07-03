@@ -11,7 +11,6 @@ import { BarContext } from "../../context/barContext";
 import IngredientNvCockComponent from "../ingredientNvCockComponent/IngredientNvCockComponent";
 //import * as yup from "yup"; // c'est un packet qui te permet de definir un schema de donnée pour pourvoir les enregistres avant des les envoyer
 
-//import Test from "../test/Test";
 import { refStorage } from "../../firebaseConfig";
 import { CocktailContext } from "../../context/cocktailContext";
 
@@ -20,7 +19,6 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const AjoutCocktail = () => {
   let history = useHistory();
-  //const [nomNvCocktail, setNomNvCocktail] = useState();
   const { user, accessToken } = useContext(AuthContext);
   const { bar } = useContext(BarContext);
   const { setListeCocktails } = useContext(CocktailContext);
@@ -94,16 +92,18 @@ const AjoutCocktail = () => {
     };
     let refImageCocktail;
 
+    // vérification du nom du cocktail
     const divNomCocktail = document.getElementById("nom-nv");
     if (divNomCocktail.value === "" || !divNomCocktail.value) {
-      console.log("nom du cocktail obligatoire");
-      return;
+      divNomCocktail.style.border = "solid 1px red";
+    } else {
+      divNomCocktail.style.border = "none";
+      nouveauCocktail.nom = divNomCocktail.value;
     }
-    nouveauCocktail.nom = divNomCocktail.value;
 
     let photo = document.getElementById("photo-cocktail").files[0];
     if (!photo) {
-      refImageCocktail = "/api/images/cocktail1.jpg";
+      refImageCocktail = "img_cocktail/michaelOeser.jpg";
     } else {
       refImageCocktail = "img_cocktail/" + photo.name;
       // initialisation de la référence de l'image
@@ -113,13 +113,16 @@ const AjoutCocktail = () => {
     }
     nouveauCocktail.photo = refImageCocktail;
 
-    const verre = document.getElementById("verre-nv").value;
-    if (verre === "" || !verre) {
-      console.log("verre obligatoire");
-      return;
+    // vérification du verre du cocktail
+    const divVerre = document.getElementById("verre-nv");
+    if (divVerre.value === "" || !divVerre.value) {
+      divVerre.style.border = "solid 1px red";
+    } else {
+      divVerre.style.border = "none";
+      nouveauCocktail.verre = divVerre.value;
     }
-    nouveauCocktail.verre = verre;
 
+    // vérification des ingrédients du cocktail
     for (let i = 1; i <= nbIng; i++) {
       const ing = document.getElementById("input-ingredient-" + i);
       const quant = document.getElementById("quantite-ingredient-" + i);
@@ -133,38 +136,50 @@ const AjoutCocktail = () => {
         });
       }
     }
+    const divIngredient = document.getElementById("input-ingredient-1");
     if (tableauIng.length === 0) {
       console.log("1 ingrédient minimum");
-      return;
+    } else {
+      divIngredient.style.border = "none";
+      nouveauCocktail.ingredients = tableauIng;
     }
-    nouveauCocktail.ingredients = tableauIng;
 
+    // vérification des étapes du cocktail
     for (let i = 1; i <= nbEtape; i++) {
       const etape = document.getElementById("etape-" + i);
       if (etape.value && etape.value !== "") tableauEtapes.push(etape.value);
     }
 
+    const divEtape = document.getElementById("etape-1");
     if (tableauEtapes.length === 0) {
-      console.log("1 étape minimum");
-      return;
+      divEtape.style.border = "solid 1px red";
+    } else {
+      divEtape.style.border = "none";
+      nouveauCocktail.etapes = tableauEtapes;
     }
-    nouveauCocktail.etapes = tableauEtapes;
-    //console.log("nv cocktail : ", nouveauCocktail);
 
-    Axios.post(`${apiBaseURL}/api/v1/gestion/cocktails`, nouveauCocktail, {
-      headers: {
-        authorization: accessToken
-      }
-    })
-      .then(reponse => {
-        //console.log(reponse.data);
-        setListeCocktails(reponse.data);
+    console.log("nv cocktail : ", nouveauCocktail);
+
+    if (
+      nouveauCocktail.nom !== "" &&
+      nouveauCocktail.verre !== "" &&
+      nouveauCocktail.ingredients[0] !== "" &&
+      nouveauCocktail.etapes[0] !== ""
+    ) {
+      Axios.post(`${apiBaseURL}/api/v1/gestion/cocktails`, nouveauCocktail, {
+        headers: {
+          authorization: accessToken
+        }
       })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
+        .then(reponse => {
+          setListeCocktails(reponse.data);
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
 
-    history.push("/gestion");
+      history.push("/gestion");
+    }
   };
 
   React.useEffect(() => {
@@ -173,7 +188,6 @@ const AjoutCocktail = () => {
 
   return (
     <>
-      {/*  <Test /> */}
       {user && bar && bar.droits === true ? (
         <>
           <div id="titre-ajout-cocktail">Ajout de cocktail</div>
