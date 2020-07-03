@@ -138,7 +138,7 @@ const AjoutCocktail = () => {
     }
     const divIngredient = document.getElementById("input-ingredient-1");
     if (tableauIng.length === 0) {
-      console.log("1 ingrédient minimum");
+      divIngredient.style.border = "solid 1px red";
     } else {
       divIngredient.style.border = "none";
       nouveauCocktail.ingredients = tableauIng;
@@ -157,8 +157,6 @@ const AjoutCocktail = () => {
       divEtape.style.border = "none";
       nouveauCocktail.etapes = tableauEtapes;
     }
-
-    console.log("nv cocktail : ", nouveauCocktail);
 
     if (
       nouveauCocktail.nom !== "" &&
