@@ -49,6 +49,7 @@
 #resultat-recherche {
   display: flex;
   flex-direction: column;
+  width: 95%;
   margin-top: 25px;
   align-items: center;
 }

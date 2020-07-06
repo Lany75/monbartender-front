@@ -22,11 +22,7 @@
   }
 
   #recherche{
-    margin-bottom: 50px; 
-  }
-
-  #resultat-recherche {
-    margin-top: 25px;
+    width: 95%;
   }
 
 }

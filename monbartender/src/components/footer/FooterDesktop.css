@@ -8,10 +8,11 @@
     text-align: center;
   }
 
-  #c-ml-r {
+  #c-ml {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     text-align: center;
+    margin-right: 40px;
   }
 }

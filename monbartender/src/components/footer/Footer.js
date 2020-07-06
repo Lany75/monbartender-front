@@ -11,7 +11,7 @@ const Footer = () => {
         L&apos;abus d&apos;alcool est dangereux pour la santé, à consommer avec
         modération
       </div>
-      <div id="c-ml-r">
+      <div id="c-ml">
         <a href="mailto:mlanie.parry@gmail.com">Contact</a>
         <Link to="/mentions-legales">
           <div>Mentions légales</div>
