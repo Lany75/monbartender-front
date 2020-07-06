@@ -2,6 +2,11 @@
   #titre-ajout-cocktail {
     font-size: 30px;
   }
+  #nom-alcool {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
   #div-photo {
   justify-content: flex-start;

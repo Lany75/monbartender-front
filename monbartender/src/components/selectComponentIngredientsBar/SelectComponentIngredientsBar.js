@@ -4,6 +4,8 @@ import "./SelectComponentIngredientsBar.css";
 import "./SelectComponentIngredientsBarDesktop.css";
 import { BarContext } from "../../context/barContext";
 import Axios from "axios";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { TextField } from "@material-ui/core";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -14,6 +16,8 @@ const SelectComponentIngredientsBar = props => {
 
   // eslint-disable-next-line react/prop-types
   const idDivSelect = props.id;
+  // eslint-disable-next-line react/prop-types
+  const label = props.label;
 
   const getAllIngredients = () => {
     Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
@@ -31,31 +35,30 @@ const SelectComponentIngredientsBar = props => {
 
   return (
     <>
-      {bar && bar.Ingredients.length === 0 ? (
-        <select id={idDivSelect} className="selection-box">
-          <option>choisissez un ingredient</option>
-          {allIngredients &&
-            allIngredients.map((i, index) => {
-              return (
-                <option id={index} key={index} value={i.nom} name={i.nom}>
-                  {i.nom}
-                </option>
-              );
-            })}
-        </select>
-      ) : (
-        <select id={idDivSelect} className="selection-box">
-          <option>choisissez un ingredient</option>
-          {bar &&
-            bar.Ingredients.map((i, index) => {
-              return (
-                <option id={index} key={index} value={i.nom} name={i.nom}>
-                  {i.nom}
-                </option>
-              );
-            })}
-        </select>
-      )}
+      {bar && bar.Ingredients.length === 0
+        ? allIngredients && (
+            <Autocomplete
+              className="selection-box"
+              id={idDivSelect}
+              //freeSolo
+              options={allIngredients}
+              getOptionLabel={option => option.nom}
+              style={{ width: 300 }}
+              renderInput={params => <TextField {...params} label={label} />}
+            />
+          )
+        : bar &&
+          bar.Ingredients && (
+            <Autocomplete
+              className="selection-box"
+              id={idDivSelect}
+              //freeSolo
+              options={bar.Ingredients}
+              getOptionLabel={option => option.nom}
+              style={{ width: 300 }}
+              renderInput={params => <TextField {...params} label={label} />}
+            />
+          )}
     </>
   );
 };

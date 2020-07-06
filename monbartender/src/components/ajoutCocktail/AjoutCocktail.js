@@ -1,5 +1,10 @@
 import React, { useState, useContext } from "react";
-import { TextField } from "@material-ui/core";
+import {
+  TextField,
+  RadioGroup,
+  FormControlLabel,
+  Radio
+} from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useHistory } from "react-router-dom";
 
@@ -29,6 +34,7 @@ const AjoutCocktail = () => {
   const tableauEtapes = [];
   const mesIngredients = [];
   const mesEtapes = [];
+  const [valueRadioButton, setValueRadioButton] = React.useState("Aalcool");
 
   for (let i = 1; i <= nbIng; i++) {
     const id = "ingredient-" + i;
@@ -85,6 +91,7 @@ const AjoutCocktail = () => {
   const ajoutCocktailBD = () => {
     const nouveauCocktail = {
       nom: "",
+      alcoolise: "",
       photo: "",
       verre: "",
       ingredients: [{ nomIng: "", quantiteIng: "", uniteIng: "" }],
@@ -101,6 +108,11 @@ const AjoutCocktail = () => {
       nouveauCocktail.nom = divNomCocktail.value;
     }
 
+    // récupération de la valeur des boutons radio (alcoolisé ou non)
+    if (valueRadioButton === "Aalcool") nouveauCocktail.alcoolise = true;
+    else nouveauCocktail.alcoolise = false;
+
+    // gestion de la photo
     let photo = document.getElementById("photo-cocktail").files[0];
     if (!photo) {
       refImageCocktail = "img_cocktail/michaelOeser.jpg";
@@ -136,6 +148,15 @@ const AjoutCocktail = () => {
         });
       }
     }
+
+    for (let i = 0; i < tableauIng.length; i++) {
+      for (let j = i + 1; j < tableauIng.length; j++) {
+        if (tableauIng[i].nomIng === tableauIng[j].nomIng) {
+          tableauIng.splice(j, 1);
+        }
+      }
+    }
+
     const divIngredient = document.getElementById("input-ingredient-1");
     if (tableauIng.length === 0) {
       divIngredient.style.border = "solid 1px red";
@@ -180,6 +201,10 @@ const AjoutCocktail = () => {
     }
   };
 
+  const handleChangeRadioButton = event => {
+    setValueRadioButton(event.target.value);
+  };
+
   React.useEffect(() => {
     getAllVerres();
   }, []);
@@ -189,9 +214,32 @@ const AjoutCocktail = () => {
       {user && bar && bar.droits === true ? (
         <>
           <div id="titre-ajout-cocktail">Ajout de cocktail</div>
-          <div id="nom-nv-cocktail">
-            <TextField id="nom-nv" label="Nom du cocktail" />
+          <div id="nom-alcool">
+            <div id="nom-nv-cocktail">
+              <TextField id="nom-nv" label="Nom du cocktail" />
+            </div>
+            <div>
+              <RadioGroup
+                id="bouton-radio"
+                name="alcool"
+                value={valueRadioButton}
+                onChange={handleChangeRadioButton}
+                row
+              >
+                <FormControlLabel
+                  value="Aalcool"
+                  control={<Radio />}
+                  label="Avec alcool"
+                />
+                <FormControlLabel
+                  value="Salcool"
+                  control={<Radio />}
+                  label="Sans alcool"
+                />
+              </RadioGroup>
+            </div>
           </div>
+
           <div id="div-photo">
             <div>Photo</div>
             <input

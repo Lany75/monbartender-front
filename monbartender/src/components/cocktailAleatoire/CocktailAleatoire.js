@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Axios from "axios";
+
+import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
 
 import "./CocktailAleatoire.css";
 import "./CocktailAleatoireDesktop.css";
-import Axios from "axios";
-import ImageCocktail from "../imageCocktail/ImageCocktail";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
-
-/* const initialState = {
-  id: "",
-  nom: "",
-  photo: ""
-}; */
 
 const CocktailAleatoire = () => {
   const [cocktailAleatoire, setCocktailAleatoire] = useState();
@@ -42,18 +37,12 @@ const CocktailAleatoire = () => {
       <div id="titre-cocktail-aleatoire">Cocktail aléatoire</div>
       <div id="div-cocktail-btn">
         {cocktailAleatoire && (
-          <div className="cocktail-aleatoire">
-            <Link to={to}>
-              <ImageCocktail
-                classe="img-cocktail"
-                reference={cocktailAleatoire.photo}
-                nom={cocktailAleatoire.nom}
-              />
-              <div className="nom-cocktail-aleatoire">
-                {cocktailAleatoire.nom}
-              </div>
-            </Link>
-          </div>
+          <Link to={to}>
+            <ComposantListeRecettes
+              nom={cocktailAleatoire.nom}
+              photo={cocktailAleatoire.photo}
+            />
+          </Link>
         )}
         <div id="div-btn-autre-cocktail">
           <button id="btn-autre-cocktail" onClick={getCocktailAleatoire}>

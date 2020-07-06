@@ -11,20 +11,6 @@
   align-items: center;
 }
 
-.cocktail-aleatoire {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-
-  
-.nom-cocktail-aleatoire {
-  font-size: 15px;
-  text-align: center;
-}
-
 #btn-autre-cocktail {
   font-size: 12px;
   border-radius: 5px;

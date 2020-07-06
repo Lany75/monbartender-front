@@ -2,9 +2,10 @@ import React from "react";
 
 import "./Accueil.css";
 import "./AccueilDesktop.css";
-import ListeCocktailsComponent from "../listeCocktailsComponent/ListeCocktailsComponent";
 import { useContext } from "react";
 import { CocktailContext } from "../../context/cocktailContext";
+import { Link } from "react-router-dom";
+import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
 
 const Accueil = () => {
   const { listeCocktailsMoment } = useContext(CocktailContext);
@@ -12,7 +13,17 @@ const Accueil = () => {
   return (
     <>
       <div id="titre-cocktail-moment">Cocktails du moment</div>
-      <ListeCocktailsComponent cocktails={listeCocktailsMoment} />
+      <div id="liste-cocktails">
+        {listeCocktailsMoment &&
+          listeCocktailsMoment.map((c, index) => {
+            const to = "/cocktail/" + c.id;
+            return (
+              <Link to={to} key={index}>
+                <ComposantListeRecettes nom={c.nom} photo={c.photo} />
+              </Link>
+            );
+          })}
+      </div>
     </>
   );
 };

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import ListeCocktailsComponent from "../listeCocktailsComponent/ListeCocktailsComponent";
+import { useHistory, Link } from "react-router-dom";
+import Axios from "axios";
+
 import ListeRecettes from "../listeRecettes/ListeRecettes";
-import { useHistory } from "react-router-dom";
+import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
 
 import "./ListeParNom.css";
 import "./ListeParNomDesktop.css";
-import Axios from "axios";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -47,8 +48,18 @@ const ListeParNom = () => {
       {cocktailName &&
         (cocktails.length !== 0 ? (
           <>
-            <h2>Liste des Recettes</h2>
-            {<ListeCocktailsComponent cocktails={cocktails} />}
+            <div id="titre-liste-recettes">Liste des Recettes</div>
+            <div id="liste-cocktails">
+              {cocktails &&
+                cocktails.map((c, index) => {
+                  const to = "/cocktail/" + c.id;
+                  return (
+                    <Link to={to} key={index}>
+                      <ComposantListeRecettes nom={c.nom} photo={c.photo} />
+                    </Link>
+                  );
+                })}
+            </div>
           </>
         ) : (
           <>

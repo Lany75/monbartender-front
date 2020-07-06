@@ -6,8 +6,9 @@ import "./RechercheParIngredient.css";
 import "./RechercheParIngredientDesktop.css";
 
 import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
-import ListeCocktailsComponent from "../listeCocktailsComponent/ListeCocktailsComponent";
 import SelectComponentIngredientsBar from "../selectComponentIngredientsBar/SelectComponentIngredientsBar";
+import { Link } from "react-router-dom";
+import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -64,15 +65,33 @@ const RechercheParIngredient = () => {
           <div id="titre-ingredient-cocktail">Ingredients du cocktail</div>
           {user ? (
             <div id="selection-ingredient">
-              <SelectComponentIngredientsBar id="divSelect1" />
-              <SelectComponentIngredientsBar id="divSelect2" />
-              <SelectComponentIngredientsBar id="divSelect3" />
+              <SelectComponentIngredientsBar
+                id="divSelect1"
+                label="ingrédient 1"
+              />
+              <SelectComponentIngredientsBar
+                id="divSelect2"
+                label="ingrédient 2"
+              />
+              <SelectComponentIngredientsBar
+                id="divSelect3"
+                label="ingrédient 3"
+              />
             </div>
           ) : (
             <div id="selection-ingredient">
-              <SelectComponentAllIngredients id="divSelect1" />
-              <SelectComponentAllIngredients id="divSelect2" />
-              <SelectComponentAllIngredients id="divSelect3" />
+              <SelectComponentAllIngredients
+                id="divSelect1"
+                label="ingrédient 1"
+              />
+              <SelectComponentAllIngredients
+                id="divSelect2"
+                label="ingrédient 2"
+              />
+              <SelectComponentAllIngredients
+                id="divSelect3"
+                label="ingrédient 3"
+              />
             </div>
           )}
         </div>
@@ -86,7 +105,16 @@ const RechercheParIngredient = () => {
       {cocktailsRecherche && (
         <div id="resultat-recherche">
           <div id="titre-resultat-recherche">Résultat de votre recherche</div>
-          <ListeCocktailsComponent cocktails={cocktailsRecherche} />
+          <div id="liste-cocktails">
+            {cocktailsRecherche.map((cr, index) => {
+              const to = "/cocktail/" + cr.id;
+              return (
+                <Link to={to} key={index}>
+                  <ComposantListeRecettes nom={cr.nom} photo={cr.photo} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>

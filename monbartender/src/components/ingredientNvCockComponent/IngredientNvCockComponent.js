@@ -12,7 +12,6 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 // eslint-disable-next-line react/prop-types
 const IngredientNvCockComponent = ({ classe, id, labelIngredient }) => {
   const [ingredients, setIngredients] = useState();
-  //const idElement = id;
   const inputId = "input-" + id;
   const quantId = "quantite-" + id;
   const unitId = "unite-" + id;
@@ -38,7 +37,7 @@ const IngredientNvCockComponent = ({ classe, id, labelIngredient }) => {
           <Autocomplete
             className="ingredient-nv-cocktail"
             id={inputId}
-            freeSolo
+            //freeSolo
             options={ingredients}
             getOptionLabel={option => option.nom}
             style={{ width: 300 }}

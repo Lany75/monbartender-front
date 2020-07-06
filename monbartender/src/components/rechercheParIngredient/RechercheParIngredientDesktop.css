@@ -16,4 +16,17 @@
     font-size: 25px;
   }
 
+  #selection-ingredient {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #recherche{
+    margin-bottom: 50px; 
+  }
+
+  #resultat-recherche {
+    margin-top: 25px;
+  }
+
 }

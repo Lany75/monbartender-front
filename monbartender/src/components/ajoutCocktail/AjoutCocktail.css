@@ -14,11 +14,9 @@
 #div-photo {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-around; */
   margin-top: 20px;
   margin-left: 5px;
   margin-right: 5px;
-  /* font-size: 20px; */
 }
 
 #verre-nv-cocktail {
