@@ -10,6 +10,8 @@ import RechercheParIngredient from "../rechercheParIngredient/RechercheParIngred
 import PageConnexion from "../pageConnexion/PageConnexion";
 
 import "./Main.css";
+import "./MainDesktop.css";
+
 import CocktailAleatoire from "../cocktailAleatoire/CocktailAleatoire";
 import Gestion from "../gestion/Gestion";
 import ModifierCocktailMoment from "../modifierCocktailMoment/ModifierCocktailMoment";

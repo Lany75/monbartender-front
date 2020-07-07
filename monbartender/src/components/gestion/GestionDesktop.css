@@ -1,6 +1,6 @@
 @media screen and (min-width: 769px) {
   #titre-gestion {
-    font-size: 30px;
+    font-size: 25px;
   }
 
   #gestion {
@@ -10,7 +10,7 @@
   }
 
   #gestion-ingredients {
-    width: 500px;
+    width: 300px;
 
   }
 }

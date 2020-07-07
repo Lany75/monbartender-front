@@ -32,17 +32,6 @@ const SelectComponentAllIngredients = props => {
 
   return (
     <>
-      {/* <select id={idDivSelect} className="selection-box">
-        <option>choisissez un ingredient</option>
-        {allIngredients &&
-          allIngredients.map((i, index) => {
-            return (
-              <option id={index} key={index} value={i.nom} name={i.nom}>
-                {i.nom}
-              </option>
-            );
-          })}
-      </select> */}
       {allIngredients && (
         <Autocomplete
           className="selection-box"

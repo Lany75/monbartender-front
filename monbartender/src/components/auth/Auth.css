@@ -1,21 +1,22 @@
 #auth {
   display: flex;
   flex-direction: column;
-  font-size: 10px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
 #user {
-  text-align: right;
-  font-size: 8px;
+  text-align: right; 
+  font-size: 10px;
 }
 
 .auth-bouton {
   border-radius: 5px;
-  font-size: 8px;
-  margin-top: 2px ;
+  font-size: 10px;
+  margin-top: 2px;
+  padding: 5px;
   height: 15px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }

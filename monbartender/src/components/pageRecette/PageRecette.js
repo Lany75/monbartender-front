@@ -49,7 +49,7 @@ const PageRecette = () => {
 
   return recetteCocktail && quantite ? (
     <div id="recette-cocktail">
-      <div id="titre-cocktail">{recetteCocktail.nom}</div>
+      <div id="titre-cocktail">{recetteCocktail.nom.toUpperCase()}</div>
       <ImageCocktail
         classe="img-cocktail"
         reference={recetteCocktail.photo}

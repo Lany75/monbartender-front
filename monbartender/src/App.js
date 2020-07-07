@@ -17,16 +17,16 @@ function App() {
       <BarProvider>
         <CocktailProvider>
           <BrowserRouter>
-          <div className="container">
-            <Header />
-            <div className="nav-main">
-              <Navbar />
-              <Main />
+            <div className="container">
+              <Header />
+              <div className="nav-main">
+                <Navbar />
+                <Main />
+              </div>
+              <div className="footer">
+                <Footer />
+              </div>
             </div>
-            <div className="footer">
-              <Footer />
-            </div>
-          </div>
           </BrowserRouter>
         </CocktailProvider>
       </BarProvider>

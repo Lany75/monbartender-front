@@ -40,7 +40,6 @@ const SelectComponentIngredientsBar = props => {
             <Autocomplete
               className="selection-box"
               id={idDivSelect}
-              //freeSolo
               options={allIngredients}
               getOptionLabel={option => option.nom}
               style={{ width: 300 }}
@@ -52,7 +51,6 @@ const SelectComponentIngredientsBar = props => {
             <Autocomplete
               className="selection-box"
               id={idDivSelect}
-              //freeSolo
               options={bar.Ingredients}
               getOptionLabel={option => option.nom}
               style={{ width: 300 }}

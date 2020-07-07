@@ -41,7 +41,7 @@ const GestionCocktails = () => {
     <>
       <div id="gestion-cocktails">
         <div id="titre-btn-cocktail">
-          <div>Liste Cocktails</div>
+          <div id="titre-modif-cocktail">Liste Cocktails</div>
           <button id="btn-ajouter-cocktail" onClick={ajouterCocktail}>
             Ajouter
           </button>

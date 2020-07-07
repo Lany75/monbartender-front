@@ -16,7 +16,6 @@
 .item-cocktail-moment {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-around; */
    align-items: center; 
   margin: 4px;
 }

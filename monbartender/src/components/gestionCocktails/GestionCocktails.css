@@ -22,11 +22,9 @@
 .item-cocktail {
   display: flex;
   flex-direction: row;
-   align-items: center; 
+  align-items: center; 
   margin: 4px;
 }
-
-
 
 #nom-id-cocktail {
   display: flex;

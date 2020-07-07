@@ -1,10 +1,10 @@
 @media screen and (min-width: 769px) {
   #titre-recherche-ingredient {
-    font-size: 30px;
+    font-size: 25px;
   }
 
   #btn-recherche-par-ingredient {
-    font-size: 22px;
+    font-size: 15px;
   }
  
   #btn-hasard {
@@ -13,7 +13,7 @@
   }
 
   #titre-resultat-recherche, #titre-ingredient-cocktail {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   #selection-ingredient {

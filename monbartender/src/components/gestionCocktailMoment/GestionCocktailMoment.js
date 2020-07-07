@@ -17,7 +17,7 @@ const GestionCocktailMoment = () => {
   return (
     <div id="gestion-cocktails-moment">
       <div id="titre-btn-cocktail-moment">
-        <div>Cocktails du moment</div>
+        <div id="titre-modif-cocktail">Cocktails du moment</div>
         <button
           id="btn-remplacer-cocktail-moment"
           onClick={modifierCocktailMoment}

@@ -218,7 +218,7 @@ const AjoutCocktail = () => {
             <div id="nom-nv-cocktail">
               <TextField id="nom-nv" label="Nom du cocktail" />
             </div>
-            <div>
+            <div id="groupe-boutons-radio">
               <RadioGroup
                 id="bouton-radio"
                 name="alcool"

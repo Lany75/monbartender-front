@@ -1,6 +1,6 @@
 @media screen and (min-width: 769px) {
   #titre-cocktail { 
-    font-size: 30px;
+    font-size: 25px;
   }
 
   #ingredients-verre {
@@ -10,7 +10,7 @@
   }
   
   #titre-ingredients, #titre-preparation, #titre-verre {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   #titre-quantite {
@@ -20,24 +20,23 @@
 
   #nbr-verre {
     margin-left: 30px;
-    font-size: 20px;
+    font-size: 15px;
     /* align-items: center; */
   }
 
   #nom-verre, .ingredient{
-    font-size: 22px;
+    font-size: 15px;
     display: flex;
     flex-direction: row;
   }
 
   #etapes {
-    font-size: 20px;
+    font-size: 15px;
   }
   
   .num-etape {
     display: flex;
     flex-direction: row;
-    /* font-size: 12px; */
     width: 100%;
   }
   

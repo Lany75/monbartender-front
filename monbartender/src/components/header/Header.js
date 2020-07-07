@@ -12,9 +12,7 @@ const Header = () => {
       <div className="menu-titre">
         <div id="titre">Mon BarTender</div>
       </div>
-
       <InputRechercheParNom />
-
       <Auth />
     </div>
   );

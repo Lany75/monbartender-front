@@ -1,6 +1,6 @@
 @media screen and (min-width: 769px) {
   #titre-cocktail-aleatoire {
-    font-size: 30px;
+    font-size: 25px;
   }
 
   #div-cocktail-btn {
@@ -20,6 +20,6 @@
 
   #btn-autre-cocktail {
     margin-left: 100px;
-    font-size: 22px;
+    font-size: 15px;
   }
 }

@@ -21,7 +21,7 @@ const PageBar = () => {
           <AjoutIngredientBar />
         </>
       ) : (
-        <h2>Vous devez vous connecter pour accéder à cette page</h2>
+        <p>Vous devez vous connecter pour accéder à cette page</p>
       )}
     </div>
   );

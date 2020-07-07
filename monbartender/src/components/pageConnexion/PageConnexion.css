@@ -10,6 +10,7 @@
   align-items: center;
   border: solid black;
   margin: 10px;
+  font-size: 15px;
 }
 
 #connexion-google {
@@ -17,14 +18,10 @@
   margin-bottom: 50px;
 }
 
-.auth-bouton {
-  padding: 5px
-}
-
 .inputs-connexion, .inputs-inscription{
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   padding: 10px;
 }
 

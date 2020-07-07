@@ -11,6 +11,7 @@
 }
 
 .cocktail-modifie {
+  font-size: 12px;
   display: flex;
   flex-direction: column;
   /* justify-content: space-around; */

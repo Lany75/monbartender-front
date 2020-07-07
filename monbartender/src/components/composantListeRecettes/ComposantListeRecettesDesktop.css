@@ -1,11 +1,11 @@
 @media screen and (min-width: 769px) {
 
   .img-cocktail {
-    width: 200px;
-    height: 300px;
+    width: 150px;
+    height: 225px;
   }
 
   .nom-cocktail {
-    font-size: 20px;
+    font-size: 15px;
   }
 }

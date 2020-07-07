@@ -7,12 +7,13 @@
   } 
 
   .icon-nav-item {
-    font-size: 35px;
+    font-size: 30px;
   }
 
   .txt-nav-item {
-    font-size: 15px;
+    font-size: 12px;
     text-align: start;
+    margin-left: 5px;
   }
 
   .visibilite{

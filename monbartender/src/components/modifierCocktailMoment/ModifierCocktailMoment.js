@@ -91,7 +91,7 @@ const ModifierCocktailMoment = () => {
                     renderInput={params => (
                       <TextField
                         {...params}
-                        label="Nouvel ingrédient"
+                        label="Nouveau cocktail"
                         variant="outlined"
                       />
                     )}

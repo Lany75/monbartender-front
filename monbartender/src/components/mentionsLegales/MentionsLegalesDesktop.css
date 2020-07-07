@@ -1,17 +1,17 @@
 @media screen and (min-width: 769px) {
   #titre-mentions-legales {
-    font-size: 30px;
+    font-size: 25px;
   }
 
   #creatrice {
     margin: 20px;
-    font-size: 20px;
+    font-size: 15px;
     margin-bottom: 20px;
   }
 
   #remerciement {
     margin: 20px;
-    font-size: 20px;
+    font-size: 15px;
   }
   
   #liste-photographe {
