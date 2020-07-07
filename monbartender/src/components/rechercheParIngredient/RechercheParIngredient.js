@@ -9,6 +9,7 @@ import SelectComponentAllIngredients from "../selectComponentAllIngredients/Sele
 import SelectComponentIngredientsBar from "../selectComponentIngredientsBar/SelectComponentIngredientsBar";
 import { Link } from "react-router-dom";
 import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
+import { RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
@@ -16,6 +17,7 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 const RechercheParIngredient = () => {
   const { user } = useContext(AuthContext);
   const [cocktailsRecherche, setCocktailsRecherche] = useState();
+  const [valueRadioButton, setValueRadioButton] = React.useState("indifferent");
 
   const Recherche = event => {
     event.preventDefault();
@@ -45,8 +47,26 @@ const RechercheParIngredient = () => {
           console.log("vous avez une erreur : ", error);
         });
     } else {
+      let alcool;
+      switch (valueRadioButton) {
+        case "Aalcool":
+          alcool = true;
+          break;
+        case "Salcool":
+          alcool = false;
+          break;
+        /*  case "indifferent":
+          alcool = "indifferent";
+          break; */
+        default:
+          alcool = "indifferent";
+      }
+
+      /* if (valueRadioButton === "indifferent") alcool = true;
+      else alcool = false; */
+
       Axios.get(
-        `${apiBaseURL}/api/v1/cocktails/rechercher-par-ingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}`
+        `${apiBaseURL}/api/v1/cocktails/rechercher-par-ingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}&alcool=${alcool}`
       )
         .then(reponse => {
           setCocktailsRecherche(reponse.data);
@@ -57,10 +77,39 @@ const RechercheParIngredient = () => {
     }
   };
 
+  const handleChangeRadioButton = event => {
+    setValueRadioButton(event.target.value);
+  };
+
   return (
     <div id="page-recherche">
       <div id="titre-recherche-ingredient">Recherche par ingredients</div>
       <div id="recherche">
+        <div id="groupe-boutons-radio">
+          <RadioGroup
+            id="bouton-radio"
+            name="alcool"
+            value={valueRadioButton}
+            onChange={handleChangeRadioButton}
+            row
+          >
+            <FormControlLabel
+              value="Aalcool"
+              control={<Radio />}
+              label="Avec alcool"
+            />
+            <FormControlLabel
+              value="Salcool"
+              control={<Radio />}
+              label="Sans alcool"
+            />
+            <FormControlLabel
+              value="indifferent"
+              control={<Radio />}
+              label="Indifférent"
+            />
+          </RadioGroup>
+        </div>
         <div id="choix-ingredients">
           <div id="titre-ingredient-cocktail">Ingredients du cocktail</div>
           {user ? (
@@ -106,14 +155,18 @@ const RechercheParIngredient = () => {
         <div id="resultat-recherche">
           <div id="titre-resultat-recherche">Résultat de votre recherche</div>
           <div id="liste-cocktails">
-            {cocktailsRecherche.map((cr, index) => {
-              const to = "/cocktail/" + cr.id;
-              return (
-                <Link to={to} key={index}>
-                  <ComposantListeRecettes nom={cr.nom} photo={cr.photo} />
-                </Link>
-              );
-            })}
+            {cocktailsRecherche.length > 0 ? (
+              cocktailsRecherche.map((cr, index) => {
+                const to = "/cocktail/" + cr.id;
+                return (
+                  <Link to={to} key={index}>
+                    <ComposantListeRecettes nom={cr.nom} photo={cr.photo} />
+                  </Link>
+                );
+              })
+            ) : (
+              <div>Aucun cocktail trouvé pour cette recherche</div>
+            )}
           </div>
         </div>
       )}
