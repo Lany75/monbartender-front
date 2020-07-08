@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import "./AjoutIngredient.css";
 import { TextField } from "@material-ui/core";
+import Axios from "axios";
+import { AuthContext } from "../../context/authContext";
+import { useHistory } from "react-router-dom";
+
+// eslint-disable-next-line no-undef
+const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const AjoutIngredient = () => {
+  let history = useHistory();
+  const { accessToken } = useContext(AuthContext);
+
   const [nbIng, setNbIng] = useState(1);
   const lesIngredients = [];
   const tableauIngredientsAjoute = [];
@@ -16,7 +25,6 @@ const AjoutIngredient = () => {
   const ajoutIngredientBD = () => {
     for (let i = 1; i <= nbIng; i++) {
       const ingredientAjoute = document.getElementById("nom-ingredient-" + i);
-      //console.log(ingredientAjoute.value);
       if (ingredientAjoute.value !== "")
         tableauIngredientsAjoute.push(ingredientAjoute.value);
     }
@@ -26,10 +34,18 @@ const AjoutIngredient = () => {
     const sortedIngredients = [...tableauIngredientsUnique];
 
     if (sortedIngredients.length > 0) {
-      sortedIngredients.map(i => {
-        console.log(i);
-        //faire ici l'appel au back
-      });
+      Axios.post(`${apiBaseURL}/api/v1/gestion/ingredient`, sortedIngredients, {
+        headers: {
+          authorization: accessToken
+        }
+      })
+        .then(reponse => {
+          console.log(reponse.data);
+          history.push("/gestion");
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
     }
   };
 
@@ -39,11 +55,6 @@ const AjoutIngredient = () => {
   const SupprimeDivIngredient = () => {
     if (nbIng > 1) setNbIng(nbIng - 1);
   };
-
-  /* const onSubmit = async data => {
-    //event.preventDefault();
-    console.log(data);
-  }; */
 
   return (
     <>
@@ -56,17 +67,11 @@ const AjoutIngredient = () => {
           -
         </button>
       </div>
-      {/* <form
-        id="formulaire-ajout-ingredient"
-        method="post"
-        onSubmit={handleSubmit(onSubmit)}
-      > */}
       <div id="box-ingredient">{lesIngredients}</div>
 
       <button id="btn-ajout-nv-ingredient" onClick={ajoutIngredientBD}>
         Ajouter !!
       </button>
-      {/*  </form> */}
     </>
   );
 };
