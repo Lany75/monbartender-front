@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -9,28 +9,15 @@ import { BarContext } from "../../context/barContext";
 import "./AjoutIngredientBar.css";
 import "./AjoutIngredientBarDesktop.css";
 import Axios from "axios";
+import { IngredientContext } from "../../context/ingredientContext";
 
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const AjoutIngredientBar = () => {
-  const { user, accessToken } = useContext(AuthContext);
+  const { accessToken } = useContext(AuthContext);
   const { setBar } = useContext(BarContext);
-  const [allIngredients, setAllIngredients] = useState();
-
-  //  const inputNvlIng = document.getElementById("nvl-ingredient");
-
-  // Recuperer la liste de tous les ingredients de la table ingredients
-  const getAllIngredients = () => {
-    user &&
-      Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
-        .then(reponse => {
-          setAllIngredients(reponse.data);
-        })
-        .catch(error => {
-          console.log("vous avez une erreur : ", error);
-        });
-  };
+  const { listeIngredients } = useContext(IngredientContext);
 
   const ajouterIngredient = event => {
     event.preventDefault();
@@ -55,17 +42,13 @@ const AjoutIngredientBar = () => {
       });
   };
 
-  React.useEffect(() => {
-    getAllIngredients();
-  }, []);
-
   return (
     <>
       <form id="formulaire-ajout-ingredient">
-        {allIngredients && (
+        {listeIngredients && (
           <Autocomplete
             id="input-ajout-ingredient"
-            options={allIngredients}
+            options={listeIngredients}
             getOptionLabel={option => option.nom}
             style={{ width: 200 }}
             renderInput={params => (
