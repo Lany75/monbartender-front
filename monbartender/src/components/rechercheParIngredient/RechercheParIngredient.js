@@ -55,15 +55,9 @@ const RechercheParIngredient = () => {
         case "Salcool":
           alcool = false;
           break;
-        /*  case "indifferent":
-          alcool = "indifferent";
-          break; */
         default:
           alcool = "indifferent";
       }
-
-      /* if (valueRadioButton === "indifferent") alcool = true;
-      else alcool = false; */
 
       Axios.get(
         `${apiBaseURL}/api/v1/cocktails/rechercher-par-ingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}&alcool=${alcool}`
