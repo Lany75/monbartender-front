@@ -34,12 +34,24 @@ const RechercheParIngredient = () => {
     if (nomIngredientdivSelect3 === "choisissez un ingredient")
       nomIngredientdivSelect3 = "";
 
+    let alcool;
+    switch (valueRadioButton) {
+      case "Aalcool":
+        alcool = true;
+        break;
+      case "Salcool":
+        alcool = false;
+        break;
+      default:
+        alcool = "indifferent";
+    }
+
     if (
       nomIngredientdivSelect1 === "" &&
       nomIngredientdivSelect2 === "" &&
       nomIngredientdivSelect3 === ""
     ) {
-      Axios.get(`${apiBaseURL}/api/v1/cocktails`)
+      Axios.get(`${apiBaseURL}/api/v1/cocktails?alcool=${alcool}`)
         .then(reponse => {
           setCocktailsRecherche(reponse.data);
         })
@@ -47,18 +59,6 @@ const RechercheParIngredient = () => {
           console.log("vous avez une erreur : ", error);
         });
     } else {
-      let alcool;
-      switch (valueRadioButton) {
-        case "Aalcool":
-          alcool = true;
-          break;
-        case "Salcool":
-          alcool = false;
-          break;
-        default:
-          alcool = "indifferent";
-      }
-
       Axios.get(
         `${apiBaseURL}/api/v1/cocktails/rechercher-par-ingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}&alcool=${alcool}`
       )
