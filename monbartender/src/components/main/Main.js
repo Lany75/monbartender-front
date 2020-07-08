@@ -15,12 +15,10 @@ import "./MainDesktop.css";
 import CocktailAleatoire from "../cocktailAleatoire/CocktailAleatoire";
 import Gestion from "../gestion/Gestion";
 import ModifierCocktailMoment from "../modifierCocktailMoment/ModifierCocktailMoment";
-
-//import AjoutCocktail from "../ajoutCocktail/AjoutCocktail";
 import Page404 from "../page404/Page404";
 import MentionsLegales from "../mentionsLegales/MentionsLegales";
-//import Test from "../test/Test";
 import AjoutCocktail from "../ajoutCocktail/AjoutCocktail";
+import AjoutIngredient from "../ajoutIngredient/AjoutIngredient";
 
 function Main() {
   return (
@@ -39,6 +37,10 @@ function Main() {
         <Route
           path="/gestion/modifier-cocktail-moment/"
           component={ModifierCocktailMoment}
+        />
+        <Route
+          path="/gestion/ajouter-ingredient/"
+          component={AjoutIngredient}
         />
         <Route path="/gestion/ajouter-cocktail/" component={AjoutCocktail} />
         <Route path="/gestion" component={Gestion} />
