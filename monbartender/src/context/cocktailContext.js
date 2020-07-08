@@ -11,7 +11,7 @@ function CocktailProvider({ children }) {
   const [listeCocktailsMoment, setListeCocktailsMoment] = useState();
 
   const getListeCocktails = () => {
-    Axios.get(`${apiBaseURL}/api/v1/cocktails`)
+    Axios.get(`${apiBaseURL}/api/v1/cocktails?alcool=indifferent`)
       .then(reponse => {
         setListeCocktails(reponse.data);
       })
