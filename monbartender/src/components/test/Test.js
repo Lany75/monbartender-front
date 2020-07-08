@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-//import { TextField } from "@material-ui/core";
 import Axios from "axios";
 
 import "./Test.css";
-//import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
+import { IngredientContext } from "../../context/ingredientContext";
+
 // eslint-disable-next-line no-undef
 const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const Test = () => {
+  const { listeIngredients } = useContext(IngredientContext);
+
   const { register, handleSubmit } = useForm();
   const [verres, setVerres] = useState();
-  const [ingredients, setIngredients] = useState();
   // const [nomNvCocktail, setNomNvCocktail] = useState("");
   // const [nomNvIngredients, setNomNvIngredients] = useState();
   // const [quantiteNvIngredient, setQuantiteNvIngredient] = useState();
@@ -29,16 +30,6 @@ const Test = () => {
       });
   };
 
-  const getAllIngredients = () => {
-    Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
-      .then(reponse => {
-        setIngredients(reponse.data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-  };
-
   const onSubmit = async data => {
     //event.preventDefault();
     //console.log(data);
@@ -47,7 +38,6 @@ const Test = () => {
 
   React.useEffect(() => {
     getAllVerres();
-    getAllIngredients();
   }, []);
 
   return (
@@ -101,8 +91,8 @@ const Test = () => {
                 name="nom-ingredient"
                 ref={register}
               >
-                {ingredients &&
-                  ingredients.map((i, index) => {
+                {listeIngredients &&
+                  listeIngredients.map((i, index) => {
                     return <option key={index}>{i.nom}</option>;
                   })}
               </select>
