@@ -2,17 +2,16 @@ import React, { useContext } from "react";
 
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Axios from "axios";
+
+import apiBaseURL from "../../env";
 
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
+import { IngredientContext } from "../../context/ingredientContext";
 
 import "./AjoutIngredientBar.css";
 import "./AjoutIngredientBarDesktop.css";
-import Axios from "axios";
-import { IngredientContext } from "../../context/ingredientContext";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const AjoutIngredientBar = () => {
   const { accessToken } = useContext(AuthContext);

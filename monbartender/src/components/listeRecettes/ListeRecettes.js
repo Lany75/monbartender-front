@@ -23,7 +23,7 @@ const ListeRecettes = () => {
                   <ComposantListeRecettes nom={c.nom} photo={c.photo} />
                 </Link>
               );
-            }
+            } else return true;
           })}
       </div>
       <div id="titre-liste-recettes">Liste des recettes sans alcool</div>
@@ -37,7 +37,7 @@ const ListeRecettes = () => {
                   <ComposantListeRecettes nom={c.nom} photo={c.photo} />
                 </Link>
               );
-            }
+            } else return true;
           })}
       </div>
     </>

@@ -1,9 +1,9 @@
 import React, { useState, createContext } from "react";
 import Axios from "axios";
-export const IngredientContext = createContext();
 
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
+import apiBaseURL from "../env";
+
+export const IngredientContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 function IngredientProvider({ children }) {

@@ -1,13 +1,9 @@
 import React, { createContext, useState } from "react";
 import Axios from "axios";
-import runtimeEnv from "@mars/heroku-js-runtime-env";
+
+import apiBaseURL from "../env";
 
 export const CocktailContext = createContext();
-
-const env = runtimeEnv();
-// eslint-disable-next-line no-undef
-const apiBaseURL = env.REACT_APP_BASE_API;
-console.log(apiBaseURL);
 
 // eslint-disable-next-line react/prop-types
 function CocktailProvider({ children }) {

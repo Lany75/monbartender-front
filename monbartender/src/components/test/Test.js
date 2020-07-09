@@ -2,11 +2,10 @@ import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 
+import apiBaseURL from "../env";
+
 import "./Test.css";
 import { IngredientContext } from "../../context/ingredientContext";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const Test = () => {
   const { listeIngredients } = useContext(IngredientContext);
