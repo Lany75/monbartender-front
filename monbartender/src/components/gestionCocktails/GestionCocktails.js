@@ -14,6 +14,7 @@ const apiBaseURL = process.env.REACT_APP_BASE_API;
 const GestionCocktails = () => {
   const { accessToken } = useContext(AuthContext);
   const { listeCocktails, setListeCocktails } = useContext(CocktailContext);
+  const { listeCocktailsMoment } = useContext(CocktailContext);
   let history = useHistory();
 
   const ajouterCocktail = () => {
@@ -21,20 +22,22 @@ const GestionCocktails = () => {
   };
 
   const supprimerCocktail = cocktailId => {
-    //console.log("on supprime le cocktail", cocktailId);
-
-    Axios.delete(`${apiBaseURL}/api/v1/gestion/${cocktailId}`, {
-      headers: {
-        authorization: accessToken
-      }
-    })
-      .then(reponse => {
-        //console.log(reponse.data);
-        setListeCocktails(reponse.data);
+    if (
+      cocktailId !== listeCocktailsMoment[0].id &&
+      cocktailId !== listeCocktailsMoment[1].id
+    ) {
+      Axios.delete(`${apiBaseURL}/api/v1/gestion/cocktail/${cocktailId}`, {
+        headers: {
+          authorization: accessToken
+        }
       })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
+        .then(reponse => {
+          setListeCocktails(reponse.data);
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
+    }
   };
 
   return (
