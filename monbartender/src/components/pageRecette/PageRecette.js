@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import Axios from "axios";
+
+import apiBaseURL from "../../env";
+
+import ImageCocktail from "../imageCocktail/ImageCocktail";
 
 import "./PageRecette.css";
 import "./PageRecetteDesktop.css";
-import Axios from "axios";
-import ImageCocktail from "../imageCocktail/ImageCocktail";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const PageRecette = () => {
   const [recetteCocktail, setRecetteCocktail] = useState();

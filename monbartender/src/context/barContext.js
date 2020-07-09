@@ -2,10 +2,9 @@ import React, { createContext, useState, useContext } from "react";
 import { AuthContext } from "./authContext";
 import Axios from "axios";
 
-export const BarContext = createContext();
+import apiBaseURL from "../env";
 
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
+export const BarContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 function BarProvider({ children }) {

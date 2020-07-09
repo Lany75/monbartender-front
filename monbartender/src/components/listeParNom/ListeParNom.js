@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Axios from "axios";
 
+import apiBaseURL from "../../env";
+
 import ListeRecettes from "../listeRecettes/ListeRecettes";
 import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
 
 import "./ListeParNom.css";
 import "./ListeParNomDesktop.css";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const ListeParNom = () => {
   const [cocktails, setCocktails] = useState([]);

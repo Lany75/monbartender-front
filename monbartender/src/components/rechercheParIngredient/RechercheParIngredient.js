@@ -1,18 +1,17 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../context/authContext";
+import { Link } from "react-router-dom";
 import Axios from "axios";
+import { RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
+
+import apiBaseURL from "../../env";
+
+import { AuthContext } from "../../context/authContext";
+import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
+import SelectComponentIngredientsBar from "../selectComponentIngredientsBar/SelectComponentIngredientsBar";
+import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
 
 import "./RechercheParIngredient.css";
 import "./RechercheParIngredientDesktop.css";
-
-import SelectComponentAllIngredients from "../selectComponentAllIngredients/SelectComponentAllIngredients";
-import SelectComponentIngredientsBar from "../selectComponentIngredientsBar/SelectComponentIngredientsBar";
-import { Link } from "react-router-dom";
-import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
-import { RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const RechercheParIngredient = () => {
   const { user } = useContext(AuthContext);

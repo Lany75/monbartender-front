@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import Axios from "axios";
+
+import apiBaseURL from "../../env";
+
 import { CocktailContext } from "../../context/cocktailContext";
+import { AuthContext } from "../../context/authContext";
+
+import ImageCocktail from "../imageCocktail/ImageCocktail";
 
 import "./GestionCocktails.css";
 import "./GestionCocktailsDesktop.css";
-import { useHistory } from "react-router-dom";
-import ImageCocktail from "../imageCocktail/ImageCocktail";
-import Axios from "axios";
-import { AuthContext } from "../../context/authContext";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const GestionCocktails = () => {
   const { accessToken } = useContext(AuthContext);

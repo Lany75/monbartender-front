@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-//import axios from "axios";
 
 import "./Auth.css";
 import "./AuthDesktop.css";
@@ -7,9 +6,6 @@ import "./AuthDesktop.css";
 import { AuthContext } from "../../context/authContext";
 import { useHistory } from "react-router-dom";
 import { BarContext } from "../../context/barContext";
-
-// eslint-disable-next-line no-undef
-//const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const Auth = () => {
   const { signOut, setAccessToken } = useContext(AuthContext);

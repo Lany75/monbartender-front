@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
+import apiBaseURL from "../../env";
+
 import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
 
 import "./CocktailAleatoire.css";
 import "./CocktailAleatoireDesktop.css";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const CocktailAleatoire = () => {
   const [cocktailAleatoire, setCocktailAleatoire] = useState();

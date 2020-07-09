@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import Axios from "axios";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
 
+import apiBaseURL from "../../env";
+
 import { CocktailContext } from "../../context/cocktailContext";
 import { AuthContext } from "../../context/authContext";
+import { BarContext } from "../../context/barContext";
 
 import "./ModifierCocktailMoment.css";
 import "./ModifierCocktailMomentDesktop.css";
-import Axios from "axios";
-import { BarContext } from "../../context/barContext";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const ModifierCocktailMoment = () => {
   const { user, accessToken } = useContext(AuthContext);
