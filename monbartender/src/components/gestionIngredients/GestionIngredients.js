@@ -1,34 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+
+import { IngredientContext } from "../../context/ingredientContext";
 
 import "./GestionIngredients.css";
 import "./GestionIngredientsDesktop.css";
-import Axios from "axios";
-import { useHistory } from "react-router-dom";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const GestionIngredients = () => {
-  const [listeIngredients, setListeIngredient] = useState();
+  const { listeIngredients } = useContext(IngredientContext);
   let history = useHistory();
-
-  const getListeIngredients = () => {
-    Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
-      .then(reponse => {
-        setListeIngredient(reponse.data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-  };
 
   const ajouterIngredient = () => {
     history.push("/gestion/ajouter-ingredient");
   };
-
-  React.useEffect(() => {
-    getListeIngredients();
-  }, []);
 
   return (
     <>
