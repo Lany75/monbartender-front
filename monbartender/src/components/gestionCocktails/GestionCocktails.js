@@ -21,15 +21,12 @@ const GestionCocktails = () => {
   };
 
   const supprimerCocktail = cocktailId => {
-    //console.log("on supprime le cocktail", cocktailId);
-
-    Axios.delete(`${apiBaseURL}/api/v1/gestion/${cocktailId}`, {
+    Axios.delete(`${apiBaseURL}/api/v1/gestion/cocktail/${cocktailId}`, {
       headers: {
         authorization: accessToken
       }
     })
       .then(reponse => {
-        //console.log(reponse.data);
         setListeCocktails(reponse.data);
       })
       .catch(error => {
