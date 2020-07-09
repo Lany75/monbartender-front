@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
+import Axios from "axios";
 
-import "./IngredientBarComponent.css";
-import "./IngredientBarComponentDesktop.css";
+import apiBaseURL from "../../env";
 
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
-import Axios from "axios";
 
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
+import "./IngredientBarComponent.css";
+import "./IngredientBarComponentDesktop.css";
 
 const IngredientBarComponent = ingredient => {
   const { user, accessToken } = useContext(AuthContext);

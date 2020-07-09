@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
+import Axios from "axios";
+import { useHistory } from "react-router-dom";
+import { TextField } from "@material-ui/core";
+
+import apiBaseURL from "../../env";
+
+import { AuthContext } from "../../context/authContext";
 
 import "./AjoutIngredient.css";
-import { TextField } from "@material-ui/core";
-import Axios from "axios";
-import { AuthContext } from "../../context/authContext";
-import { useHistory } from "react-router-dom";
-
-// eslint-disable-next-line no-undef
-const apiBaseURL = process.env.REACT_APP_BASE_API;
 
 const AjoutIngredient = () => {
   let history = useHistory();
