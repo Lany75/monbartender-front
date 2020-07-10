@@ -9,10 +9,12 @@ import apiBaseURL from "../../env";
 import { AuthContext } from "../../context/authContext";
 
 import "./AjoutIngredient.css";
+import { IngredientContext } from "../../context/ingredientContext";
 
 const AjoutIngredient = () => {
   let history = useHistory();
   const { accessToken } = useContext(AuthContext);
+  const { setListeIngredients } = useContext(IngredientContext);
 
   const [nbIng, setNbIng] = useState(1);
   const lesIngredients = [];
@@ -27,21 +29,21 @@ const AjoutIngredient = () => {
     for (let i = 1; i <= nbIng; i++) {
       const ingredientAjoute = document.getElementById("nom-ingredient-" + i);
       if (ingredientAjoute.value !== "")
-        tableauIngredientsAjoute.push(ingredientAjoute.value);
+        tableauIngredientsAjoute.push({ nom: ingredientAjoute.value });
     }
 
-    //suppression des doublons;
-    const tableauIngredientsUnique = new Set(tableauIngredientsAjoute);
-    const sortedIngredients = [...tableauIngredientsUnique];
-
-    if (sortedIngredients.length > 0) {
-      Axios.post(`${apiBaseURL}/api/v1/gestion/ingredient`, sortedIngredients, {
-        headers: {
-          authorization: accessToken
+    if (tableauIngredientsAjoute.length > 0) {
+      Axios.post(
+        `${apiBaseURL}/api/v1/gestion/ingredient`,
+        tableauIngredientsAjoute,
+        {
+          headers: {
+            authorization: accessToken
+          }
         }
-      })
+      )
         .then(reponse => {
-          console.log(reponse.data);
+          setListeIngredients(reponse.data);
           history.push("/gestion");
         })
         .catch(error => {
