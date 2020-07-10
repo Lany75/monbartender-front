@@ -19,6 +19,7 @@ import Page404 from "../page404/Page404";
 import MentionsLegales from "../mentionsLegales/MentionsLegales";
 import AjoutCocktail from "../ajoutCocktail/AjoutCocktail";
 import AjoutIngredient from "../ajoutIngredient/AjoutIngredient";
+import ModifierCocktail from "../modifierCocktail/ModifierCocktail";
 
 function Main() {
   return (
@@ -43,6 +44,10 @@ function Main() {
           component={AjoutIngredient}
         />
         <Route path="/gestion/ajouter-cocktail/" component={AjoutCocktail} />
+        <Route
+          path="/gestion/modifier-cocktail/:id"
+          component={ModifierCocktail}
+        />
         <Route path="/gestion" component={Gestion} />
         <Route path="/cocktail/:id" component={PageRecette} />
         <Route path="/mentions-legales" component={MentionsLegales} />

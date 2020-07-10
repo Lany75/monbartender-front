@@ -41,6 +41,10 @@ const GestionCocktails = () => {
     }
   };
 
+  const modifierCocktail = cocktailId => {
+    history.push(`/gestion/modifier-cocktail/${cocktailId}`);
+  };
+
   return (
     <>
       <div id="gestion-cocktails">
@@ -69,7 +73,13 @@ const GestionCocktails = () => {
                     className="btn-suppression-cocktail"
                     onClick={() => supprimerCocktail(c.id)}
                   >
-                    X
+                    supprimer
+                  </button>
+                  <button
+                    className="btn-modification-cocktail"
+                    onClick={() => modifierCocktail(c.id)}
+                  >
+                    modifier
                   </button>
                 </div>
               </div>
