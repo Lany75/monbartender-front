@@ -104,7 +104,11 @@ const AjoutCocktail = () => {
       divNomCocktail.style.border = "solid 1px red";
     } else {
       divNomCocktail.style.border = "none";
-      nouveauCocktail.nom = divNomCocktail.value;
+      // transformation de la 1ere lettre de chauqe mot du nom en majuscule, le reste en minuscule
+      nouveauCocktail.nom = divNomCocktail.value.replace(
+        /(^\w|\s\w)(\S*)/g,
+        (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
+      );
     }
 
     // récupération de la valeur des boutons radio (alcoolisé ou non)
