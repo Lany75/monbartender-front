@@ -1,9 +1,10 @@
 @media screen and (min-width: 769px) {
   #gestion-cocktails-moment {
     width: 350px;
+    height: 400px;
   }
 
-  #titre-modif-cocktail {
+  #titre-gestion-cocktail-moment {
     font-size: 20px;
   }
 

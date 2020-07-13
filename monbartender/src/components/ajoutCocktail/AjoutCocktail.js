@@ -87,6 +87,22 @@ const AjoutCocktail = () => {
     if (nbEtape > 1) setNbEtape(nbEtape - 1);
   };
 
+  const postNvCocktail = nouveauCocktail => {
+    Axios.post(`${apiBaseURL}/api/v1/gestion/cocktails`, nouveauCocktail, {
+      headers: {
+        authorization: accessToken
+      }
+    })
+      .then(reponse => {
+        setListeCocktails(reponse.data);
+      })
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
+      });
+
+    history.push("/gestion");
+  };
+
   const ajoutCocktailBD = () => {
     const nouveauCocktail = {
       nom: "",
@@ -97,6 +113,7 @@ const AjoutCocktail = () => {
       etapes: []
     };
     let refImageCocktail;
+    let upload;
 
     // vérification du nom du cocktail
     const divNomCocktail = document.getElementById("nom-nv");
@@ -104,25 +121,16 @@ const AjoutCocktail = () => {
       divNomCocktail.style.border = "solid 1px red";
     } else {
       divNomCocktail.style.border = "none";
-      nouveauCocktail.nom = divNomCocktail.value;
+      // transformation de la 1ere lettre de chauqe mot du nom en majuscule, le reste en minuscule
+      nouveauCocktail.nom = divNomCocktail.value.replace(
+        /(^\w|\s\w)(\S*)/g,
+        (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
+      );
     }
 
     // récupération de la valeur des boutons radio (alcoolisé ou non)
     if (valueRadioButton === "Aalcool") nouveauCocktail.alcoolise = true;
     else nouveauCocktail.alcoolise = false;
-
-    // gestion de la photo
-    let photo = document.getElementById("photo-cocktail").files[0];
-    if (!photo) {
-      refImageCocktail = "img_cocktail/michaelOeser.jpg";
-    } else {
-      refImageCocktail = "img_cocktail/" + photo.name;
-      // initialisation de la référence de l'image
-      const imgRef = refStorage.child("img_cocktail/" + photo.name);
-      //envoi de la photo sur firebase storage
-      imgRef.put(photo);
-    }
-    nouveauCocktail.photo = refImageCocktail;
 
     // vérification du verre du cocktail
     const divVerre = document.getElementById("verre-nv");
@@ -178,25 +186,48 @@ const AjoutCocktail = () => {
       nouveauCocktail.etapes = tableauEtapes;
     }
 
-    if (
-      nouveauCocktail.nom !== "" &&
-      nouveauCocktail.verre !== "" &&
-      nouveauCocktail.ingredients[0] !== "" &&
-      nouveauCocktail.etapes[0] !== ""
-    ) {
-      Axios.post(`${apiBaseURL}/api/v1/gestion/cocktails`, nouveauCocktail, {
-        headers: {
-          authorization: accessToken
-        }
-      })
-        .then(reponse => {
-          setListeCocktails(reponse.data);
-        })
-        .catch(error => {
-          console.log("vous avez une erreur : ", error);
-        });
+    // gestion de la photo
+    const photo = document.getElementById("photo-cocktail").files[0];
+    if (!photo) {
+      refImageCocktail = "img_cocktail/michaelOeser.jpg";
+      nouveauCocktail.photo = refImageCocktail;
 
-      history.push("/gestion");
+      if (
+        nouveauCocktail.nom !== "" &&
+        nouveauCocktail.verre !== "" &&
+        nouveauCocktail.ingredients[0] !== "" &&
+        nouveauCocktail.etapes[0] !== ""
+      ) {
+        postNvCocktail(nouveauCocktail);
+      }
+    } else {
+      refImageCocktail = "img_cocktail/" + photo.name;
+      // initialisation de la référence de l'image
+      const imgRef = refStorage.child(refImageCocktail);
+      //envoi de la photo sur firebase storage
+      upload = imgRef.put(photo);
+
+      // fonction spéciale qui attend que la photo soit postée sur firebase avant de faire la suite
+      upload.on(
+        "state_changed",
+
+        function progress() {},
+        function error() {
+          console.log("error uploading file");
+        },
+        function complete() {
+          nouveauCocktail.photo = refImageCocktail;
+
+          if (
+            nouveauCocktail.nom !== "" &&
+            nouveauCocktail.verre !== "" &&
+            nouveauCocktail.ingredients[0] !== "" &&
+            nouveauCocktail.etapes[0] !== ""
+          ) {
+            postNvCocktail(nouveauCocktail);
+          }
+        }
+      );
     }
   };
 

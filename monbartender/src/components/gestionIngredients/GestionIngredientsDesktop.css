@@ -1,6 +1,7 @@
 @media screen and (min-width: 769px) {
   #gestion-ingredients {
     width: 300px;
+    height: 400px;
   }
 
   #titre-ajout-ingredient {

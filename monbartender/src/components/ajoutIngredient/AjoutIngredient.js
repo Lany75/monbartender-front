@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
@@ -28,7 +29,9 @@ const AjoutIngredient = () => {
     for (let i = 1; i <= nbIng; i++) {
       const ingredientAjoute = document.getElementById("nom-ingredient-" + i);
       if (ingredientAjoute.value !== "")
-        tableauIngredientsAjoute.push({ nom: ingredientAjoute.value });
+        tableauIngredientsAjoute.push({
+          nom: ingredientAjoute.value.toLowerCase()
+        });
     }
 
     if (tableauIngredientsAjoute.length > 0) {

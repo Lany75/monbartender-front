@@ -2,7 +2,8 @@
   background-color: yellow;
   border-style: double;
   margin: 10px 0px 10px 0px;
-  width: 320px;
+  width: 300px;
+  height: 250px;
 }
 
 #titre-btn-cocktail-moment {
@@ -13,14 +14,20 @@
   margin: 2px;
 }
 
+#titre-gestion-cocktail-moment {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 .item-cocktail-moment {
   display: flex;
   flex-direction: row;
    align-items: center; 
   margin: 4px;
 }
-
-
 
 #nom-id-cocktail-moment {
   display: flex;
