@@ -1,8 +1,10 @@
 #gestion-ingredients {
-  width: 320px;
+  width: 300px;
   background-color: rgb(55, 187, 55);
   border-style: double;
   margin: 10px 0px 10px 0px;
+  height: 350px;
+  overflow: auto;
 }
 
 #titre-btn-ingredients {
@@ -11,6 +13,14 @@
   justify-content: space-between;
   align-items: center;
   margin: 2px;
+}
+
+#titre-ajout-ingredient {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 #btn-ajouter-ingredient {
