@@ -1,0 +1,21 @@
+#titre-modif-cocktail {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#donnees-cocktails {
+  font-size: 15px;
+}
+
+#nom-cocktail-modif {
+  display: flex;
+  flex-direction: row;
+}
+
+#img-cocktail-modif {
+  width: 50px;
+  height: 75px;
+}
