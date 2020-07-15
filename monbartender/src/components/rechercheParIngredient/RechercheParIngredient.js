@@ -33,24 +33,12 @@ const RechercheParIngredient = () => {
     if (nomIngredientdivSelect3 === "choisissez un ingredient")
       nomIngredientdivSelect3 = "";
 
-    let alcool;
-    switch (valueRadioButton) {
-      case "Aalcool":
-        alcool = true;
-        break;
-      case "Salcool":
-        alcool = false;
-        break;
-      default:
-        alcool = "indifferent";
-    }
-
     if (
       nomIngredientdivSelect1 === "" &&
       nomIngredientdivSelect2 === "" &&
       nomIngredientdivSelect3 === ""
     ) {
-      Axios.get(`${apiBaseURL}/api/v1/cocktails?alcool=${alcool}`)
+      Axios.get(`${apiBaseURL}/api/v1/cocktails?alcool=${valueRadioButton}`)
         .then(reponse => {
           setCocktailsRecherche(reponse.data);
         })
@@ -59,7 +47,7 @@ const RechercheParIngredient = () => {
         });
     } else {
       Axios.get(
-        `${apiBaseURL}/api/v1/cocktails/rechercher-par-ingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}&alcool=${alcool}`
+        `${apiBaseURL}/api/v1/cocktails/rechercher-par-ingredient?ingredient1=${nomIngredientdivSelect1}&ingredient2=${nomIngredientdivSelect2}&ingredient3=${nomIngredientdivSelect3}&alcool=${valueRadioButton}`
       )
         .then(reponse => {
           setCocktailsRecherche(reponse.data);
@@ -87,12 +75,12 @@ const RechercheParIngredient = () => {
             row
           >
             <FormControlLabel
-              value="Aalcool"
+              value="true"
               control={<Radio />}
               label="Avec alcool"
             />
             <FormControlLabel
-              value="Salcool"
+              value="false"
               control={<Radio />}
               label="Sans alcool"
             />
