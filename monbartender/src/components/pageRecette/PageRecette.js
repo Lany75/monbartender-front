@@ -11,27 +11,13 @@ import "./PageRecetteDesktop.css";
 
 const PageRecette = () => {
   const [recetteCocktail, setRecetteCocktail] = useState();
-  const [quantite, setQuantite] = useState();
   const [nbrVerre, setNbrVerre] = useState(1);
   const { id } = useParams();
-  let q, u;
 
   const getRecetteCocktail = cocktailId => {
     Axios.get(`${apiBaseURL}/api/v1/cocktails/${cocktailId}`)
       .then(reponse => {
         setRecetteCocktail(reponse.data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-  };
-
-  const getQuantiteIngredient = cocktailId => {
-    Axios.get(
-      `${apiBaseURL}/api/v1/ingredients/quantite?cocktailId=${cocktailId}`
-    )
-      .then(reponse => {
-        setQuantite(reponse.data);
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);
@@ -44,64 +30,56 @@ const PageRecette = () => {
 
   React.useEffect(() => {
     getRecetteCocktail(id);
-    getQuantiteIngredient(id);
   }, [id]);
 
-  return recetteCocktail && quantite ? (
-    <div id="recette-cocktail">
-      <div id="titre-cocktail">{recetteCocktail.nom.toUpperCase()}</div>
-      <ImageCocktail
-        classe="img-cocktail"
-        reference={recetteCocktail.photo}
-        nom={recetteCocktail.nom}
-      />
-
-      <div id="ingredients-verre">
-        <div id="liste-ingredients">
-          <div id="titre-quantite">
-            <div id="titre-ingredients">Ingredients</div>
-            <div>
-              <select id="nbr-verre" onChange={recupererNbrVerre}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
+  return recetteCocktail ? (
+    recetteCocktail.length === 0 ? (
+      <div>Ce cocktail n&apos;existe pas</div>
+    ) : (
+      <div id="recette-cocktail">
+        <div id="titre-cocktail">{recetteCocktail.nom.toUpperCase()}</div>
+        <ImageCocktail
+          classe="img-cocktail"
+          reference={recetteCocktail.photo}
+          nom={recetteCocktail.nom}
+        />
+        <div id="ingredients-verre">
+          <div id="liste-ingredients">
+            <div id="titre-quantite">
+              <div id="titre-ingredients">Ingredients</div>
+              <div>
+                <select id="nbr-verre" onChange={recupererNbrVerre}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
             </div>
-          </div>
-          {recetteCocktail.Ingredients &&
-            recetteCocktail.Ingredients.map((rc, index) => {
-              for (let i = 0; i < quantite.length; i++) {
-                if (quantite[i].ingredientId === rc.id) {
-                  q = quantite[i].quantite;
-                  u = quantite[i].unite;
-                }
-              }
-
+            {recetteCocktail.ingredients.map((rc, index) => {
               return (
                 <div className="ingredient" key={index}>
                   <div>{rc.nom} </div>
-                  {q && (
+                  {rc.quantite && (
                     <>
-                      <div>&nbsp;({q * nbrVerre}</div>
-                      <div>&nbsp;{u})</div>
+                      <div>&nbsp;({rc.quantite * nbrVerre}</div>
+                      <div>&nbsp;{rc.unite})</div>
                     </>
                   )}
                 </div>
               );
             })}
+          </div>
+          <div id="verre">
+            <div id="titre-verre">Verre</div>
+            <div id="nom-verre">{recetteCocktail.verre.nom}</div>
+          </div>
         </div>
-        <div id="verre">
-          <div id="titre-verre">Verre</div>
-          <div id="nom-verre">{recetteCocktail.Verre.nom}</div>
-        </div>
-      </div>
-      <div className="etapes-preparation">
-        <div id="titre-preparation">Preparation</div>
-        <div id="etapes">
-          {recetteCocktail.EtapesPreparations &&
-            recetteCocktail.EtapesPreparations.map((rc, index) => {
+        <div className="etapes-preparation">
+          <div id="titre-preparation">Preparation</div>
+          <div id="etapes">
+            {recetteCocktail.etapesPreparation.map((rc, index) => {
               return (
                 <div className="num-etape" key={index}>
                   <div className="titre-etape">Etape {index + 1} : </div>
@@ -109,9 +87,10 @@ const PageRecette = () => {
                 </div>
               );
             })}
+          </div>
         </div>
       </div>
-    </div>
+    )
   ) : (
     <div>Chargement</div>
   );
