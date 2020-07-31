@@ -1,14 +1,22 @@
 import React, { useState, useContext } from "react";
 import { TextField } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import Axios from "axios";
 
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
+import { VerreContext } from "../../context/verreContext";
+
+import apiBaseURL from "../../env";
 
 import "./AjoutVerre.css";
 
 const AjoutVerre = () => {
-  const { user } = useContext(AuthContext);
+  const { user, accessToken } = useContext(AuthContext);
   const { bar } = useContext(BarContext);
+  const { setListeVerres } = useContext(VerreContext);
+
+  let history = useHistory();
 
   const [nbVerre, setNbVerre] = useState(1);
   const lesVerres = [];
@@ -28,7 +36,20 @@ const AjoutVerre = () => {
           nom: verreAjoute.value.toLowerCase()
         });
     }
-    console.log("verres ajouté : ", tableauVerresAjoute);
+    if (tableauVerresAjoute.length > 0) {
+      Axios.post(`${apiBaseURL}/api/v1/gestion/verre`, tableauVerresAjoute, {
+        headers: {
+          authorization: accessToken
+        }
+      })
+        .then(reponse => {
+          setListeVerres(reponse.data);
+          history.push("/gestion");
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
+    }
   };
 
   const AjoutDivVerre = () => {
