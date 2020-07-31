@@ -35,6 +35,16 @@
   overflow: auto;
 }
 
+.item-verre{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 #nom-verre-gestion {
   margin:  0px 4px 0px 4px;
+}
+
+.btn-suppression-verre, .btn-modification-verre {
+  margin: 0px 2px 0px 2px;
 }
