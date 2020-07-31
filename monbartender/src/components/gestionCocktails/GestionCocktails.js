@@ -38,6 +38,8 @@ const GestionCocktails = () => {
         .catch(error => {
           console.log("vous avez une erreur : ", error);
         });
+    } else {
+      alert("SUPPRESSION IMPOSSIBLE : le cocktail est un cocktail du moment");
     }
   };
 

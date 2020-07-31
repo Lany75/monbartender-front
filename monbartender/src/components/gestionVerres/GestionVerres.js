@@ -6,31 +6,43 @@ import apiBaseURL from "../../env";
 
 import { AuthContext } from "../../context/authContext";
 import { VerreContext } from "../../context/verreContext";
+import { CocktailContext } from "../../context/cocktailContext";
 
 import "./GestionVerres.css";
 import "./GestionVerresDesktop.css";
 
 const GestionVerres = () => {
+  let history = useHistory();
   const { accessToken } = useContext(AuthContext);
   const { listeVerres, setListeVerres } = useContext(VerreContext);
-  let history = useHistory();
+  const { listeCocktails } = useContext(CocktailContext);
 
   const ajouterVerre = () => {
     history.push("/gestion/ajouter-verre");
   };
 
   const supprimerVerre = verreId => {
-    Axios.delete(`${apiBaseURL}/api/v1/gestion/verre/${verreId}`, {
-      headers: {
-        authorization: accessToken
-      }
-    })
-      .then(reponse => {
-        setListeVerres(reponse.data);
+    let verreUtil = false;
+
+    for (let i = 0; i < listeCocktails.length; i++) {
+      if (listeCocktails[i].verreId === verreId) verreUtil = true;
+      else i++;
+    }
+    if (verreUtil === false) {
+      Axios.delete(`${apiBaseURL}/api/v1/gestion/verre/${verreId}`, {
+        headers: {
+          authorization: accessToken
+        }
       })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
+        .then(reponse => {
+          setListeVerres(reponse.data);
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
+    } else {
+      alert("SUPPRESSION IMPOSSIBLE : le verre est utilisé pour un cocktail");
+    }
   };
 
   return (
