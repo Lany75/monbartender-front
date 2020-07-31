@@ -33,4 +33,8 @@
 
 #items-verres {
   overflow: auto;
-  }
+}
+
+#nom-verre-gestion {
+  margin:  0px 4px 0px 4px;
+}
