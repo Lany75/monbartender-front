@@ -15,6 +15,7 @@ import apiBaseURL from "../../env";
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
 import { CocktailContext } from "../../context/cocktailContext";
+import { VerreContext } from "../../context/verreContext";
 
 import IngredientNvCockComponent from "../ingredientNvCockComponent/IngredientNvCockComponent";
 
@@ -26,7 +27,7 @@ const AjoutCocktail = () => {
   const { user, accessToken } = useContext(AuthContext);
   const { bar } = useContext(BarContext);
   const { setListeCocktails } = useContext(CocktailContext);
-  const [verres, setVerres] = useState();
+  const { listeVerres } = useContext(VerreContext);
   const [nbIng, setNbIng] = useState(1);
   const [nbEtape, setNbEtape] = useState(1);
   const tableauIng = [];
@@ -62,16 +63,6 @@ const AjoutCocktail = () => {
       />
     );
   }
-
-  const getAllVerres = () => {
-    Axios.get(`${apiBaseURL}/api/v1/verres/`)
-      .then(reponse => {
-        setVerres(reponse.data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-  };
 
   const AjoutDivIngredient = () => {
     if (nbIng < 10) setNbIng(nbIng + 1);
@@ -235,10 +226,6 @@ const AjoutCocktail = () => {
     setValueRadioButton(event.target.value);
   };
 
-  React.useEffect(() => {
-    getAllVerres();
-  }, []);
-
   return (
     <>
       {user && bar && bar.droits === true ? (
@@ -280,11 +267,11 @@ const AjoutCocktail = () => {
             />
           </div>
 
-          {verres && (
+          {listeVerres && (
             <div id="verre-nv-cocktail">
               <Autocomplete
                 id="verre-nv"
-                options={verres}
+                options={listeVerres}
                 getOptionLabel={option => option.nom}
                 style={{ width: 300 }}
                 renderInput={params => <TextField {...params} label="Verre" />}
