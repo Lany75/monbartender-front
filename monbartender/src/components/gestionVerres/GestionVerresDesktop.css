@@ -1,24 +1,16 @@
 @media screen and (min-width: 769px) {
-  #gestion-cocktails {
+  #gestion-verres {
     width: 350px;
     height: 400px;
   }
 
-  #titre-gestion-cocktail {
+  #titre-ajout-verres {
     font-size: 20px;
   }
 
-  #btn-ajouter-cocktail {
+  #btn-ajouter-verres {
     width: 100px;
     height: 30px;
     font-size: 15px;
-  }
-
-  #nom-cocktail {
-    font-size: 15px;
-  }
-
-  #id-cocktail {
-    font-size: 12px;
   }
 }

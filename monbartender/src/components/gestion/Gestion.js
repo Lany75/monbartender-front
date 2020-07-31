@@ -8,6 +8,7 @@ import GestionCocktails from "../gestionCocktails/GestionCocktails";
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
 import GestionIngredients from "../gestionIngredients/GestionIngredients";
+import GestionVerres from "../gestionVerres/GestionVerres";
 
 const Gestion = () => {
   const { user } = useContext(AuthContext);
@@ -19,9 +20,14 @@ const Gestion = () => {
         <>
           <div id="titre-gestion">Gestion</div>
           <div id="gestion">
-            <GestionCocktailMoment />
-            <GestionIngredients />
-            <GestionCocktails />
+            <div className="gestion-cocktails">
+              <GestionCocktailMoment />
+              <GestionCocktails />
+            </div>
+            <div className="gestion-ingr-verres">
+              <GestionIngredients />
+              <GestionVerres />
+            </div>
           </div>
         </>
       ) : (

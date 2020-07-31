@@ -1,14 +1,15 @@
-#gestion-ingredients {
+#gestion-verres {
   width: 300px;
-  background-color: rgb(55, 187, 55);
+  background-color: rgb(187, 55, 66);
   border-style: double;
   margin: 10px 0px 10px 0px;
   height: 350px;
   display: flex;
   flex-direction: column;
+  /* overflow: auto; */
 }
 
-#titre-btn-ingredients {
+#titre-btn-verres {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,7 +17,7 @@
   margin: 2px;
 }
 
-#titre-ajout-ingredient {
+#titre-ajout-verres {
   font-size: 15px;
   text-align: center;
   margin-top: 20px;
@@ -24,16 +25,16 @@
   font-weight: bold;
 }
 
-#btn-ajouter-ingredient {
+#btn-ajouter-verres {
   border-radius: 5px;
   font-size: 10px;
   height: 20px;
 }
 
-#items-ingredients {
+#items-verres {
   overflow: auto;
 }
 
-#nom-ingredient {
+#nom-verre-gestion {
   margin:  0px 4px 0px 4px;
 }
