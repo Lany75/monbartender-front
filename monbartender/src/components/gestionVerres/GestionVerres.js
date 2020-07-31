@@ -14,6 +14,10 @@ const GestionVerres = () => {
     history.push("/gestion/ajouter-verre");
   };
 
+  const supprimerVerre = verreId => {
+    console.log("suppression verre id: ", verreId);
+  };
+
   return (
     <div id="gestion-verres">
       <div id="titre-btn-verres">
@@ -26,8 +30,22 @@ const GestionVerres = () => {
         {listeVerres &&
           listeVerres.map((lv, index) => {
             return (
-              <div id="nom-verre-gestion" key={index}>
-                {lv.nom}
+              <div className="item-verre" key={index}>
+                <div id="nom-verre-gestion">{lv.nom}</div>
+                <div>
+                  <button
+                    className="btn-suppression-verre"
+                    onClick={() => supprimerVerre(lv.id)}
+                  >
+                    supprimer
+                  </button>
+                  <button
+                    className="btn-modification-verre"
+                    // onClick={() => modifierCocktail(c.id)}
+                  >
+                    modifier
+                  </button>
+                </div>
               </div>
             );
           })}
