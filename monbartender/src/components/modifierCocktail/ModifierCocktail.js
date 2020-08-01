@@ -10,7 +10,7 @@ import "./ModifierCocktail.css";
 
 import { AuthContext } from "../../context/authContext";
 import { CocktailContext } from "../../context/cocktailContext";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+//import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const ModifierCocktail = () => {
   let history = useHistory();
@@ -21,7 +21,7 @@ const ModifierCocktail = () => {
 
   const [cocktailModifie, setCocktailModifie] = useState();
   const [imgUrl, setImgUrl] = useState();
-  const [verres, setVerres] = useState();
+  // const [verres, setVerres] = useState();
   const { id } = useParams();
 
   const getCocktailModifie = cocktailId => {
@@ -35,7 +35,7 @@ const ModifierCocktail = () => {
       });
   };
 
-  const getAllVerres = () => {
+  /*  const getAllVerres = () => {
     Axios.get(`${apiBaseURL}/api/v1/verres/`)
       .then(reponse => {
         setVerres(reponse.data);
@@ -43,7 +43,7 @@ const ModifierCocktail = () => {
       .catch(error => {
         console.log("vous avez une erreur : ", error);
       });
-  };
+  }; */
 
   const getImageFirebase = async reference => {
     const imgRef = firebase.storage().ref(reference);
@@ -129,7 +129,7 @@ const ModifierCocktail = () => {
 
   React.useEffect(() => {
     getCocktailModifie(id);
-    getAllVerres();
+    // getAllVerres();
   }, [id]);
 
   return (

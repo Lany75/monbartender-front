@@ -23,14 +23,16 @@ const GestionIngredients = () => {
             Ajouter
           </button>
         </div>
-        {listeIngredients &&
-          listeIngredients.map((c, index) => {
-            return (
-              <div id="nom-ingredient" key={index}>
-                {c.nom}
-              </div>
-            );
-          })}
+        <div id="items-ingredients">
+          {listeIngredients &&
+            listeIngredients.map((c, index) => {
+              return (
+                <div id="nom-ingredient" key={index}>
+                  {c.nom}
+                </div>
+              );
+            })}
+        </div>
       </div>
     </>
   );

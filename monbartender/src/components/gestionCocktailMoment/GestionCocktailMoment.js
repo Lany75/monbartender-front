@@ -25,24 +25,25 @@ const GestionCocktailMoment = () => {
           Remplacer
         </button>
       </div>
+      <div id="items-cocktails-moment">
+        {listeCocktailsMoment &&
+          listeCocktailsMoment.map((cm, index) => {
+            return (
+              <div className="item-cocktail-moment" key={index}>
+                <ImageCocktail
+                  classe="img-cocktail-gestion"
+                  reference={cm.photo}
+                  nom={cm.nom}
+                />
 
-      {listeCocktailsMoment &&
-        listeCocktailsMoment.map((cm, index) => {
-          return (
-            <div className="item-cocktail-moment" key={index}>
-              <ImageCocktail
-                classe="img-cocktail-gestion"
-                reference={cm.photo}
-                nom={cm.nom}
-              />
-
-              <div id="nom-id-cocktail-moment">
-                <div id="nom-cocktail-moment">{cm.nom}</div>
-                <div id="id-cocktail-moment">{cm.id}</div>
+                <div id="nom-id-cocktail-moment">
+                  <div id="nom-cocktail-moment">{cm.nom}</div>
+                  <div id="id-cocktail-moment">{cm.id}</div>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+      </div>
     </div>
   );
 };
