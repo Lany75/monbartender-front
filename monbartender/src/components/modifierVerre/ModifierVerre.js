@@ -28,20 +28,24 @@ const ModifierVerre = () => {
   return (
     <>
       {verreModifie ? (
-        <>
-          <div id="titre-modif-verre">Modification du verre</div>
-          <div id="donnees-verre">
-            <div>id : {verreModifie.id}</div>
-            <TextField
-              id="nom-verre-modifie"
-              label="Nom du verre"
-              defaultValue={verreModifie.nom}
-            />
-          </div>
-          <button id="btn-modif-verre" /* onClick={modifierCocktailBD} */>
-            Modifier !!
-          </button>
-        </>
+        verreModifie.length === 0 ? (
+          <div>Ce verre n&apos;existe pas</div>
+        ) : (
+          <>
+            <div id="titre-modif-verre">Modification du verre</div>
+            <div id="donnees-verre">
+              <div>id : {verreModifie.id}</div>
+              <TextField
+                id="nom-verre-modifie"
+                label="Nom du verre"
+                defaultValue={verreModifie.nom}
+              />
+            </div>
+            <button id="btn-modif-verre" /* onClick={modifierCocktailBD} */>
+              Modifier !!
+            </button>
+          </>
+        )
       ) : (
         <div>chargement</div>
       )}
