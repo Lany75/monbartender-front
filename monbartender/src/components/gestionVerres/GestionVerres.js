@@ -45,6 +45,10 @@ const GestionVerres = () => {
     }
   };
 
+  const modifierVerre = verreId => {
+    history.push(`/gestion/modifier-verre/${verreId}`);
+  };
+
   return (
     <div id="gestion-verres">
       <div id="titre-btn-verres">
@@ -68,7 +72,7 @@ const GestionVerres = () => {
                   </button>
                   <button
                     className="btn-modification-verre"
-                    // onClick={() => modifierCocktail(c.id)}
+                    onClick={() => modifierVerre(lv.id)}
                   >
                     modifier
                   </button>
