@@ -33,7 +33,10 @@ const AjoutVerre = () => {
       const verreAjoute = document.getElementById("nom-verre-" + i);
       if (verreAjoute.value !== "")
         tableauVerresAjoute.push({
-          nom: verreAjoute.value.toLowerCase()
+          nom: verreAjoute.value.replace(
+            /(^\w|\s\w)(\S*)/g,
+            (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
+          )
         });
     }
     if (tableauVerresAjoute.length > 0) {
