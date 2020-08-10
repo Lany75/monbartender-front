@@ -19,7 +19,7 @@ const IngredientBarComponent = ingredient => {
 
     user &&
       accessToken &&
-      Axios.delete(`${apiBaseURL}/api/v1/ingredients/${ingredientSupprime}`, {
+      Axios.delete(`${apiBaseURL}/api/v1/bars/${ingredientSupprime}`, {
         headers: {
           authorization: accessToken
         }
