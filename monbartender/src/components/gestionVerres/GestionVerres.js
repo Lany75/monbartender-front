@@ -28,7 +28,7 @@ const GestionVerres = () => {
       if (listeCocktails[i].verreId === verreId) verreUtil = true;
     }
     if (verreUtil === false) {
-      Axios.delete(`${apiBaseURL}/api/v1/gestion/verre/${verreId}`, {
+      Axios.delete(`${apiBaseURL}/api/v1/verres/${verreId}`, {
         headers: {
           authorization: accessToken
         }

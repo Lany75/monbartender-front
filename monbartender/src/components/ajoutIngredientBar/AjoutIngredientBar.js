@@ -25,7 +25,7 @@ const AjoutIngredientBar = () => {
       .value.toLowerCase();
 
     Axios.post(
-      `${apiBaseURL}/api/v1/ingredients/${nouvelIngredient}`,
+      `${apiBaseURL}/api/v1/bars/${nouvelIngredient}`,
       {},
       {
         headers: {
