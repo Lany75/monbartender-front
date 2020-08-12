@@ -34,6 +34,16 @@
   overflow: auto;
 }
 
-#nom-ingredient {
+.item-ingredient{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#nom-ingredient-gestion {
   margin:  0px 4px 0px 4px;
+}
+
+.btn-gestion-supp-ingredient, .btn-gestion-modif-ingredient {
+  margin: 0px 2px 0px 2px;
 }
