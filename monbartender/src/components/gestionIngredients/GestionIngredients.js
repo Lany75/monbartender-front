@@ -27,8 +27,22 @@ const GestionIngredients = () => {
           {listeIngredients &&
             listeIngredients.map((c, index) => {
               return (
-                <div id="nom-ingredient" key={index}>
-                  {c.nom}
+                <div className="item-ingredient" key={index}>
+                  <div id="nom-ingredient-gestion">{c.nom}</div>
+                  <div>
+                    <button
+                      className="btn-gestion-supp-ingredient"
+                      //onClick={() => supprimerVerre(lv.id)}
+                    >
+                      supprimer
+                    </button>
+                    <button
+                      className="btn-gestion-modif-ingredient"
+                      // onClick={() => modifierVerre(lv.id)}
+                    >
+                      modifier
+                    </button>
+                  </div>
                 </div>
               );
             })}
