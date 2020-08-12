@@ -40,7 +40,7 @@ const AjoutVerre = () => {
         });
     }
     if (tableauVerresAjoute.length > 0) {
-      Axios.post(`${apiBaseURL}/api/v1/gestion/verre`, tableauVerresAjoute, {
+      Axios.post(`${apiBaseURL}/api/v1/verres`, tableauVerresAjoute, {
         headers: {
           authorization: accessToken
         }
