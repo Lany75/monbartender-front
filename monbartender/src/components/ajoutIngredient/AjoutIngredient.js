@@ -36,7 +36,7 @@ const AjoutIngredient = () => {
 
     if (tableauIngredientsAjoute.length > 0) {
       Axios.post(
-        `${apiBaseURL}/api/v1/gestion/ingredient`,
+        `${apiBaseURL}/api/v1/ingredients/`,
         tableauIngredientsAjoute,
         {
           headers: {
