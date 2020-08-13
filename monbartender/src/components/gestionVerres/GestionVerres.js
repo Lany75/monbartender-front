@@ -25,7 +25,7 @@ const GestionVerres = () => {
     let verreUtil = false;
 
     for (let i = 0; i < listeCocktails.length; i++) {
-      if (listeCocktails[i].verreId === verreId) verreUtil = true;
+      if (listeCocktails[i].verre === verreId) verreUtil = true;
     }
 
     if (verreUtil === false) {
