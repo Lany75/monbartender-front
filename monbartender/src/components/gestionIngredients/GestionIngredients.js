@@ -10,6 +10,7 @@ import Axios from "axios";
 import apiBaseURL from "../../env";
 import { AuthContext } from "../../context/authContext";
 import { CocktailContext } from "../../context/cocktailContext";
+import { BarContext } from "../../context/barContext";
 
 const GestionIngredients = () => {
   const { listeIngredients, setListeIngredients } = useContext(
@@ -17,6 +18,7 @@ const GestionIngredients = () => {
   );
   const { listeCocktails } = useContext(CocktailContext);
   const { accessToken } = useContext(AuthContext);
+  const { getBarUser } = useContext(BarContext);
 
   let history = useHistory();
 
@@ -26,8 +28,8 @@ const GestionIngredients = () => {
 
   const supprimerIngredient = ingredientId => {
     let ingredientUtil = false;
-    console.log("ingredient à supprimer : ", ingredientId);
 
+    // Vérification si l'ingrédient est utilisé dans un cocktail
     for (let i = 0; i < listeCocktails.length; i++) {
       for (let j = 0; j < listeCocktails[i].ingredient.length; j++) {
         if (listeCocktails[i].ingredient[j].id === ingredientId)
@@ -43,6 +45,8 @@ const GestionIngredients = () => {
       })
         .then(reponse => {
           setListeIngredients(reponse.data);
+          //MAJ du bar de l'utilisateur
+          getBarUser();
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
