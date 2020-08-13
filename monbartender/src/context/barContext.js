@@ -32,7 +32,7 @@ function BarProvider({ children }) {
   }, [user, accessToken]);
 
   return (
-    <BarContext.Provider value={{ bar, setBar }}>
+    <BarContext.Provider value={{ bar, setBar, getBarUser }}>
       {children}
     </BarContext.Provider>
   );
