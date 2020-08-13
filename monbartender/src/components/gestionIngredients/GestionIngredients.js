@@ -9,11 +9,13 @@ import Axios from "axios";
 
 import apiBaseURL from "../../env";
 import { AuthContext } from "../../context/authContext";
+import { CocktailContext } from "../../context/cocktailContext";
 
 const GestionIngredients = () => {
   const { listeIngredients, setListeIngredients } = useContext(
     IngredientContext
   );
+  const { listeCocktails } = useContext(CocktailContext);
   const { accessToken } = useContext(AuthContext);
 
   let history = useHistory();
@@ -23,17 +25,33 @@ const GestionIngredients = () => {
   };
 
   const supprimerIngredient = ingredientId => {
-    Axios.delete(`${apiBaseURL}/api/v1/ingredients/${ingredientId}`, {
-      headers: {
-        authorization: accessToken
+    let ingredientUtil = false;
+    console.log("ingredient à supprimer : ", ingredientId);
+
+    for (let i = 0; i < listeCocktails.length; i++) {
+      for (let j = 0; j < listeCocktails[i].ingredient.length; j++) {
+        if (listeCocktails[i].ingredient[j].id === ingredientId)
+          ingredientUtil = true;
       }
-    })
-      .then(reponse => {
-        setListeIngredients(reponse.data);
+    }
+
+    if (ingredientUtil === false) {
+      Axios.delete(`${apiBaseURL}/api/v1/ingredients/${ingredientId}`, {
+        headers: {
+          authorization: accessToken
+        }
       })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
+        .then(reponse => {
+          setListeIngredients(reponse.data);
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
+    } else {
+      alert(
+        "SUPPRESSION IMPOSSIBLE : l'ingredient est utilisé pour un cocktail"
+      );
+    }
   };
 
   return (
