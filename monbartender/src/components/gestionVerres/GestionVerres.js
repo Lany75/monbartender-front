@@ -27,6 +27,7 @@ const GestionVerres = () => {
     for (let i = 0; i < listeCocktails.length; i++) {
       if (listeCocktails[i].verreId === verreId) verreUtil = true;
     }
+
     if (verreUtil === false) {
       Axios.delete(`${apiBaseURL}/api/v1/verres/${verreId}`, {
         headers: {

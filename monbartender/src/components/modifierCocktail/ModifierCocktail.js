@@ -15,9 +15,7 @@ import { CocktailContext } from "../../context/cocktailContext";
 const ModifierCocktail = () => {
   let history = useHistory();
   const { accessToken } = useContext(AuthContext);
-  const { setListeCocktails, setListeCocktailsMoment } = useContext(
-    CocktailContext
-  );
+  const { setListeCocktails, getCocktailsMoment } = useContext(CocktailContext);
 
   const [cocktailModifie, setCocktailModifie] = useState();
   const [imgUrl, setImgUrl] = useState();
@@ -35,16 +33,6 @@ const ModifierCocktail = () => {
       });
   };
 
-  /*  const getAllVerres = () => {
-    Axios.get(`${apiBaseURL}/api/v1/verres/`)
-      .then(reponse => {
-        setVerres(reponse.data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-  }; */
-
   const getImageFirebase = async reference => {
     const imgRef = firebase.storage().ref(reference);
     await imgRef.getDownloadURL().then(url => {
@@ -59,15 +47,8 @@ const ModifierCocktail = () => {
       }
     })
       .then(reponse => {
-        // console.log(reponse.data);
         setListeCocktails(reponse.data);
-        Axios.get(`${apiBaseURL}/api/v1/cocktails/cocktail-du-moment`)
-          .then(reponse => {
-            setListeCocktailsMoment(reponse.data);
-          })
-          .catch(error => {
-            console.log("vous avez une erreur : ", error);
-          });
+        getCocktailsMoment();
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);

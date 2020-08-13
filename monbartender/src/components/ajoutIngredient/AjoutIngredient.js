@@ -10,10 +10,12 @@ import { AuthContext } from "../../context/authContext";
 
 import "./AjoutIngredient.css";
 import { IngredientContext } from "../../context/ingredientContext";
+import { BarContext } from "../../context/barContext";
 
 const AjoutIngredient = () => {
   let history = useHistory();
-  const { accessToken } = useContext(AuthContext);
+  const { accessToken, user } = useContext(AuthContext);
+  const { bar } = useContext(BarContext);
   const { setListeIngredients } = useContext(IngredientContext);
 
   const [nbIng, setNbIng] = useState(1);
@@ -63,20 +65,26 @@ const AjoutIngredient = () => {
 
   return (
     <>
-      <div id="titre-ingredient-ajoute">Ajout d&apos;ingrédients</div>
-      <div id="ingr-bouton">
-        <button id="btn-ajout-supp" onClick={AjoutDivIngredient}>
-          +
-        </button>
-        <button id="btn-ajout-supp" onClick={SupprimeDivIngredient}>
-          -
-        </button>
-      </div>
-      <div id="box-ingredient">{lesIngredients}</div>
+      {user && bar && bar.droits === true ? (
+        <>
+          <div id="titre-ingredient-ajoute">Ajout d&apos;ingrédients</div>
+          <div id="ingr-bouton">
+            <button id="btn-ajout-supp" onClick={AjoutDivIngredient}>
+              +
+            </button>
+            <button id="btn-ajout-supp" onClick={SupprimeDivIngredient}>
+              -
+            </button>
+          </div>
+          <div id="box-ingredient">{lesIngredients}</div>
 
-      <button id="btn-ajout-nv-ingredient" onClick={ajoutIngredientBD}>
-        Ajouter !!
-      </button>
+          <button id="btn-ajout-nv-ingredient" onClick={ajoutIngredientBD}>
+            Ajouter !!
+          </button>
+        </>
+      ) : (
+        <div>Vous devez avoir les droits pour accéder à cette page</div>
+      )}
     </>
   );
 };

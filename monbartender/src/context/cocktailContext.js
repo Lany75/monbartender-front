@@ -41,7 +41,8 @@ function CocktailProvider({ children }) {
         listeCocktails,
         setListeCocktails,
         listeCocktailsMoment,
-        setListeCocktailsMoment
+        setListeCocktailsMoment,
+        getCocktailsMoment
       }}
     >
       {children}
