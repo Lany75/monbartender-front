@@ -40,19 +40,25 @@ const AjoutVerre = () => {
         });
     }
     if (tableauVerresAjoute.length > 0) {
-      Axios.post(`${apiBaseURL}/api/v1/verres`, tableauVerresAjoute, {
-        headers: {
-          authorization: accessToken
-        }
-      })
-        .then(reponse => {
-          setListeVerres(reponse.data);
-          history.push("/gestion");
-        })
-        .catch(error => {
-          console.log("vous avez une erreur : ", error);
-        });
+      tableauVerresAjoute.map(va => {
+        Axios.post(
+          `${apiBaseURL}/api/v1/verres?nom=${va.nom}`,
+          {},
+          {
+            headers: {
+              authorization: accessToken
+            }
+          }
+        )
+          .then(reponse => {
+            setListeVerres(reponse.data);
+          })
+          .catch(error => {
+            console.log("vous avez une erreur : ", error);
+          });
+      });
     }
+    history.push("/gestion");
   };
 
   const AjoutDivVerre = () => {
