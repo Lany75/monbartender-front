@@ -39,6 +39,19 @@ const AjoutVerre = () => {
           )
         });
     }
+
+    // On supprime les doublons dans tableauVerresAjoute
+    tableauVerresAjoute.sort((a, b) => {
+      return a.nom.localeCompare(b.nom);
+    });
+
+    for (let i = 1; i < tableauVerresAjoute.length; i++) {
+      if (tableauVerresAjoute[i - 1].nom === tableauVerresAjoute[i].nom) {
+        tableauVerresAjoute.splice(i, 1);
+        i--;
+      }
+    }
+
     if (tableauVerresAjoute.length > 0) {
       tableauVerresAjoute.map(va => {
         Axios.post(
