@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField } from "@material-ui/core";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Axios from "axios";
 
 import apiBaseURL from "../../env";
 
 import "./ModifierIngredient.css";
+import { IngredientContext } from "../../context/ingredientContext";
+import { AuthContext } from "../../context/authContext";
 
 const ModifierIngredient = () => {
   const { id } = useParams();
+  const { accessToken } = useContext(AuthContext);
   const [ingredientModifie, setIngredientModifie] = useState();
+  const { listeIngredients, setListeIngredients } = useContext(
+    IngredientContext
+  );
+  let history = useHistory();
 
   const getIngredientModifie = ingredientId => {
     Axios.get(`${apiBaseURL}/api/v1/ingredients/${ingredientId}`)
@@ -19,6 +26,43 @@ const ModifierIngredient = () => {
       .catch(error => {
         console.log("vous avez une erreur : ", error);
       });
+  };
+
+  const modifierIngredientBD = () => {
+    const divNomIngredient = document.getElementById("nom-ingredient-modifie");
+    let ingredientExistant = false;
+
+    if (
+      divNomIngredient.value !== "" &&
+      divNomIngredient.value !== ingredientModifie.nom
+    ) {
+      const nvNomIngredient = {
+        nom: divNomIngredient.value.replace(
+          /(^\w|\s\w)(\S*)/g,
+          (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
+        )
+      };
+
+      // On vérifie que le nom de l'ingrédient n'existe pas déja
+      for (let i = 0; i < listeIngredients.length; i++) {
+        if (listeIngredients[i].nom === nvNomIngredient.nom) {
+          ingredientExistant = true;
+        }
+      }
+
+      if (ingredientExistant === false) {
+        Axios.put(`${apiBaseURL}/api/v1/ingredients/${id}`, nvNomIngredient, {
+          headers: {
+            authorization: accessToken
+          }
+        }).then(reponse => {
+          setListeIngredients(reponse.data);
+          history.push("/gestion");
+        });
+      } else {
+        alert("MODIFICATION IMPOSSIBLE : ce nom d'ingrédient existe déja");
+      }
+    }
   };
 
   React.useEffect(() => {
@@ -43,9 +87,7 @@ const ModifierIngredient = () => {
                 defaultValue={ingredientModifie.nom}
               />
             </div>
-            <button
-              id="btn-modif-ingredient" /* onClick={modifierIngredientBD} */
-            >
+            <button id="btn-modif-ingredient" onClick={modifierIngredientBD}>
               Modifier !!
             </button>
           </>
