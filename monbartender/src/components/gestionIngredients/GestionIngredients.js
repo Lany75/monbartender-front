@@ -58,6 +58,10 @@ const GestionIngredients = () => {
     }
   };
 
+  const modifierIngredient = ingredientId => {
+    history.push(`/gestion/modifier-ingredient/${ingredientId}`);
+  };
+
   return (
     <>
       <div id="gestion-ingredients">
@@ -82,7 +86,7 @@ const GestionIngredients = () => {
                     </button>
                     <button
                       className="btn-gestion-modif-ingredient"
-                      // onClick={() => modifierIngredient(li.id)}
+                      onClick={() => modifierIngredient(li.id)}
                     >
                       modifier
                     </button>

@@ -20,9 +20,8 @@ const AjoutIngredientBar = () => {
 
   const ajouterIngredient = event => {
     event.preventDefault();
-    const nouvelIngredient = document
-      .getElementById("input-ajout-ingredient")
-      .value.toLowerCase();
+    const nouvelIngredient = document.getElementById("input-ajout-ingredient")
+      .value;
 
     Axios.post(
       `${apiBaseURL}/api/v1/bars/${nouvelIngredient}`,
