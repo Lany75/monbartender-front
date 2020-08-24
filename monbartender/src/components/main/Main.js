@@ -22,6 +22,7 @@ import AjoutIngredient from "../ajoutIngredient/AjoutIngredient";
 import ModifierCocktail from "../modifierCocktail/ModifierCocktail";
 import AjoutVerre from "../ajoutVerre/AjoutVerre";
 import ModifierVerre from "../modifierVerre/ModifierVerre";
+import ModifierIngredient from "../modifierIngredient/ModifierIngredient";
 
 function Main() {
   return (
@@ -45,6 +46,10 @@ function Main() {
         <Route
           path="/gestion/ajouter-ingredient/"
           component={AjoutIngredient}
+        />
+        <Route
+          path="/gestion/modifier-ingredient/:id"
+          component={ModifierIngredient}
         />
         <Route path="/gestion/ajouter-verre/" component={AjoutVerre} />
         <Route path="/gestion/modifier-verre/:id" component={ModifierVerre} />

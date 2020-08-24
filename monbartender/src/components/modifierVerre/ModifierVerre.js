@@ -13,7 +13,7 @@ const ModifierVerre = () => {
   const { id } = useParams();
   const { accessToken } = useContext(AuthContext);
   const [verreModifie, setVerreModifie] = useState();
-  const { setListeVerres } = useContext(VerreContext);
+  const { listeVerres, setListeVerres } = useContext(VerreContext);
   let history = useHistory();
 
   const getVerreModifie = verreId => {
@@ -28,6 +28,7 @@ const ModifierVerre = () => {
 
   const modifierVerreBD = () => {
     const divNomVerre = document.getElementById("nom-verre-modifie");
+    let verreExistant = false;
 
     if (divNomVerre.value !== "" && divNomVerre.value !== verreModifie.nom) {
       const nvNomVerre = {
@@ -36,14 +37,26 @@ const ModifierVerre = () => {
           (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
         )
       };
-      Axios.put(`${apiBaseURL}/api/v1/verres/${id}`, nvNomVerre, {
-        headers: {
-          authorization: accessToken
+
+      // On vérifie que le nom du verre n'existe pas déja
+      for (let i = 0; i < listeVerres.length; i++) {
+        if (listeVerres[i].nom === nvNomVerre.nom) {
+          verreExistant = true;
         }
-      }).then(reponse => {
-        setListeVerres(reponse.data);
-        history.push("/gestion");
-      });
+      }
+
+      if (verreExistant === false) {
+        Axios.put(`${apiBaseURL}/api/v1/verres/${id}`, nvNomVerre, {
+          headers: {
+            authorization: accessToken
+          }
+        }).then(reponse => {
+          setListeVerres(reponse.data);
+          history.push("/gestion");
+        });
+      } else {
+        alert("MODIFICATION IMPOSSIBLE : ce nom de verre existe déja");
+      }
     }
   };
 

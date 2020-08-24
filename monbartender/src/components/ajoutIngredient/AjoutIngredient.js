@@ -20,7 +20,7 @@ const AjoutIngredient = () => {
 
   const [nbIng, setNbIng] = useState(1);
   const lesIngredients = [];
-  const tableauIngredientsAjoute = [];
+  let tableauIngredientsAjoute = [];
 
   for (let i = 1; i <= nbIng; i++) {
     const id = "nom-ingredient-" + i;
@@ -32,28 +32,47 @@ const AjoutIngredient = () => {
       const ingredientAjoute = document.getElementById("nom-ingredient-" + i);
       if (ingredientAjoute.value !== "")
         tableauIngredientsAjoute.push({
-          nom: ingredientAjoute.value.toLowerCase()
+          nom: ingredientAjoute.value.replace(
+            /(^\w|\s\w)(\S*)/g,
+            (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
+          )
         });
     }
 
-    if (tableauIngredientsAjoute.length > 0) {
-      Axios.post(
-        `${apiBaseURL}/api/v1/ingredients/`,
-        tableauIngredientsAjoute,
-        {
-          headers: {
-            authorization: accessToken
-          }
-        }
-      )
-        .then(reponse => {
-          setListeIngredients(reponse.data);
-          history.push("/gestion");
-        })
-        .catch(error => {
-          console.log("vous avez une erreur : ", error);
-        });
+    // On supprime les doublons dans tableauIngredientsAjoute
+    tableauIngredientsAjoute.sort((a, b) => {
+      return a.nom.localeCompare(b.nom);
+    });
+
+    for (let i = 1; i < tableauIngredientsAjoute.length; i++) {
+      if (
+        tableauIngredientsAjoute[i - 1].nom === tableauIngredientsAjoute[i].nom
+      ) {
+        tableauIngredientsAjoute.splice(i, 1);
+        i--;
+      }
     }
+
+    if (tableauIngredientsAjoute.length > 0) {
+      tableauIngredientsAjoute.map(ia => {
+        Axios.post(
+          `${apiBaseURL}/api/v1/ingredients?nom=${ia.nom}`,
+          {},
+          {
+            headers: {
+              authorization: accessToken
+            }
+          }
+        )
+          .then(reponse => {
+            setListeIngredients(reponse.data);
+          })
+          .catch(error => {
+            console.log("vous avez une erreur : ", error);
+          });
+      });
+    }
+    history.push("/gestion");
   };
 
   const AjoutDivIngredient = () => {
