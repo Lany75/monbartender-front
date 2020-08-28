@@ -1,31 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import Axios from "axios";
-
-import apiBaseURL from "../../env";
 
 import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
+import { CocktailContext } from "../../context/cocktailContext";
 
 import "./CocktailAleatoire.css";
 import "./CocktailAleatoireDesktop.css";
 
 const CocktailAleatoire = () => {
   const [cocktailAleatoire, setCocktailAleatoire] = useState();
+  const { listeCocktails } = useContext(CocktailContext);
   let to;
 
+  function getRandomInteger(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
   const getCocktailAleatoire = () => {
-    Axios.get(`${apiBaseURL}/api/v1/cocktails/aleatoire`)
-      .then(reponse => {
-        setCocktailAleatoire(reponse.data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
+    if (listeCocktails) {
+      let randomInt = getRandomInteger(listeCocktails.length);
+      if (listeCocktails[randomInt] !== cocktailAleatoire) {
+        setCocktailAleatoire(listeCocktails[randomInt]);
+      } else {
+        getCocktailAleatoire();
+      }
+    }
   };
 
   React.useEffect(() => {
     getCocktailAleatoire();
-  }, []);
+  }, [listeCocktails]);
 
   if (cocktailAleatoire) {
     to = "/cocktail/" + cocktailAleatoire.id;
