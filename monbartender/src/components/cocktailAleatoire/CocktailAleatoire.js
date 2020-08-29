@@ -59,7 +59,7 @@ const CocktailAleatoire = () => {
             id="btn-autre-cocktail"
             variant="contained"
             onClick={getCocktailAleatoire}
-            size="small"
+            //size="small"
           >
             Un autre !!
           </Button>

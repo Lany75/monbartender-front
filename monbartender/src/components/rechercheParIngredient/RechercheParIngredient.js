@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-import { RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
+import { RadioGroup, FormControlLabel, Radio, Button } from "@material-ui/core";
 
 import apiBaseURL from "../../env";
 
@@ -126,9 +126,17 @@ const RechercheParIngredient = () => {
           )}
         </div>
         <div id="div-btn-recherche">
-          <button id="btn-recherche-par-ingredient" onClick={Recherche}>
+          {/* <button id="btn-recherche-par-ingredient" onClick={Recherche}>
             Lancer la recherche ...
-          </button>
+          </button> */}
+
+          <Button
+            id="btn-recherche-par-ingredient"
+            variant="contained"
+            onClick={Recherche}
+          >
+            J&apos;ai soif !!
+          </Button>
         </div>
       </div>
 
