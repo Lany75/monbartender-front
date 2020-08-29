@@ -27,7 +27,6 @@ import ModifierIngredient from "../modifierIngredient/ModifierIngredient";
 function Main() {
   return (
     <div className="main">
-      <div id="petit-message"></div>
       <Switch>
         <Route exact path="/" component={Accueil} />
         <Route exact path="/connexion" component={PageConnexion} />
