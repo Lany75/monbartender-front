@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 import { AuthContext } from "../../context/authContext";
 
@@ -16,11 +17,11 @@ const PageConnexion = () => {
     history.push("/");
   };
 
-  const connexionMailPassword = async () => {
+  /*   const connexionMailPassword = async () => {
     console.log("on veut se connecter avec mail et password");
-  };
+  }; */
 
-  const inscriptionMailPassword = async () => {
+  /*   const inscriptionMailPassword = async () => {
     console.log("on veut s'inscrire avec mail et password");
     const mailUser = document.getElementById("mail-utilisateur-inscription")
       .value;
@@ -28,25 +29,32 @@ const PageConnexion = () => {
     const passUser = document.getElementById("mdp-utilisateur-inscription")
       .value;
     console.log(passUser);
-  };
+  }; */
 
-  const verificationMail = mail => {
+  /*   const verificationMail = mail => {
     const regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
     if (!regex.test(mail)) {
       console.log("mail invalide");
     } else console.log("mail OK");
-  };
+  }; */
 
   return (
     <div id="connexion-inscription">
       <div id="connexion">
         CONNEXION
         <div id="connexion-google">
-          <button className="auth-bouton" onClick={connexionGoogle}>
+          {/*  <button className="auth-bouton" onClick={connexionGoogle}>
             Connexion avec Google
-          </button>
+          </button> */}
+          <Button
+            id="bouton-connexion-google"
+            variant="contained"
+            onClick={connexionGoogle}
+          >
+            Connexion avec Google
+          </Button>
         </div>
-        <div className="inputs-connexion">
+        {/* <div className="inputs-connexion">
           <input
             type="text"
             id="mail-utilisateur-connexion"
@@ -60,9 +68,9 @@ const PageConnexion = () => {
           <button className="auth-bouton" onClick={connexionMailPassword}>
             Connexion
           </button>
-        </div>
+        </div> */}
       </div>
-      <div id="inscription">
+      {/*  <div id="inscription">
         INSCRIPTION
         <div className="inputs-inscription">
           <input
@@ -84,7 +92,7 @@ const PageConnexion = () => {
             Inscription
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

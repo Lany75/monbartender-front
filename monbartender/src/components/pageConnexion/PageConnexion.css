@@ -9,7 +9,8 @@
   flex-direction: column;
   align-items: center;
   border: solid black;
-  margin: 10px;
+  margin: 30px;
+  padding: 20px;
   font-size: 15px;
 }
 
@@ -32,4 +33,9 @@
 #mail-utilisateur-connexion, #mdp-utilisateur-connexion, #mail-utilisateur-inscription, #mdp-utilisateur-inscription, #nom-utilisateur-inscription {
   margin: 2px;
   font-size: 10px;
+}
+
+#bouton-connexion-google {
+  font-size: 10px;
+  height: 20px;
 }
