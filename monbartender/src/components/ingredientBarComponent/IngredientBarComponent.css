@@ -2,7 +2,7 @@
   font-size: 12px;
 }
 
-.btn-suppression-ingredient {
+#btn-suppression-ingredient {
   font-size: 10px;
-  border-radius: 5px;
+  height: 15px;
 }
