@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 import "./GestionCocktailMoment.css";
 import "./GestionCocktailMomentDesktop.css";
@@ -18,12 +19,19 @@ const GestionCocktailMoment = () => {
     <div id="gestion-cocktails-moment">
       <div id="titre-btn-cocktail-moment">
         <div id="titre-gestion-cocktail-moment">Cocktails du moment</div>
-        <button
+        {/* <button
           id="btn-remplacer-cocktail-moment"
           onClick={modifierCocktailMoment}
         >
           Remplacer
-        </button>
+        </button> */}
+        <Button
+          id="btn-remplacer-cocktail-moment"
+          variant="contained"
+          onClick={modifierCocktailMoment}
+        >
+          Remplacer
+        </Button>
       </div>
       <div id="items-cocktails-moment">
         {listeCocktailsMoment &&
