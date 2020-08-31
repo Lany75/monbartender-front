@@ -8,16 +8,12 @@
     font-size: 20px;
   }
 
-  #btn-remplacer-cocktail-moment {
-    height: 30px;
-    font-size: 15px;
+  #nom-cocktail-moment {
+    font-size: 18px;
+    margin-left: 15px;
   }
 
-  #nom-cocktail-moment {
-    font-size: 15px;
-  }
-  
-  #id-cocktail-moment {
-    font-size: 12px;
+  #icon-modification-cocktail-moment {
+    font-size: 40px;
   }
 }

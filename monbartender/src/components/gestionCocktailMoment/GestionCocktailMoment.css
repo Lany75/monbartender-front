@@ -41,11 +41,11 @@
   flex-direction: column;
 }
 
-#id-cocktail-moment {
-  font-size: 10px;
+#icon-modification-cocktail-moment {
+  font-size: 30px;
 }
 
-#btn-remplacer-cocktail-moment {
-  font-size: 10px;
-  height: 20px;
+#nom-cocktail-moment{
+  font-size: 16px;
+  margin-left: 15px;
 }
