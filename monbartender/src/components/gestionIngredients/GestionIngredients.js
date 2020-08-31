@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 import { IngredientContext } from "../../context/ingredientContext";
 
@@ -67,9 +68,13 @@ const GestionIngredients = () => {
       <div id="gestion-ingredients">
         <div id="titre-btn-ingredients">
           <div id="titre-ajout-ingredient">Liste ingrédients</div>
-          <button id="btn-ajouter-ingredient" onClick={ajouterIngredient}>
+          {/* <button id="btn-ajouter-ingredient" onClick={ajouterIngredient}>
             Ajouter
-          </button>
+          </button> */}
+          <AddCircleIcon
+            id="icon-ajout-ingredient"
+            onClick={ajouterIngredient}
+          />
         </div>
         <div id="items-ingredients">
           {listeIngredients &&
