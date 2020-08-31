@@ -11,7 +11,7 @@
 #titre-btn-ingredients {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 2px;
 }
@@ -46,4 +46,8 @@
 
 .btn-gestion-supp-ingredient, .btn-gestion-modif-ingredient {
   margin: 0px 2px 0px 2px;
+}
+
+#icon-ajout-ingredient {
+  font-size: 40px;
 }
