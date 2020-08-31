@@ -11,7 +11,7 @@
 #titre-btn-cocktail {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 2px;
 }
@@ -22,12 +22,6 @@
   margin-top: 20px;
   margin-bottom: 20px;
   font-weight: bold;
-}
-
-#btn-ajouter-cocktail {
-  border-radius: 5px;
-  font-size: 10px;
-  height: 20px;
 }
 
 #items-cocktails {
@@ -47,6 +41,15 @@ overflow: auto;
   width: 230px;
 }
 
-#id-cocktail {
-  font-size: 10px;
+#nom-cocktail {
+  font-size: 16px;
+  margin-left: 15px;
+}
+
+#icon-modification-cocktail, #icon-suppression-cocktail {
+  font-size: 20px;
+}
+
+#icon-ajout-cocktail {
+  font-size: 40px;
 }

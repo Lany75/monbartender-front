@@ -1,6 +1,6 @@
 @media screen and (min-width: 769px) {
   #gestion-cocktails {
-    width: 350px;
+    width: 450px;
     height: 400px;
   }
 
@@ -8,17 +8,16 @@
     font-size: 20px;
   }
 
-  #btn-ajouter-cocktail {
-    width: 100px;
-    height: 30px;
-    font-size: 15px;
-  }
-
   #nom-cocktail {
-    font-size: 15px;
+    font-size: 18px;
+    margin-left: 15px;
   }
 
-  #id-cocktail {
-    font-size: 12px;
+  #icon-modification-cocktail, #icon-suppression-cocktail {
+    font-size: 30px;
+  }
+
+  #icon-ajout-cocktail {
+    font-size: 50px;
   }
 }

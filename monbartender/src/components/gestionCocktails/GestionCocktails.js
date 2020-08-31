@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import CreateIcon from "@material-ui/icons/Create";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 import apiBaseURL from "../../env";
 
@@ -52,9 +55,7 @@ const GestionCocktails = () => {
       <div id="gestion-cocktails">
         <div id="titre-btn-cocktail">
           <div id="titre-gestion-cocktail">Liste Cocktails</div>
-          <button id="btn-ajouter-cocktail" onClick={ajouterCocktail}>
-            Ajouter
-          </button>
+          <AddCircleIcon id="icon-ajout-cocktail" onClick={ajouterCocktail} />
         </div>
         <div id="items-cocktails">
           {listeCocktails &&
@@ -69,21 +70,16 @@ const GestionCocktails = () => {
 
                   <div id="nom-id-cocktail">
                     <div id="nom-cocktail">{c.nom}</div>
-                    <div id="id-cocktail">{c.id}</div>
                   </div>
                   <div>
-                    <button
-                      className="btn-suppression-cocktail"
+                    <DeleteForeverIcon
+                      id="icon-suppression-cocktail"
                       onClick={() => supprimerCocktail(c.id)}
-                    >
-                      supprimer
-                    </button>
-                    <button
-                      className="btn-modification-cocktail"
+                    />
+                    <CreateIcon
+                      id="icon-modification-cocktail"
                       onClick={() => modifierCocktail(c.id)}
-                    >
-                      modifier
-                    </button>
+                    />
                   </div>
                 </div>
               );
