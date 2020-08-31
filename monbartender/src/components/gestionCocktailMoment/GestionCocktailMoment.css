@@ -12,7 +12,7 @@
 #titre-btn-cocktail-moment {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 2px;
 }
@@ -41,12 +41,11 @@
   flex-direction: column;
 }
 
-#id-cocktail-moment {
-  font-size: 10px;
+#icon-modification-cocktail-moment {
+  font-size: 30px;
 }
 
-#btn-remplacer-cocktail-moment {
-  border-radius: 5px;
-  font-size: 10px;
-  height: 20px;
+#nom-cocktail-moment{
+  font-size: 16px;
+  margin-left: 15px;
 }

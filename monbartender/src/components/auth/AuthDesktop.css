@@ -13,4 +13,10 @@
     font-size: 15px;
     height: 25px;
   }
+
+  #auth-bouton {
+    font-size: 15px;
+    height: 30px;
+    width: 150px;
+  }
 }

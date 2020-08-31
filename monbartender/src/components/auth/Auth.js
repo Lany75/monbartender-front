@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Button } from "@material-ui/core";
 
 import "./Auth.css";
 import "./AuthDesktop.css";
@@ -37,13 +38,19 @@ const Auth = () => {
         <div></div>
       )}
       {user ? (
-        <button className="auth-bouton" onClick={deconnexion}>
+        /* <button className="auth-bouton" onClick={deconnexion}>
           Déconnexion
-        </button>
+        </button> */
+        <Button id="auth-bouton" variant="contained" onClick={deconnexion}>
+          Déconnexion
+        </Button>
       ) : (
-        <button className="auth-bouton" onClick={connexion}>
+        /* <button className="auth-bouton" onClick={connexion}>
           Connexion
-        </button>
+        </button> */
+        <Button id="auth-bouton" variant="contained" onClick={connexion}>
+          Connexion
+        </Button>
       )}
     </div>
   );

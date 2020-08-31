@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import CreateIcon from "@material-ui/icons/Create";
 
 import "./GestionCocktailMoment.css";
 import "./GestionCocktailMomentDesktop.css";
@@ -18,12 +19,10 @@ const GestionCocktailMoment = () => {
     <div id="gestion-cocktails-moment">
       <div id="titre-btn-cocktail-moment">
         <div id="titre-gestion-cocktail-moment">Cocktails du moment</div>
-        <button
-          id="btn-remplacer-cocktail-moment"
+        <CreateIcon
+          id="icon-modification-cocktail-moment"
           onClick={modifierCocktailMoment}
-        >
-          Remplacer
-        </button>
+        />
       </div>
       <div id="items-cocktails-moment">
         {listeCocktailsMoment &&
@@ -38,7 +37,6 @@ const GestionCocktailMoment = () => {
 
                 <div id="nom-id-cocktail-moment">
                   <div id="nom-cocktail-moment">{cm.nom}</div>
-                  <div id="id-cocktail-moment">{cm.id}</div>
                 </div>
               </div>
             );

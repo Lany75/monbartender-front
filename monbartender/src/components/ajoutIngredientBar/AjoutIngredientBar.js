@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-
-import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { Button, TextField } from "@material-ui/core";
 import Axios from "axios";
 
 import apiBaseURL from "../../env";
@@ -58,9 +57,17 @@ const AjoutIngredientBar = () => {
             )}
           />
         )}
-        <button id="btn-ajout-ingredient" onClick={ajouterIngredient}>
+        {/* <button id="btn-ajout-ingredient" onClick={ajouterIngredient}>
           Ajouter l&apos;ingredient
         </button>
+ */}
+        <Button
+          id="btn-ajout-ingredient"
+          variant="contained"
+          onClick={ajouterIngredient}
+        >
+          Ajouter l&apos;ingredient
+        </Button>
       </form>
     </>
   );
