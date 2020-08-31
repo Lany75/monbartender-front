@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-//import { Button } from "@material-ui/core";
 import CreateIcon from "@material-ui/icons/Create";
 
 import "./GestionCocktailMoment.css";
