@@ -1,31 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import Axios from "axios";
-
-import apiBaseURL from "../../env";
+import { Button } from "@material-ui/core";
 
 import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
+import { CocktailContext } from "../../context/cocktailContext";
 
 import "./CocktailAleatoire.css";
 import "./CocktailAleatoireDesktop.css";
 
 const CocktailAleatoire = () => {
   const [cocktailAleatoire, setCocktailAleatoire] = useState();
+  const { listeCocktails } = useContext(CocktailContext);
   let to;
 
+  function getRandomInteger(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
   const getCocktailAleatoire = () => {
-    Axios.get(`${apiBaseURL}/api/v1/cocktails/aleatoire`)
-      .then(reponse => {
-        setCocktailAleatoire(reponse.data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
+    if (listeCocktails) {
+      let randomInt = getRandomInteger(listeCocktails.length);
+      if (listeCocktails[randomInt] !== cocktailAleatoire) {
+        setCocktailAleatoire(listeCocktails[randomInt]);
+      } else {
+        getCocktailAleatoire();
+      }
+    }
   };
+
+  console.log(cocktailAleatoire);
 
   React.useEffect(() => {
     getCocktailAleatoire();
-  }, []);
+  }, [listeCocktails]);
 
   if (cocktailAleatoire) {
     to = "/cocktail/" + cocktailAleatoire.id;
@@ -44,11 +51,27 @@ const CocktailAleatoire = () => {
           </Link>
         )}
         <div id="div-btn-autre-cocktail">
-          <button id="btn-autre-cocktail" onClick={getCocktailAleatoire}>
+          {/* <button id="btn-autre-cocktail" onClick={getCocktailAleatoire}>
             Un autre !!
-          </button>
+          </button> */}
+
+          <Button
+            id="btn-autre-cocktail"
+            variant="contained"
+            onClick={getCocktailAleatoire}
+            //size="small"
+          >
+            Un autre !!
+          </Button>
         </div>
       </div>
+      {/* <div>
+        <div>{cocktailAleatoire.verre}</div>
+        {cocktailAleatoire &&
+          cocktailAleatoire.ingredient.map((ca, index) => {
+            return <div key={index}>{ca.nom}</div>;
+          })}
+      </div> */}
     </>
   ) : (
     <div>Chargement</div>

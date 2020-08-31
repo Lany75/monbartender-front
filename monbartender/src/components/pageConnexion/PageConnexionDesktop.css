@@ -9,11 +9,15 @@
 
   #connexion, #inscription{
     margin: 50px;
-    padding: 20px;
   }
 
   #mail-utilisateur-connexion, #mdp-utilisateur-connexion, #mail-utilisateur-inscription, #mdp-utilisateur-inscription, #nom-utilisateur-inscription {
     margin: 5px;
     font-size: 15px;
+  }
+
+  #bouton-connexion-google {
+    font-size: 15px;
+    height: 30px;
   }
 }

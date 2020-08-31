@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Axios from "axios";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 import apiBaseURL from "../../env";
 
@@ -37,12 +38,10 @@ const IngredientBarComponent = ingredient => {
       <div className="nom-ingredient-bar" id={ingredient.nom + "-div"}>
         {ingredient.nom}
       </div>
-      <button
-        className="btn-suppression-ingredient"
+      <DeleteForeverIcon
+        id="icon-suppression-ingredient-bar"
         onClick={() => supprimerIngredient(ingredient.nom)}
-      >
-        X
-      </button>
+      />
     </>
   );
 };
