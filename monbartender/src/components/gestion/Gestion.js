@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-//import { Link } from "react-router-dom";
 
 import "./Gestion.css";
 import "./GestionDesktop.css";
@@ -9,6 +8,7 @@ import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
 import GestionIngredients from "../gestionIngredients/GestionIngredients";
 import GestionVerres from "../gestionVerres/GestionVerres";
+import GestionAdmin from "../gestionAdmin/GestionAdmin";
 
 const Gestion = () => {
   const { user } = useContext(AuthContext);
@@ -28,6 +28,11 @@ const Gestion = () => {
               <GestionIngredients />
               <GestionVerres />
             </div>
+            {user.email === "mlanie.parry@gmail.com" && (
+              <div className="gestion-admin">
+                <GestionAdmin />
+              </div>
+            )}
           </div>
         </>
       ) : (
