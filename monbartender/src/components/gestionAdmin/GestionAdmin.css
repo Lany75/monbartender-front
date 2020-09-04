@@ -1,14 +1,14 @@
-#gestion-verres {
+#gestion-admin {
   width: 300px;
-  background-color: rgb(245, 183, 177);
+  background-color: rgb(231, 183, 221);
   border-style: double;
   margin: 10px 0px 10px 0px;
-  height: 350px;
+  height: 200px;
   display: flex;
   flex-direction: column;
 }
 
-#titre-btn-verres {
+#titre-btn-admin {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -16,7 +16,7 @@
   margin: 2px;
 }
 
-#titre-ajout-verres {
+#titre-ajout-admin {
   font-size: 15px;
   text-align: center;
   margin-top: 20px;
@@ -24,11 +24,11 @@
   font-weight: bold;
 }
 
-#items-verres {
-  overflow: auto;
+#icon-ajout-admin {
+  font-size: 40px;
 }
 
-.item-verre{
+.item-admin{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -36,15 +36,11 @@
   padding-left: 5px;
 }
 
-#nom-verre-gestion {
-  margin:  0px 4px 0px 4px;
+#nom-admin-gestion {
+  margin: 0px 4px 0px 4px;
   font-size: 16px;
 }
 
-#icon-ajout-verre {
-  font-size: 40px;
-}
-
-#icon-modification-verre, #icon-suppression-verre {
+#icon-suppression-admin {
   font-size: 20px;
 }

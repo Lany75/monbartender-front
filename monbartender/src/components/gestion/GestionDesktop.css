@@ -8,7 +8,7 @@
     align-items: flex-start;
   }
 
-  .gestion-cocktails, .gestion-ingr-verres{
+  .gestion-cocktails, .gestion-ingr-verres, .gestion-admin{
     width: 100%;
     display: flex;
     flex-direction: row;
