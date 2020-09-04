@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import CreateIcon from "@material-ui/icons/Create";
 
 import apiBaseURL from "../../env";
 
@@ -53,9 +56,7 @@ const GestionVerres = () => {
     <div id="gestion-verres">
       <div id="titre-btn-verres">
         <div id="titre-ajout-verres">Liste verres</div>
-        <button id="btn-ajouter-verres" onClick={ajouterVerre}>
-          Ajouter
-        </button>
+        <AddCircleIcon id="icon-ajout-verre" onClick={ajouterVerre} />
       </div>
       <div id="items-verres">
         {listeVerres &&
@@ -64,18 +65,14 @@ const GestionVerres = () => {
               <div className="item-verre" key={index}>
                 <div id="nom-verre-gestion">{lv.nom}</div>
                 <div>
-                  <button
-                    className="btn-suppression-verre"
+                  <DeleteForeverIcon
+                    id="icon-suppression-verre"
                     onClick={() => supprimerVerre(lv.id)}
-                  >
-                    supprimer
-                  </button>
-                  <button
-                    className="btn-modification-verre"
+                  />
+                  <CreateIcon
+                    id="icon-modification-verre"
                     onClick={() => modifierVerre(lv.id)}
-                  >
-                    modifier
-                  </button>
+                  />
                 </div>
               </div>
             );
