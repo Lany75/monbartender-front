@@ -103,8 +103,6 @@ const ModifierCocktail = () => {
       }
     }
 
-    // console.log(donneesCocktail);
-
     history.push("/gestion");
   };
 
