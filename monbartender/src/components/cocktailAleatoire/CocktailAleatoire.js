@@ -28,8 +28,6 @@ const CocktailAleatoire = () => {
     }
   };
 
-  console.log(cocktailAleatoire);
-
   React.useEffect(() => {
     getCocktailAleatoire();
   }, [listeCocktails]);
