@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import CreateIcon from "@material-ui/icons/Create";
 
 import { IngredientContext } from "../../context/ingredientContext";
 
@@ -68,9 +70,6 @@ const GestionIngredients = () => {
       <div id="gestion-ingredients">
         <div id="titre-btn-ingredients">
           <div id="titre-ajout-ingredient">Liste ingrédients</div>
-          {/* <button id="btn-ajouter-ingredient" onClick={ajouterIngredient}>
-            Ajouter
-          </button> */}
           <AddCircleIcon
             id="icon-ajout-ingredient"
             onClick={ajouterIngredient}
@@ -83,18 +82,14 @@ const GestionIngredients = () => {
                 <div className="item-ingredient" key={index}>
                   <div id="nom-ingredient-gestion">{li.nom}</div>
                   <div>
-                    <button
-                      className="btn-gestion-supp-ingredient"
+                    <DeleteForeverIcon
+                      id="icon-suppression-ingredient"
                       onClick={() => supprimerIngredient(li.id)}
-                    >
-                      supprimer
-                    </button>
-                    <button
-                      className="btn-gestion-modif-ingredient"
+                    />
+                    <CreateIcon
+                      id="icon-modification-ingredient"
                       onClick={() => modifierIngredient(li.id)}
-                    >
-                      modifier
-                    </button>
+                    />
                   </div>
                 </div>
               );
