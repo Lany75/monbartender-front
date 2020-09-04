@@ -13,17 +13,14 @@ const AjoutAdmin = () => {
   let history = useHistory();
 
   const ajoutAdmin = () => {
-    console.log("on ajoute l'admin");
-
     const nvAdmin = document.getElementById("users").value;
 
     if (nvAdmin !== "") {
-      console.log("on veut ajouter l'admin : ", nvAdmin);
       Axios.put(`${apiBaseURL}/api/v1/gestion/admin/${nvAdmin}`, {
         action: "ajouter"
       });
       history.push("/gestion");
-    } else console.log("aucun nom sélectionné");
+    }
   };
 
   const getUsersList = () => {

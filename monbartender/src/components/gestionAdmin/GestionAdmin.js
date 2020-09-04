@@ -18,7 +18,6 @@ const GestionAdmin = () => {
   };
 
   const supprimerAdmin = mail => {
-    console.log("on supprime l'admin", mail);
     Axios.put(`${apiBaseURL}/api/v1/gestion/admin/${mail}`, {
       action: "supprimer"
     }).then(reponse => {
@@ -35,7 +34,6 @@ const GestionAdmin = () => {
         console.log("vous avez une erreur : ", error);
       });
   };
-  console.log("listeAdmin : ", listeAdmin);
 
   React.useEffect(() => {
     getListeAdmin();
