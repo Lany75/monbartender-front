@@ -5,7 +5,8 @@ import {
   TextField,
   RadioGroup,
   FormControlLabel,
-  Radio
+  Radio,
+  Button
 } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
@@ -305,10 +306,13 @@ const AjoutCocktail = () => {
             </div>
             <div id="box-etapes">{mesEtapes}</div>
           </div>
-
-          <button id="btn-ajout-nv-cocktail" onClick={ajoutCocktailBD}>
+          <Button
+            id="btn-ajout-nv-cocktail"
+            variant="contained"
+            onClick={ajoutCocktailBD}
+          >
             Ajouter !!
-          </button>
+          </Button>
         </>
       ) : (
         <div>Vous devez avoir les droits pour accéder à cette page</div>
