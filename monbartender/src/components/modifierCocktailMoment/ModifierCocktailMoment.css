@@ -20,8 +20,6 @@
 }
 
 #btn-validation-modif {
-  display: flex;
-  justify-content: center;
-  width: 100px;
-  border-radius: 10px;
+  font-size: 10px;
+  margin: 10px;
 }

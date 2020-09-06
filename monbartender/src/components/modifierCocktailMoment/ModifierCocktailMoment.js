@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import apiBaseURL from "../../env";
 
@@ -98,9 +99,17 @@ const ModifierCocktailMoment = () => {
                 </div>
               );
             })}
-          <button id="btn-validation-modif" onClick={remplacerCocktails}>
+          {/* <button id="btn-validation-modif" onClick={remplacerCocktails}>
             Remplacer !!
-          </button>
+          </button> */}
+
+          <Button
+            id="btn-validation-modif"
+            variant="contained"
+            onClick={remplacerCocktails}
+          >
+            Remplacer !!
+          </Button>
         </>
       ) : (
         <div>Vous devez avoir les droits pour accéder à cette page</div>
