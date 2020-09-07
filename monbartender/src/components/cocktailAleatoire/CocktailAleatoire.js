@@ -49,15 +49,10 @@ const CocktailAleatoire = () => {
           </Link>
         )}
         <div id="div-btn-autre-cocktail">
-          {/* <button id="btn-autre-cocktail" onClick={getCocktailAleatoire}>
-            Un autre !!
-          </button> */}
-
           <Button
             id="btn-autre-cocktail"
             variant="contained"
             onClick={getCocktailAleatoire}
-            //size="small"
           >
             Un autre !!
           </Button>

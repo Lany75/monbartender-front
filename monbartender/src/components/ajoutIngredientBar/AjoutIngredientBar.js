@@ -57,10 +57,6 @@ const AjoutIngredientBar = () => {
             )}
           />
         )}
-        {/* <button id="btn-ajout-ingredient" onClick={ajouterIngredient}>
-          Ajouter l&apos;ingredient
-        </button>
- */}
         <Button
           id="btn-ajout-ingredient"
           variant="contained"
