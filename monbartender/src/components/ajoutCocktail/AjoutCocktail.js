@@ -5,7 +5,8 @@ import {
   TextField,
   RadioGroup,
   FormControlLabel,
-  Radio
+  Radio,
+  Button
 } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
@@ -282,12 +283,20 @@ const AjoutCocktail = () => {
           <div id="div-ingredients">
             <div id="ingr-bouton">
               <div>Ingrédients (10 maximum)</div>
-              <button id="btn-ajout-supp" onClick={AjoutDivIngredient}>
+              <Button
+                id="btn-ajout-supp"
+                variant="contained"
+                onClick={AjoutDivIngredient}
+              >
                 +
-              </button>
-              <button id="btn-ajout-supp" onClick={SupprimeDivIngredient}>
+              </Button>
+              <Button
+                id="btn-ajout-supp"
+                variant="contained"
+                onClick={SupprimeDivIngredient}
+              >
                 -
-              </button>
+              </Button>
             </div>
 
             <div id="box-ingredient">{mesIngredients}</div>
@@ -296,19 +305,30 @@ const AjoutCocktail = () => {
           <div id="div-etapes-preparation">
             <div id="etapes-bouton">
               <div>Etapes Préparation (6 maximum)</div>
-              <button id="btn-ajout-supp" onClick={AjoutDivEtape}>
+              <Button
+                id="btn-ajout-supp"
+                variant="contained"
+                onClick={AjoutDivEtape}
+              >
                 +
-              </button>
-              <button id="btn-ajout-supp" onClick={SupprimeDivEtape}>
+              </Button>
+              <Button
+                id="btn-ajout-supp"
+                variant="contained"
+                onClick={SupprimeDivEtape}
+              >
                 -
-              </button>
+              </Button>
             </div>
             <div id="box-etapes">{mesEtapes}</div>
           </div>
-
-          <button id="btn-ajout-nv-cocktail" onClick={ajoutCocktailBD}>
+          <Button
+            id="btn-ajout-nv-cocktail"
+            variant="contained"
+            onClick={ajoutCocktailBD}
+          >
             Ajouter !!
-          </button>
+          </Button>
         </>
       ) : (
         <div>Vous devez avoir les droits pour accéder à cette page</div>
