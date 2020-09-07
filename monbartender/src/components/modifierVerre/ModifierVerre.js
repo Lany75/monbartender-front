@@ -3,9 +3,11 @@ import { useParams, useHistory } from "react-router-dom";
 import Axios from "axios";
 
 import apiBaseURL from "../../env";
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 
 import "./ModifierVerre.css";
+import "./ModifierVerreDesktop.css";
+
 import { AuthContext } from "../../context/authContext";
 import { VerreContext } from "../../context/verreContext";
 
@@ -80,9 +82,16 @@ const ModifierVerre = () => {
                 defaultValue={verreModifie.nom}
               />
             </div>
-            <button id="btn-modif-verre" onClick={modifierVerreBD}>
+            {/* <button id="btn-modif-verre" onClick={modifierVerreBD}>
               Modifier !!
-            </button>
+            </button> */}
+            <Button
+              id="btn-modif-verre"
+              variant="contained"
+              onClick={modifierVerreBD}
+            >
+              Modifier !!
+            </Button>
           </>
         )
       ) : (
