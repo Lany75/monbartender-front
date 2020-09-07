@@ -38,16 +38,10 @@ const Auth = () => {
         <div></div>
       )}
       {user ? (
-        /* <button className="auth-bouton" onClick={deconnexion}>
-          Déconnexion
-        </button> */
         <Button id="auth-bouton" variant="contained" onClick={deconnexion}>
           Déconnexion
         </Button>
       ) : (
-        /* <button className="auth-bouton" onClick={connexion}>
-          Connexion
-        </button> */
         <Button id="auth-bouton" variant="contained" onClick={connexion}>
           Connexion
         </Button>

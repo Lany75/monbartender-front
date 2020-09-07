@@ -99,10 +99,6 @@ const ModifierCocktailMoment = () => {
                 </div>
               );
             })}
-          {/* <button id="btn-validation-modif" onClick={remplacerCocktails}>
-            Remplacer !!
-          </button> */}
-
           <Button
             id="btn-validation-modif"
             variant="contained"

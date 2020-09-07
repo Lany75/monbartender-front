@@ -25,19 +25,28 @@ const Navbar = () => {
     <>
       <div id="navbar">
         <div id="non-connecte">
-          <Link to="/">
+          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
             <NavComponent name="Accueil" Icon={TiHome} />
           </Link>
 
-          <Link to="/rechercher-par-ingredient">
+          <Link
+            to="/rechercher-par-ingredient"
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <NavComponent name="Recherche par ingrédient" Icon={FaSearch} />
           </Link>
 
-          <Link to="/recettes">
+          <Link
+            to="/recettes"
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <NavComponent name="Les recettes" Icon={FaGlassMartiniAlt} />
           </Link>
 
-          <Link to="/aleatoire">
+          <Link
+            to="/aleatoire"
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <NavComponent name="Au hasard" Icon={GiRollingDices} />
           </Link>
         </div>
@@ -46,7 +55,10 @@ const Navbar = () => {
           <div id="connecte">
             <NavComponent name="Mon profil" Icon={FaRegUser} />
 
-            <Link to="/monbar">
+            <Link
+              to="/monbar"
+              style={{ textDecoration: "none", color: "black" }}
+            >
               <NavComponent name="Mon bar" Icon={FaWineBottle} />
             </Link>
 
@@ -58,7 +70,10 @@ const Navbar = () => {
         )}
         {user && bar && bar.droits === true && (
           <div id="gerant">
-            <Link to="/gestion">
+            <Link
+              to="/gestion"
+              style={{ textDecoration: "none", color: "black" }}
+            >
               <NavComponent name="Gestion" Icon={FaCarrot} />
             </Link>
           </div>

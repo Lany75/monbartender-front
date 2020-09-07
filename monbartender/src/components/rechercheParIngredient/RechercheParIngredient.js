@@ -126,10 +126,6 @@ const RechercheParIngredient = () => {
           )}
         </div>
         <div id="div-btn-recherche">
-          {/* <button id="btn-recherche-par-ingredient" onClick={Recherche}>
-            Lancer la recherche ...
-          </button> */}
-
           <Button
             id="btn-recherche-par-ingredient"
             variant="contained"
