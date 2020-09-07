@@ -2,9 +2,13 @@
   #titre-ingredient-ajoute {
     font-size: 25px;
   }
+
+  #box-ingredient-ajout {
+    width: 500px;
+  }
   
-  #btn-ajout-supp {
-    font-size: 20px;
+  #btn-ajout-supp-ingr {
+    font-size: 15px;
   }
 
   #btn-ajout-nv-ingredient {

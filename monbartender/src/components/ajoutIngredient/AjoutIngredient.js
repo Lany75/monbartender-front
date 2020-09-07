@@ -91,21 +91,21 @@ const AjoutIngredient = () => {
           <div id="titre-ingredient-ajoute">Ajout d&apos;ingrédients</div>
           <div id="ingr-bouton">
             <Button
-              id="btn-ajout-supp"
+              id="btn-ajout-supp-ingr"
               variant="contained"
               onClick={AjoutDivIngredient}
             >
               +
             </Button>
             <Button
-              id="btn-ajout-supp"
+              id="btn-ajout-supp-ingr"
               variant="contained"
               onClick={SupprimeDivIngredient}
             >
               -
             </Button>
           </div>
-          <div id="box-ingredient">{lesIngredients}</div>
+          <div id="box-ingredient-ajout">{lesIngredients}</div>
 
           <Button
             id="btn-ajout-nv-ingredient"

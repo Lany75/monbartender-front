@@ -6,11 +6,19 @@
   font-weight: bold;
 }
 
-#btn-ajout-nv-ingredient {
-  font-size: 10px;
-  margin: 10px;
+#box-ingredient-ajout {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  width: 250px;
 }
 
-#btn-ajout-supp {
-  font-size: 15px;
+#btn-ajout-nv-ingredient {
+  font-size: 10px;
+  margin: 30px;
+}
+
+#btn-ajout-supp-ingr {
+  font-size: 10px;
+  margin : 10px 10px 20px 10px;
 }
