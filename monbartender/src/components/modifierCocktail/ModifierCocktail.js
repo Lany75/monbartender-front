@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Axios from "axios";
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 
 import { firebase, refStorage } from "../../firebaseConfig";
 import apiBaseURL from "../../env";
 
 import "./ModifierCocktail.css";
+import "./ModifierCocktailDesktop.css";
 
 import { AuthContext } from "../../context/authContext";
 import { CocktailContext } from "../../context/cocktailContext";
@@ -178,9 +179,13 @@ const ModifierCocktail = () => {
               </div>
             </div>*/}
           </div>
-          <button id="btn-modif-cocktail" onClick={modifierCocktailBD}>
+          <Button
+            id="btn-modif-cocktail"
+            variant="contained"
+            onClick={modifierCocktailBD}
+          >
             Modifier !!
-          </button>
+          </Button>
         </>
       ) : (
         <div>chargement</div>

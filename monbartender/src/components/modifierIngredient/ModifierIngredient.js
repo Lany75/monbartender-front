@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { useParams, useHistory } from "react-router-dom";
 import Axios from "axios";
 
 import apiBaseURL from "../../env";
 
 import "./ModifierIngredient.css";
+import "./ModifierIngredientDesktop.css";
+
 import { IngredientContext } from "../../context/ingredientContext";
 import { AuthContext } from "../../context/authContext";
 
@@ -87,9 +89,13 @@ const ModifierIngredient = () => {
                 defaultValue={ingredientModifie.nom}
               />
             </div>
-            <button id="btn-modif-ingredient" onClick={modifierIngredientBD}>
+            <Button
+              id="btn-modif-ingredient"
+              variant="contained"
+              onClick={modifierIngredientBD}
+            >
               Modifier !!
-            </button>
+            </Button>
           </>
         )
       ) : (

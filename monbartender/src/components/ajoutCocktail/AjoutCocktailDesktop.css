@@ -21,7 +21,7 @@
     font-size: 15px;
   }
   #btn-ajout-supp {
-    font-size: 15px;
+    font-size: 20px;
   }
 
   #box-ingredient{
@@ -43,9 +43,6 @@
   }
 
   #btn-ajout-nv-cocktail {
-    width: 100px;
-    height: 30px;
     font-size: 15px;
-    border-radius: 5px;
   }
 }

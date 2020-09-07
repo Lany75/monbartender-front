@@ -1,0 +1,17 @@
+@media screen and (min-width: 769px) {
+  #titre-ingredient-ajoute {
+    font-size: 25px;
+  }
+
+  #box-ingredient-ajout {
+    width: 500px;
+  }
+  
+  #btn-ajout-supp-ingr {
+    font-size: 15px;
+  }
+
+  #btn-ajout-nv-ingredient {
+    font-size: 15px;
+  }
+}
