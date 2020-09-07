@@ -82,9 +82,6 @@ const ModifierVerre = () => {
                 defaultValue={verreModifie.nom}
               />
             </div>
-            {/* <button id="btn-modif-verre" onClick={modifierVerreBD}>
-              Modifier !!
-            </button> */}
             <Button
               id="btn-modif-verre"
               variant="contained"

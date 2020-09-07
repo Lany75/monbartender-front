@@ -43,9 +43,6 @@ const PageConnexion = () => {
       <div id="connexion">
         CONNEXION
         <div id="connexion-google">
-          {/*  <button className="auth-bouton" onClick={connexionGoogle}>
-            Connexion avec Google
-          </button> */}
           <Button
             id="bouton-connexion-google"
             variant="contained"
