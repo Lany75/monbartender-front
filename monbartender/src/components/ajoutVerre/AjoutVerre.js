@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 
@@ -10,6 +10,7 @@ import { VerreContext } from "../../context/verreContext";
 import apiBaseURL from "../../env";
 
 import "./AjoutVerre.css";
+import "./AjoutVerreDesktop.css";
 
 const AjoutVerre = () => {
   const { user, accessToken } = useContext(AuthContext);
@@ -87,18 +88,29 @@ const AjoutVerre = () => {
         <>
           <div id="titre-verre-ajoute">Ajout de verre</div>
           <div id="verre-bouton">
-            <button id="btn-ajout-supp" onClick={AjoutDivVerre}>
+            <Button
+              id="btn-ajout-supp-verre"
+              variant="contained"
+              onClick={AjoutDivVerre}
+            >
               +
-            </button>
-            <button id="btn-ajout-supp" onClick={SupprimeDivVerre}>
+            </Button>
+            <Button
+              id="btn-ajout-supp-verre"
+              variant="contained"
+              onClick={SupprimeDivVerre}
+            >
               -
-            </button>
+            </Button>
           </div>
-          <div id="box-verre">{lesVerres}</div>
-
-          <button id="btn-ajout-nv-verre" onClick={ajoutVerreBD}>
+          <div id="box-verre-ajout">{lesVerres}</div>
+          <Button
+            id="btn-ajout-nv-verre"
+            variant="contained"
+            onClick={ajoutVerreBD}
+          >
             Ajouter !!
-          </button>
+          </Button>
         </>
       ) : (
         <div>Vous devez avoir les droits pour accéder à cette page</div>
