@@ -2,13 +2,15 @@ import React, { useState, useContext } from "react";
 
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 
 import apiBaseURL from "../../env";
 
 import { AuthContext } from "../../context/authContext";
 
 import "./AjoutIngredient.css";
+import "./AjoutIngredientDesktop.css";
+
 import { IngredientContext } from "../../context/ingredientContext";
 import { BarContext } from "../../context/barContext";
 
@@ -88,18 +90,30 @@ const AjoutIngredient = () => {
         <>
           <div id="titre-ingredient-ajoute">Ajout d&apos;ingrédients</div>
           <div id="ingr-bouton">
-            <button id="btn-ajout-supp" onClick={AjoutDivIngredient}>
+            <Button
+              id="btn-ajout-supp"
+              variant="contained"
+              onClick={AjoutDivIngredient}
+            >
               +
-            </button>
-            <button id="btn-ajout-supp" onClick={SupprimeDivIngredient}>
+            </Button>
+            <Button
+              id="btn-ajout-supp"
+              variant="contained"
+              onClick={SupprimeDivIngredient}
+            >
               -
-            </button>
+            </Button>
           </div>
           <div id="box-ingredient">{lesIngredients}</div>
 
-          <button id="btn-ajout-nv-ingredient" onClick={ajoutIngredientBD}>
+          <Button
+            id="btn-ajout-nv-ingredient"
+            variant="contained"
+            onClick={ajoutIngredientBD}
+          >
             Ajouter !!
-          </button>
+          </Button>
         </>
       ) : (
         <div>Vous devez avoir les droits pour accéder à cette page</div>

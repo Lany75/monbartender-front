@@ -1,0 +1,13 @@
+@media screen and (min-width: 769px) {
+  #titre-ingredient-ajoute {
+    font-size: 25px;
+  }
+  
+  #btn-ajout-supp {
+    font-size: 20px;
+  }
+
+  #btn-ajout-nv-ingredient {
+    font-size: 15px;
+  }
+}
