@@ -17,41 +17,34 @@ import "./ModifierCocktailMomentDesktop.css";
 const ModifierCocktailMoment = () => {
   const { user, accessToken } = useContext(AuthContext);
   const { bar } = useContext(BarContext);
-  const {
-    listeCocktails,
-    listeCocktailsMoment,
-    setListeCocktailsMoment
-  } = useContext(CocktailContext);
+  const { listeCocktails, setListeCocktailsMoment } = useContext(
+    CocktailContext
+  );
   let history = useHistory();
 
   const remplacerCocktails = () => {
-    const cocktail1 = listeCocktailsMoment[0].nom;
-    const boxValue1 = document.getElementById("auto-complete-0").value;
+    const nvCocktailMoment1 = document.getElementById("autocomplete1").value;
+    const nvCocktailMoment2 = document.getElementById("autocomplete2").value;
 
-    const cocktail2 = listeCocktailsMoment[1].nom;
-    const boxValue2 = document.getElementById("auto-complete-1").value;
-
-    if (
-      (boxValue2 === "" && boxValue1 === cocktail2) ||
-      (boxValue1 === "" && boxValue2 === cocktail1)
-    )
-      alert("Cette modification ne peut pas etre faite");
-    else {
-      if (boxValue1 !== "") {
-        modifierCocktailMoment(cocktail1, boxValue1);
+    if (nvCocktailMoment1 === "" || nvCocktailMoment2 === "") {
+      alert("Vous devez choisir 2 nouveaux cocktails");
+    } else {
+      if (nvCocktailMoment1 === nvCocktailMoment2) {
+        alert("Les 2 cocktails choisis doivent être différents");
+      } else {
+        modifierCocktailMoment({
+          cocktail1: nvCocktailMoment1,
+          cocktail2: nvCocktailMoment2
+        });
+        history.push("/gestion");
       }
-
-      if (boxValue2 !== "") {
-        modifierCocktailMoment(cocktail2, boxValue2);
-      }
-      history.push("/gestion");
     }
   };
 
-  const modifierCocktailMoment = (ancienCocktail, nouveauCocktail) => {
+  const modifierCocktailMoment = nvCocktailsMoment => {
     Axios.put(
-      `${apiBaseURL}/api/v1/gestion/cocktails-du-moment?nomAncienCocktail=${ancienCocktail}&nomNouveauCocktail=${nouveauCocktail}`,
-      {},
+      `${apiBaseURL}/api/v1/gestion/cocktails-du-moment`,
+      nvCocktailsMoment,
       {
         headers: {
           authorization: accessToken
@@ -73,39 +66,50 @@ const ModifierCocktailMoment = () => {
           <div id="titre-modif-cocktail-moment">
             Modification des cocktails du moment
           </div>
-          <div id="txt-remplacer">Remplacer :</div>
-          {listeCocktailsMoment &&
-            listeCocktails &&
-            listeCocktailsMoment.map((cm, index) => {
-              const idAutoComplete = "auto-complete-" + index;
 
-              return (
-                <div className="cocktail-modifie" key={index}>
-                  <div>{cm.nom}</div>
-                  <div>par</div>
+          {listeCocktails && (
+            <>
+              <div id="div-autocomplete">
+                <div id="auto-complete-1">
                   <Autocomplete
-                    id={idAutoComplete}
+                    id="autocomplete1"
                     options={listeCocktails}
                     getOptionLabel={option => option.nom}
                     style={{ width: 300 }}
                     renderInput={params => (
                       <TextField
                         {...params}
-                        label="Nouveau cocktail"
+                        label="1er cocktail du moment"
                         variant="outlined"
                       />
                     )}
                   />
                 </div>
-              );
-            })}
-          <Button
-            id="btn-validation-modif"
-            variant="contained"
-            onClick={remplacerCocktails}
-          >
-            Remplacer !!
-          </Button>
+                <div id="auto-complete-2">
+                  <Autocomplete
+                    id="autocomplete2"
+                    options={listeCocktails}
+                    getOptionLabel={option => option.nom}
+                    style={{ width: 300 }}
+                    renderInput={params => (
+                      <TextField
+                        {...params}
+                        label="2eme cocktail du moment"
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </div>
+              </div>
+              <Button
+                id="btn-validation-modif"
+                variant="contained"
+                onClick={remplacerCocktails}
+              >
+                Remplacer !!
+              </Button>
+            </>
+          )}
         </>
       ) : (
         <div>Vous devez avoir les droits pour accéder à cette page</div>
