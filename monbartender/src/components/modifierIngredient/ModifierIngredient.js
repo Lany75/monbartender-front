@@ -10,6 +10,7 @@ import "./ModifierIngredientDesktop.css";
 
 import { IngredientContext } from "../../context/ingredientContext";
 import { AuthContext } from "../../context/authContext";
+import { BarContext } from "../../context/barContext";
 
 const ModifierIngredient = () => {
   const { id } = useParams();
@@ -18,6 +19,7 @@ const ModifierIngredient = () => {
   const { listeIngredients, setListeIngredients } = useContext(
     IngredientContext
   );
+  const { getBarUser } = useContext(BarContext);
   let history = useHistory();
 
   const getIngredientModifie = ingredientId => {
@@ -59,6 +61,7 @@ const ModifierIngredient = () => {
           }
         }).then(reponse => {
           setListeIngredients(reponse.data);
+          getBarUser();
           history.push("/gestion");
         });
       } else {
