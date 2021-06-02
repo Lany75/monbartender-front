@@ -24,13 +24,13 @@ function App() {
               <BrowserRouter>
                 <div className="container">
                   <Header />
-                  <div className="nav-main">
-                    <Navbar />
-                    <Main />
-                  </div>
-                  <div className="footer">
-                    <Footer />
-                  </div>
+                  {/*<div className="nav-main">*/}
+                  <Navbar />
+                  <Main />
+                  {/*</div>
+                  <div className="footer">*/}
+                  <Footer />
+                  {/*</div>*/}
                 </div>
               </BrowserRouter>
             </VerreProvider>
