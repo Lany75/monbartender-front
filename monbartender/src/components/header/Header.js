@@ -3,8 +3,8 @@ import React from "react";
 import "./Header.css";
 import "./HeaderDesktop.css";
 
-import Auth from "../auth/Auth";
 import InputRechercheParNom from "../inputRechercheParNom/InputRechercheParNom";
+import AuthButton from "../authButton/AuthButton";
 
 const Header = () => {
   return (
@@ -13,7 +13,7 @@ const Header = () => {
         <div id="titre">Mon BarTender</div>
       </div>
       <InputRechercheParNom />
-      <Auth />
+      <AuthButton />
     </div>
   );
 };

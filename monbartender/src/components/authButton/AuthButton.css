@@ -1,0 +1,18 @@
+.auth {
+  margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-button {
+  font-size: 30px;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+}
+
+.auth-name {
+  font-size: 10px;
+}
