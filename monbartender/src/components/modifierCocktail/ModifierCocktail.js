@@ -86,7 +86,7 @@ const ModifierCocktail = () => {
       upload.on(
         "state_changed",
 
-        function progress() {},
+        function progress() { },
         function error() {
           console.log("error uploading file");
         },
@@ -110,7 +110,7 @@ const ModifierCocktail = () => {
   React.useEffect(() => {
     getCocktailModifie(id);
     // getAllVerres();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

@@ -25,7 +25,7 @@ function AuthProvider({ children, user = null, signOut, signInWithGoogle }) {
         setAccessToken(res);
       });
     }
-  }, [user]);
+  }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <AuthContext.Provider

@@ -30,7 +30,7 @@ const CocktailAleatoire = () => {
 
   React.useEffect(() => {
     getCocktailAleatoire();
-  }, [listeCocktails]);
+  }, [listeCocktails]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (cocktailAleatoire) {
     to = "/cocktail/" + cocktailAleatoire.id;

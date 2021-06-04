@@ -29,7 +29,7 @@ function BarProvider({ children }) {
 
   React.useEffect(() => {
     getBarUser();
-  }, [user, accessToken]);
+  }, [user, accessToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <BarContext.Provider value={{ bar, setBar, getBarUser }}>
