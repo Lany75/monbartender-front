@@ -40,7 +40,7 @@ const ListeParNom = () => {
 
   React.useEffect(() => {
     getCocktailByName();
-  }, [cocktailName]);
+  }, [cocktailName]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
