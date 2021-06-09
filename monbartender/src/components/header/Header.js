@@ -1,17 +1,15 @@
 import React from "react";
 
-import "./Header.css";
-import "./HeaderDesktop.css";
-
-import InputRechercheParNom from "../inputRechercheParNom/InputRechercheParNom";
 import AuthButton from "../authButton/AuthButton";
+import AppliTitre from "../appliTitre/AppliTitre";
+import InputRechercheParNom from "../inputRechercheParNom/InputRechercheParNom";
+
+import "./Header.css";
 
 const Header = () => {
   return (
     <div className="header">
-      <div className="menu-titre">
-        <div id="titre">Mon BarTender</div>
-      </div>
+      <AppliTitre />
       <InputRechercheParNom />
       <AuthButton />
     </div>
