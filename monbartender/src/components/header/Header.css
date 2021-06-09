@@ -3,17 +3,5 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #DAECF1;
+  background-color: var(--header-bg-color);
 }
-
-.menu-titre {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-  #titre {
-  font-size: 25px;
-  font-family: 'Pirata One';
-  margin-left: 5px;
-} 

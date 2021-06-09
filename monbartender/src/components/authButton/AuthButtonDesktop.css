@@ -1,0 +1,9 @@
+@media screen and (min-width: 769px) {
+  .auth {
+    margin-right: 30px;
+  }
+  
+  .auth-name {
+    font-size: 15px;
+  }
+}

@@ -9,32 +9,34 @@
   src: url('./assets//police//Niramit-Regular.ttf')
 }
 
+
+:root {
+  --body-bg-color: rgba(161, 96, 59, 0.774);
+  --header-bg-color: rgba(248, 188, 77, 0.623);
+  --navbar-bg-color: rgba(151, 88, 52, 0.774);
+  --navbar-border-color : rgba(95, 40, 9, 0.774);
+  /*--footer-bg-color: rgba(248, 188, 77, 0.623);*/
+  --app-width : 1000px;
+  --app-height : 100%;
+  --app-bg-color : whitesmoke;
+}
+
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   width: 100vw;
+  min-height: 100vh;
+  background-color: var(--app-bg-color);
 }
-
-.nav-main {
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-}
-
-.footer {
-  flex-shrink: 0; 
-}
-
 
 @media screen and (min-width: 769px) {
-  .nav-main {
+  body {
     display: flex;
-    flex-direction: row;
-    flex: 1 0 auto;
+    justify-content: center;
+    background-color: var(--body-bg-color);
   }
 
-  .footer {
-    flex-shrink: 0; 
+  .container {
+    width: var(--app-width);
   }
 }

@@ -7,12 +7,10 @@ import CocktailProvider from "./context/cocktailContext";
 import IngredientProvider from "./context/ingredientContext";
 import VerreProvider from "./context/verreContext";
 
-import "./App.css";
-
 import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import Navbar from "./components/navbar/Navbar";
 import Main from "./components/main/Main";
+
+import "./App.css";
 
 function App() {
   return (
@@ -24,13 +22,7 @@ function App() {
               <BrowserRouter>
                 <div className="container">
                   <Header />
-                  <div className="nav-main">
-                    <Navbar />
-                    <Main />
-                  </div>
-                  <div className="footer">
-                    <Footer />
-                  </div>
+                  <Main />
                 </div>
               </BrowserRouter>
             </VerreProvider>
