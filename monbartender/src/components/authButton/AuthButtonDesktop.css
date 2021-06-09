@@ -2,14 +2,8 @@
   .auth {
     margin-right: 30px;
   }
-
-  .auth-button {
-    font-size: 60px;
-    width: 70px;
-    height: 70px;
-  }
   
   .auth-name {
-    font-size: 20px;
+    font-size: 15px;
   }
 }
