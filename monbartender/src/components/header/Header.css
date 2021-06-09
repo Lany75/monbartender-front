@@ -5,15 +5,3 @@
   align-items: center;
   background-color: var(--header-bg-color);
 }
-
-.menu-titre {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-  #titre {
-  font-size: 25px;
-  font-family: 'Pirata One';
-  margin-left: 5px;
-} 
