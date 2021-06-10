@@ -56,7 +56,6 @@ const MenuButton = () => {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>Recherche</MenuItem>
-
       </Menu>
     </div>
   )
