@@ -16,7 +16,7 @@ const providers = {
 export const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
-function AuthProvider({ children, user = null, signOut, signInWithGoogle }) {
+function AuthProvider({ children, user = null, signInWithGoogle }) {
   const [accessToken, setAccessToken] = useState(null);
 
   React.useEffect(() => {
@@ -31,7 +31,6 @@ function AuthProvider({ children, user = null, signOut, signInWithGoogle }) {
     <AuthContext.Provider
       value={{
         user,
-        signOut,
         signInWithGoogle,
         accessToken,
         setAccessToken

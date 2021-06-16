@@ -24,12 +24,14 @@ import AjoutVerre from "../ajoutVerre/AjoutVerre";
 import ModifierVerre from "../modifierVerre/ModifierVerre";
 import ModifierIngredient from "../modifierIngredient/ModifierIngredient";
 import AjoutAdmin from "../ajoutAdmin/AjoutAdmin";
+import SignUp from "../signUp/SignUp";
 
 function Main() {
   return (
     <div className="main">
       <Switch>
         <Route exact path="/" component={Accueil} />
+        <Route exact path="/inscription" component={SignUp} />
         <Route exact path="/connexion" component={PageConnexion} />
         <Route
           path="/rechercher-par-ingredient"
