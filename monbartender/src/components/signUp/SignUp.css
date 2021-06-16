@@ -1,0 +1,17 @@
+.inscription-message {
+  padding: 10px 10px 10px 10px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.inscription {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  width: 100%;
+  margin-top: 24px;
+}
