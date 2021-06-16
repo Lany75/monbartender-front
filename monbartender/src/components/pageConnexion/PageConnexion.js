@@ -3,9 +3,11 @@ import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
 import { AuthContext } from "../../context/authContext";
+import SignIn from "../signIn/SignIn";
 
 import "./PageConnexion.css";
 import "./PageConnexionDesktop.css";
+
 
 const PageConnexion = () => {
   const { signInWithGoogle } = useContext(AuthContext);
@@ -39,19 +41,21 @@ const PageConnexion = () => {
   }; */
 
   return (
-    <div id="connexion-inscription">
-      <div id="connexion">
-        CONNEXION
-        <div id="connexion-google">
-          <Button
-            id="bouton-connexion-google"
-            variant="contained"
-            onClick={connexionGoogle}
-          >
-            Connexion avec Google
-          </Button>
-        </div>
-        {/* <div className="inputs-connexion">
+    <>
+      <SignIn />
+      <div id="connexion-inscription">
+        <div id="connexion">
+          CONNEXION
+          <div id="connexion-google">
+            <Button
+              id="bouton-connexion-google"
+              variant="contained"
+              onClick={connexionGoogle}
+            >
+              Connexion avec Google
+            </Button>
+          </div>
+          {/* <div className="inputs-connexion">
           <input
             type="text"
             id="mail-utilisateur-connexion"
@@ -66,8 +70,8 @@ const PageConnexion = () => {
             Connexion
           </button>
         </div> */}
-      </div>
-      {/*  <div id="inscription">
+        </div>
+        {/*  <div id="inscription">
         INSCRIPTION
         <div className="inputs-inscription">
           <input
@@ -90,7 +94,8 @@ const PageConnexion = () => {
           </button>
         </div>
       </div> */}
-    </div>
+      </div>
+    </>
   );
 };
 
