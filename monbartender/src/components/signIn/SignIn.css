@@ -1,21 +1,15 @@
-.inscription-message {
-  padding: 10px 10px 10px 10px;
-  text-align: right;
-  font-size: 10px;
-}
-
-.inscription {
+.connexion {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.signup-form {
+.signin-form {
   width: 100%;
   margin-top: 24px;
 }
 
-.yes-account {
+.no-account, .forgot-pass {
   font-size: 10px;
 }

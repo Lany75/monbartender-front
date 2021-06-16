@@ -50,9 +50,6 @@ const SignUp = () => {
           case 'auth/invalid-email':
             setMessage(`L'adresse mail ${mail} n'est pas valide`);
             break;
-          case 'auth/operation-not-allowed':
-            setMessage(`Erreur pendant la création de compte`);
-            break;
           case 'auth/weak-password':
             setMessage('Le mot de passe doit contenir au moins 6 caractères');
             break;
@@ -72,7 +69,7 @@ const SignUp = () => {
           <Typography component="h1" variant="h5">
             Inscription
           </Typography>
-          <form className='form' onSubmit={onSignUp}>
+          <form className='signup-form' onSubmit={onSignUp}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -148,7 +145,7 @@ const SignUp = () => {
               S'inscrire
             </Button>
             <Grid container justify="flex-end">
-              <Grid item>
+              <Grid item className='yes-account'>
                 Déja un compte? <Link
                   to='/connexion'
                 >
