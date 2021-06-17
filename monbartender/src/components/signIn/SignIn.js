@@ -89,7 +89,9 @@ const SignIn = () => {
             </div>
             <Grid container>
               <Grid item xs className='forgot-pass'>
-                Mot de passe oublié?
+                <Link to='/forgot-password'>
+                  Mot de passe oublié?
+                </Link>
               </Grid>
               <Grid item className='no-account'>
                 Pas de compte? <Link
