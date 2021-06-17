@@ -9,29 +9,25 @@ import VerreProvider from "./context/verreContext";
 
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
-
 import "./App.css";
-import { UserProvider } from "./context/userContext";
 
 function App() {
   return (
     <FirebaseAuthProvider>
-      <UserProvider>
-        <BarProvider>
-          <CocktailProvider>
-            <IngredientProvider>
-              <VerreProvider>
-                <BrowserRouter>
-                  <div className="container">
-                    <Header />
-                    <Main />
-                  </div>
-                </BrowserRouter>
-              </VerreProvider>
-            </IngredientProvider>
-          </CocktailProvider>
-        </BarProvider>
-      </UserProvider>
+      <BarProvider>
+        <CocktailProvider>
+          <IngredientProvider>
+            <VerreProvider>
+              <BrowserRouter>
+                <div className="container">
+                  <Header />
+                  <Main />
+                </div>
+              </BrowserRouter>
+            </VerreProvider>
+          </IngredientProvider>
+        </CocktailProvider>
+      </BarProvider>
     </FirebaseAuthProvider>
   );
 }

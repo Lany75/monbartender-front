@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 
-import firebaseAppAuth from '../../firebaseConfig';
-
 import { AuthContext } from '../../context/authContext';
 import { BarContext } from '../../context/barContext';
 
@@ -12,11 +10,11 @@ import './AuthButton.css';
 import './AuthButtonDesktop.css';
 
 const AuthButton = () => {
-  let { user, setAccessToken } = useContext(AuthContext);
+  let { user, setAccessToken, signOut } = useContext(AuthContext);
   const { bar, setBar } = useContext(BarContext);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  //const userName = user && (user.displayName.split(' '))[0];
+  const userName = user && (user.displayName.split(' '))[0];
   const open = Boolean(anchorEl);
 
   const handleMenu = (event) => {
@@ -28,7 +26,7 @@ const AuthButton = () => {
   };
 
   const deconnexion = () => {
-    firebaseAppAuth.signOut();
+    signOut();
     setBar(null);
     setAccessToken(null);
     user = null;
@@ -45,9 +43,9 @@ const AuthButton = () => {
         color="inherit"
       >
         <AccountCircle />
-        {/*user && (
+        {user && (
           <div className='auth-name'>{userName}</div>
-        )*/}
+        )}
       </IconButton>
       <Menu
         id="auth-appbar"
