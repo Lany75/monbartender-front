@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import GoogleButton from '../googleButton/GoogleButton';
 import firebaseAppAuth from '../../firebaseConfig';
-
 import './SignIn.css';
 import './SignInDesktop.css';
 
@@ -51,7 +51,7 @@ const SignIn = () => {
 
   return (
     <>
-      <div className='inscription-message'>{message}</div>
+      <div className='connexion-message'>{message}</div>
       <Container component="main" maxWidth="xs">
         <div className='connexion'>
           <Typography component="h1" variant="h5">
@@ -106,6 +106,7 @@ const SignIn = () => {
           </form>
         </div>
       </Container >
+      <GoogleButton text='Connexion Google' />
     </>
   );
 }
