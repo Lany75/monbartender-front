@@ -65,6 +65,7 @@ const SignUp = () => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  className='signup-input'
                   variant="outlined"
                   required
                   fullWidth
@@ -78,6 +79,7 @@ const SignUp = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  className='signup-input'
                   variant="outlined"
                   required
                   fullWidth
@@ -90,6 +92,7 @@ const SignUp = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  className='signup-input'
                   variant="outlined"
                   required
                   fullWidth
@@ -102,6 +105,7 @@ const SignUp = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  className='signup-input'
                   variant="outlined"
                   required
                   fullWidth
@@ -115,6 +119,7 @@ const SignUp = () => {
               </Grid>
               {<Grid item xs={12}>
                 <TextField
+                  className='signup-input'
                   variant="outlined"
                   required
                   fullWidth
@@ -150,7 +155,6 @@ const SignUp = () => {
         </div>
       </Container>
       <GoogleButton text='Inscription Google' />
-
     </>
   )
 }
