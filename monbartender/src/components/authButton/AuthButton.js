@@ -14,7 +14,7 @@ const AuthButton = () => {
   const { bar, setBar } = useContext(BarContext);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const userName = user && (user.displayName.split(' '))[0];
+  //const userName = user && (user.displayName.split(' '))[0];
   const open = Boolean(anchorEl);
 
   const handleMenu = (event) => {
@@ -43,9 +43,9 @@ const AuthButton = () => {
         color="inherit"
       >
         <AccountCircle />
-        {user && (
+        {/*user && (
           <div className='auth-name'>{userName}</div>
-        )}
+        )*/}
       </IconButton>
       <Menu
         id="auth-appbar"
