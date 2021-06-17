@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import GoogleButton from '../googleButton/GoogleButton';
@@ -13,14 +12,7 @@ import firebaseAppAuth from '../../firebaseConfig';
 import './SignUp.css';
 import './SignUpDesktop.css';
 
-const useStyles = makeStyles((theme) => ({
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  }
-}));
-
 const SignUp = () => {
-  const classes = useStyles();
   let history = useHistory();
   const [message, setMessage] = useState('');
   const [nom, setNom] = useState('');
@@ -135,15 +127,16 @@ const SignUp = () => {
                 />
               </Grid>}
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              S'inscrire
-            </Button>
+            <div className='signup-button'>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                S'inscrire
+              </Button>
+            </div>
             <Grid container justify="flex-end">
               <Grid item className='yes-account'>
                 Déja un compte? <Link

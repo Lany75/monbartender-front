@@ -16,6 +16,10 @@
   margin-top: 24px;
 }
 
+.signup-button {
+  margin: 24px 0px 16px 0px;
+}
+
 .yes-account {
   font-size: 10px;
 }
