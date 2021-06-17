@@ -1,0 +1,21 @@
+.inscription-message {
+  padding: 10px 10px 10px 10px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.inscription {
+  margin: 30px 0px 50px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-form {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.yes-account {
+  font-size: 10px;
+}

@@ -7,7 +7,6 @@ import PageRecette from "../pageRecette/PageRecette";
 import PageBar from "../pageBar/PageBar";
 import ListeParNom from "../listeParNom/ListeParNom";
 import RechercheParIngredient from "../rechercheParIngredient/RechercheParIngredient";
-import PageConnexion from "../pageConnexion/PageConnexion";
 
 import "./Main.css";
 import "./MainDesktop.css";
@@ -24,13 +23,16 @@ import AjoutVerre from "../ajoutVerre/AjoutVerre";
 import ModifierVerre from "../modifierVerre/ModifierVerre";
 import ModifierIngredient from "../modifierIngredient/ModifierIngredient";
 import AjoutAdmin from "../ajoutAdmin/AjoutAdmin";
+import SignUp from "../signUp/SignUp";
+import SignIn from "../signIn/SignIn";
 
 function Main() {
   return (
     <div className="main">
       <Switch>
         <Route exact path="/" component={Accueil} />
-        <Route exact path="/connexion" component={PageConnexion} />
+        <Route exact path="/inscription" component={SignUp} />
+        <Route exact path="/connexion" component={SignIn} />
         <Route
           path="/rechercher-par-ingredient"
           component={RechercheParIngredient}
@@ -62,7 +64,6 @@ function Main() {
         <Route path="/gestion" component={Gestion} />
         <Route path="/cocktail/:id" component={PageRecette} />
         <Route path="/mentions-legales" component={MentionsLegales} />
-        {/* <Route render={() => <div>Y a rien par ici</div>} /> */}
         <Route component={Page404} />
       </Switch>
     </div>

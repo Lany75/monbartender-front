@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
@@ -11,13 +10,12 @@ import './AuthButton.css';
 import './AuthButtonDesktop.css';
 
 const AuthButton = () => {
-  let { user, signOut, setAccessToken } = useContext(AuthContext);
+  let { user, setAccessToken, signOut } = useContext(AuthContext);
   const { bar, setBar } = useContext(BarContext);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const userName = user && (user.displayName.split(' '))[0];
   const open = Boolean(anchorEl);
-  let history = useHistory();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,18 +25,12 @@ const AuthButton = () => {
     setAnchorEl(null);
   };
 
-  const connexion = () => {
-    setAnchorEl(null);
-    history.push('/connexion');
-  }
-
   const deconnexion = () => {
     signOut();
     setBar(null);
     setAccessToken(null);
     user = null;
-    setAnchorEl(null);
-    history.push("/");
+    handleClose();
   }
 
   return (
@@ -88,12 +80,27 @@ const AuthButton = () => {
                 </Link>
               </MenuItem>
             )}
-            <MenuItem onClick={deconnexion}>Déconnexion</MenuItem>
+            <MenuItem onClick={deconnexion}>
+              <Link
+                to='/'
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Déconnexion
+              </Link>
+            </MenuItem>
           </div>
         ) : (
           <div>
-            <MenuItem onClick={handleClose}>S'inscrire</MenuItem>
-            <MenuItem onClick={connexion}>
+            <MenuItem onClick={handleClose}>
+
+              <Link
+                to='/inscription'
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                S'inscrire
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
               <Link
                 to='/connexion'
                 style={{ textDecoration: "none", color: "black" }}

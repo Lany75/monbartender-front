@@ -9,7 +9,6 @@ import VerreProvider from "./context/verreContext";
 
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
-
 import "./App.css";
 
 function App() {

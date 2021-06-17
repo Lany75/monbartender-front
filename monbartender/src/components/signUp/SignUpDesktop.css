@@ -1,0 +1,14 @@
+@media screen and (min-width: 769px) {
+  .inscription-message {
+    padding: 10px 20px 10px 20px;
+    font-size: 15px;
+  }
+
+  .inscription {
+    margin-top: 60px;
+  }
+
+  .yes-account {
+    font-size: 16px;
+  }
+}

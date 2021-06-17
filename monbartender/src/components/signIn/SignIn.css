@@ -1,0 +1,21 @@
+.connexion-message {
+  padding: 10px 10px 10px 10px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.connexion {
+  margin: 30px 0px 50px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signin-form {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.no-account, .forgot-pass {
+  font-size: 10px;
+}
