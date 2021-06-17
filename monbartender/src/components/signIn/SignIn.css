@@ -16,6 +16,10 @@
   margin-top: 24px;
 }
 
+.signin-button {
+  margin: 24px 0px 16px 0px;
+}
+
 .no-account, .forgot-pass {
   font-size: 10px;
 }

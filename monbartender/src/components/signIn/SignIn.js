@@ -13,15 +13,8 @@ import { AuthContext } from '../../context/authContext';
 import './SignIn.css';
 import './SignInDesktop.css';
 
-const useStyles = makeStyles((theme) => ({
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 const SignIn = () => {
-  const { signInWithEmailAndPassword } = useContext(AuthContext);
-  const classes = useStyles();
+  const { signInWithEmailAndPassword } = React.useContext(AuthContext);
   let history = useHistory();
   const [message, setMessage] = useState('');
   const [mail, setMail] = useState('');
@@ -60,6 +53,7 @@ const SignIn = () => {
           </Typography>
           <form className='signin-form' onSubmit={onSignIn}>
             <TextField
+              className='signin-input'
               variant="outlined"
               margin="normal"
               required
@@ -72,6 +66,7 @@ const SignIn = () => {
               onChange={event => setMail(event.target.value)}
             />
             <TextField
+              className='signin-input'
               variant="outlined"
               margin="normal"
               required
@@ -83,15 +78,16 @@ const SignIn = () => {
               autoComplete="current-password"
               onChange={event => setPassword(event.target.value)}
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Se connecter
-            </Button>
+            <div className='signin-button'>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                Se connecter
+              </Button>
+            </div>
             <Grid container>
               <Grid item xs className='forgot-pass'>
                 Mot de passe oublié?
