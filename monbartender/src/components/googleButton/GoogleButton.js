@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
@@ -8,9 +8,9 @@ import googleLogo from '../../assets/logo-google-25.png';
 import './GoogleButton.css';
 import { AuthContext } from '../../context/authContext';
 
-const ButtonGoogleConnect = ({ text }) => {
+const GoogleButton = ({ text }) => {
   let history = useHistory();
-  const { signInWithGoogle } = useContext(AuthContext);
+  const { signInWithGoogle } = React.useContext(AuthContext);
 
   const googleConnect = async event => {
     event.preventDefault();
@@ -34,4 +34,4 @@ const ButtonGoogleConnect = ({ text }) => {
   )
 }
 
-export default ButtonGoogleConnect;
+export default GoogleButton;
