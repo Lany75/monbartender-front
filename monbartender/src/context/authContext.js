@@ -4,10 +4,6 @@ import withFirebaseAuth from "react-with-firebase-auth";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseAppAuth from "../firebaseConfig";
-//import firebaseConfig from "../firebaseConfig";
-
-//const firebaseApp = firebase.initializeApp(firebaseConfig);
-//const firebaseAppAuth = firebaseApp.auth();
 
 const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider()
@@ -16,7 +12,7 @@ const providers = {
 export const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
-function AuthProvider({ children, user = null, signInWithGoogle }) {
+function AuthProvider({ children, user = null, signInWithEmailAndPassword, signInWithGoogle, signOut }) {
   const [accessToken, setAccessToken] = useState(null);
 
   React.useEffect(() => {
@@ -31,7 +27,9 @@ function AuthProvider({ children, user = null, signInWithGoogle }) {
     <AuthContext.Provider
       value={{
         user,
+        signInWithEmailAndPassword,
         signInWithGoogle,
+        signOut,
         accessToken,
         setAccessToken
       }}

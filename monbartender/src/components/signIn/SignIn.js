@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import GoogleButton from '../googleButton/GoogleButton';
-import firebaseAppAuth from '../../firebaseConfig';
+import { AuthContext } from '../../context/authContext';
 import './SignIn.css';
 import './SignInDesktop.css';
 
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = () => {
+  const { signInWithEmailAndPassword } = useContext(AuthContext);
   const classes = useStyles();
   let history = useHistory();
   const [message, setMessage] = useState('');
@@ -29,7 +30,7 @@ const SignIn = () => {
   const onSignIn = async event => {
     event.preventDefault();
     try {
-      await firebaseAppAuth.signInWithEmailAndPassword(mail, password);
+      await signInWithEmailAndPassword(mail, password);
       history.push('/');
     } catch (error) {
       switch (error.code) {
