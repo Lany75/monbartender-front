@@ -1,0 +1,9 @@
+@media screen and (min-width: 769px) {
+  .search-title {
+    font-size: 25px;
+  }
+
+  #tab-label {
+    font-size: 15px;
+  }
+}

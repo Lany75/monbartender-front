@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import './MenuButtonDesktop.css';
-import { Link } from 'react-router-dom';
 
 const MenuButton = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -55,7 +55,14 @@ const MenuButton = () => {
             Toutes les recettes
           </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>Recherche</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link
+            to='/recherche'
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            Recherche
+          </Link>
+        </MenuItem>
       </Menu>
     </div>
   )
