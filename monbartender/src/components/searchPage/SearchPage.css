@@ -1,0 +1,15 @@
+.search-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 20px;
+}
+
+.paper {
+flex-grow: 1;
+width: 100%;
+}
+
+#tab-label {
+  font-size: 10px;
+}

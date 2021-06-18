@@ -1,17 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+
 import Accueil from '../accueil/Accueil';
 import ListeRecettes from '../listeRecettes/ListeRecettes';
 import PageRecette from '../pageRecette/PageRecette';
-
-import PageBar from '../pageBar/PageBar';
-import ListeParNom from '../listeParNom/ListeParNom';
-import RechercheParIngredient from '../rechercheParIngredient/RechercheParIngredient';
-
-import './Main.css';
-import './MainDesktop.css';
-
-import CocktailAleatoire from '../cocktailAleatoire/CocktailAleatoire';
 import Gestion from '../gestion/Gestion';
 import ModifierCocktailMoment from '../modifierCocktailMoment/ModifierCocktailMoment';
 import Page404 from '../page404/Page404';
@@ -26,6 +18,11 @@ import AjoutAdmin from '../ajoutAdmin/AjoutAdmin';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
 import ForgotPassword from '../forgotPassword/ForgotPassword';
+import SearchPage from '../searchPage/SearchPage';
+import PageBar from '../pageBar/PageBar';
+import './Main.css';
+import './MainDesktop.css';
+
 
 function Main() {
   return (
@@ -34,14 +31,9 @@ function Main() {
         <Route exact path='/' component={Accueil} />
         <Route exact path='/inscription' component={SignUp} />
         <Route exact path='/connexion' component={SignIn} />
-        <Route exact path='/forgot-password' component={ForgotPassword} />
-        <Route
-          path='/rechercher-par-ingredient'
-          component={RechercheParIngredient}
-        />
+        <Route exact path='/password-oublie' component={ForgotPassword} />
+        <Route exact path='/recherche' component={SearchPage} />
         <Route exact path='/recettes' component={ListeRecettes} />
-        <Route path='/rechercher-par-nom' component={ListeParNom} />
-        <Route path='/aleatoire' component={CocktailAleatoire} />
         <Route path='/monbar' component={PageBar} />
         <Route
           path='/gestion/modifier-cocktail-moment/'
