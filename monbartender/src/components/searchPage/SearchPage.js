@@ -14,7 +14,7 @@ import './SearchPageDesktop.css';
 const SearchPage = () => {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = newValue => {
     setValue(newValue);
   };
 
