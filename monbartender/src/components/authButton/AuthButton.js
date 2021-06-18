@@ -14,7 +14,7 @@ const AuthButton = () => {
   const { bar, setBar } = useContext(BarContext);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const userName = user && (user.displayName.split(' '))[0];
+  const userName = user?.displayName?.split(' ')[0];
   const open = Boolean(anchorEl);
 
   const handleMenu = (event) => {
