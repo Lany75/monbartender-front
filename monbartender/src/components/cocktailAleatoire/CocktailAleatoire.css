@@ -1,10 +1,21 @@
-#titre-cocktail-aleatoire {
+/*#titre-cocktail-aleatoire {
   font-size: 20px;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
   font-weight: bold;
+}*/
+
+.chargement-message {
+  text-align: center;
+  margin: 50px;
+  font-size: 12px;
 }
+
+.random-cocktail {
+  margin: 50px;
+}
+
 #div-cocktail-btn {
   display: flex;
   flex-direction: column;

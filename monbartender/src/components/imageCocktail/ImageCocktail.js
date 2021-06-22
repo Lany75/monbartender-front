@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { firebase } from "../../firebaseConfig";
+import { refStorage } from "../../firebaseConfig";
 
 import "./ImageCocktail.css";
 import "./ImageCocktailDesktop.css";
@@ -9,9 +9,9 @@ const ImageCocktail = props => {
   // eslint-disable-next-line react/prop-types
   const { classe, reference, nom } = props;
 
-  const getImageFirebase = async reference => {
-    const imgRef = firebase.storage().ref(reference);
-    await imgRef.getDownloadURL().then(url => {
+  const getImageFirebase = reference => {
+    const imgRef = refStorage.child(reference);
+    imgRef.getDownloadURL().then(url => {
       setImgUrl(url);
     });
   };

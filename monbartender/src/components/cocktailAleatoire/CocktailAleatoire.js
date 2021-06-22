@@ -37,37 +37,27 @@ const CocktailAleatoire = () => {
   }
 
   return cocktailAleatoire ? (
-    <>
-      <div id="titre-cocktail-aleatoire">Cocktail aléatoire</div>
-      <div id="div-cocktail-btn">
-        {cocktailAleatoire && (
-          <Link to={to}>
-            <ComposantListeRecettes
-              nom={cocktailAleatoire.nom}
-              photo={cocktailAleatoire.photo}
-            />
-          </Link>
-        )}
-        <div id="div-btn-autre-cocktail">
-          <Button
-            id="btn-autre-cocktail"
-            variant="contained"
-            onClick={getCocktailAleatoire}
-          >
-            Un autre !!
-          </Button>
-        </div>
+    <div id="div-cocktail-btn" className="random-cocktail">
+      {cocktailAleatoire && (
+        <Link to={to}>
+          <ComposantListeRecettes
+            nom={cocktailAleatoire.nom}
+            photo={cocktailAleatoire.photo}
+          />
+        </Link>
+      )}
+      <div id="div-btn-autre-cocktail">
+        <Button
+          id="btn-autre-cocktail"
+          variant="contained"
+          onClick={getCocktailAleatoire}
+        >
+          Un autre !!
+        </Button>
       </div>
-      {/* <div>
-        <div>{cocktailAleatoire.verre}</div>
-        {cocktailAleatoire &&
-          cocktailAleatoire.ingredient.map((ca, index) => {
-            return <div key={index}>{ca.nom}</div>;
-          })}
-      </div> */}
-    </>
+    </div>
   ) : (
-    <div>Chargement</div>
+    <div className='chargement-message'>Chargement ...</div>
   );
 };
 
