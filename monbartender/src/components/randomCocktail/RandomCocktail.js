@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import RecipePage from '../recipePage/RecipePage';
 import RandomCocktailModifButton from '../randomCocktailModifButton/RandomCocktailModifButton';
+import LoadingMessage from '../loadingMessage/LoadingMessage';
 import { CocktailContext } from '../../context/cocktailContext';
 
 import './RandomCocktail.css';
@@ -38,7 +39,7 @@ const RandomCocktail = () => {
         <RandomCocktailModifButton otherCocktail={getRandomCocktail} />
       </>
     ) : (
-      <div className='chargement-message'>Chargement ...</div>
+      < LoadingMessage message='Chargement ...' />
     )
   )
 }
