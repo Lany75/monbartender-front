@@ -5,9 +5,6 @@ import RandomCocktailModifButton from '../randomCocktailModifButton/RandomCockta
 import LoadingMessage from '../loadingMessage/LoadingMessage';
 import { CocktailContext } from '../../context/cocktailContext';
 
-import './RandomCocktail.css';
-import './RandomCocktailDesktop.css';
-
 const RandomCocktail = () => {
   const { listeCocktails } = useContext(CocktailContext);
   const [randomCocktail, setRandomCocktail] = useState();
@@ -39,7 +36,7 @@ const RandomCocktail = () => {
         <RandomCocktailModifButton otherCocktail={getRandomCocktail} />
       </>
     ) : (
-      < LoadingMessage message='Chargement ...' />
+      <LoadingMessage message='Chargement ...' />
     )
   )
 }

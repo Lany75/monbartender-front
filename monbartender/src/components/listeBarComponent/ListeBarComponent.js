@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 
-import IngredientBarComponent from "../ingredientBarComponent/IngredientBarComponent";
 import { BarContext } from "../../context/barContext";
+import IngredientBarComponent from "../ingredientBarComponent/IngredientBarComponent";
+import LoadingMessage from '../loadingMessage/LoadingMessage';
 
 import "./ListeBarComponent.css";
-import "./ListeBarComponentDesktop.css";
 
 const ListeBarComponent = () => {
   const { bar } = useContext(BarContext);
@@ -18,7 +18,7 @@ const ListeBarComponent = () => {
   return (
     <>
       {!bar ? (
-        <div className="message">Chargement du bar ...</div>
+        <LoadingMessage message='Chargement du bar ...' />
       ) : !bar.Ingredients || bar.Ingredients.length === 0 ? (
         <div className="message">Votre bar est vide</div>
       ) : (

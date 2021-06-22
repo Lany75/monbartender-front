@@ -10,6 +10,7 @@ import "./ModifierVerreDesktop.css";
 
 import { AuthContext } from "../../context/authContext";
 import { VerreContext } from "../../context/verreContext";
+import LoadingMessage from '../loadingMessage/LoadingMessage';
 
 const ModifierVerre = () => {
   const { id } = useParams();
@@ -92,7 +93,7 @@ const ModifierVerre = () => {
           </>
         )
       ) : (
-        <div>chargement</div>
+        <LoadingMessage message='Chargement ...' />
       )}
     </>
   );

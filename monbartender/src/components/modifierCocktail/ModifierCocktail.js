@@ -12,6 +12,8 @@ import "./ModifierCocktailDesktop.css";
 import { AuthContext } from "../../context/authContext";
 import { CocktailContext } from "../../context/cocktailContext";
 //import Autocomplete from "@material-ui/lab/Autocomplete";
+import LoadingMessage from '../loadingMessage/LoadingMessage';
+
 
 const ModifierCocktail = () => {
   let history = useHistory();
@@ -188,7 +190,7 @@ const ModifierCocktail = () => {
           </Button>
         </>
       ) : (
-        <div>chargement</div>
+        <LoadingMessage message='Chargement ...' />
       )}
     </>
   );

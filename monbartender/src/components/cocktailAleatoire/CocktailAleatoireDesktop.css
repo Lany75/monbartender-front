@@ -1,12 +1,4 @@
 @media screen and (min-width: 769px) {
-  /*#titre-cocktail-aleatoire {
-    font-size: 25px;
-  }*/
-
-  .chargement-message {
-    font-size: 15px;
-  }
-
   #div-cocktail-btn {
     display: flex;
     flex-direction: row;

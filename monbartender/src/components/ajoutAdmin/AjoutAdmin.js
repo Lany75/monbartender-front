@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import Axios from "axios";
+import { useHistory } from "react-router-dom";
+import { TextField, Button } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import apiBaseURL from "../../env";
-import Axios from "axios";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { TextField, Button } from "@material-ui/core";
 
+import LoadingMessage from '../loadingMessage/LoadingMessage';
 import "./AjoutAdmin.css";
-import { useHistory } from "react-router-dom";
+
 
 const AjoutAdmin = () => {
   const [listeUsers, setListeUsers] = useState();
@@ -55,7 +57,7 @@ const AjoutAdmin = () => {
       </Button>
     </>
   ) : (
-    <div>Chargement</div>
+    <LoadingMessage message='Chargement ...' />
   );
 };
 
