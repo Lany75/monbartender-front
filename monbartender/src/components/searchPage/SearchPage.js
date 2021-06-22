@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import TabPanel from '../tabPanel/TabPanel';
 import RechercheParIngredient from '../rechercheParIngredient/RechercheParIngredient';
 import NameSearch from '../nameSearch/NameSearch';
-import CocktailAleatoire from '../cocktailAleatoire/CocktailAleatoire';
+import RandomCocktail from '../randomCocktail/RandomCocktail';
 
 import './SearchPage.css';
 import './SearchPageDesktop.css';
@@ -41,7 +41,7 @@ const SearchPage = () => {
         <NameSearch />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <CocktailAleatoire />
+        <RandomCocktail />
       </TabPanel>
     </>
   )
