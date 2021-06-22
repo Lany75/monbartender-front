@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
-import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
 import { CocktailContext } from "../../context/cocktailContext";
+import ComposantListeRecettes from "../composantListeRecettes/ComposantListeRecettes";
+import LoadingMessage from '../loadingMessage/LoadingMessage';
 
 import "./CocktailAleatoire.css";
 import "./CocktailAleatoireDesktop.css";
@@ -57,8 +58,7 @@ const CocktailAleatoire = () => {
       </div>
     </div>
   ) : (
-    <div className='chargement-message'>Chargement ...</div>
-  );
+    < LoadingMessage message='Chargement ...' />);
 };
 
 export default CocktailAleatoire;
