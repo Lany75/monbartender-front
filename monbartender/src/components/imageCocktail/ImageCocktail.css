@@ -1,9 +1,30 @@
+.cocktail-card-image {
+  width: 100%;
+}
+
+
+
 .img-cocktail-gestion {
   width: 50px;
   height: 75px;
 }
-
 .img-cocktail {
   width: 100px;
   height: 150px;
+}
+.image {
+  width: 100%;
+}
+
+
+@media screen and (min-width: 769px) {
+  .img-cocktail-gestion {
+    width: 100px;
+    height: 150px;
+  }
+
+  .img-cocktail {
+    width: 150px;
+    height: 225px;
+  }
 }

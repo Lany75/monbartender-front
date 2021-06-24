@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { refStorage } from "../../firebaseConfig";
 
 import "./ImageCocktail.css";
-import "./ImageCocktailDesktop.css";
 
 const ImageCocktail = props => {
   const [imgUrl, setImgUrl] = useState();
