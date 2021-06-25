@@ -115,8 +115,8 @@ describe('<NameSearchResult />', () => {
     })
   })
 
-  describe('It tests case with undefined cocktailName', () => {
-    const undefinedSearchResult = shallow(<NameSearchResult cocktailName={undefined} cocktails={marCocktails} />);
+  describe('It tests case with undefined cocktailName prop', () => {
+    const undefinedSearchResult = shallow(<NameSearchResult cocktails={marCocktails} />);
 
     it('should contain an empty div witch className is search-result', () => {
       expect(undefinedSearchResult.exists('.search-result')).to.equal(true);
@@ -125,8 +125,8 @@ describe('<NameSearchResult />', () => {
     })
   })
 
-  describe('It tests case with undefined cocktails', () => {
-    const undefinedSearchResult = shallow(<NameSearchResult cocktailName={'Mar'} cocktails={undefined} />);
+  describe('It tests case with undefined cocktails prop', () => {
+    const undefinedSearchResult = shallow(<NameSearchResult cocktailName={'Mar'} />);
 
     it('should contain an empty div witch className is search-result', () => {
       expect(undefinedSearchResult.exists('.search-result')).to.equal(true);
