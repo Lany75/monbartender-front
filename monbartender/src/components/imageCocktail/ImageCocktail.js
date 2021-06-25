@@ -3,7 +3,7 @@ import { refStorage } from "../../firebaseConfig";
 
 import "./ImageCocktail.css";
 
-const ImageCocktail = ({ classe, reference, nom }) => {
+const ImageCocktail = ({ classe = 'cocktail-card-image', reference = 'img_cocktail/noImageFound.jpg', nom = 'Une image de cocktail' }) => {
   const [imgUrl, setImgUrl] = useState();
 
   const getImageFirebase = reference => {
