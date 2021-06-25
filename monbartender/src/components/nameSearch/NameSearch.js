@@ -10,7 +10,7 @@ const NameSearch = () => {
   return (
     <>
       <NameSearchForm setCocktailName={setCocktailName} setSearchCocktails={setSearchCocktails} />
-      {searchCocktails && <NameSearchResult cocktailName={cocktailName} cocktails={searchCocktails} />}
+      <NameSearchResult cocktailName={cocktailName} cocktails={searchCocktails} />
     </>
   )
 }
