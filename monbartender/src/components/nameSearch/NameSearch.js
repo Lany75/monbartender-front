@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import NameSearchForm from '../nameSearchForm/NameSearchForm';
 import NameSearchResult from '../nameSearchResult/NameSearchResult';
 
 const NameSearch = () => {
-  const [cocktailName, setCocktailName] = useState('');
-  const [searchCocktails, setSearchCocktails] = useState();
+  const [cocktailName, setCocktailName] = React.useState('');
+  const [searchCocktails, setSearchCocktails] = React.useState();
 
   return (
     <>
