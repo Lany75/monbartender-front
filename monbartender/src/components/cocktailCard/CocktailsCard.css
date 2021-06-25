@@ -1,0 +1,19 @@
+.cocktail-card {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 10px;
+}
+.cocktail-card-name {
+  font-size: 12px;
+}
+
+@media screen and (min-width: 769px) {
+  .cocktail-card {
+    width: 20%;
+    margin: 20px;
+  }
+  .cocktail-card-name {
+    font-size: 15px;
+  }
+}

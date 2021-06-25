@@ -1,8 +1,4 @@
 @media screen and (min-width: 769px) {
-  #titre-cocktail-aleatoire {
-    font-size: 25px;
-  }
-
   #div-cocktail-btn {
     display: flex;
     flex-direction: row;

@@ -11,6 +11,7 @@ import "./ModifierIngredientDesktop.css";
 import { IngredientContext } from "../../context/ingredientContext";
 import { AuthContext } from "../../context/authContext";
 import { BarContext } from "../../context/barContext";
+import LoadingMessage from '../loadingMessage/LoadingMessage';
 
 const ModifierIngredient = () => {
   const { id } = useParams();
@@ -102,7 +103,7 @@ const ModifierIngredient = () => {
           </>
         )
       ) : (
-        <div>chargement</div>
+        <LoadingMessage message='Chargement ...' />
       )}
     </>
   );

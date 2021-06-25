@@ -1,0 +1,43 @@
+.recipe-page {
+  margin: 30px 10px 30px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cocktail-name {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.cocktail-image, .cocktail-ingredients, .cocktail-glass, .cocktail-steps {
+  width: 100%;
+}
+
+.cocktail-ingredients, .cocktail-glass, .cocktail-steps {
+  margin: 20px 20px 0px 20px;
+  display: flex;
+}
+
+.cocktail-ingredients, .cocktail-glass {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cocktail-steps {
+  flex-direction: column;
+}
+
+.sous-titre {
+  font-size: 16px;
+}
+
+.ingredient, .glass, .step {
+  font-size: 12px;
+}
+
+.step {
+  padding: 10px 0px 0px 20px;
+  list-style: none;
+}

@@ -1,0 +1,48 @@
+@media screen and (min-width: 769px) {
+  .recipe-page {
+    margin: 25px 50px 25px 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr 5fr;
+  }
+
+  .cocktail-name {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    justify-self: center;
+    align-self: center;
+    font-size: 25px;
+    margin-bottom: 0px;
+  }
+
+  .cocktail-image {
+    grid-column: 1/2;
+    grid-row: 2/5;
+  }
+  
+  .cocktail-ingredients{
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+
+  .cocktail-glass {
+    grid-column: 2/3;
+    grid-row: 3/4;
+  }
+
+  .cocktail-steps {
+    grid-column: 2/3;
+    grid-row: 4/5;
+  }
+
+  .cocktail-ingredients, .cocktail-glass, .cocktail-steps {
+    margin-top: 0px;
+  }
+
+  .sous-titre {
+    font-size: 20px;
+  }
+  .ingredient, .glass, .step {
+    font-size: 15px;
+  }
+}

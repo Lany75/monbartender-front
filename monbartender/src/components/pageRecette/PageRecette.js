@@ -5,6 +5,7 @@ import Axios from "axios";
 import apiBaseURL from "../../env";
 
 import ImageCocktail from "../imageCocktail/ImageCocktail";
+import LoadingMessage from '../loadingMessage/LoadingMessage';
 
 import "./PageRecette.css";
 import "./PageRecetteDesktop.css";
@@ -92,7 +93,7 @@ const PageRecette = () => {
       </div>
     )
   ) : (
-    <div>Chargement</div>
+    <LoadingMessage message='Chargement ...' />
   );
 };
 
