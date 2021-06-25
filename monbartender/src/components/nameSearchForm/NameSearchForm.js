@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Axios from "axios";
 import { Button, TextField } from '@material-ui/core';
 
+import DisplayError from '../displayError/DisplayError';
 import './NameSearchForm.css';
 
 import apiBaseURL from "../../env";
@@ -27,21 +28,27 @@ const NameSearchForm = ({ setCocktailName, setSearchCocktails }) => {
   }
 
   return (
-    <form className='search-form' onSubmit={onSearch}>
-      <TextField
-        label="Nom du cocktail"
-        onChange={event => setNameCocktail(event.target.value)}
-        value={nameCocktail}
-        autoFocus
-      />
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-      >
-        Chercher
-      </Button>
-    </form>
+    <>
+      {setCocktailName && setSearchCocktails ? (
+        <form className='search-form' onSubmit={onSearch}>
+          <TextField
+            label="Nom du cocktail"
+            onChange={event => setNameCocktail(event.target.value)}
+            value={nameCocktail}
+            autoFocus
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
+            Chercher
+          </Button>
+        </form>
+      ) : (
+        <DisplayError classe='search-form' componentName='NameSearchForm' />
+      )}
+    </>
   )
 }
 

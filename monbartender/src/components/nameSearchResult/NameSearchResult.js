@@ -1,5 +1,6 @@
 import React from 'react';
 
+import DisplayError from '../displayError/DisplayError';
 import CocktailCard from '../cocktailCard/CocktailCard';
 import './NameSearchResult.css';
 
@@ -16,10 +17,9 @@ const NameSearchResult = ({ cocktailName, cocktails }) => {
           </div>
         </div>
       ) : (
-        <div className='search-result'></div>
+        <DisplayError classe='search-result' componentName='NameSearchResult' />
       )}
     </>
-
   )
 }
 
