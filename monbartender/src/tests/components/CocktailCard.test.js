@@ -38,21 +38,34 @@ const cocktailTest = {
 };
 
 describe('<CocktailCard />', () => {
-  const cocktailCard = shallow(<CocktailCard cocktail={cocktailTest} />);
-  const divCocktailCard = cocktailCard.find('.cocktail-card')
 
-  it('should contain a div witch className is cocktail-card', () => {
-    expect(divCocktailCard).to.have.length(1);
+  describe('it test normal case with defined cocktail', () => {
+    const cocktailCard = shallow(<CocktailCard cocktail={cocktailTest} />);
+    const divCocktailCard = cocktailCard.find('.cocktail-card')
+
+    it('should contain a div witch className is cocktail-card', () => {
+      expect(divCocktailCard).to.have.length(1);
+    })
+
+    it('should contain an ImageCocktail component with props classe="cocktail-card-image"', () => {
+      expect(divCocktailCard.find(ImageCocktail)).to.have.length(1);
+      expect(divCocktailCard.find(ImageCocktail).props().classe).to.be.equal('cocktail-card-image');
+    })
+
+    it('should contain a p tag with className "cocktail-card-name" and text "Bloody Mary"', () => {
+      expect(divCocktailCard.find('p')).to.have.length(1);
+      expect(divCocktailCard.find('p').props().className).to.equal('cocktail-card-name');
+      expect(divCocktailCard.find('p').text()).to.be.equal('Bloody Mary');
+    })
   })
 
-  it('should contain an ImageCocktail component with props classe="cocktail-card-image"', () => {
-    expect(divCocktailCard.find(ImageCocktail)).to.have.length(1);
-    expect(divCocktailCard.find(ImageCocktail).props().classe).to.be.equal('cocktail-card-image');
-  })
+  describe('it test case with undefined cocktail', () => {
+    const undefinedCocktailCard = shallow(<CocktailCard cocktail={undefined} />);
 
-  it('should contain a p tag with className "cocktail-card-name" and text "Bloody Mary"', () => {
-    expect(divCocktailCard.find('p')).to.have.length(1);
-    expect(divCocktailCard.find('p').props().className).to.equal('cocktail-card-name');
-    expect(divCocktailCard.find('p').text()).to.be.equal('Bloody Mary');
+    it('should contain an empty div witch className is cocktail-card', () => {
+      expect(undefinedCocktailCard.exists('.cocktail-card')).to.equal(true);
+      expect(undefinedCocktailCard.find(ImageCocktail).exists()).to.equal(false);
+      expect(undefinedCocktailCard.find('.cocktail-card-name').exists()).to.equal(false);
+    })
   })
 })
