@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 
 import NameSearchResult from '../../components/nameSearchResult/NameSearchResult';
 import CocktailsCard from '../../components/cocktailCard/CocktailCard';
+import DisplayError from '../../components/displayError/DisplayError';
 
 const marCocktails = [
   {
@@ -94,44 +95,40 @@ describe('<NameSearchResult />', () => {
 
   describe('It tests normal case with defined cocktailName and cocktails', () => {
     const nameSearchResult = shallow(<NameSearchResult cocktailName='Mar' cocktails={marCocktails} />)
-    const divTag = nameSearchResult.find('.search-result');
+    const divTag = nameSearchResult.find('div.search-result');
+    const divResultCocktails = divTag.find('div.result-cocktails');
 
     it('should contain a div witch className is search-result', () => {
       expect(divTag).to.have.length(1);
     })
 
     it('should contain a p tag witch className is result-title and text is "2 resultat(s) pour MAR"', () => {
-      expect(divTag.find('p')).to.have.length(1);
-      expect(divTag.find('p').props().className).to.be.equal('result-title');;
-      expect(divTag.find('p').text()).to.be.equal('2 resultat(s) pour MAR');
+      expect(divTag.find('p.result-title')).to.have.length(1);
+      expect(divTag.find('p.result-title').text()).to.be.equal('2 resultat(s) pour MAR');
     })
 
     it('should contain a div witch className is result-cocktails', () => {
-      expect(divTag.find('.result-cocktails')).to.have.length(1);
+      expect(divResultCocktails).to.have.length(1);
     })
 
     it('should contain 2 CocktailCard components', () => {
-      expect(divTag.find('.result-cocktails').find(CocktailsCard)).to.have.length(2);;
+      expect(divResultCocktails.find(CocktailsCard)).to.have.length(2);;
     })
   })
 
   describe('It tests case with undefined cocktailName prop', () => {
     const undefinedSearchResult = shallow(<NameSearchResult cocktails={marCocktails} />);
 
-    it('should contain an empty div witch className is search-result', () => {
-      expect(undefinedSearchResult.exists('.search-result')).to.equal(true);
-      expect(undefinedSearchResult.find('.result-title').exists()).to.equal(false);
-      expect(undefinedSearchResult.find('.result-cocktails').exists()).to.equal(false);
+    it('should contain a DisplayError component if cocktailName is not defined', () => {
+      expect(undefinedSearchResult.find(DisplayError)).to.have.length(1);
     })
   })
 
   describe('It tests case with undefined cocktails prop', () => {
     const undefinedSearchResult = shallow(<NameSearchResult cocktailName={'Mar'} />);
 
-    it('should contain an empty div witch className is search-result', () => {
-      expect(undefinedSearchResult.exists('.search-result')).to.equal(true);
-      expect(undefinedSearchResult.find('.result-title').exists()).to.equal(false);
-      expect(undefinedSearchResult.find('.result-cocktails').exists()).to.equal(false);
+    it('should contain a DisplayError component if cocktails is not defined', () => {
+      expect(undefinedSearchResult.find(DisplayError)).to.have.length(1);
     })
   })
 })

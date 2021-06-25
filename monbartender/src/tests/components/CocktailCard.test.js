@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 
 import CocktailCard from '../../components/cocktailCard/CocktailCard';
 import ImageCocktail from '../../components/imageCocktail/ImageCocktail';
+import DisplayError from '../../components/displayError/DisplayError';
 
 const cocktailTest = {
   EtapesPreparations: [
@@ -41,7 +42,7 @@ describe('<CocktailCard />', () => {
 
   describe('it test normal case with defined cocktail', () => {
     const cocktailCard = shallow(<CocktailCard cocktail={cocktailTest} />);
-    const divCocktailCard = cocktailCard.find('.cocktail-card')
+    const divCocktailCard = cocktailCard.find('div.cocktail-card')
 
     it('should contain a div witch className is cocktail-card', () => {
       expect(divCocktailCard).to.have.length(1);
@@ -53,19 +54,16 @@ describe('<CocktailCard />', () => {
     })
 
     it('should contain a p tag with className "cocktail-card-name" and text "Bloody Mary"', () => {
-      expect(divCocktailCard.find('p')).to.have.length(1);
-      expect(divCocktailCard.find('p').props().className).to.equal('cocktail-card-name');
-      expect(divCocktailCard.find('p').text()).to.be.equal('Bloody Mary');
+      expect(divCocktailCard.find('p.cocktail-card-name')).to.have.length(1);
+      expect(divCocktailCard.find('p.cocktail-card-name').text()).to.be.equal('Bloody Mary');
     })
   })
 
   describe('it test case with undefined cocktail', () => {
-    const undefinedCocktailCard = shallow(<CocktailCard cocktail={undefined} />);
+    const undefinedCocktailCard = shallow(<CocktailCard />);
 
-    it('should contain an empty div witch className is cocktail-card', () => {
-      expect(undefinedCocktailCard.exists('.cocktail-card')).to.equal(true);
-      expect(undefinedCocktailCard.find(ImageCocktail).exists()).to.equal(false);
-      expect(undefinedCocktailCard.find('.cocktail-card-name').exists()).to.equal(false);
+    it('should contain a DisplayError component if cocktail is not defined', () => {
+      expect(undefinedCocktailCard.find(DisplayError)).to.have.length(1);
     })
   })
 })
