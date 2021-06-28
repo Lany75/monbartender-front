@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import RecipePage from '../recipePage/RecipePage';
 import RandomCocktailModifButton from '../randomCocktailModifButton/RandomCocktailModifButton';
@@ -6,8 +6,8 @@ import LoadingMessage from '../loadingMessage/LoadingMessage';
 import { CocktailContext } from '../../context/cocktailContext';
 
 const RandomCocktail = () => {
-  const { listeCocktails } = useContext(CocktailContext);
-  const [randomCocktail, setRandomCocktail] = useState();
+  const { listeCocktails } = React.useContext(CocktailContext);
+  const [randomCocktail, setRandomCocktail] = React.useState();
 
   function getRandomInteger(max) {
     return Math.floor(Math.random() * Math.floor(max));
