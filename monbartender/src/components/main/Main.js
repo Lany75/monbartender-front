@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom';
 import Accueil from '../accueil/Accueil';
 import ListeRecettes from '../listeRecettes/ListeRecettes';
 import PageRecette from '../pageRecette/PageRecette';
-import Gestion from '../gestion/Gestion';
 import ModifierCocktailMoment from '../modifierCocktailMoment/ModifierCocktailMoment';
 import Page404 from '../page404/Page404';
 import MentionsLegales from '../mentionsLegales/MentionsLegales';
@@ -20,6 +19,7 @@ import SignIn from '../signIn/SignIn';
 import ForgotPassword from '../forgotPassword/ForgotPassword';
 import SearchPage from '../searchPage/SearchPage';
 import PageBar from '../pageBar/PageBar';
+import ManagementPage from '../managementPage/ManagementPage';
 import './Main.css';
 import './MainDesktop.css';
 
@@ -55,7 +55,7 @@ function Main() {
           component={ModifierCocktail}
         />
         <Route path='/gestion/ajouter-admin' component={AjoutAdmin} />
-        <Route path='/gestion' component={Gestion} />
+        <Route path='/gestion' component={ManagementPage} />
         <Route path='/cocktail/:id' component={PageRecette} />
         <Route path='/mentions-legales' component={MentionsLegales} />
         <Route component={Page404} />

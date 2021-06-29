@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TabPanel = (props) => {
+const SearchTabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -18,4 +18,4 @@ const TabPanel = (props) => {
   )
 }
 
-export default TabPanel;
+export default SearchTabPanel;
