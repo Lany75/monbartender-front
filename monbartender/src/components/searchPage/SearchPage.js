@@ -1,9 +1,7 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Paper, Tabs, Tab } from '@material-ui/core';
 
-import TabPanel from '../tabPanel/TabPanel';
+import SearchTabPanel from '../searchTabPanel/SearchTabPanel';
 import RechercheParIngredient from '../rechercheParIngredient/RechercheParIngredient';
 import NameSearch from '../nameSearch/NameSearch';
 import RandomCocktail from '../randomCocktail/RandomCocktail';
@@ -29,20 +27,20 @@ const SearchPage = () => {
           textColor="primary"
           centered
         >
-          <Tab label="Par ingrédient" id='tab-label' />
-          <Tab label="Par nom" id='tab-label' />
-          <Tab label="Cocktail aléatoire" id='tab-label' />
+          <Tab label="Par ingrédient" id='search-tab-label' />
+          <Tab label="Par nom" id='search-tab-label' />
+          <Tab label="Cocktail aléatoire" id='search-tab-label' />
         </Tabs>
       </Paper>
-      <TabPanel value={value} index={0}>
+      <SearchTabPanel value={value} index={0}>
         <RechercheParIngredient />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      </SearchTabPanel>
+      <SearchTabPanel value={value} index={1}>
         <NameSearch />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+      </SearchTabPanel>
+      <SearchTabPanel value={value} index={2}>
         <RandomCocktail />
-      </TabPanel>
+      </SearchTabPanel>
     </>
   )
 }
