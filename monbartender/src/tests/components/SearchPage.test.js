@@ -36,7 +36,7 @@ describe('<SearchPage />', () => {
     })
   })
 
-  it('should contain 3 SearchTabPanel components', () => {
-    expect(searchPage.find('SearchTabPanel')).to.have.length(3);
+  it('should contain 3 TabPanel components', () => {
+    expect(searchPage.find('TabPanel')).to.have.length(3);
   })
 })
