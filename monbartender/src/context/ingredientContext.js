@@ -10,7 +10,7 @@ function IngredientProvider({ children }) {
   const [listeIngredients, setListeIngredients] = useState();
 
   const getListeIngredients = () => {
-    Axios.get(`${apiBaseURL}/api/v1/ingredients/`)
+    Axios.get(`${apiBaseURL}/api/v2/ingredients/`)
       .then(reponse => {
         setListeIngredients(reponse.data);
       })

@@ -10,7 +10,7 @@ describe('<ManagementPage />', () => {
   const managementPage = shallow(<ManagementPage />);
 
   it('should contain a div witch className is management-title and text is "Gestion ..."', () => {
-    const managementTitle = managementPage.find('.management-title');
+    const managementTitle = managementPage.find('div.management-title');
     expect(managementTitle).to.have.length(1);
     expect(managementTitle.text()).to.be.equal('Gestion ...');
   })
@@ -36,7 +36,7 @@ describe('<ManagementPage />', () => {
     })
   })
 
-  it('should contain 5 ManagementTabPanel components', () => {
-    expect(managementPage.find('ManagementTabPanel')).to.have.length(5);
+  it('should contain 5 TabPanel components', () => {
+    expect(managementPage.find('TabPanel')).to.have.length(5);
   })
 })

@@ -1,9 +1,9 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Paper, Tabs, Tab } from '@material-ui/core';
 
-import ManagementTabPanel from '../managementTabPanel/ManagementTabPanel';
+
+import TabPanel from '../tabPanel/TabPanel';
+import ManageIngredients from '../manageIngredients/ManageIngredients';
 import GestionCocktailMoment from "../gestionCocktailMoment/GestionCocktailMoment";
 import GestionCocktails from "../gestionCocktails/GestionCocktails";
 import GestionIngredients from "../gestionIngredients/GestionIngredients";
@@ -38,21 +38,23 @@ const ManagementPage = () => {
         </Tabs>
       </Paper>
 
-      <ManagementTabPanel value={value} index={0}>
+      <TabPanel value={value} index={0}>
         <GestionCocktailMoment />
-      </ManagementTabPanel>
-      <ManagementTabPanel value={value} index={1}>
+
+      </TabPanel>
+      <TabPanel value={value} index={1}>
         <GestionCocktails />
-      </ManagementTabPanel>
-      <ManagementTabPanel value={value} index={2}>
-        <GestionIngredients />
-      </ManagementTabPanel>
-      <ManagementTabPanel value={value} index={3}>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <ManageIngredients />
+        {/*<GestionIngredients />*/}
+      </TabPanel>
+      <TabPanel value={value} index={3}>
         <GestionVerres />
-      </ManagementTabPanel>
-      <ManagementTabPanel value={value} index={4}>
-        Item 5
-      </ManagementTabPanel>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        GestionAdmin
+      </TabPanel>
     </>
   )
 }
