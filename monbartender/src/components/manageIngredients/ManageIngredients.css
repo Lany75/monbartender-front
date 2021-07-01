@@ -12,6 +12,6 @@ h4 {
 
 @media screen and (min-width: 769px) {
   h4 {
-    margin: 50px;
+    margin: 50px 50px 20px 50px;
   }
 }

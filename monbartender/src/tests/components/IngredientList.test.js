@@ -6,6 +6,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePag
 
 import IngredientList from '../../components/ingredientList/IngredientList';
 import LoadingMessage from '../../components/loadingMessage/LoadingMessage';
+import DisplayError from '../../components/displayError/DisplayError';
 
 const testListIngredients = [
   {
@@ -55,12 +56,15 @@ describe('<IngredientList />', () => {
     React.useContext = realUseContext;
   });
 
-  describe('it test case if listeIngredients is defined', () => {
+
+  describe('it test case if listeIngredients and setIngredientClicked are defined', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
       listeIngredients: testListIngredients,
     }));
 
-    const ingredientList = shallow(<IngredientList />);
+    const setIngredientClickedMock = jest.fn();
+
+    const ingredientList = shallow(<IngredientList setIngredientClicked={setIngredientClickedMock} />);
     const paper = ingredientList.find(Paper);
 
     it('should contain a Paper component witch className="paper"', () => {
@@ -117,10 +121,24 @@ describe('<IngredientList />', () => {
       listeIngredients: undefined,
     }));
 
-    const ingredientList = shallow(<IngredientList />);
+    const setIngredientClickedMock = jest.fn();
+
+    const ingredientList = shallow(<IngredientList setIngredientClicked={setIngredientClickedMock} />);
 
     it('should contain a LoadingMessage component if listeIngredients is undefined', () => {
       expect(ingredientList.find(LoadingMessage)).to.have.length(1);
+    })
+  })
+
+  describe('it test case if setIngredientClicked is undefined', () => {
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      listeIngredients: testListIngredients,
+    }));
+
+    const ingredientList = shallow(<IngredientList />);
+
+    it('should contain a DisplayError component if setIngredientClicked is not defined', () => {
+      expect(ingredientList.find(DisplayError)).to.have.length(1);
     })
   })
 })
