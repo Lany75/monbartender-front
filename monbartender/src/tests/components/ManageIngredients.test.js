@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import ManageIngredients from '../../components/manageIngredients/ManageIngredients';
-import IngredientList from '../../components/ingredientList/IngredientList';
 
 describe('<ManagementPage />', () => {
   const manageIngredients = shallow(<ManageIngredients />);
@@ -20,12 +19,17 @@ describe('<ManagementPage />', () => {
     expect(divIngredients).to.have.length(1);
   })
 
-  it('should contain an IngredientList component', () => {
-    expect(divIngredients).to.contain(<IngredientList />);
+  it('should contain a h4 tag witch text="LES INGREDIENTS"', () => {
+    expect(divIngredients.find('h4')).to.have.length(1);
+    expect(divIngredients.find('h4').text()).to.be.equal('LES INGREDIENTS');
   })
 
-  it.skip('should contain an IngredientChange component', () => {
-    expect(divIngredients).to.contain(<IngredientChange />);
+  it('should contain an IngredientList component', () => {
+    expect(divIngredients.find('IngredientList')).to.have.length(1);
+  })
+
+  it('should contain an IngredientChange component', () => {
+    expect(divIngredients.find('IngredientChange')).to.have.length(1);
   })
 
   it.skip('should contain an IngredientAdd component', () => {
