@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import IngredientList from '../ingredientList/IngredientList';
 import IngredientChange from '../ingredientChange/IngredientChange';
+import IngredientAdd from '../ingredientAdd/IngredientAdd';
 
 import './ManageIngredients.css';
 
@@ -14,7 +15,7 @@ const ManageIngredients = () => {
         <h4>LES INGREDIENTS</h4>
         <IngredientList setIngredientClicked={setIngredientClicked} />
         <IngredientChange ingredient={ingredientClicked} />
-        <div>Ajout ingrédient</div>
+        <IngredientAdd />
       </div>
       <div className='categories-ingredients'>
         <div>Liste catégories d'ingrédients</div>
