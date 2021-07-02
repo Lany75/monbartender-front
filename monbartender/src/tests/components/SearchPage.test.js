@@ -2,6 +2,8 @@ import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
+import { Paper, Tabs, Tab } from '@material-ui/core';
+
 import SearchPage from '../../components/searchPage/SearchPage';
 
 describe('<SearchPage />', () => {
@@ -13,12 +15,25 @@ describe('<SearchPage />', () => {
     expect(searchTitle.text()).to.be.equal('Recherche ...');
   })
 
-  it('should contain a component witch className is paper', () => {
-    expect(searchPage.find('.paper')).to.have.length(1);
+  const paper = searchPage.find(Paper);
+
+  it('should contain a Paper component witch className is paper', () => {
+    expect(paper).to.have.length(1);
+    expect(paper.props()).to.have.property('className', 'paper');
   })
 
-  it('should contain 3 components witch id is tab-label', () => {
-    expect(searchPage.find('#tab-label')).to.have.length(3);
+  const paperTabs = paper.find(Tabs);
+
+  it('should contain a Tabs component with onChange attribute', () => {
+    expect(paperTabs).to.have.length(1);
+    expect(paperTabs.props().hasOwnProperty('onChange')).to.be.true;
+  })
+
+  it('should contain 3 Tab components witch id is search-tab-label', () => {
+    expect(paperTabs.find(Tab)).to.have.length(3);
+    paperTabs.find(Tab).map(pt => {
+      expect(pt.props()).to.have.property('id', 'search-tab-label');
+    })
   })
 
   it('should contain 3 TabPanel components', () => {

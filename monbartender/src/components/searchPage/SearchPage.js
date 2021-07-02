@@ -1,7 +1,5 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Paper, Tabs, Tab } from '@material-ui/core';
 
 import TabPanel from '../tabPanel/TabPanel';
 import RechercheParIngredient from '../rechercheParIngredient/RechercheParIngredient';
@@ -29,9 +27,9 @@ const SearchPage = () => {
           textColor="primary"
           centered
         >
-          <Tab label="Par ingrédient" id='tab-label' />
-          <Tab label="Par nom" id='tab-label' />
-          <Tab label="Cocktail aléatoire" id='tab-label' />
+          <Tab label="Par ingrédient" id='search-tab-label' />
+          <Tab label="Par nom" id='search-tab-label' />
+          <Tab label="Cocktail aléatoire" id='search-tab-label' />
         </Tabs>
       </Paper>
       <TabPanel value={value} index={0}>

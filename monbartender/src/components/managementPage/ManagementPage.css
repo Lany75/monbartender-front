@@ -1,0 +1,29 @@
+.management-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 20px;
+}
+
+.paper {
+  flex-grow: 1;
+  width: 100%;
+  }
+
+#management-tab-label {
+  font-size: 12px;
+}
+
+
+
+
+
+@media screen and (min-width: 769px) {
+  .management-title {
+    font-size: 25px;
+  }
+
+  #management-tab-label {
+    font-size: 16px;
+  }
+}
