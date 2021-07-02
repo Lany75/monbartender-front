@@ -56,13 +56,18 @@ describe('<IngredientChange />', () => {
     }));
 
     const ingredientChange = shallow(<IngredientChange />);
+    const divIngredientChange = ingredientChange.find('div.ingredient-change');
 
-    it("should contain a h4 tag witch text is 'MODIFICATION D'UN INGREDIENT'", () => {
-      expect(ingredientChange.find('h4')).to.have.length(1);
-      expect(ingredientChange.find('h4').text()).to.be.equal("MODIFICATION D'UN INGREDIENT");
+    it('should contain a div witch className="ingredient-change"', () => {
+      expect(divIngredientChange).to.have.length(1);
     })
 
-    const form = ingredientChange.find('form.form-ingredient-change');
+    it("should contain a h4 tag witch text is 'MODIFICATION D'UN INGREDIENT'", () => {
+      expect(divIngredientChange.find('h4')).to.have.length(1);
+      expect(divIngredientChange.find('h4').text()).to.be.equal("MODIFICATION D'UN INGREDIENT");
+    })
+
+    const form = divIngredientChange.find('form.form-ingredient-change');
 
     it('should contain a form tag witch className="form-ingredient-change" and have onSubmit attribute', () => {
       expect(form).to.have.length(1);
@@ -149,13 +154,18 @@ describe('<IngredientChange />', () => {
     }));
 
     const ingredientChange = shallow(<IngredientChange ingredient={testSelectedIngredient} />);
+    const divIngredientChange = ingredientChange.find('div.ingredient-change');
 
-    it("should contain a h4 tag witch text is 'MODIFICATION D'UN INGREDIENT'", () => {
-      expect(ingredientChange.find('h4')).to.have.length(1);
-      expect(ingredientChange.find('h4').text()).to.be.equal("MODIFICATION D'UN INGREDIENT");
+    it('should contain a div witch className="ingredient-change"', () => {
+      expect(divIngredientChange).to.have.length(1);
     })
 
-    const form = ingredientChange.find('form.form-ingredient-change');
+    it("should contain a h4 tag witch text is 'MODIFICATION D'UN INGREDIENT'", () => {
+      expect(divIngredientChange.find('h4')).to.have.length(1);
+      expect(divIngredientChange.find('h4').text()).to.be.equal("MODIFICATION D'UN INGREDIENT");
+    })
+
+    const form = divIngredientChange.find('form.form-ingredient-change');
 
     it('should contain a form tag witch className="form-ingredient-change" and have onSubmit attribute', () => {
       expect(form).to.have.length(1);
