@@ -83,7 +83,6 @@ const IngredientAdd = () => {
           </Button>
         </div>
       </form>
-
     </div>
   )
 }
