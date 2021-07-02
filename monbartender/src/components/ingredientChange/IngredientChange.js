@@ -23,7 +23,7 @@ const IngredientChange = ({ ingredient }) => {
   const modifyIngredient = event => {
     event.preventDefault();
 
-    if (ingredientId !== '') {
+    if (ingredientId !== '' && ingredientName !== '' && ingredientCategorie !== '') {
       Axios.put(`${apiBaseURL}/api/v2/ingredients/${ingredientId}`,
         { nom: ingredientName, categorie: ingredientCategorie },
         {
@@ -64,7 +64,7 @@ const IngredientChange = ({ ingredient }) => {
         {ingredient ? (
           <p id='ingredient-id'>id: {ingredient?.id}</p>
         ) : (
-          <p id='ingredient-id'>Cliquer dans le tableau sur l'ingrédient à modifier</p>
+          <p id='ingredient-id'>Cliquer dans le tableau sur l'ingrédient à modifier ou à supprimer</p>
         )}
         <div id='ingredient-name'>
           <TextField

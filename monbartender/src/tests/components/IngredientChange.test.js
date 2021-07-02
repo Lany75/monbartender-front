@@ -69,9 +69,9 @@ describe('<IngredientChange />', () => {
       expect(form.props().hasOwnProperty('onSubmit')).to.be.true;
     })
 
-    it('should contain a p tag witch id="ingredient-id" and with text "Cliquer dans le tableau sur l\'ingrédient à modifier" if ingredient prop is undefined', () => {
+    it('should contain a p tag witch id="ingredient-id" and with text "Cliquer dans le tableau sur l\'ingrédient à modifier ou à supprimer" if ingredient prop is undefined', () => {
       expect(form.find('p#ingredient-id')).to.have.length(1);
-      expect(form.find('p#ingredient-id').text()).to.be.equal("Cliquer dans le tableau sur l'ingrédient à modifier");
+      expect(form.find('p#ingredient-id').text()).to.be.equal("Cliquer dans le tableau sur l'ingrédient à modifier ou à supprimer");
     })
 
     const divIngredientName = form.find('div#ingredient-name');
