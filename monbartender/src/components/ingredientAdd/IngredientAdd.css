@@ -1,0 +1,39 @@
+.ingredient-add {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-ingredient-add {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+#ingredient-add-name {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  margin-left: 10px;
+
+}
+
+#ingredient-add-categories {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+#ingredient-add-btn {
+  grid-column: 1/3;
+  grid-row: 2/3;
+}
+
+
+@media screen and (min-width: 769px) {
+  .form-ingredient-add {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
