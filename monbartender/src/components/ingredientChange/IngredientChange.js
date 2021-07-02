@@ -58,7 +58,7 @@ const IngredientChange = ({ ingredient }) => {
   }, [ingredient])
 
   return (
-    <>
+    <div className='ingredient-change'>
       <h4>MODIFICATION D'UN INGREDIENT</h4>
       <form className='form-ingredient-change' onSubmit={modifyIngredient}>
         {ingredient ? (
@@ -115,7 +115,7 @@ const IngredientChange = ({ ingredient }) => {
           </Button>
         </div>
       </form>
-    </>
+    </div>
   )
 }
 
