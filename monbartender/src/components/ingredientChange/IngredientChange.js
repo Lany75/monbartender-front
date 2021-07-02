@@ -5,13 +5,16 @@ import { TextField, InputLabel, MenuItem, FormControl, Select, Button } from '@m
 import apiBaseURL from "../../env";
 
 import { IngredientContext } from '../../context/ingredientContext';
+import { AuthContext } from '../../context/authContext';
+import { BarContext } from '../../context/barContext';
 
 import './IngredientChange.css';
-import { AuthContext } from '../../context/authContext';
+
 
 const IngredientChange = ({ ingredient }) => {
   const { accessToken } = React.useContext(AuthContext);
   const { listeCategoriesIngredients, setListeIngredients } = React.useContext(IngredientContext);
+  const { getBarUser } = React.useContext(BarContext);
   const [ingredientId, setIngredientId] = useState('');
   const [ingredientName, setIngredientName] = useState('');
   const [ingredientCategorie, setIngredientCategorie] = useState('');
@@ -44,9 +47,20 @@ const IngredientChange = ({ ingredient }) => {
     event.preventDefault();
 
     if (ingredient) {
-      console.log(`on supprimer l'ingrédient ${ingredientName} (${ingredientId})`);
+      Axios.delete(`${apiBaseURL}/api/v2/ingredients/${ingredientId}`,
+        {
+          headers: {
+            authorization: accessToken
+          }
+        })
+        .then(reponse => {
+          setListeIngredients(reponse.data);
+          getBarUser();
+        })
+        .catch(error => {
+          console.log("vous avez une erreur : ", error);
+        });
     }
-    else console.log('aucun ingrédient selectioné')
   }
 
   useEffect(() => {

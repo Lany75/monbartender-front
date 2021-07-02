@@ -52,7 +52,8 @@ describe('<IngredientChange />', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
       accessToken: testAccessToken,
       listeCategoriesIngredients: testListCategories,
-      setListeIngredients: jest.fn()
+      setListeIngredients: jest.fn(),
+      getBarUser: jest.fn()
     }));
 
     const ingredientChange = shallow(<IngredientChange />);
@@ -150,7 +151,8 @@ describe('<IngredientChange />', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
       accessToken: testAccessToken,
       listeCategoriesIngredients: testListCategories,
-      setListeIngredients: jest.fn()
+      setListeIngredients: jest.fn(),
+      getBarUser: jest.fn()
     }));
 
     const ingredientChange = shallow(<IngredientChange ingredient={testSelectedIngredient} />);
