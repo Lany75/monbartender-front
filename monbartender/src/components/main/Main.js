@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Accueil from '../accueil/Accueil';
+import MomentCocktails from '../momentCocktails/MomentCocktails';
 import ListeRecettes from '../listeRecettes/ListeRecettes';
 import ModifierCocktailMoment from '../modifierCocktailMoment/ModifierCocktailMoment';
 import Page404 from '../page404/Page404';
@@ -28,7 +28,7 @@ function Main() {
   return (
     <div className='main'>
       <Switch>
-        <Route exact path='/' component={Accueil} />
+        <Route exact path='/' component={MomentCocktails} />
         <Route exact path='/inscription' component={SignUp} />
         <Route exact path='/connexion' component={SignIn} />
         <Route exact path='/password-oublie' component={ForgotPassword} />
