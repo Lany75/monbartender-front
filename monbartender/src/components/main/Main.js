@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 
 import Accueil from '../accueil/Accueil';
 import ListeRecettes from '../listeRecettes/ListeRecettes';
-import PageRecette from '../pageRecette/PageRecette';
 import ModifierCocktailMoment from '../modifierCocktailMoment/ModifierCocktailMoment';
 import Page404 from '../page404/Page404';
 import MentionsLegales from '../mentionsLegales/MentionsLegales';
@@ -20,6 +19,7 @@ import ForgotPassword from '../forgotPassword/ForgotPassword';
 import SearchPage from '../searchPage/SearchPage';
 import PageBar from '../pageBar/PageBar';
 import ManagementPage from '../managementPage/ManagementPage';
+import CocktailRecipe from '../cocktailRecipe/CocktailRecipe';
 import './Main.css';
 import './MainDesktop.css';
 
@@ -56,7 +56,7 @@ function Main() {
         />
         <Route path='/gestion/ajouter-admin' component={AjoutAdmin} />
         <Route path='/gestion' component={ManagementPage} />
-        <Route path='/cocktail/:id' component={PageRecette} />
+        <Route path='/cocktail/:id' component={CocktailRecipe} />
         <Route path='/mentions-legales' component={MentionsLegales} />
         <Route component={Page404} />
       </Switch>
