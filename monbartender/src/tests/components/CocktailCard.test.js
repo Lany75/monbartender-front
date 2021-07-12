@@ -1,6 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
+import { Link } from 'react-router-dom';
 
 import CocktailCard from '../../components/cocktailCard/CocktailCard';
 import ImageCocktail from '../../components/imageCocktail/ImageCocktail';
@@ -42,20 +43,21 @@ describe('<CocktailCard />', () => {
 
   describe('it test normal case with defined cocktail', () => {
     const cocktailCard = shallow(<CocktailCard cocktail={cocktailTest} />);
-    const divCocktailCard = cocktailCard.find('div.cocktail-card')
+    const linkCocktailCard = cocktailCard.find(Link);
 
-    it('should contain a div witch className is cocktail-card', () => {
-      expect(divCocktailCard).to.have.length(1);
+    it('should contain a Link witch className is cocktail-card', () => {
+      expect(linkCocktailCard).to.have.length(1);
+      expect(linkCocktailCard.props()).to.have.property('className', 'cocktail-card');
     })
 
     it('should contain an ImageCocktail component with props classe="cocktail-card-image"', () => {
-      expect(divCocktailCard.find(ImageCocktail)).to.have.length(1);
-      expect(divCocktailCard.find(ImageCocktail).props().classe).to.be.equal('cocktail-card-image');
+      expect(linkCocktailCard.find(ImageCocktail)).to.have.length(1);
+      expect(linkCocktailCard.find(ImageCocktail).props().classe).to.be.equal('cocktail-card-image');
     })
 
     it('should contain a p tag with className "cocktail-card-name" and text "Bloody Mary"', () => {
-      expect(divCocktailCard.find('p.cocktail-card-name')).to.have.length(1);
-      expect(divCocktailCard.find('p.cocktail-card-name').text()).to.be.equal('Bloody Mary');
+      expect(linkCocktailCard.find('p.cocktail-card-name')).to.have.length(1);
+      expect(linkCocktailCard.find('p.cocktail-card-name').text()).to.be.equal('Bloody Mary');
     })
   })
 
