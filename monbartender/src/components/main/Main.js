@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import MomentCocktails from '../momentCocktails/MomentCocktails';
-import ListeRecettes from '../listeRecettes/ListeRecettes';
+import AllRecipesList from '../allRecipesList/AllRecipesList';
 import ModifierCocktailMoment from '../modifierCocktailMoment/ModifierCocktailMoment';
 import Page404 from '../page404/Page404';
 import MentionsLegales from '../mentionsLegales/MentionsLegales';
@@ -33,7 +33,7 @@ function Main() {
         <Route exact path='/connexion' component={SignIn} />
         <Route exact path='/password-oublie' component={ForgotPassword} />
         <Route exact path='/recherche' component={SearchPage} />
-        <Route exact path='/recettes' component={ListeRecettes} />
+        <Route exact path='/recettes' component={AllRecipesList} />
         <Route path='/monbar' component={PageBar} />
         <Route
           path='/gestion/modifier-cocktail-moment/'
