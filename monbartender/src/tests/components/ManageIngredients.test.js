@@ -4,10 +4,10 @@ import { shallow } from 'enzyme';
 
 import ManageIngredients from '../../components/manageIngredients/ManageIngredients';
 import IngredientAdd from '../../components/ingredientAdd/IngredientAdd';
+import IngredientCategoryList from '../../components/ingredientCategoryList/IngredientCategoryList';
 
-describe('<ManagementPage />', () => {
+describe('<ManagementIngredients />', () => {
   const manageIngredients = shallow(<ManageIngredients />);
-
   const divManageIngredients = manageIngredients.find('div.manage-ingredients');
 
   it('should contain a div witch className is manage-ingredients', () => {
@@ -43,7 +43,12 @@ describe('<ManagementPage />', () => {
     expect(divCategorieIngredients).to.have.length(1);
   })
 
-  it.skip('should contain an IngredientCategoryList component', () => {
+  it("should contain a h4 tag witch text='LES CATEGORIES D'INGREDIENT'", () => {
+    expect(divCategorieIngredients.find('h4')).to.have.length(1);
+    expect(divCategorieIngredients.find('h4').text()).to.be.equal("LES CATEGORIES D'INGREDIENT");
+  })
+
+  it('should contain an IngredientCategoryList component', () => {
     expect(divCategorieIngredients).to.contain(<IngredientCategoryList />);
   })
 

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import IngredientList from '../ingredientList/IngredientList';
 import IngredientChange from '../ingredientChange/IngredientChange';
 import IngredientAdd from '../ingredientAdd/IngredientAdd';
+import IngredientCategoryList from '../ingredientCategoryList/IngredientCategoryList';
 
 import './ManageIngredients.css';
 
@@ -18,7 +19,8 @@ const ManageIngredients = () => {
         <IngredientAdd />
       </div>
       <div className='categories-ingredients'>
-        <div>Liste catégories d'ingrédients</div>
+        <h4>LES CATEGORIES D'INGREDIENT</h4>
+        <IngredientCategoryList />
         <div>Modif / Supp catégorie d'ingrédient</div>
         <div>Ajout catégorie d'ingrédient</div>
       </div>
