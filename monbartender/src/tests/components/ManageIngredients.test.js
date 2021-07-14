@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 import ManageIngredients from '../../components/manageIngredients/ManageIngredients';
 import IngredientAdd from '../../components/ingredientAdd/IngredientAdd';
 import IngredientCategoryList from '../../components/ingredientCategoryList/IngredientCategoryList';
+import IngredientCategoryAdd from '../../components/ingredientCategoryAdd/IngredientCategoryAdd';
 
 describe('<ManagementIngredients />', () => {
   const manageIngredients = shallow(<ManageIngredients />);
@@ -56,7 +57,7 @@ describe('<ManagementIngredients />', () => {
     expect(divCategorieIngredients).to.contain(<IngredientCategoryChange />);
   })
 
-  it.skip('should contain an IngredientCategoryAdd component', () => {
+  it('should contain an IngredientCategoryAdd component', () => {
     expect(divCategorieIngredients).to.contain(<IngredientCategoryAdd />);
   })
 })

@@ -21,7 +21,7 @@ function IngredientProvider({ children }) {
   };
 
   const getListeCategoriesIngredients = () => {
-    Axios.get(`${apiBaseURL}/api/v2/ingredients/categories`)
+    Axios.get(`${apiBaseURL}/api/v2/ingredients/category`)
       .then(reponse => {
         setListeCategoriesIngredients(reponse.data);
       })
