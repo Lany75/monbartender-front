@@ -4,6 +4,7 @@ import IngredientList from '../ingredientList/IngredientList';
 import IngredientChange from '../ingredientChange/IngredientChange';
 import IngredientAdd from '../ingredientAdd/IngredientAdd';
 import IngredientCategoryList from '../ingredientCategoryList/IngredientCategoryList';
+import IngredientCategoryAdd from '../ingredientCategoryAdd/IngredientCategoryAdd';
 
 import './ManageIngredients.css';
 
@@ -22,7 +23,7 @@ const ManageIngredients = () => {
         <h4>LES CATEGORIES D'INGREDIENT</h4>
         <IngredientCategoryList />
         <div>Modif / Supp catégorie d'ingrédient</div>
-        <div>Ajout catégorie d'ingrédient</div>
+        <IngredientCategoryAdd />
       </div>
     </div>
   )
