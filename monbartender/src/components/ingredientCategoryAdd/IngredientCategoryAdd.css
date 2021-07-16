@@ -1,0 +1,19 @@
+.ingredient-category-add {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-ingredient-category-add {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+
+@media screen and (min-width: 769px) {
+  .ingredient-category-add {
+    width: 50%;
+  }
+}

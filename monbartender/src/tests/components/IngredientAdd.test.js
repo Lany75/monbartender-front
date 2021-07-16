@@ -51,7 +51,7 @@ describe('<IngredientAdd />', () => {
     expect(divIngredientAdd).to.have.length(1);
   })
 
-  it('should contain a h4 tag with text "AJOUT D\'UN INGREDIENT', () => {
+  it('should contain a h4 tag with text "AJOUT D\'UN INGREDIENT"', () => {
     expect(divIngredientAdd.find('h4')).to.have.length(1);
     expect(divIngredientAdd.find('h4').text()).to.be.equal("AJOUT D'UN INGREDIENT");
   })
