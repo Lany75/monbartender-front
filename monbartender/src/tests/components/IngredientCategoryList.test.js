@@ -91,8 +91,8 @@ describe('<IngredientCategoryList />', () => {
       expect(tableRow).to.have.length(1);
     })
 
-    it('should contain 2 TableCell components', () => {
-      expect(tableRow.find(TableCell)).to.have.length(2);
+    it('should contain 3 TableCell components', () => {
+      expect(tableRow.find(TableCell)).to.have.length(3);
     })
 
     const tableBody = table.find(TableBody);
