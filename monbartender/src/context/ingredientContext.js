@@ -37,7 +37,7 @@ function IngredientProvider({ children }) {
 
   return (
     <IngredientContext.Provider
-      value={{ listeIngredients, setListeIngredients, listeCategoriesIngredients, setListeCategoriesIngredients }}
+      value={{ listeIngredients, setListeIngredients, listeCategoriesIngredients, setListeCategoriesIngredients, getListeIngredients }}
     >
       {children}
     </IngredientContext.Provider>

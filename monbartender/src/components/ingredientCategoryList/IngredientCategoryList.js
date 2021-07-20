@@ -6,7 +6,7 @@ import { IngredientContext } from '../../context/ingredientContext';
 
 import './IngredientCategoryList.css';
 
-const IngredientCategoryList = () => {
+const IngredientCategoryList = ({ setCategoryClicked }) => {
   const { listeCategoriesIngredients } = React.useContext(IngredientContext);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -35,7 +35,7 @@ const IngredientCategoryList = () => {
               <TableBody>
                 {listeCategoriesIngredients.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onClick={() => setCategoryClicked(row)}>
                       <TableCell>{row.id.split('-')[0]}</TableCell>
                       <TableCell align='right'>{row.nom}</TableCell>
                     </TableRow>
