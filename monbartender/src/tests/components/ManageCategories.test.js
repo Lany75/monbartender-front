@@ -22,7 +22,7 @@ describe('<ManageCategories />', () => {
     expect(divManageCategories.find('IngredientCategoryList')).to.have.length(1);
   })
 
-  it.skip('should contain an IngredientCategoryChange component', () => {
+  it('should contain an IngredientCategoryChange component', () => {
     expect(divManageCategories.find('IngredientCategoryChange')).to.have.length(1);
   })
 
