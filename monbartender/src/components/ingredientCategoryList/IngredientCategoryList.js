@@ -7,10 +7,12 @@ import apiBaseURL from "../../env";
 
 import LoadingMessage from '../loadingMessage/LoadingMessage';
 import { IngredientContext } from '../../context/ingredientContext';
+import { AuthContext } from '../../context/authContext';
 
 import './IngredientCategoryList.css';
 
 const IngredientCategoryList = ({ setCategoryClicked }) => {
+  const { accessToken } = React.useContext(AuthContext);
   const { listeCategoriesIngredients, setListeCategoriesIngredients } = React.useContext(IngredientContext);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -25,7 +27,12 @@ const IngredientCategoryList = ({ setCategoryClicked }) => {
   };
 
   const deleteCategory = (categoryId) => {
-    Axios.delete(`${apiBaseURL}/api/v2/ingredients/category/${categoryId}`)
+    Axios.delete(`${apiBaseURL}/api/v2/ingredients/category/${categoryId}`,
+      {
+        headers: {
+          authorization: accessToken
+        }
+      })
       .then(reponse => {
         setListeCategoriesIngredients(reponse.data);
         setCategoryClicked(null);
@@ -33,7 +40,6 @@ const IngredientCategoryList = ({ setCategoryClicked }) => {
       .catch(error => {
         console.log("vous avez une erreur : ", error);
       });
-
   }
 
   return (
