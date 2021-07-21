@@ -13,7 +13,7 @@ const ManageIngredients = () => {
     <div className='manage-ingredients'>
       <h4>LES INGREDIENTS</h4>
       <IngredientList setIngredientClicked={setIngredientClicked} />
-      <IngredientChange ingredient={ingredientClicked} />
+      <IngredientChange ingredient={ingredientClicked} setIngredient={setIngredientClicked} />
       <IngredientAdd />
     </div>
   )
