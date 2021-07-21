@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import Axios from "axios";
-
 import { TextField, Button } from '@material-ui/core';
 
 import apiBaseURL from "../../env";
 
 import { AuthContext } from '../../context/authContext';
+import { IngredientContext } from '../../context/ingredientContext';
 
 import './IngredientCategoryAdd.css';
-import { IngredientContext } from '../../context/ingredientContext';
 
 const IngredientCategoryAdd = () => {
   const { accessToken } = React.useContext(AuthContext);

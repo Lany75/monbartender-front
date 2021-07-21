@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Axios from "axios";
-
 import { TextField, InputLabel, MenuItem, FormControl, Select, Button } from '@material-ui/core';
 
 import apiBaseURL from "../../env";
@@ -33,6 +32,8 @@ const IngredientAdd = () => {
         })
         .then(reponse => {
           setListeIngredients(reponse.data);
+          setIngredientName('');
+          setIngredientCategorie('');
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
