@@ -9,7 +9,7 @@ import { AuthContext } from '../../context/authContext';
 
 import './IngredientChange.css';
 
-const IngredientChange = ({ ingredient }) => {
+const IngredientChange = ({ ingredient, setIngredient }) => {
   const { accessToken } = React.useContext(AuthContext);
   const { listeCategoriesIngredients, setListeIngredients } = React.useContext(IngredientContext);
   const [ingredientId, setIngredientId] = useState('');
@@ -33,6 +33,10 @@ const IngredientChange = ({ ingredient }) => {
         })
         .then(reponse => {
           setListeIngredients(reponse.data);
+          setIngredient(null);
+          setIngredientId('');
+          setIngredientName('');
+          setIngredientCategorie('');
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
