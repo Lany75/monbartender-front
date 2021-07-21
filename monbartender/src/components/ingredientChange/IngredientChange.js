@@ -34,9 +34,6 @@ const IngredientChange = ({ ingredient, setIngredient }) => {
         .then(reponse => {
           setListeIngredients(reponse.data);
           setIngredient(null);
-          setIngredientId('');
-          setIngredientName('');
-          setIngredientCategorie('');
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
@@ -49,6 +46,10 @@ const IngredientChange = ({ ingredient, setIngredient }) => {
       setIngredientId(ingredient.id);
       setIngredientName(ingredient.nom);
       setIngredientCategorie(ingredient.CategorieIngredient.nom)
+    } else {
+      setIngredientId('');
+      setIngredientName('');
+      setIngredientCategorie('');
     }
   }, [ingredient])
 
