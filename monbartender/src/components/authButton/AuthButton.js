@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
@@ -10,8 +10,8 @@ import './AuthButton.css';
 import './AuthButtonDesktop.css';
 
 const AuthButton = () => {
-  let { user, setAccessToken, signOut } = useContext(AuthContext);
-  const { bar, setBar } = useContext(BarContext);
+  let { user, setAccessToken, signOut } = React.useContext(AuthContext);
+  const { bar, setBar } = React.useContext(BarContext);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const userName = user?.displayName?.split(' ')[0];
@@ -34,7 +34,7 @@ const AuthButton = () => {
   }
 
   return (
-    <div className='auth'>
+    <div className='auth-button'>
       <IconButton
         aria-label="account of current user"
         aria-controls="menu-appbar"
@@ -59,7 +59,7 @@ const AuthButton = () => {
         onClose={handleClose}
       >
         {user ? (
-          <div>
+          <div className='user-menu'>
             <MenuItem onClick={handleClose}>Mon profil</MenuItem>
             <MenuItem onClick={handleClose}>
               <Link
@@ -90,9 +90,8 @@ const AuthButton = () => {
             </MenuItem>
           </div>
         ) : (
-          <div>
+          <div className='visitor-menu'>
             <MenuItem onClick={handleClose}>
-
               <Link
                 to='/inscription'
                 style={{ textDecoration: "none", color: "black" }}
