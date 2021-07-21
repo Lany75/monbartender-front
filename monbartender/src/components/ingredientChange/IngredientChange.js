@@ -60,7 +60,7 @@ const IngredientChange = ({ ingredient, setIngredient }) => {
         {ingredient ? (
           <p id='ingredient-id'>id: {ingredient?.id}</p>
         ) : (
-          <p id='ingredient-id'>Cliquer dans le tableau sur l'ingrédient à modifier ou à supprimer</p>
+          <p id='ingredient-id'>Cliquer dans le tableau sur l'ingrédient à modifier</p>
         )}
         <div id='ingredient-name'>
           <TextField

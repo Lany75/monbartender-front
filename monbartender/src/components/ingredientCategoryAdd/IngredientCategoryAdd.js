@@ -37,7 +37,7 @@ const IngredientCategoryAdd = () => {
 
   return (
     <div className='ingredient-category-add'>
-      <h4>AJOUT D'UNE CATEGORIE</h4>
+      <h4>AJOUT D'UNE CATEGORIE D'INGREDIENT</h4>
       <form className='form-ingredient-category-add' onSubmit={addCategory}>
         <div id='ingredient-category-add-name'>
           <TextField
