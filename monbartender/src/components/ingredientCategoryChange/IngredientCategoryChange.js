@@ -30,8 +30,6 @@ const IngredientCategoryChange = ({ category, setCategory }) => {
           setListeCategoriesIngredients(reponse.data);
           getListeIngredients();
           setCategory(null);
-          setCategoryId('');
-          setCategoryName('');
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
@@ -43,6 +41,9 @@ const IngredientCategoryChange = ({ category, setCategory }) => {
     if (category) {
       setCategoryId(category.id);
       setCategoryName(category.nom);
+    } else {
+      setCategoryId('');
+      setCategoryName('');
     }
   }, [category])
 
