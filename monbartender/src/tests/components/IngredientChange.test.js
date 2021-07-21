@@ -133,18 +133,6 @@ describe('<IngredientChange />', () => {
       expect(btnModify.find(Button).props()).to.have.property('type', 'submit');
       expect(btnModify.find(Button).text()).to.be.equal('Modifier');
     })
-
-    const btnDelete = form.find('div#ingredient-change-btn-delete');
-
-    it('should contain a div witch id="ingredient-change-btn-delete"', () => {
-      expect(btnDelete).to.have.length(1);
-    })
-
-    it('should contain a Button with text="Supprimer"', () => {
-      expect(btnDelete.find(Button)).to.have.length(1);
-      expect(btnDelete.find(Button).props()).to.have.property('type', 'button');
-      expect(btnDelete.find(Button).text()).to.be.equal('Supprimer');
-    })
   })
 
   describe('it test case with a defined ingredient props', () => {
@@ -232,18 +220,5 @@ describe('<IngredientChange />', () => {
       expect(btnModify.find(Button).props()).to.have.property('type', 'submit');
       expect(btnModify.find(Button).text()).to.be.equal('Modifier');
     })
-
-    const btnDelete = form.find('div#ingredient-change-btn-delete');
-
-    it('should contain a div witch id="ingredient-change-btn-delete"', () => {
-      expect(btnDelete).to.have.length(1);
-    })
-
-    it('should contain a Button with text="Supprimer"', () => {
-      expect(btnDelete.find(Button)).to.have.length(1);
-      expect(btnDelete.find(Button).props()).to.have.property('type', 'button');
-      expect(btnDelete.find(Button).text()).to.be.equal('Supprimer');
-    })
   })
-
 })
