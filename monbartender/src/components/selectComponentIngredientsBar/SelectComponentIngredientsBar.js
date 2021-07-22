@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 
-import "./SelectComponentIngredientsBar.css";
 import "./SelectComponentIngredientsBarDesktop.css";
 import { BarContext } from "../../context/barContext";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -20,26 +19,26 @@ const SelectComponentIngredientsBar = props => {
     <>
       {bar && bar.Ingredients.length === 0
         ? listeIngredients && (
-            <Autocomplete
-              className="selection-box"
-              id={idDivSelect}
-              options={listeIngredients}
-              getOptionLabel={option => option.nom}
-              style={{ width: 300 }}
-              renderInput={params => <TextField {...params} label={label} />}
-            />
-          )
+          <Autocomplete
+            className="selection-box"
+            id={idDivSelect}
+            options={listeIngredients}
+            getOptionLabel={option => option.nom}
+            style={{ width: 300 }}
+            renderInput={params => <TextField {...params} label={label} />}
+          />
+        )
         : bar &&
-          bar.Ingredients && (
-            <Autocomplete
-              className="selection-box"
-              id={idDivSelect}
-              options={bar.Ingredients}
-              getOptionLabel={option => option.nom}
-              style={{ width: 300 }}
-              renderInput={params => <TextField {...params} label={label} />}
-            />
-          )}
+        bar.Ingredients && (
+          <Autocomplete
+            className="selection-box"
+            id={idDivSelect}
+            options={bar.Ingredients}
+            getOptionLabel={option => option.nom}
+            style={{ width: 300 }}
+            renderInput={params => <TextField {...params} label={label} />}
+          />
+        )}
     </>
   );
 };

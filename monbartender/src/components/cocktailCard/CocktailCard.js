@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import DisplayError from '../displayError/DisplayError';
 import ImageCocktail from "../imageCocktail/ImageCocktail";
-import './CocktailsCard.css';
+import './CocktailCard.css';
 
-const CocktailsCard = ({ cocktail }) => {
+const CocktailCard = ({ cocktail }) => {
   const to = `/cocktail/${cocktail?.id}`;
 
   return (
@@ -30,4 +30,4 @@ const CocktailsCard = ({ cocktail }) => {
   )
 }
 
-export default CocktailsCard;
+export default CocktailCard;

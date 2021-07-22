@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 
-import "./SelectComponentAllIngredients.css";
 import "./SelectComponentAllIngredientsDesktop.css";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";

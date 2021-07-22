@@ -2,6 +2,7 @@
   #titre-ajout-cocktail {
     font-size:25px;
   }
+
   #nom-alcool {
     display: flex;
     flex-direction: row;
@@ -17,9 +18,10 @@
     margin-left: 10px;
   }
 
-  #ingr-boutonn, #etapes-bouton {
+  #ingr-bouton, #etapes-bouton {
     font-size: 15px;
   }
+
   #btn-ajout-supp {
     font-size: 20px;
   }
@@ -33,7 +35,6 @@
     flex-direction: column;
     margin: 10px;
   } 
-
 
   .etape-nv-cocktail {
     margin-top: 10px;

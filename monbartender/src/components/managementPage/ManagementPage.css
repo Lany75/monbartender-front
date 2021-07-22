@@ -5,11 +5,6 @@
   margin: 20px;
 }
 
-.paper {
-  flex-grow: 1;
-  width: 100%;
-  }
-
 #management-tab-label {
   font-size: 12px;
 }

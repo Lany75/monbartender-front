@@ -16,6 +16,7 @@
 .visible {
   display: flex block
 }
+
 .invisible {
   display: none;
 }

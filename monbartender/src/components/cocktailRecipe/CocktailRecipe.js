@@ -24,8 +24,6 @@ const CocktailRecipe = () => {
     getCocktailRecipe(id);
   }, [id]);
 
-  console.log(CocktailRecipe);
-
   return (
     <RecipePage cocktail={CocktailRecipe} />
   )
