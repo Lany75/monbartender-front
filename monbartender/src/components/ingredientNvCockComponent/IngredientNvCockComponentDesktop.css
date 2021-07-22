@@ -12,15 +12,10 @@
     /* display: flex; */
     /* justify-content: space-between; */
     margin-left: 20px;
-
   }
  
   .quantite-nv-ingredient, .unite-nv-ingredient {
     margin-right: 10px;
     margin-left: 10px;
-  } 
-
-  .invisible {
-    display: none;
   } 
 }
