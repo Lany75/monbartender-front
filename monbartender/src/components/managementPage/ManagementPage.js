@@ -6,8 +6,8 @@ import ManageIngredients from '../manageIngredients/ManageIngredients';
 import ManageCategories from '../manageCategories/ManageCategories';
 import GestionCocktailMoment from "../gestionCocktailMoment/GestionCocktailMoment";
 import GestionCocktails from "../gestionCocktails/GestionCocktails";
-import GestionVerres from "../gestionVerres/GestionVerres";
 import UnauthorizedPage from '../unauthorizedPage/UnauthorizedPage';
+import ManageGlass from '../manageGlass/ManageGlass';
 
 import { AuthContext } from '../../context/authContext';
 import { BarContext } from '../../context/barContext';
@@ -59,7 +59,7 @@ const ManagementPage = () => {
             <ManageCategories />
           </TabPanel>
           <TabPanel value={value} index={4}>
-            <GestionVerres />
+            <ManageGlass />
           </TabPanel>
           <TabPanel value={value} index={5}>
             GestionAdmin
