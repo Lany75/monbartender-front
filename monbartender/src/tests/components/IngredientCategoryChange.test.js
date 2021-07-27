@@ -21,119 +21,90 @@ describe('<IngredientCategoryChange />', () => {
     React.useContext = realUseContext;
   });
 
-  describe('it test case with an undefined category props', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      accessToken: testAccessToken,
-      setListeCategoriesIngredients: jest.fn(),
-      getListeIngredients: jest.fn(),
-    }));
+  jest.spyOn(React, 'useContext').mockImplementation(() => ({
+    accessToken: testAccessToken,
+    setListeCategoriesIngredients: jest.fn(),
+    getListeIngredients: jest.fn(),
+  }));
 
-    const ingredientCategoryChange = shallow(<IngredientCategoryChange />);
-    const divIngredientCategoryChange = ingredientCategoryChange.find('div.ingredient-category-change');
+  const ingredientCategoryChange1 = shallow(<IngredientCategoryChange />);
+  const ingredientCategoryChange2 = shallow(<IngredientCategoryChange category={testSelectedCategory} />);
 
-    it('should contain a div witch className="ingredient-category-change"', () => {
-      expect(divIngredientCategoryChange).to.have.length(1);
-    })
+  const divIngredientCategoryChange1 = ingredientCategoryChange1.find('div.ingredient-category-change');
+  const divIngredientCategoryChange2 = ingredientCategoryChange2.find('div.ingredient-category-change');
 
-    it("should contain a h4 tag witch text is 'MODIFICATION D'UNE CATEGORIE D'INGREDIENT'", () => {
-      expect(divIngredientCategoryChange.find('h4')).to.have.length(1);
-      expect(divIngredientCategoryChange.find('h4').text()).to.be.equal("MODIFICATION D'UNE CATEGORIE D'INGREDIENT");
-    })
-
-    const form = divIngredientCategoryChange.find('form.form-category-change');
-
-    it('should contain a form tag witch className="form-category-change" and have onSubmit attribute', () => {
-      expect(form).to.have.length(1);
-      expect(form.props().hasOwnProperty('onSubmit')).to.be.true;
-    })
-
-    it('should contain a p tag witch id="category-id" and with text "Cliquer dans le tableau sur la catégorie à modifier" if ingredient prop is undefined', () => {
-      expect(form.find('p#category-id')).to.have.length(1);
-      expect(form.find('p#category-id').text()).to.be.equal("Cliquer dans le tableau sur la catégorie à modifier");
-    })
-
-    const divCategoryName = form.find('div#category-name');
-
-    it('should contain a div witch id="category-name"', () => {
-      expect(divCategoryName).to.have.length(1);
-    })
-
-    it('should contain a TextField component witch have name, label and onChange attributes', () => {
-      const textField = divCategoryName.find(TextField);
-      expect(textField).to.have.length(1);
-      expect(textField.props()).to.have.property('label', 'Nom');
-      expect(textField.props()).to.have.property('name', 'categoryName');
-      expect(textField.props().hasOwnProperty('onChange')).to.be.true;
-    })
-
-    const btnModify = form.find('div#category-change-btn-modify');
-
-    it('should contain a div witch id="category-change-btn-modify"', () => {
-      expect(btnModify).to.have.length(1);
-    })
-
-    it('should contain a submit Button with text="Modifier"', () => {
-      expect(btnModify.find(Button)).to.have.length(1);
-      expect(btnModify.find(Button).props()).to.have.property('type', 'submit');
-      expect(btnModify.find(Button).text()).to.be.equal('Modifier');
-    })
+  it('should contain a div witch className="ingredient-category-change"', () => {
+    expect(divIngredientCategoryChange1).to.have.length(1);
+    expect(divIngredientCategoryChange2).to.have.length(1);
   })
 
-  describe('it test case with a defined category props', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      accessToken: testAccessToken,
-      setListeCategoriesIngredients: jest.fn(),
-      getListeIngredients: jest.fn(),
-    }));
+  it("should contain a h4 tag witch text is 'MODIFICATION D'UNE CATEGORIE D'INGREDIENT'", () => {
+    expect(divIngredientCategoryChange1.find('h4')).to.have.length(1);
+    expect(divIngredientCategoryChange1.find('h4').text()).to.be.equal("MODIFICATION D'UNE CATEGORIE D'INGREDIENT");
 
-    const ingredientCategoryChange = shallow(<IngredientCategoryChange category={testSelectedCategory} />);
-    const divIngredientCategoryChange = ingredientCategoryChange.find('div.ingredient-category-change');
+    expect(divIngredientCategoryChange2.find('h4')).to.have.length(1);
+    expect(divIngredientCategoryChange2.find('h4').text()).to.be.equal("MODIFICATION D'UNE CATEGORIE D'INGREDIENT");
+  })
 
-    it('should contain a div witch className="ingredient-category-change"', () => {
-      expect(divIngredientCategoryChange).to.have.length(1);
-    })
+  const form1 = divIngredientCategoryChange1.find('form.form-category-change');
+  const form2 = divIngredientCategoryChange2.find('form.form-category-change');
 
-    it("should contain a h4 tag witch text is 'MODIFICATION D'UNE CATEGORIE D'INGREDIENT'", () => {
-      expect(divIngredientCategoryChange.find('h4')).to.have.length(1);
-      expect(divIngredientCategoryChange.find('h4').text()).to.be.equal("MODIFICATION D'UNE CATEGORIE D'INGREDIENT");
-    })
+  it('should contain a form tag witch className="form-category-change" and have onSubmit attribute', () => {
+    expect(form1).to.have.length(1);
+    expect(typeof (form1.props().onSubmit)).to.equal('function');
 
-    const form = divIngredientCategoryChange.find('form.form-category-change');
+    expect(form2).to.have.length(1);
+    expect(typeof (form2.props().onSubmit)).to.equal('function');
+  })
 
-    it('should contain a form tag witch className="form-category-change" and have onSubmit attribute', () => {
-      expect(form).to.have.length(1);
-      expect(form.props().hasOwnProperty('onSubmit')).to.be.true;
-    })
+  it('should contain a p tag witch id="category-id" and with text "Cliquer dans le tableau sur la catégorie à modifier" if ingredient prop is undefined', () => {
+    expect(form1.find('p#category-id')).to.have.length(1);
+    expect(form1.find('p#category-id').text()).to.be.equal("Cliquer dans le tableau sur la catégorie à modifier");
+  })
 
-    it('should contain a p tag witch id="category-id" and with text "id: 57459a23-14dc-43e7-b730-932cee95b477" if category prop is defined', () => {
-      expect(form.find('p#category-id')).to.have.length(1);
-      expect(form.find('p#category-id').text()).to.be.equal('id: 57459a23-14dc-43e7-b730-932cee95b477');
-    })
+  it('should contain a p tag witch id="category-id" and with text "id: 57459a23-14dc-43e7-b730-932cee95b477" if category prop is defined', () => {
+    expect(form2.find('p#category-id')).to.have.length(1);
+    expect(form2.find('p#category-id').text()).to.be.equal('id: 57459a23-14dc-43e7-b730-932cee95b477');
+  })
 
-    const divCategoryName = form.find('div#category-name');
+  const divCategoryName1 = form1.find('div#category-name');
+  const divCategoryName2 = form2.find('div#category-name');
 
-    it('should contain a div witch id="category-name"', () => {
-      expect(divCategoryName).to.have.length(1);
-    })
+  it('should contain a div witch id="category-name"', () => {
+    expect(divCategoryName1).to.have.length(1);
+    expect(divCategoryName2).to.have.length(1);
+  })
 
-    it('should contain a TextField component witch have name, label and onChange attributes', () => {
-      const textField = divCategoryName.find(TextField);
-      expect(textField).to.have.length(1);
-      expect(textField.props()).to.have.property('label', 'Nom');
-      expect(textField.props()).to.have.property('name', 'categoryName');
-      expect(textField.props().hasOwnProperty('onChange')).to.be.true;
-    })
+  it('should contain a TextField component witch have name, label and onChange attributes', () => {
+    const textField1 = divCategoryName1.find(TextField);
+    expect(textField1).to.have.length(1);
+    expect(textField1.props()).to.have.property('label', 'Nom');
+    expect(textField1.props()).to.have.property('name', 'categoryName');
+    expect(typeof (textField1.props().onChange)).to.equal('function');
 
-    const btnModify = form.find('div#category-change-btn-modify');
 
-    it('should contain a div witch id="category-change-btn-modify"', () => {
-      expect(btnModify).to.have.length(1);
-    })
+    const textField2 = divCategoryName2.find(TextField);
+    expect(textField2).to.have.length(1);
+    expect(textField2.props()).to.have.property('label', 'Nom');
+    expect(textField2.props()).to.have.property('name', 'categoryName');
+    expect(typeof (textField2.props().onChange)).to.equal('function');
+  })
 
-    it('should contain a submit Button with text="Modifier"', () => {
-      expect(btnModify.find(Button)).to.have.length(1);
-      expect(btnModify.find(Button).props()).to.have.property('type', 'submit');
-      expect(btnModify.find(Button).text()).to.be.equal('Modifier');
-    })
+  const btnModify1 = form1.find('div#category-change-btn-modify');
+  const btnModify2 = form2.find('div#category-change-btn-modify');
+
+  it('should contain a div witch id="category-change-btn-modify"', () => {
+    expect(btnModify1).to.have.length(1);
+    expect(btnModify2).to.have.length(1);
+  })
+
+  it('should contain a submit Button with text="Modifier"', () => {
+    expect(btnModify1.find(Button)).to.have.length(1);
+    expect(btnModify1.find(Button).props()).to.have.property('type', 'submit');
+    expect(btnModify1.find(Button).text()).to.be.equal('Modifier');
+
+    expect(btnModify2.find(Button)).to.have.length(1);
+    expect(btnModify2.find(Button).props()).to.have.property('type', 'submit');
+    expect(btnModify2.find(Button).text()).to.be.equal('Modifier');
   })
 })

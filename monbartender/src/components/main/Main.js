@@ -8,8 +8,6 @@ import Page404 from '../page404/Page404';
 import MentionsLegales from '../mentionsLegales/MentionsLegales';
 import AjoutCocktail from '../ajoutCocktail/AjoutCocktail';
 import ModifierCocktail from '../modifierCocktail/ModifierCocktail';
-import AjoutVerre from '../ajoutVerre/AjoutVerre';
-import ModifierVerre from '../modifierVerre/ModifierVerre';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
 import ForgotPassword from '../forgotPassword/ForgotPassword';
@@ -33,8 +31,6 @@ function Main() {
           path='/gestion/modifier-cocktail-moment/'
           component={ModifierCocktailMoment}
         />
-        <Route path='/gestion/ajouter-verre/' component={AjoutVerre} />
-        <Route path='/gestion/modifier-verre/:id' component={ModifierVerre} />
         <Route path='/gestion/ajouter-cocktail/' component={AjoutCocktail} />
         <Route
           path='/gestion/modifier-cocktail/:id'

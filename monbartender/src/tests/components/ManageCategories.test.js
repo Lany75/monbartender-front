@@ -9,7 +9,7 @@ describe('<ManageCategories />', () => {
   const manageCategories = shallow(<ManageCategories />);
   const divManageCategories = manageCategories.find('div.manage-categories');
 
-  it('should contain a div witch clasSName is manage-categories', () => {
+  it('should contain a div witch className is manage-categories', () => {
     expect(divManageCategories).to.have.length(1);
   })
 

@@ -48,177 +48,143 @@ describe('<IngredientChange />', () => {
     React.useContext = realUseContext;
   });
 
-  describe('it test case with an undefined ingredient props', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      accessToken: testAccessToken,
-      listeCategoriesIngredients: testListCategories,
-      setListeIngredients: jest.fn(),
-      getBarUser: jest.fn()
-    }));
+  jest.spyOn(React, 'useContext').mockImplementation(() => ({
+    accessToken: testAccessToken,
+    listeCategoriesIngredients: testListCategories,
+    setListeIngredients: jest.fn(),
+  }));
 
-    const ingredientChange = shallow(<IngredientChange />);
-    const divIngredientChange = ingredientChange.find('div.ingredient-change');
+  const ingredientChange1 = shallow(<IngredientChange ingredient={testSelectedIngredient} />);
 
-    it('should contain a div witch className="ingredient-change"', () => {
-      expect(divIngredientChange).to.have.length(1);
-    })
+  jest.spyOn(React, 'useContext').mockImplementation(() => ({
+    accessToken: testAccessToken,
+    listeCategoriesIngredients: undefined,
+    setListeIngredients: jest.fn(),
+  }));
 
-    it("should contain a h4 tag witch text is 'MODIFICATION D'UN INGREDIENT'", () => {
-      expect(divIngredientChange.find('h4')).to.have.length(1);
-      expect(divIngredientChange.find('h4').text()).to.be.equal("MODIFICATION D'UN INGREDIENT");
-    })
+  const ingredientChange2 = shallow(<IngredientChange />);
 
-    const form = divIngredientChange.find('form.form-ingredient-change');
+  const divIngredientChange1 = ingredientChange1.find('div.ingredient-change');
+  const divIngredientChange2 = ingredientChange2.find('div.ingredient-change');
 
-    it('should contain a form tag witch className="form-ingredient-change" and have onSubmit attribute', () => {
-      expect(form).to.have.length(1);
-      expect(form.props().hasOwnProperty('onSubmit')).to.be.true;
-    })
-
-    it('should contain a p tag witch id="ingredient-id" and with text "Cliquer dans le tableau sur l\'ingrédient à modifier" if ingredient prop is undefined', () => {
-      expect(form.find('p#ingredient-id')).to.have.length(1);
-      expect(form.find('p#ingredient-id').text()).to.be.equal("Cliquer dans le tableau sur l'ingrédient à modifier");
-    })
-
-    const divIngredientName = form.find('div#ingredient-name');
-
-    it('should contain a div witch id="ingredient-name"', () => {
-      expect(divIngredientName).to.have.length(1);
-    })
-
-    it('should contain a TextField component witch have name, label and onChange attributes', () => {
-      const textField = divIngredientName.find(TextField);
-      expect(textField).to.have.length(1);
-      expect(textField.props()).to.have.property('label', 'Nom');
-      expect(textField.props()).to.have.property('name', 'ingredientName');
-      expect(textField.props().hasOwnProperty('onChange')).to.be.true;
-    })
-
-    const divIngredientCategories = form.find('div#ingredient-categories');
-
-    it('should contain a div witch id="ingredient-categories"', () => {
-      expect(divIngredientCategories).to.have.length(1);
-    })
-
-    const formControl = divIngredientCategories.find(FormControl);
-
-    it('should contain a FormControl component', () => {
-      expect(formControl).to.have.length(1);
-    })
-
-    it('should contain an InputLabel component witch id="label-categorie" and text="Catégorie"', () => {
-      expect(formControl.find(InputLabel)).to.have.length(1);
-      expect(formControl.find(InputLabel).text()).to.be.equal('Catégorie');
-    })
-
-    const selectFormControl = formControl.find(Select);
-
-    it('should contain a Select component witch id="select-categorie"', () => {
-      expect(selectFormControl).to.have.length(1);
-      expect(selectFormControl.props()).to.have.property('id', 'select-categorie');
-    })
-
-    it('should contain 5 MenuItem component', () => {
-      expect(selectFormControl.find(MenuItem)).to.have.length(5);
-    })
-
-    const btnModify = form.find('div#ingredient-change-btn-modify');
-
-    it('should contain a div witch id="ingredient-change-btn-modify"', () => {
-      expect(btnModify).to.have.length(1);
-    })
-
-    it('should contain a submit Button with text="Modifier"', () => {
-      expect(btnModify.find(Button)).to.have.length(1);
-      expect(btnModify.find(Button).props()).to.have.property('type', 'submit');
-      expect(btnModify.find(Button).text()).to.be.equal('Modifier');
-    })
+  it('should contain a div witch className="ingredient-change"', () => {
+    expect(divIngredientChange1).to.have.length(1);
+    expect(divIngredientChange2).to.have.length(1);
   })
 
-  describe('it test case with a defined ingredient props', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      accessToken: testAccessToken,
-      listeCategoriesIngredients: testListCategories,
-      setListeIngredients: jest.fn(),
-      getBarUser: jest.fn()
-    }));
+  it("should contain a h4 tag witch text is 'MODIFICATION D'UN INGREDIENT'", () => {
+    expect(divIngredientChange1.find('h4')).to.have.length(1);
+    expect(divIngredientChange1.find('h4').text()).to.be.equal("MODIFICATION D'UN INGREDIENT");
 
-    const ingredientChange = shallow(<IngredientChange ingredient={testSelectedIngredient} />);
-    const divIngredientChange = ingredientChange.find('div.ingredient-change');
+    expect(divIngredientChange2.find('h4')).to.have.length(1);
+    expect(divIngredientChange2.find('h4').text()).to.be.equal("MODIFICATION D'UN INGREDIENT");
+  })
 
-    it('should contain a div witch className="ingredient-change"', () => {
-      expect(divIngredientChange).to.have.length(1);
-    })
+  const form1 = divIngredientChange1.find('form.form-ingredient-change');
+  const form2 = divIngredientChange2.find('form.form-ingredient-change');
 
-    it("should contain a h4 tag witch text is 'MODIFICATION D'UN INGREDIENT'", () => {
-      expect(divIngredientChange.find('h4')).to.have.length(1);
-      expect(divIngredientChange.find('h4').text()).to.be.equal("MODIFICATION D'UN INGREDIENT");
-    })
+  it('should contain a form tag witch className="form-ingredient-change" and have onSubmit attribute', () => {
+    expect(form1).to.have.length(1);
+    expect(typeof (form1.props().onSubmit)).to.equal('function');
 
-    const form = divIngredientChange.find('form.form-ingredient-change');
+    expect(form2).to.have.length(1);
+    expect(typeof (form2.props().onSubmit)).to.equal('function');
+  })
 
-    it('should contain a form tag witch className="form-ingredient-change" and have onSubmit attribute', () => {
-      expect(form).to.have.length(1);
-      expect(form.props().hasOwnProperty('onSubmit')).to.be.true;
-    })
+  it('should contain a p tag witch id="ingredient-id" and with text "Cliquer dans le tableau sur l\'ingrédient à modifier" if ingredient prop is undefined', () => {
+    expect(form2.find('p#ingredient-id')).to.have.length(1);
+    expect(form2.find('p#ingredient-id').text()).to.be.equal("Cliquer dans le tableau sur l'ingrédient à modifier");
+  })
 
-    it('should contain a p tag witch id="ingredient-id" and with text "id: c3fd98ec-cad4-49c9-9a74-63ca90489a0a" if ingredient prop is defined', () => {
-      expect(form.find('p#ingredient-id')).to.have.length(1);
-      expect(form.find('p#ingredient-id').text()).to.be.equal('id: c3fd98ec-cad4-49c9-9a74-63ca90489a0a');
-    })
+  it('should contain a p tag witch id="ingredient-id" and with text "id: c3fd98ec-cad4-49c9-9a74-63ca90489a0a" if ingredient prop is defined', () => {
+    expect(form1.find('p#ingredient-id')).to.have.length(1);
+    expect(form1.find('p#ingredient-id').text()).to.be.equal('id: c3fd98ec-cad4-49c9-9a74-63ca90489a0a');
+  })
 
-    const divIngredientName = form.find('div#ingredient-name');
+  const divIngredientName1 = form1.find('div#ingredient-name');
+  const divIngredientName2 = form2.find('div#ingredient-name');
 
-    it('should contain a div witch id="ingredient-name"', () => {
-      expect(divIngredientName).to.have.length(1);
-    })
+  it('should contain a div witch id="ingredient-name"', () => {
+    expect(divIngredientName1).to.have.length(1);
+    expect(divIngredientName2).to.have.length(1);
+  })
 
-    it('should contain a TextField component witch have name, label and onChange attributes', () => {
-      const textField = divIngredientName.find(TextField);
-      expect(textField).to.have.length(1);
-      expect(textField.props()).to.have.property('label', 'Nom');
-      expect(textField.props()).to.have.property('name', 'ingredientName');
-      expect(textField.props().hasOwnProperty('onChange')).to.be.true;
-    })
+  it('should contain a TextField component witch have name, label and onChange attributes', () => {
+    const textField1 = divIngredientName1.find(TextField);
+    expect(textField1).to.have.length(1);
+    expect(textField1.props()).to.have.property('label', 'Nom');
+    expect(textField1.props()).to.have.property('name', 'ingredientName');
+    expect(typeof (textField1.props().onChange)).to.equal('function');
 
-    const divIngredientCategories = form.find('div#ingredient-categories');
+    const textField2 = divIngredientName2.find(TextField);
+    expect(textField2).to.have.length(1);
+    expect(textField2.props()).to.have.property('label', 'Nom');
+    expect(textField2.props()).to.have.property('name', 'ingredientName');
+    expect(typeof (textField2.props().onChange)).to.equal('function');
+  })
 
-    it('should contain a div witch id="ingredient-categories"', () => {
-      expect(divIngredientCategories).to.have.length(1);
-    })
+  const divIngredientCategories1 = form1.find('div#ingredient-categories');
+  const divIngredientCategories2 = form2.find('div#ingredient-categories');
 
-    const formControl = divIngredientCategories.find(FormControl);
+  it('should contain a div witch id="ingredient-categories"', () => {
+    expect(divIngredientCategories1).to.have.length(1);
+    expect(divIngredientCategories2).to.have.length(1);
+  })
 
-    it('should contain a FormControl component', () => {
-      expect(formControl).to.have.length(1);
-    })
+  const formControl1 = divIngredientCategories1.find(FormControl);
+  const formControl2 = divIngredientCategories2.find(FormControl);
 
-    it('should contain an InputLabel component witch id="label-categorie" and text="Catégorie"', () => {
-      expect(formControl.find(InputLabel)).to.have.length(1);
-      expect(formControl.find(InputLabel).text()).to.be.equal('Catégorie');
-    })
+  it('should contain a FormControl component', () => {
+    expect(formControl1).to.have.length(1);
+    expect(formControl2).to.have.length(1);
+  })
 
-    const selectFormControl = formControl.find(Select);
+  it('should contain an InputLabel component witch id="label-categorie" and text="Catégorie"', () => {
+    expect(formControl1.find(InputLabel)).to.have.length(1);
+    expect(formControl1.find(InputLabel).props()).to.have.property('id', 'label-categorie');
+    expect(formControl1.find(InputLabel).text()).to.be.equal('Catégorie');
 
-    it('should contain a Select component witch id="select-categorie"', () => {
-      expect(selectFormControl).to.have.length(1);
-      expect(selectFormControl.props()).to.have.property('id', 'select-categorie');
-    })
+    expect(formControl2.find(InputLabel)).to.have.length(1);
+    expect(formControl2.find(InputLabel).props()).to.have.property('id', 'label-categorie');
+    expect(formControl2.find(InputLabel).text()).to.be.equal('Catégorie');
+  })
 
-    it('should contain 5 MenuItem component', () => {
-      expect(selectFormControl.find(MenuItem)).to.have.length(5);
-    })
+  const selectFormControl1 = formControl1.find(Select);
+  const selectFormControl2 = formControl2.find(Select);
 
-    const btnModify = form.find('div#ingredient-change-btn-modify');
+  it('should contain a Select component witch id="select-categorie" and have onChange attribute', () => {
+    expect(selectFormControl1).to.have.length(1);
+    expect(selectFormControl1.props()).to.have.property('id', 'select-categorie');
+    expect(typeof (selectFormControl1.props().onChange)).to.equal('function');
 
-    it('should contain a div witch id="ingredient-change-btn-modify"', () => {
-      expect(btnModify).to.have.length(1);
-    })
+    expect(selectFormControl2).to.have.length(1);
+    expect(selectFormControl2.props()).to.have.property('id', 'select-categorie');
+    expect(typeof (selectFormControl2.props().onChange)).to.equal('function');
+  })
 
-    it('should contain a submit Button with text="Modifier"', () => {
-      expect(btnModify.find(Button)).to.have.length(1);
-      expect(btnModify.find(Button).props()).to.have.property('type', 'submit');
-      expect(btnModify.find(Button).text()).to.be.equal('Modifier');
-    })
+  it('should contain 5 MenuItem component if listeCategoriesIngredients is defined', () => {
+    expect(selectFormControl1.find(MenuItem)).to.have.length(5);
+  })
+
+  it('should contain 0 MenuItem component if listeCategoriesIngredients is undefined', () => {
+    expect(selectFormControl2.find(MenuItem)).to.have.length(0);
+  })
+
+  const btnModify1 = form1.find('div#ingredient-change-btn-modify');
+  const btnModify2 = form2.find('div#ingredient-change-btn-modify');
+
+  it('should contain a div witch id="ingredient-change-btn-modify"', () => {
+    expect(btnModify1).to.have.length(1);
+    expect(btnModify2).to.have.length(1);
+  })
+
+  it('should contain a submit Button with text="Modifier"', () => {
+    expect(btnModify1.find(Button)).to.have.length(1);
+    expect(btnModify1.find(Button).props()).to.have.property('type', 'submit');
+    expect(btnModify1.find(Button).text()).to.be.equal('Modifier');
+
+    expect(btnModify2.find(Button)).to.have.length(1);
+    expect(btnModify2.find(Button).props()).to.have.property('type', 'submit');
+    expect(btnModify2.find(Button).text()).to.be.equal('Modifier');
   })
 })

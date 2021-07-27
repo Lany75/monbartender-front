@@ -26,46 +26,69 @@ describe('<AuthButton />', () => {
     React.useContext = realUseContext;
   });
 
-  describe('it test case if user is defined', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      user: testUser,
-      setAccessToken: jest.fn(),
-      signOut: jest.fn(),
-      bar: testUserBar,
-      setBar: jest.fn()
-    }));
+  jest.spyOn(React, 'useContext').mockImplementation(() => ({
+    user: testUser,
+    setAccessToken: jest.fn(),
+    signOut: jest.fn(),
+    bar: testUserBar,
+    setBar: jest.fn()
+  }));
 
-    const authButton = shallow(<AuthButton />);
-    const divAuthButton = authButton.find('div.auth-button')
+  const authButton1 = shallow(<AuthButton />);
 
-    it('should contain a div witch className is auth-button', () => {
-      expect(divAuthButton).to.have.length(1);
-    })
+  jest.spyOn(React, 'useContext').mockImplementation(() => ({
+    user: undefined,
+    setAccessToken: jest.fn(),
+    signOut: jest.fn(),
+    bar: undefined,
+    setBar: jest.fn()
+  }));
 
-    const iconButton = divAuthButton.find(IconButton);
+  const authButton2 = shallow(<AuthButton />);
 
-    it('should contain an IconButton component with an onClick function', () => {
-      expect(iconButton).to.have.length(1);
-      expect(typeof (iconButton.props().onClick)).to.equal('function');
-    })
+  const divAuthButton1 = authButton1.find('div.auth-button');
+  const divAuthButton2 = authButton2.find('div.auth-button');
 
-    it('should contain an AccountCircle component', () => {
-      expect(iconButton.find(AccountCircle)).to.have.length(1);
-    })
+  it('should contain a div witch className is auth-button', () => {
+    expect(divAuthButton1).to.have.length(1);
+    expect(divAuthButton2).to.have.length(1);
+  })
 
-    it('should contain a div witch className="auth-name" and text="Mélanie"', () => {
-      expect(iconButton.find('div.auth-name')).to.have.length(1);
-      expect(iconButton.find('div.auth-name').text()).to.be.equal('Mélanie');
-    })
+  const iconButton1 = divAuthButton1.find(IconButton);
+  const iconButton2 = divAuthButton2.find(IconButton);
 
-    const menu = divAuthButton.find(Menu);
+  it('should contain an IconButton component with an onClick function', () => {
+    expect(iconButton1).to.have.length(1);
+    expect(typeof (iconButton1.props().onClick)).to.equal('function');
 
-    it('should contain a Menu component with an onClose function', () => {
-      expect(menu).to.have.length(1);
-      expect(typeof (menu.props().onClose)).to.equal('function');
-    })
+    expect(iconButton2).to.have.length(1);
+    expect(typeof (iconButton2.props().onClick)).to.equal('function');
+  })
 
-    const userMenu = menu.find('div.user-menu');
+  it('should contain only an AccountCircle component if user is undefined', () => {
+    expect(iconButton2.find(AccountCircle)).to.have.length(1);
+    expect(iconButton2.find('div.auth-name')).to.have.length(0);
+  })
+
+  it('should contain an AccountCircle component and a div witch className="auth-name" and text="Mélanie" if user is defined', () => {
+    expect(iconButton1.find(AccountCircle)).to.have.length(1);
+    expect(iconButton1.find('div.auth-name')).to.have.length(1);
+    expect(iconButton1.find('div.auth-name').text()).to.be.equal('Mélanie');
+  })
+
+  const menu1 = divAuthButton1.find(Menu);
+  const menu2 = divAuthButton2.find(Menu);
+
+  it('should contain a Menu component with an onClose function', () => {
+    expect(menu1).to.have.length(1);
+    expect(typeof (menu1.props().onClose)).to.equal('function');
+
+    expect(menu2).to.have.length(1);
+    expect(typeof (menu2.props().onClose)).to.equal('function');
+  })
+
+  describe('if user is defined', () => {
+    const userMenu = menu1.find('div.user-menu');
 
     it('should contain a div witch className="user-menu"', () => {
       expect(userMenu).to.have.length(1);
@@ -79,42 +102,8 @@ describe('<AuthButton />', () => {
     })
   })
 
-
-  describe('it test case if user is undefined', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      user: undefined,
-      setAccessToken: jest.fn(),
-      signOut: jest.fn(),
-      bar: undefined,
-      setBar: jest.fn()
-    }));
-
-    const authButton = shallow(<AuthButton />);
-    const divAuthButton = authButton.find('div.auth-button')
-
-    it('should contain a div witch className is auth-button', () => {
-      expect(divAuthButton).to.have.length(1);
-    })
-
-    const iconButton = divAuthButton.find(IconButton);
-
-    it('should contain an IconButton component with an onClick function', () => {
-      expect(iconButton).to.have.length(1);
-      expect(typeof (iconButton.props().onClick)).to.equal('function');
-    })
-
-    it('should contain an AccountCircle component', () => {
-      expect(iconButton.find(AccountCircle)).to.have.length(1);
-    })
-
-    const menu = divAuthButton.find(Menu);
-
-    it('should contain a Menu component with an onClose function', () => {
-      expect(menu).to.have.length(1);
-      expect(typeof (menu.props().onClose)).to.equal('function');
-    })
-
-    const visitorMenu = menu.find('div.visitor-menu');
+  describe('if user is undefined', () => {
+    const visitorMenu = menu2.find('div.visitor-menu');
 
     it('should contain a div witch className="visitor-menu"', () => {
       expect(visitorMenu).to.have.length(1);

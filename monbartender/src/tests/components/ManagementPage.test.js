@@ -34,7 +34,7 @@ describe('<ManagementPage />', () => {
     React.useContext = realUseContext;
   });
 
-  describe('it test case if user is admin', () => {
+  describe('it tests case if user is admin', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
       user: user,
       bar: adminBar
@@ -59,7 +59,7 @@ describe('<ManagementPage />', () => {
 
     it('should contain a Tabs component with onChange attribute', () => {
       expect(paperTabs).to.have.length(1);
-      expect(paperTabs.props().hasOwnProperty('onChange')).to.be.true;
+      expect(typeof (paperTabs.props().onChange)).to.equal('function');
     })
 
     const tabComponents = paperTabs.find(Tab);
@@ -100,9 +100,45 @@ describe('<ManagementPage />', () => {
     it('should contain 6 TabPanel components', () => {
       expect(tabPanelComponents).to.have.length(6);
     })
+
+    it('the first TabPanel component should have id="tp-manage-moment-cocktails" and contain a GestionCocktailMoment component', () => {
+      expect(tabPanelComponents.get(0).props.id).to.be.equal('tp-manage-moment-cocktails');
+      const tp = managementPage.find('#tp-manage-moment-cocktails');
+      expect(tp.find('GestionCocktailMoment')).to.have.length(1);
+    })
+
+    it('the second TabPanel component should have id="tp-manage-cocktails" and contain a GestionCocktails component', () => {
+      expect(tabPanelComponents.get(1).props.id).to.be.equal('tp-manage-cocktails');
+      const tp = managementPage.find('#tp-manage-cocktails');
+      expect(tp.find('GestionCocktails')).to.have.length(1);
+    })
+
+    it('the third TabPanel component should have id="tp-manage-ingredients" and contain a ManageIngredients component', () => {
+      expect(tabPanelComponents.get(2).props.id).to.be.equal('tp-manage-ingredients');
+      const tp = managementPage.find('#tp-manage-ingredients');
+      expect(tp.find('ManageIngredients')).to.have.length(1);
+    })
+
+    it('the fourth TabPanel component should have id="tp-manage-categories" and contain a ManageCategories component', () => {
+      expect(tabPanelComponents.get(3).props.id).to.be.equal('tp-manage-categories');
+      const tp = managementPage.find('#tp-manage-categories');
+      expect(tp.find('ManageCategories')).to.have.length(1);
+    })
+
+    it('the fifth TabPanel component should have id="tp-manage-glasses" and contain a ManageGlass component', () => {
+      expect(tabPanelComponents.get(4).props.id).to.be.equal('tp-manage-glasses');
+      const tp = managementPage.find('#tp-manage-glasses');
+      expect(tp.find('ManageGlass')).to.have.length(1);
+    })
+
+    it.skip('the sixth TabPanel component should have id="tp-manage-admin" and contain a ManageAdmin component', () => {
+      expect(tabPanelComponents.get(5).props.id).to.be.equal('tp-manage-admin');
+      const tp = managementPage.find('#tp-manage-admin');
+      expect(tp.find('ManageAdmin')).to.have.length(1);
+    })
   })
 
-  describe('it test case if user is not admin', () => {
+  describe('it tests case if user is not admin', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
       user: user,
       bar: userBar

@@ -46,22 +46,22 @@ const ManagementPage = () => {
             </Tabs>
           </Paper>
 
-          <TabPanel value={value} index={0}>
+          <TabPanel id='tp-manage-moment-cocktails' value={value} index={0}>
             <GestionCocktailMoment />
           </TabPanel>
-          <TabPanel value={value} index={1}>
+          <TabPanel id='tp-manage-cocktails' value={value} index={1}>
             <GestionCocktails />
           </TabPanel>
-          <TabPanel value={value} index={2}>
+          <TabPanel id='tp-manage-ingredients' value={value} index={2}>
             <ManageIngredients />
           </TabPanel>
-          <TabPanel value={value} index={3}>
+          <TabPanel id='tp-manage-categories' value={value} index={3}>
             <ManageCategories />
           </TabPanel>
-          <TabPanel value={value} index={4}>
+          <TabPanel id='tp-manage-glasses' value={value} index={4}>
             <ManageGlass />
           </TabPanel>
-          <TabPanel value={value} index={5}>
+          <TabPanel id='tp-manage-admin' value={value} index={5}>
             GestionAdmin
           </TabPanel>
         </>

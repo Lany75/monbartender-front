@@ -6,7 +6,6 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import apiBaseURL from "../../env";
 
 import LoadingMessage from '../loadingMessage/LoadingMessage';
-import DisplayError from '../displayError/DisplayError';
 
 import { IngredientContext } from '../../context/ingredientContext';
 import { AuthContext } from '../../context/authContext';
@@ -50,51 +49,46 @@ const IngredientList = ({ setIngredientClicked }) => {
 
   return (
     <>
-      {setIngredientClicked ? (
-        listeIngredients ? (
-          <Paper className='paper'>
-            <TableContainer className='table-container'>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>ID</TableCell>
-                    <TableCell className='table-cell-head' align='right'>NOM</TableCell>
-                    <TableCell className='table-cell-head' align='right'>CATEGORIE</TableCell>
-                    <TableCell />
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {listeIngredients.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                        <TableCell onClick={() => setIngredientClicked(row)}>{row.id.split('-')[0]}</TableCell>
-                        <TableCell align='right' onClick={() => setIngredientClicked(row)}>{row.nom}</TableCell>
-                        <TableCell align='right' onClick={() => setIngredientClicked(row)}>{row.CategorieIngredient.nom}</TableCell>
-                        <TableCell align='right'><DeleteForeverIcon onClick={() => deleteIngredient(row.id)} /></TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer >
-            <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={listeIngredients.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
-            />
-          </Paper >
-        ) : (
-          <LoadingMessage message='Chargement ...' />
-        )
+      {listeIngredients ? (
+        <Paper className='paper'>
+          <TableContainer className='table-container'>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>ID</TableCell>
+                  <TableCell className='table-cell-head' align='right'>NOM</TableCell>
+                  <TableCell className='table-cell-head' align='right'>CATEGORIE</TableCell>
+                  <TableCell />
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {listeIngredients.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                  return (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                      <TableCell onClick={() => setIngredientClicked(row)}>{row.id.split('-')[0]}</TableCell>
+                      <TableCell align='right' onClick={() => setIngredientClicked(row)}>{row.nom}</TableCell>
+                      <TableCell align='right' onClick={() => setIngredientClicked(row)}>{row.CategorieIngredient.nom}</TableCell>
+                      <TableCell align='right'><DeleteForeverIcon onClick={() => deleteIngredient(row.id)} /></TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer >
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={listeIngredients.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+        </Paper >
       ) : (
-        <DisplayError classe='paper' componentName='IngredientList' />
+        <LoadingMessage message='Chargement ...' />
       )}
     </>
-
   );
 }
 

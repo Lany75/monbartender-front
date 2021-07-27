@@ -32,13 +32,14 @@ const SearchPage = () => {
           <Tab label="Cocktail aléatoire" id='search-tab-label' />
         </Tabs>
       </Paper>
-      <TabPanel value={value} index={0}>
+
+      <TabPanel id='tp-ingredient-search' value={value} index={0}>
         <RechercheParIngredient />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel id='tp-name-search' value={value} index={1}>
         <NameSearch />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel id='tp-random-cocktail' value={value} index={2}>
         <RandomCocktail />
       </TabPanel>
     </>

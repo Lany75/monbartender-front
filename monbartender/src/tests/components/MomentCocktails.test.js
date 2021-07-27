@@ -114,7 +114,6 @@ describe('<MomentCocktails />', () => {
     })
   })
 
-
   describe('it tests case with defined listeCocktailsMoment', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
       listeCocktailsMoment: testListeCocktailsMoment,
