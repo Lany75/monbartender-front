@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import ManageGlass from '../../components/manageGlass/ManageGlass';
+import GlassAdd from '../../components/glassAdd/GlassAdd';
 
 describe('<ManageGlass />', () => {
   const manageGlass = shallow(<ManageGlass />);
@@ -26,6 +27,6 @@ describe('<ManageGlass />', () => {
   })
 
   it('should contain a GlassAdd component', () => {
-    expect(divManageGlass.find('GlassAdd')).to.have.length(1);
+    expect(divManageGlass).to.contain(<GlassAdd />);
   })
 })

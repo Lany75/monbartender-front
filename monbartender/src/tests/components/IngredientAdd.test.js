@@ -42,6 +42,7 @@ describe('<IngredientAdd />', () => {
   jest.spyOn(React, 'useContext').mockImplementation(() => ({
     accessToken: testAccessToken,
     listeCategoriesIngredients: testListCategories,
+    setListeIngredients: jest.fn()
   }));
 
   const ingredientAdd = shallow(<IngredientAdd />);

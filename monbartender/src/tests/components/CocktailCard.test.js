@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import CocktailCard from '../../components/cocktailCard/CocktailCard';
 import ImageCocktail from '../../components/imageCocktail/ImageCocktail';
-import DisplayError from '../../components/displayError/DisplayError';
 
 const cocktailTest = {
   EtapesPreparations: [
@@ -40,32 +39,21 @@ const cocktailTest = {
 };
 
 describe('<CocktailCard />', () => {
+  const cocktailCard = shallow(<CocktailCard cocktail={cocktailTest} />);
+  const linkCocktailCard = cocktailCard.find(Link);
 
-  describe('it test normal case with defined cocktail', () => {
-    const cocktailCard = shallow(<CocktailCard cocktail={cocktailTest} />);
-    const linkCocktailCard = cocktailCard.find(Link);
-
-    it('should contain a Link witch className is cocktail-card', () => {
-      expect(linkCocktailCard).to.have.length(1);
-      expect(linkCocktailCard.props()).to.have.property('className', 'cocktail-card');
-    })
-
-    it('should contain an ImageCocktail component with props classe="cocktail-card-image"', () => {
-      expect(linkCocktailCard.find(ImageCocktail)).to.have.length(1);
-      expect(linkCocktailCard.find(ImageCocktail).props().classe).to.be.equal('cocktail-card-image');
-    })
-
-    it('should contain a p tag with className "cocktail-card-name" and text "Bloody Mary"', () => {
-      expect(linkCocktailCard.find('p.cocktail-card-name')).to.have.length(1);
-      expect(linkCocktailCard.find('p.cocktail-card-name').text()).to.be.equal('Bloody Mary');
-    })
+  it('should contain a Link witch className is cocktail-card', () => {
+    expect(linkCocktailCard).to.have.length(1);
+    expect(linkCocktailCard.props()).to.have.property('className', 'cocktail-card');
   })
 
-  describe('it test case with undefined cocktail', () => {
-    const undefinedCocktailCard = shallow(<CocktailCard />);
+  it('should contain an ImageCocktail component with props classe="cocktail-card-image"', () => {
+    expect(linkCocktailCard.find(ImageCocktail)).to.have.length(1);
+    expect(linkCocktailCard.find(ImageCocktail).props().classe).to.be.equal('cocktail-card-image');
+  })
 
-    it('should contain a DisplayError component if cocktail is not defined', () => {
-      expect(undefinedCocktailCard.find(DisplayError)).to.have.length(1);
-    })
+  it('should contain a p tag with className "cocktail-card-name" and text "Bloody Mary"', () => {
+    expect(linkCocktailCard.find('p.cocktail-card-name')).to.have.length(1);
+    expect(linkCocktailCard.find('p.cocktail-card-name').text()).to.be.equal('Bloody Mary');
   })
 })

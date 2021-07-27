@@ -2,7 +2,6 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import DisplayError from '../../components/displayError/DisplayError';
 import RecipePage from '../../components/recipePage/RecipePage';
 import ImageCocktail from '../../components/imageCocktail/ImageCocktail';
 
@@ -59,78 +58,67 @@ const cocktailTest = {
 }
 
 describe('<RecipePage />', () => {
+  const recipePage = shallow(<RecipePage cocktail={cocktailTest} />)
+  const divRecipePage = recipePage.find('div.recipe-page');
 
-  describe('It tests normal case with defined cocktail prop', () => {
-    const recipePage = shallow(<RecipePage cocktail={cocktailTest} />)
-    const divTag = recipePage.find('div.recipe-page');
-
-    it('should contain a div witch className is recipe-page', () => {
-      expect(divTag).to.have.length(1);
-    })
-
-    it('should contain a span witch className is "cocktail-name" and text is "MARGARITA"', () => {
-      expect(divTag.find('span.cocktail-name')).to.have.length(1);
-      expect(divTag.find('span.cocktail-name').text()).to.be.equal('MARGARITA');
-    })
-
-    it('should contain an ImageCocktail component', () => {
-      expect(divTag.find(ImageCocktail)).to.have.length(1);
-    })
-
-    const divCocktailIngredients = divTag.find('div.cocktail-ingredients');
-
-    it('should contain a div witch className="cocktail-ingredients"', () => {
-      expect(divCocktailIngredients).to.have.length(1);
-    })
-
-    it('should contain a span witch className="sous-titre" and text is "Ingrédients : "', () => {
-      expect(divCocktailIngredients.find('span.sous-titre')).to.have.length(1);
-      expect(divCocktailIngredients.find('span.sous-titre').text()).to.be.equal('Ingrédients : ');
-    })
-
-    it('should contain an ul tag and 3 li tags witch className is "ingredient"', () => {
-      expect(divCocktailIngredients.find('ul')).to.have.length(1);
-      expect(divCocktailIngredients.find('ul').find('li.ingredient')).to.have.length(3);
-    })
-
-    const divCocktailGlass = divTag.find('div.cocktail-glass');
-
-    it('should contain a div witch className="cocktail-glass"', () => {
-      expect(divCocktailGlass).to.have.length(1);
-    })
-
-    it('should contain a span witch className="sous-titre" and text is "Verre à utiliser : "', () => {
-      expect(divCocktailGlass.find('span.sous-titre')).to.have.length(1);
-      expect(divCocktailGlass.find('span.sous-titre').text()).to.be.equal('Verre à utiliser : ');
-    })
-
-    it('should contain a span witch className="glass" and text is "Verre à Cocktail : "', () => {
-      expect(divCocktailGlass.find('span.glass')).to.have.length(1);
-      expect(divCocktailGlass.find('span.glass').text()).to.be.equal('Verre à Cocktail');
-    })
-
-    const divCocktailSteps = divTag.find('div.cocktail-steps');
-
-    it('should contain a div witch className="cocktail-steps"', () => {
-      expect(divCocktailSteps).to.have.length(1);
-    })
-
-    it('should contain a span witch className="sous-titre" and text is "Préparation : "', () => {
-      expect(divCocktailSteps.find('span.sous-titre')).to.have.length(1);
-      expect(divCocktailSteps.find('span.sous-titre').text()).to.be.equal('Préparation : ');
-    })
-
-    it('should contain an ul tag and 5 li tags witch className is "step"', () => {
-      expect(divCocktailSteps.find('ul')).to.have.length(1);
-      expect(divCocktailSteps.find('ul').find('li.step')).to.have.length(5);
-    })
+  it('should contain a div witch className is recipe-page', () => {
+    expect(divRecipePage).to.have.length(1);
   })
 
-  describe('It tests case with undefined cocktail prop', () => {
-    const recipePage = shallow(<RecipePage />)
+  it('should contain a span witch className is "cocktail-name" and text is "MARGARITA"', () => {
+    expect(divRecipePage.find('span.cocktail-name')).to.have.length(1);
+    expect(divRecipePage.find('span.cocktail-name').text()).to.be.equal('MARGARITA');
+  })
 
-    it('should contain a DisplayError component if cocktail is not defined', () => {
-      expect(recipePage.find(DisplayError)).to.have.length(1);
-    })
+  it('should contain an ImageCocktail component', () => {
+    expect(divRecipePage.find(ImageCocktail)).to.have.length(1);
+  })
+
+  const divCocktailIngredients = divRecipePage.find('div.cocktail-ingredients');
+
+  it('should contain a div witch className="cocktail-ingredients"', () => {
+    expect(divCocktailIngredients).to.have.length(1);
+  })
+
+  it('should contain a span witch className="sous-titre" and text is "Ingrédients : "', () => {
+    expect(divCocktailIngredients.find('span.sous-titre')).to.have.length(1);
+    expect(divCocktailIngredients.find('span.sous-titre').text()).to.be.equal('Ingrédients : ');
+  })
+
+  it('should contain an ul tag and 3 li tags witch className is "ingredient"', () => {
+    expect(divCocktailIngredients.find('ul')).to.have.length(1);
+    expect(divCocktailIngredients.find('ul').find('li.ingredient')).to.have.length(3);
+  })
+
+  const divCocktailGlass = divRecipePage.find('div.cocktail-glass');
+
+  it('should contain a div witch className="cocktail-glass"', () => {
+    expect(divCocktailGlass).to.have.length(1);
+  })
+
+  it('should contain a span witch className="sous-titre" and text is "Verre à utiliser : "', () => {
+    expect(divCocktailGlass.find('span.sous-titre')).to.have.length(1);
+    expect(divCocktailGlass.find('span.sous-titre').text()).to.be.equal('Verre à utiliser : ');
+  })
+
+  it('should contain a span witch className="glass" and text is "Verre à Cocktail : "', () => {
+    expect(divCocktailGlass.find('span.glass')).to.have.length(1);
+    expect(divCocktailGlass.find('span.glass').text()).to.be.equal('Verre à Cocktail');
+  })
+
+  const divCocktailSteps = divRecipePage.find('div.cocktail-steps');
+
+  it('should contain a div witch className="cocktail-steps"', () => {
+    expect(divCocktailSteps).to.have.length(1);
+  })
+
+  it('should contain a span witch className="sous-titre" and text is "Préparation : "', () => {
+    expect(divCocktailSteps.find('span.sous-titre')).to.have.length(1);
+    expect(divCocktailSteps.find('span.sous-titre').text()).to.be.equal('Préparation : ');
+  })
+
+  it('should contain an ul tag and 5 li tags witch className is "step"', () => {
+    expect(divCocktailSteps.find('ul')).to.have.length(1);
+    expect(divCocktailSteps.find('ul').find('li.step')).to.have.length(5);
   })
 })

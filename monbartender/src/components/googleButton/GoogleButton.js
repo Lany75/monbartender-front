@@ -8,7 +8,7 @@ import googleLogo from '../../assets/logo-google-25.png';
 import './GoogleButton.css';
 import { AuthContext } from '../../context/authContext';
 
-const GoogleButton = ({ text }) => {
+const GoogleButton = ({ children }) => {
   let history = useHistory();
   const { signInWithGoogle } = React.useContext(AuthContext);
 
@@ -26,8 +26,8 @@ const GoogleButton = ({ text }) => {
     <Container component="main" maxWidth="xs">
       <div className='connexion-google'>
         <Button variant="contained" color="primary" fullWidth onClick={googleConnect}>
-          <img className='logo-google' alt='google icon' src={googleLogo}></img>
-          {text}
+          <img className='logo-google' alt='google icon' src={googleLogo} />
+          {children}
         </Button>
       </div>
     </Container>

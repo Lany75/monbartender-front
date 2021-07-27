@@ -22,7 +22,7 @@ const CocktailRecipe = () => {
 
   useEffect(() => {
     getCocktailRecipe(id);
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <RecipePage cocktail={CocktailRecipe} />

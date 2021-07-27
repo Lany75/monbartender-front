@@ -6,6 +6,7 @@ import NameSearch from '../../components/nameSearch/NameSearch';
 import NameSearchForm from '../../components/nameSearchForm/NameSearchForm';
 import NameSearchResult from '../../components/nameSearchResult/NameSearchResult';
 
+const cocktailNameMock = '';
 const cocktailTest = {
   EtapesPreparations: [
     {
@@ -41,7 +42,6 @@ const cocktailTest = {
 describe('<NameSearch />', () => {
 
   it('should contain only a NameSearchForm component if searchCocktails is falsy', () => {
-    const cocktailNameMock = '';
     const searchCocktailsMock = undefined;
 
     React.useState = jest
@@ -56,7 +56,6 @@ describe('<NameSearch />', () => {
   })
 
   it('should contain a NameSearchForm and a NameSearchResult component if searchCocktails is not falsy', () => {
-    const cocktailNameMock = '';
     const searchCocktailsMock = cocktailTest;
 
     React.useState = jest

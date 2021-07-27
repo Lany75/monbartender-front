@@ -117,7 +117,7 @@ const SignUp = () => {
                   onChange={event => setPassword(event.target.value)}
                 />
               </Grid>
-              {<Grid item xs={12}>
+              <Grid item xs={12}>
                 <TextField
                   className='signup-input'
                   variant="outlined"
@@ -130,7 +130,7 @@ const SignUp = () => {
                   autoComplete="confirm-password"
                   onChange={event => setConfirmPass(event.target.value)}
                 />
-              </Grid>}
+              </Grid>
             </Grid>
             <div className='signup-button'>
               <Button
@@ -154,7 +154,7 @@ const SignUp = () => {
           </form>
         </div>
       </Container>
-      <GoogleButton text='Inscription Google' />
+      <GoogleButton>Inscription Google</GoogleButton>
     </>
   )
 }

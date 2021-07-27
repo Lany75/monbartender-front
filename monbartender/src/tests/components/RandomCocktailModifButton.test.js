@@ -7,23 +7,17 @@ import RandomCocktailModifButton from '../../components/randomCocktailModifButto
 
 describe('<RandomCocktailModifButton />', () => {
   const randomCocktailModifButton = shallow(<RandomCocktailModifButton otherCocktail={jest.fn()} />);
+  const div = randomCocktailModifButton.find('div.random-cocktail-modif-button');
 
   it('should contain a div witch className is random-cocktail-modif-button', () => {
-    expect(randomCocktailModifButton.find('.random-cocktail-modif-button')).to.have.length(1);
+    expect(div).to.have.length(1);
   })
 
-  it('should contain a Button component', () => {
-    const div = randomCocktailModifButton.find('.random-cocktail-modif-button');
-    expect(div.find(Button)).to.have.length(1);
-  })
+  const button = div.find(Button);
 
-  it('should contain the text "Un autre !!"', () => {
-    const button = randomCocktailModifButton.find(Button);
+  it('should contain a Button component witch text="Un autre !!" and have an onClick function', () => {
+    expect(button).to.have.length(1);
     expect(button.text()).to.be.equal('Un autre !!');
-  })
-
-  it('should contain an onClick function', () => {
-    const button = randomCocktailModifButton.find(Button);
     expect(typeof (button.props().onClick)).to.equal('function');
   })
 })
