@@ -5,10 +5,11 @@ import Axios from "axios";
 import apiBaseURL from "../../env";
 
 import RecipePage from '../recipePage/RecipePage';
+import LoadingMessage from '../loadingMessage/LoadingMessage';
 
 const CocktailRecipe = () => {
   const { id } = useParams();
-  const [CocktailRecipe, setCocktailRecipe] = useState();
+  const [cocktailRecipe, setCocktailRecipe] = useState();
 
   const getCocktailRecipe = () => {
     Axios.get(`${apiBaseURL}/api/v2/cocktails/${id}`)
@@ -25,7 +26,13 @@ const CocktailRecipe = () => {
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <RecipePage cocktail={CocktailRecipe} />
+    <>
+      {cocktailRecipe ? (
+        <RecipePage cocktail={cocktailRecipe} />
+      ) : (
+        <LoadingMessage message='Chargement ...' />
+      )}
+    </>
   )
 }
 
