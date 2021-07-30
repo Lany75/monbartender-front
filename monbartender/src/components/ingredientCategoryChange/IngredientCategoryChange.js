@@ -19,7 +19,7 @@ const IngredientCategoryChange = ({ category, setCategory }) => {
     event.preventDefault();
 
     if (categoryId !== '' && categoryName !== '') {
-      Axios.put(`${apiBaseURL}/api/v2/ingredients/category/${categoryId}`,
+      Axios.put(`${apiBaseURL}/api/v2/categories/${categoryId}`,
         { nom: categoryName },
         {
           headers: {

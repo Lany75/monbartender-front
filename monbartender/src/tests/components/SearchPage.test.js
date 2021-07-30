@@ -42,10 +42,10 @@ describe('<SearchPage />', () => {
     expect(tabPanelComponents).to.have.length(3);
   })
 
-  it('the first TabPanel component should have id="tp-ingredient-search" and contain a RechercheParIngredient component', () => {
+  it('the first TabPanel component should have id="tp-ingredient-search" and contain an IngredientSearch component', () => {
     expect(tabPanelComponents.get(0).props.id).to.be.equal('tp-ingredient-search');
     const tp = searchPage.find('#tp-ingredient-search');
-    expect(tp.find('RechercheParIngredient')).to.have.length(1);
+    expect(tp.find('IngredientSearch')).to.have.length(1);
   })
 
   it('the second TabPanel component should have id="tp-name-search" and contain a NameSearch component', () => {
