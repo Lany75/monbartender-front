@@ -39,7 +39,7 @@ describe('<SignUp />', () => {
 
   it('should contain a form witch className is signup-form and have an onSubmit attribute', () => {
     expect(signupForm).to.have.length(1);
-    expect(typeof (signupForm.props().onSubmit)).to.equal('function');
+    expect(signupForm.props()).to.have.property('onSubmit');
   })
 
   const textFields = signupForm.find(TextField);

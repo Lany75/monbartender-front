@@ -26,7 +26,7 @@ describe('<SearchPage />', () => {
 
   it('should contain a Tabs component with onChange attribute', () => {
     expect(paperTabs).to.have.length(1);
-    expect(typeof (paperTabs.props().onChange)).to.equal('function');
+    expect(paperTabs.props()).to.have.property('onChange');
   })
 
   it('should contain 3 Tab components witch id is search-tab-label', () => {

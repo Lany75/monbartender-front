@@ -20,8 +20,8 @@ describe('<NameSearchForm />', () => {
     const textField = formTag.find(TextField);
     expect(textField).to.have.length(1);
     expect(textField.props()).to.have.property('label', 'Nom du cocktail');
-    expect(typeof (textField.props().onChange)).to.equal('function');
-    expect(textField.props().hasOwnProperty('value')).to.be.true;
+    expect(textField.props()).to.have.property('onChange');
+    expect(textField.props()).to.have.property('value');
   })
 
   it('should contain a submit Button with text "Chercher"', () => {

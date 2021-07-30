@@ -18,6 +18,6 @@ describe('<RandomCocktailModifButton />', () => {
   it('should contain a Button component witch text="Un autre !!" and have an onClick function', () => {
     expect(button).to.have.length(1);
     expect(button.text()).to.be.equal('Un autre !!');
-    expect(typeof (button.props().onClick)).to.equal('function');
+    expect(button.props()).to.have.property('onClick');
   })
 })

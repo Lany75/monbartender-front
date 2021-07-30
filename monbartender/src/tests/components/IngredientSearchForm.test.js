@@ -62,7 +62,7 @@ describe('<IngredientSearchForm />', () => {
     expect(radioGroup.props()).to.have.property('id', 'radio-button');
     expect(radioGroup.props()).to.have.property('name', 'alcool');
     expect(radioGroup.props()).to.have.property('value');
-    expect(typeof (radioGroup.props().onChange)).to.equal('function');
+    expect(radioGroup.props()).to.have.property('onChange');
   })
 
   const formControl = typeMyIngr.find(FormControlLabel);

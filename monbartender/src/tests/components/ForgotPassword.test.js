@@ -34,7 +34,8 @@ describe('<ForgotPassword />', () => {
 
   it('should contain a form tag witch className=password-form and have a onSubmit attribute', () => {
     expect(passwordForm).to.have.length(1);
-    expect(passwordForm.props().hasOwnProperty('onSubmit')).to.be.true;
+    expect(passwordForm.props()).to.have.property('onSubmit');
+
   })
 
   it('should contain a TextField component with className, id, label, name, and onChange attributes', () => {
@@ -43,7 +44,7 @@ describe('<ForgotPassword />', () => {
     expect(passwordForm.find(TextField).props()).to.have.property('id', 'password-email');
     expect(passwordForm.find(TextField).props()).to.have.property('label', 'Adresse email du compte');
     expect(passwordForm.find(TextField).props()).to.have.property('name', 'passwordEmail');
-    expect(passwordForm.props().hasOwnProperty('onChange')).to.be.true;
+    expect(passwordForm.find(TextField).props()).to.have.property('onChange');
   })
 
   const passwordButton = passwordForm.find('div.password-button');

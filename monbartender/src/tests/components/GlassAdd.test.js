@@ -37,7 +37,7 @@ describe('<GlassAdd />', () => {
 
   it('should contain a form tag witch className="form-glass-change" and have onSubmit attribute', () => {
     expect(form).to.have.length(1);
-    expect(typeof (form.props().onSubmit)).to.equal('function');
+    expect(form.props()).to.have.property('onSubmit');
   })
 
   const divGlassAddName = form.find('div#glass-add-name');
@@ -51,7 +51,7 @@ describe('<GlassAdd />', () => {
     expect(textField).to.have.length(1);
     expect(textField.props()).to.have.property('label', 'Nom');
     expect(textField.props()).to.have.property('name', 'glassName');
-    expect(typeof (textField.props().onChange)).to.equal('function');
+    expect(textField.props()).to.have.property('onChange');
   })
 
   const btnAdd = form.find('div#glass-add-btn');

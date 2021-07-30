@@ -85,10 +85,10 @@ describe('<IngredientChange />', () => {
 
   it('should contain a form tag witch className="form-ingredient-change" and have onSubmit attribute', () => {
     expect(form1).to.have.length(1);
-    expect(typeof (form1.props().onSubmit)).to.equal('function');
+    expect(form1.props()).to.have.property('onSubmit');
 
     expect(form2).to.have.length(1);
-    expect(typeof (form2.props().onSubmit)).to.equal('function');
+    expect(form2.props()).to.have.property('onSubmit');
   })
 
   it('should contain a p tag witch id="ingredient-id" and with text "Cliquer dans le tableau sur l\'ingrédient à modifier" if ingredient prop is undefined', () => {
@@ -114,13 +114,13 @@ describe('<IngredientChange />', () => {
     expect(textField1).to.have.length(1);
     expect(textField1.props()).to.have.property('label', 'Nom');
     expect(textField1.props()).to.have.property('name', 'ingredientName');
-    expect(typeof (textField1.props().onChange)).to.equal('function');
+    expect(textField1.props()).to.have.property('onChange');
 
     const textField2 = divIngredientName2.find(TextField);
     expect(textField2).to.have.length(1);
     expect(textField2.props()).to.have.property('label', 'Nom');
     expect(textField2.props()).to.have.property('name', 'ingredientName');
-    expect(typeof (textField2.props().onChange)).to.equal('function');
+    expect(textField2.props()).to.have.property('onChange');
   })
 
   const divIngredientCategories1 = form1.find('div#ingredient-categories');
@@ -155,11 +155,11 @@ describe('<IngredientChange />', () => {
   it('should contain a Select component witch id="select-categorie" and have onChange attribute', () => {
     expect(selectFormControl1).to.have.length(1);
     expect(selectFormControl1.props()).to.have.property('id', 'select-categorie');
-    expect(typeof (selectFormControl1.props().onChange)).to.equal('function');
+    expect(selectFormControl1.props()).to.have.property('onChange');
 
     expect(selectFormControl2).to.have.length(1);
     expect(selectFormControl2.props()).to.have.property('id', 'select-categorie');
-    expect(typeof (selectFormControl2.props().onChange)).to.equal('function');
+    expect(selectFormControl2.props()).to.have.property('onChange');
   })
 
   it('should contain 5 MenuItem component if listeCategoriesIngredients is defined', () => {
