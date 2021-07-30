@@ -27,7 +27,7 @@ const IngredientCategoryList = ({ setCategoryClicked }) => {
   };
 
   const deleteCategory = (categoryId) => {
-    Axios.delete(`${apiBaseURL}/api/v2/ingredients/category/${categoryId}`,
+    Axios.delete(`${apiBaseURL}/api/v2/categories/${categoryId}`,
       {
         headers: {
           authorization: accessToken

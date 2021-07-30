@@ -18,7 +18,7 @@ const IngredientCategoryAdd = () => {
     event.preventDefault();
 
     if (ingredientCategoryName !== '') {
-      Axios.post(`${apiBaseURL}/api/v2/ingredients/category`,
+      Axios.post(`${apiBaseURL}/api/v2/categories`,
         { nom: ingredientCategoryName },
         {
           headers: {
