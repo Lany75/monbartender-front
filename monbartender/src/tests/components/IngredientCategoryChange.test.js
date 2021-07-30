@@ -51,10 +51,10 @@ describe('<IngredientCategoryChange />', () => {
 
   it('should contain a form tag witch className="form-category-change" and have onSubmit attribute', () => {
     expect(form1).to.have.length(1);
-    expect(typeof (form1.props().onSubmit)).to.equal('function');
+    expect(form1.props()).to.have.property('onSubmit');
 
     expect(form2).to.have.length(1);
-    expect(typeof (form2.props().onSubmit)).to.equal('function');
+    expect(form2.props()).to.have.property('onSubmit');
   })
 
   it('should contain a p tag witch id="category-id" and with text "Cliquer dans le tableau sur la catégorie à modifier" if ingredient prop is undefined', () => {
@@ -80,14 +80,13 @@ describe('<IngredientCategoryChange />', () => {
     expect(textField1).to.have.length(1);
     expect(textField1.props()).to.have.property('label', 'Nom');
     expect(textField1.props()).to.have.property('name', 'categoryName');
-    expect(typeof (textField1.props().onChange)).to.equal('function');
-
+    expect(textField1.props()).to.have.property('onChange');
 
     const textField2 = divCategoryName2.find(TextField);
     expect(textField2).to.have.length(1);
     expect(textField2.props()).to.have.property('label', 'Nom');
     expect(textField2.props()).to.have.property('name', 'categoryName');
-    expect(typeof (textField2.props().onChange)).to.equal('function');
+    expect(textField2.props()).to.have.property('onChange');
   })
 
   const btnModify1 = form1.find('div#category-change-btn-modify');

@@ -61,7 +61,7 @@ describe('<IngredientAdd />', () => {
 
   it('should contain a form tag witch className="form-ingredient-add" and have onSubmit attribute', () => {
     expect(form).to.have.length(1);
-    expect(form.props().hasOwnProperty('onSubmit')).to.be.true;
+    expect(form.props()).to.have.property('onSubmit');
   })
 
   const divIngredientAddName = form.find('div#ingredient-add-name');
@@ -75,7 +75,7 @@ describe('<IngredientAdd />', () => {
     expect(textField).to.have.length(1);
     expect(textField.props()).to.have.property('label', 'Nom');
     expect(textField.props()).to.have.property('name', 'ingredientName');
-    expect(textField.props().hasOwnProperty('onChange')).to.be.true;
+    expect(textField.props()).to.have.property('onChange');
   })
 
   const divIngredientCategories = form.find('div#ingredient-add-categories');

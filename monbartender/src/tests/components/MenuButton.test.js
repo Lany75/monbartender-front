@@ -15,7 +15,7 @@ describe('<MenuButton />', () => {
 
   it('should contain an IconButton component with an onClick attribute', () => {
     expect(menuButton.find(IconButton)).to.have.length(1);
-    expect(typeof (menuButton.find(IconButton).props().onClick)).to.equal('function');
+    expect(menuButton.find(IconButton).props()).to.have.property('onClick');
   })
 
   it('The IconButton component should contain a MenuIcon component', () => {
@@ -26,7 +26,7 @@ describe('<MenuButton />', () => {
   it('should contain a Menu component witch id="menu-appbar" and have an onClose attribute', () => {
     expect(menuButton.find(Menu)).to.have.length(1);
     expect(menuButton.find(Menu).props()).to.have.property('id', 'menu-appbar');
-    expect(typeof (menuButton.find(Menu).props().onClose)).to.equal('function');
+    expect(menuButton.find(Menu).props()).to.have.property('onClose');
   })
 
   const menu = menuButton.find(Menu);
@@ -38,7 +38,7 @@ describe('<MenuButton />', () => {
   it('Every MenuItem component should have an onClick function ', () => {
     const menuItem = menu.find(MenuItem);
     menuItem.map(mi => {
-      expect(typeof (mi.props().onClick)).to.equal('function');
+      expect(mi.props()).to.have.property('onClick');
     })
   })
 })

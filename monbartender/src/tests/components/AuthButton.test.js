@@ -59,10 +59,10 @@ describe('<AuthButton />', () => {
 
   it('should contain an IconButton component with an onClick function', () => {
     expect(iconButton1).to.have.length(1);
-    expect(typeof (iconButton1.props().onClick)).to.equal('function');
+    expect(iconButton1.props()).to.have.property('onClick');
 
     expect(iconButton2).to.have.length(1);
-    expect(typeof (iconButton2.props().onClick)).to.equal('function');
+    expect(iconButton2.props()).to.have.property('onClick');
   })
 
   it('should contain only an AccountCircle component if user is undefined', () => {
@@ -81,10 +81,10 @@ describe('<AuthButton />', () => {
 
   it('should contain a Menu component with an onClose function', () => {
     expect(menu1).to.have.length(1);
-    expect(typeof (menu1.props().onClose)).to.equal('function');
+    expect(menu1.props()).to.have.property('onClose');
 
     expect(menu2).to.have.length(1);
-    expect(typeof (menu2.props().onClose)).to.equal('function');
+    expect(menu2.props()).to.have.property('onClose');
   })
 
   describe('if user is defined', () => {
@@ -97,7 +97,7 @@ describe('<AuthButton />', () => {
     it('should contain 5 MenuItem components with onClick function', () => {
       expect(userMenu.find(MenuItem)).to.have.length(5);
       userMenu.find(MenuItem).forEach(mi => {
-        expect(typeof (mi.props().onClick)).to.equal('function');
+        expect(mi.props()).to.have.property('onClick');
       })
     })
   })
@@ -112,7 +112,7 @@ describe('<AuthButton />', () => {
     it('should contain 2 MenuItem components with onClick function', () => {
       expect(visitorMenu.find(MenuItem)).to.have.length(2);
       visitorMenu.find(MenuItem).forEach(mi => {
-        expect(typeof (mi.props().onClick)).to.equal('function');
+        expect(mi.props()).to.have.property('onClick');
       })
     })
   })

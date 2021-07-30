@@ -59,7 +59,7 @@ describe('<ManagementPage />', () => {
 
     it('should contain a Tabs component with onChange attribute', () => {
       expect(paperTabs).to.have.length(1);
-      expect(typeof (paperTabs.props().onChange)).to.equal('function');
+      expect(paperTabs.props()).to.have.property('onChange');
     })
 
     const tabComponents = paperTabs.find(Tab);

@@ -48,7 +48,7 @@ describe('<SignIn />', () => {
 
   it('should contain a form witch className is signin-form and have an onSubmit attribute', () => {
     expect(signinForm).to.have.length(1);
-    expect(typeof (signinForm.props().onSubmit)).to.equal('function');
+    expect(signinForm.props()).to.have.property('onSubmit');
   })
 
   const textFields = signinForm.find(TextField);
