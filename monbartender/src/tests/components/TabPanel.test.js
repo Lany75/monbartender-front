@@ -12,7 +12,7 @@ describe('<TabPanel />', () => {
   );
 
   it('should contain a div witch id is tabpanel-0', () => {
-    expect(searchTabPanel.find('#tabpanel-0')).to.have.length(1);
+    expect(searchTabPanel.find('div#tabpanel-0')).to.have.length(1);
   })
 
   it('should contain the text "Tab Panel"', () => {

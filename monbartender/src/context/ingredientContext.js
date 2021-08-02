@@ -21,7 +21,7 @@ function IngredientProvider({ children }) {
   };
 
   const getListeCategoriesIngredients = () => {
-    Axios.get(`${apiBaseURL}/api/v2/ingredients/category`)
+    Axios.get(`${apiBaseURL}/api/v2/categories`)
       .then(reponse => {
         setListeCategoriesIngredients(reponse.data);
       })
@@ -37,7 +37,7 @@ function IngredientProvider({ children }) {
 
   return (
     <IngredientContext.Provider
-      value={{ listeIngredients, setListeIngredients, listeCategoriesIngredients, setListeCategoriesIngredients }}
+      value={{ listeIngredients, setListeIngredients, listeCategoriesIngredients, setListeCategoriesIngredients, getListeIngredients }}
     >
       {children}
     </IngredientContext.Provider>

@@ -1,0 +1,34 @@
+.ingredient-category-change {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-glass-change {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+#glass-id {
+  grid-column: 1/3;
+  grid-row: 1/2;
+}
+
+#glass-name {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  margin-left: 10px;
+}
+
+#glass-change-btn-modify {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+@media screen and (min-width: 769px) {
+  #glass-name {
+    margin-left: 0px;
+  }
+}

@@ -3,10 +3,6 @@
   flex-direction: column;
 }
 
-h4 {
-  text-align: center;
-  margin: 30px;
-}
 
 
 @media screen and (min-width: 769px) {
@@ -14,7 +10,4 @@ h4 {
     align-items: center;
   }
 
-  h4 {
-    margin: 50px 50px 20px 50px;
-  }
 }

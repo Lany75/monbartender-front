@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import Axios from "axios";
-
 import { TextField, Button } from '@material-ui/core';
 
 import apiBaseURL from "../../env";
 
 import { AuthContext } from '../../context/authContext';
+import { IngredientContext } from '../../context/ingredientContext';
 
 import './IngredientCategoryAdd.css';
-import { IngredientContext } from '../../context/ingredientContext';
 
 const IngredientCategoryAdd = () => {
   const { accessToken } = React.useContext(AuthContext);
@@ -19,7 +18,7 @@ const IngredientCategoryAdd = () => {
     event.preventDefault();
 
     if (ingredientCategoryName !== '') {
-      Axios.post(`${apiBaseURL}/api/v2/ingredients/category`,
+      Axios.post(`${apiBaseURL}/api/v2/categories`,
         { nom: ingredientCategoryName },
         {
           headers: {
@@ -38,7 +37,7 @@ const IngredientCategoryAdd = () => {
 
   return (
     <div className='ingredient-category-add'>
-      <h4>AJOUT D'UNE CATEGORIE</h4>
+      <h4>AJOUT D'UNE CATEGORIE D'INGREDIENT</h4>
       <form className='form-ingredient-category-add' onSubmit={addCategory}>
         <div id='ingredient-category-add-name'>
           <TextField

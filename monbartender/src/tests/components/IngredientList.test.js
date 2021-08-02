@@ -6,8 +6,8 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePag
 
 import IngredientList from '../../components/ingredientList/IngredientList';
 import LoadingMessage from '../../components/loadingMessage/LoadingMessage';
-import DisplayError from '../../components/displayError/DisplayError';
 
+const testAccessToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiMjFkNWE1Y2U2OGM1MjNlZTc0MzI5YjQ3ZDg0NGE3YmZjODRjZmYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiTcOpbGFuaWUgUEFSUlkiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1rcXhaSklwaThKNC9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BS0YwNW5Cb0tWRnBFaVVaY1JoTXpkYUVIWWJPbXBQUjN3L3Bob3RvLmpwZyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9tb25iYXJ0ZW5kZXIiLCJhdWQiOiJtb25iYXJ0ZW5kZXIiLCJhdXRoX3RpbWUiOjE2MjUwNjUwMzgsInVzZXJfaWQiOiJGTWRZSVFUb09pZTNmUjdNMDdSMXNjRm52SXcyIiwic3ViIjoiRk1kWUlRVG9PaWUzZlI3TTA3UjFzY0Zudkl3MiIsImlhdCI6MTYyNTEzODY4OCwiZXhwIjoxNjI1MTQyMjg4LCJlbWFpbCI6Im1sYW5pZS5wYXJyeUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNzMwMTM4MjY5NjkwOTY5Njc4MSJdLCJlbWFpbCI6WyJtbGFuaWUucGFycnlAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.Dki9I0nDE4b7kH5UbrDyhR6QEJXrCAP-c9crSZK7WQ6caTkeHMpKkHi_644CERig8wYdpsZbmGJI7eplKEfXq4GyQtdJqrpNNPcHkxl6-3KYZuSbg-G3oFbwGRo2dP6J2ARU9L-I3CHusBLas9c508HqZjwf5kwzzTzN7e7K93Ear31eAmpdxYrQm6Sfpm_llRUd3HW5lKpGSWRZc5JMcLRZ6jv1m_XWLqPWu5s0-wjYquRxcZLIwc2hm1kDJGoxk2TQnTKgRpDabgIREFcvriEkHD0yVODkgcOkanM6UgaPLU7x6Rg4vKi8FOITFuPxpeIFl_oxPcj0IwDVHzxwWg';
 const testListIngredients = [
   {
     id: "ad1d8a81-7ae6-4f5e-83a3-64889d390f8a",
@@ -45,6 +45,7 @@ const testListIngredients = [
     }
   }
 ];
+const setIngredientClickedMock = jest.fn();
 
 describe('<IngredientList />', () => {
   let realUseContext;
@@ -56,13 +57,28 @@ describe('<IngredientList />', () => {
     React.useContext = realUseContext;
   });
 
-
-  describe('it test case if listeIngredients and setIngredientClicked are defined', () => {
+  describe('it tests case if listeIngredients is undefined', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      listeIngredients: testListIngredients,
+      accessToken: testAccessToken,
+      listeIngredients: undefined,
+      setListeIngredients: jest.fn(),
+      getBarUser: jest.fn()
     }));
 
-    const setIngredientClickedMock = jest.fn();
+    const ingredientList = shallow(<IngredientList setIngredientClicked={setIngredientClickedMock} />);
+
+    it('should contain a LoadingMessage component', () => {
+      expect(ingredientList.find(LoadingMessage)).to.have.length(1);
+    })
+  })
+
+  describe('it tests case if listeIngredients is defined', () => {
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      accessToken: testAccessToken,
+      listeIngredients: testListIngredients,
+      setListeIngredients: jest.fn(),
+      getBarUser: jest.fn()
+    }));
 
     const ingredientList = shallow(<IngredientList setIngredientClicked={setIngredientClickedMock} />);
     const paper = ingredientList.find(Paper);
@@ -97,8 +113,8 @@ describe('<IngredientList />', () => {
       expect(tableRow).to.have.length(1);
     })
 
-    it('should contain 3 TableCell components', () => {
-      expect(tableRow.find(TableCell)).to.have.length(3);
+    it('should contain 4 TableCell components', () => {
+      expect(tableRow.find(TableCell)).to.have.length(4);
     })
 
     const tableBody = table.find(TableBody);
@@ -113,32 +129,6 @@ describe('<IngredientList />', () => {
 
     it('should contain a TablePagination component', () => {
       expect(paper.find(TablePagination)).to.have.length(1);
-    })
-  })
-
-  describe('it test case if listeIngredients is undefined', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      listeIngredients: undefined,
-    }));
-
-    const setIngredientClickedMock = jest.fn();
-
-    const ingredientList = shallow(<IngredientList setIngredientClicked={setIngredientClickedMock} />);
-
-    it('should contain a LoadingMessage component if listeIngredients is undefined', () => {
-      expect(ingredientList.find(LoadingMessage)).to.have.length(1);
-    })
-  })
-
-  describe('it test case if setIngredientClicked is undefined', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      listeIngredients: testListIngredients,
-    }));
-
-    const ingredientList = shallow(<IngredientList />);
-
-    it('should contain a DisplayError component if setIngredientClicked is not defined', () => {
-      expect(ingredientList.find(DisplayError)).to.have.length(1);
     })
   })
 })

@@ -6,15 +6,12 @@ import apiBaseURL from "../../env";
 
 import { IngredientContext } from '../../context/ingredientContext';
 import { AuthContext } from '../../context/authContext';
-import { BarContext } from '../../context/barContext';
 
 import './IngredientChange.css';
 
-
-const IngredientChange = ({ ingredient }) => {
+const IngredientChange = ({ ingredient, setIngredient }) => {
   const { accessToken } = React.useContext(AuthContext);
   const { listeCategoriesIngredients, setListeIngredients } = React.useContext(IngredientContext);
-  const { getBarUser } = React.useContext(BarContext);
   const [ingredientId, setIngredientId] = useState('');
   const [ingredientName, setIngredientName] = useState('');
   const [ingredientCategorie, setIngredientCategorie] = useState('');
@@ -36,26 +33,7 @@ const IngredientChange = ({ ingredient }) => {
         })
         .then(reponse => {
           setListeIngredients(reponse.data);
-        })
-        .catch(error => {
-          console.log("vous avez une erreur : ", error);
-        });
-    }
-  }
-
-  const deleteIngredient = event => {
-    event.preventDefault();
-
-    if (ingredient) {
-      Axios.delete(`${apiBaseURL}/api/v2/ingredients/${ingredientId}`,
-        {
-          headers: {
-            authorization: accessToken
-          }
-        })
-        .then(reponse => {
-          setListeIngredients(reponse.data);
-          getBarUser();
+          setIngredient(null);
         })
         .catch(error => {
           console.log("vous avez une erreur : ", error);
@@ -68,6 +46,10 @@ const IngredientChange = ({ ingredient }) => {
       setIngredientId(ingredient.id);
       setIngredientName(ingredient.nom);
       setIngredientCategorie(ingredient.CategorieIngredient.nom)
+    } else {
+      setIngredientId('');
+      setIngredientName('');
+      setIngredientCategorie('');
     }
   }, [ingredient])
 
@@ -78,7 +60,7 @@ const IngredientChange = ({ ingredient }) => {
         {ingredient ? (
           <p id='ingredient-id'>id: {ingredient?.id}</p>
         ) : (
-          <p id='ingredient-id'>Cliquer dans le tableau sur l'ingrédient à modifier ou à supprimer</p>
+          <p id='ingredient-id'>Cliquer dans le tableau sur l'ingrédient à modifier</p>
         )}
         <div id='ingredient-name'>
           <TextField
@@ -116,16 +98,6 @@ const IngredientChange = ({ ingredient }) => {
             color='primary'
           >
             Modifier
-          </Button>
-        </div>
-        <div id='ingredient-change-btn-delete'>
-          <Button
-            type='button'
-            variant='contained'
-            color='primary'
-            onClick={deleteIngredient}
-          >
-            Supprimer
           </Button>
         </div>
       </form>

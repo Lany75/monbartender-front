@@ -10,7 +10,7 @@ function VerreProvider({ children }) {
   const [listeVerres, setListeVerres] = useState();
 
   const getListeVerres = () => {
-    Axios.get(`${apiBaseURL}/api/v1/verres/`)
+    Axios.get(`${apiBaseURL}/api/v2/glasses/`)
       .then(reponse => {
         setListeVerres(reponse.data);
       })

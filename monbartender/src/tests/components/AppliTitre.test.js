@@ -9,11 +9,8 @@ describe('<AppliTitre />', () => {
   const appliTitre = shallow(<AppliTitre />);
   const titre = appliTitre.find('.appli-titre');
 
-  it('should contain a div witch className is appli-titre', () => {
+  it('should contain a div witch className is appli-titre and text="Mon BarTender"', () => {
     expect(titre).to.have.length(1);
-  })
-
-  it('should have title "Mon Bartender"', () => {
     expect(titre.text()).to.be.equal('Mon BarTender');
   })
 })

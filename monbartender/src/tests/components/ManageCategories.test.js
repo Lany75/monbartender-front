@@ -9,7 +9,7 @@ describe('<ManageCategories />', () => {
   const manageCategories = shallow(<ManageCategories />);
   const divManageCategories = manageCategories.find('div.manage-categories');
 
-  it('should contain a div witch clasSName is manage-categories', () => {
+  it('should contain a div witch className is manage-categories', () => {
     expect(divManageCategories).to.have.length(1);
   })
 
@@ -22,7 +22,7 @@ describe('<ManageCategories />', () => {
     expect(divManageCategories.find('IngredientCategoryList')).to.have.length(1);
   })
 
-  it.skip('should contain an IngredientCategoryChange component', () => {
+  it('should contain an IngredientCategoryChange component', () => {
     expect(divManageCategories.find('IngredientCategoryChange')).to.have.length(1);
   })
 

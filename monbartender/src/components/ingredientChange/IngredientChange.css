@@ -32,11 +32,6 @@
   grid-row: 3/4;
 }
 
-#ingredient-change-btn-delete {
-  grid-column: 2/3;
-  grid-row: 3/4;
-}
-
 .form-control {
   min-width: 120px;
   margin: 16px 0px 8px 0px;
@@ -60,10 +55,5 @@
   #ingredient-change-btn-modify {
     grid-column: 3/4;
     grid-row: 2/3;
-  }
-
-  #ingredient-change-btn-delete {
-    grid-column: 3/4;
-    grid-row: 1/2;
   }
 }

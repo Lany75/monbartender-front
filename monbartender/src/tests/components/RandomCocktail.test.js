@@ -209,17 +209,17 @@ describe('<RandomCocktail />', () => {
   let realUseContext;
   beforeEach(() => {
     realUseContext = React.useContext;
-
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      listeCocktails: testListCocktail,
-    }));
   });
 
   afterEach(() => {
     React.useContext = realUseContext;
   });
 
-  it('should contain a LoadingMessage component if randomCocktail is undefined', () => {
+  jest.spyOn(React, 'useContext').mockImplementation(() => ({
+    listeCocktails: testListCocktail,
+  }));
+
+  describe('it tests case if randomCocktail is undefined', () => {
     const randomCocktailMock = undefined;
     React.useState = jest
       .fn()
@@ -227,12 +227,14 @@ describe('<RandomCocktail />', () => {
 
     const randomCocktail = shallow(<RandomCocktail />);
 
-    expect(randomCocktail.find(LoadingMessage)).to.have.length(1);
-    expect(randomCocktail.find(RandomCocktailModifButton)).to.have.length(0);
-    expect(randomCocktail.find(RecipePage)).to.have.length(0);
+    it('should contain a LoadingMessage component', () => {
+      expect(randomCocktail.find(LoadingMessage)).to.have.length(1);
+      expect(randomCocktail.find(RandomCocktailModifButton)).to.have.length(0);
+      expect(randomCocktail.find(RecipePage)).to.have.length(0);
+    })
   })
 
-  it('should contain 1 RecipePage and 2 RandomCocktailModifButton components if randomCocktail is defined', () => {
+  describe('it tests case if randomCocktail is defined', () => {
     const randomCocktailMock = randomCocktailTest;
     React.useState = jest
       .fn()
@@ -240,8 +242,10 @@ describe('<RandomCocktail />', () => {
 
     const randomCocktail = shallow(<RandomCocktail />);
 
-    expect(randomCocktail.find(LoadingMessage)).to.have.length(0);
-    expect(randomCocktail.find(RandomCocktailModifButton)).to.have.length(2);
-    expect(randomCocktail.find(RecipePage)).to.have.length(1);
+    it('should contain 1 RecipePage and 2 RandomCocktailModifButton components', () => {
+      expect(randomCocktail.find(LoadingMessage)).to.have.length(0);
+      expect(randomCocktail.find(RandomCocktailModifButton)).to.have.length(2);
+      expect(randomCocktail.find(RecipePage)).to.have.length(1);
+    })
   })
 })

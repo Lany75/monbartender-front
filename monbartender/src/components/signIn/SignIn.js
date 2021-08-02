@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import { Button, Container, Grid, TextField, Typography } from '@material-ui/core';
 
 import GoogleButton from '../googleButton/GoogleButton';
 import { AuthContext } from '../../context/authContext';
@@ -104,7 +99,7 @@ const SignIn = () => {
           </form>
         </div>
       </Container >
-      <GoogleButton text='Connexion Google' />
+      <GoogleButton>Connexion Google</GoogleButton>
     </>
   );
 }

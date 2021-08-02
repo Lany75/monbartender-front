@@ -1,9 +1,5 @@
-.paper {
-  width: 100%;
-}
-
 .table-container {
-  max-height: 350px;
+  max-height: 380px;
 }
 
 .table-cell-head {
@@ -16,7 +12,7 @@
 
 @media screen and (min-width: 769px) {
   .table-container {
-    max-height: 600px;
+    max-height: 700px;
   }
   
   .table-cell-head {

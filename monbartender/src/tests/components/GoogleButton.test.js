@@ -18,7 +18,7 @@ describe('<GoogleButton />', () => {
     signInWithGoogle: jest.fn()
   }));
 
-  const googleButton = shallow(<GoogleButton text='Texte du bouton' />);
+  const googleButton = shallow(<GoogleButton>Texte du bouton</GoogleButton>);
 
   it('should contain a div witch className is connexion-google', () => {
     expect(googleButton.find('.connexion-google')).to.have.length(1);

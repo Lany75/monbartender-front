@@ -20,7 +20,7 @@ describe('<ImageCocktail />', () => {
       expect(tagImg).to.have.length(1);
       expect(tagImg.props().className).to.be.equal('cocktail-card-image');
       expect(tagImg.props().alt).to.be.equal('Bloody Mary');;
-      expect(tagImg.props().hasOwnProperty('src')).to.be.true;
+      expect(tagImg.props()).to.have.property('src');
     })
   })
 
@@ -37,8 +37,7 @@ describe('<ImageCocktail />', () => {
       expect(tagImg).to.have.length(1);
       expect(tagImg.props().className).to.be.equal('cocktail-card-image');
       expect(tagImg.props().alt).to.be.equal('Bloody Mary');;
-      expect(tagImg.props().hasOwnProperty('src')).to.be.true;
-
+      expect(tagImg.props()).to.have.property('src');
     })
   })
 
@@ -55,7 +54,7 @@ describe('<ImageCocktail />', () => {
       expect(tagImg).to.have.length(1);
       expect(tagImg.props().className).to.be.equal('cocktail-card-image');
       expect(tagImg.props().alt).to.be.equal('Bloody Mary');;
-      expect(tagImg.props().hasOwnProperty('src')).to.be.true;
+      expect(tagImg.props()).to.have.property('src');
     })
   })
 
@@ -72,7 +71,7 @@ describe('<ImageCocktail />', () => {
       expect(tagImg).to.have.length(1);
       expect(tagImg.props().className).to.be.equal('cocktail-card-image');
       expect(tagImg.props().alt).to.be.equal('Une image de cocktail');;
-      expect(tagImg.props().hasOwnProperty('src')).to.be.true;
+      expect(tagImg.props()).to.have.property('src');
     })
   })
 })

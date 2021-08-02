@@ -2,26 +2,10 @@
   width: 100%;
 }
 
-.table-container {
-  max-height: 350px;
-}
-
-.table-cell-head {
-  min-width: auto;
-}
-
 
 
 @media screen and (min-width: 769px) {
   .category-board {
     width: 50%;
-  }
-
-  .table-container {
-    max-height: 600px;
-  }
-  
-  .table-cell-head {
-    min-width: 170px;
   }
 }
