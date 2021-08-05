@@ -6,9 +6,11 @@ import IngredientSearchFilter from '../IngredientSearchFilter/IngredientSearchFi
 import IngredientsOfCategory from '../ingredientsOfCategory/IngredientsOfCategory';
 
 import './IngredientSearchForm.css';
+import { BarContext } from '../../context/barContext';
 
 const IngredientSearchForm = () => {
   const { listeCategoriesIngredients } = React.useContext(IngredientContext);
+  const { bar } = React.useContext(BarContext);
   const [valueRadioButton, setValueRadioButton] = React.useState("indifferent");
   const [useMyIngredient, setUseMyIngredient] = React.useState(false);
   const [isOpenFilter, setIsOpenFilter] = React.useState('');
@@ -51,17 +53,19 @@ const IngredientSearchForm = () => {
             label='Indifférent'
           />
         </RadioGroup>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={useMyIngredient}
-              onChange={handleChangeMyIngredient}
-              name="useMyIngredient"
-              color="primary"
-            />
-          }
-          label="Utiliser mes ingrédients"
-        />
+        {bar && (
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={useMyIngredient}
+                onChange={handleChangeMyIngredient}
+                name="useMyIngredient"
+                color="primary"
+              />
+            }
+            label="Utiliser mes ingrédients"
+          />
+        )}
       </div>
       <div className='filters'>
         <div className='title-remove'>
@@ -83,7 +87,7 @@ const IngredientSearchForm = () => {
         </div>
         <div className='filters-item'>
           {listeCategoriesIngredients && listeCategoriesIngredients.map(lci => {
-            return <IngredientsOfCategory category={lci} key={lci.id} isOpenFilter={isOpenFilter} />
+            return <IngredientsOfCategory category={lci} key={lci.id} isOpenFilter={isOpenFilter} useMyIngredient={useMyIngredient} />
           })}
         </div>
       </div>
