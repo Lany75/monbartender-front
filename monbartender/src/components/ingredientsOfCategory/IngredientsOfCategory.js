@@ -1,35 +1,52 @@
 import React, { useEffect } from 'react';
-import Axios from "axios";
 
-import apiBaseURL from "../../env";
 import FilterItem from '../filterItem/FilterItem';
+import { BarContext } from '../../context/barContext';
+import { IngredientContext } from '../../context/ingredientContext';
 
-const IngredientsOfCategory = ({ category, isOpenFilter }) => {
+const IngredientsOfCategory = ({ category, isOpenFilter, useMyIngredient, selectedIngredients, setSelectedIngredients }) => {
+  const { listeIngredients } = React.useContext(IngredientContext);
+  const { bar } = React.useContext(BarContext);
   const [ingredients, setIngredients] = React.useState();
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const getIngredientsCategory = categoryId => {
-    Axios.get(`${apiBaseURL}/api/v2/ingredients/category/${categoryId}`)
-      .then(reponse => {
-        setIngredients(reponse.data);
+  const getIngredientsCategory = () => {
+    const ingOfCat = [];
+    if (useMyIngredient) {
+      bar && bar.Ingredients.forEach(bi => {
+        if (bi.CategorieIngredient.nom === category.nom) {
+          ingOfCat.push(bi)
+        }
       })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
+    } else {
+      listeIngredients && listeIngredients.forEach(li => {
+        if (li.CategorieIngredient.nom === category.nom) {
+          ingOfCat.push(li)
+        }
+      })
+    }
+    setIngredients(ingOfCat);
   }
 
   useEffect(() => {
-    getIngredientsCategory(category.id);
+    getIngredientsCategory();
 
     if (category.id === isOpenFilter) setIsOpen(true)
     else setIsOpen(false);
-  }, [category, isOpenFilter])
+  }, [category, isOpenFilter, listeIngredients, bar, useMyIngredient]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     isOpen && (
       <div className='filter-item'>
-        {ingredients && ingredients.map((item, index) => {
-          return <FilterItem key={index} item={item} />
+        {ingredients && ingredients.map(item => {
+          return (
+            <FilterItem
+              key={item.id}
+              item={item}
+              selectedIngredients={selectedIngredients}
+              setSelectedIngredients={setSelectedIngredients}
+            />
+          )
         })}
       </div>
     )
