@@ -4,7 +4,7 @@ import FilterItem from '../filterItem/FilterItem';
 import { BarContext } from '../../context/barContext';
 import { IngredientContext } from '../../context/ingredientContext';
 
-const IngredientsOfCategory = ({ category, isOpenFilter, useMyIngredient }) => {
+const IngredientsOfCategory = ({ category, isOpenFilter, useMyIngredient, selectedIngredients, setSelectedIngredients }) => {
   const { listeIngredients } = React.useContext(IngredientContext);
   const { bar } = React.useContext(BarContext);
   const [ingredients, setIngredients] = React.useState();
@@ -39,7 +39,14 @@ const IngredientsOfCategory = ({ category, isOpenFilter, useMyIngredient }) => {
     isOpen && (
       <div className='filter-item'>
         {ingredients && ingredients.map(item => {
-          return <FilterItem key={item.id} item={item} />
+          return (
+            <FilterItem
+              key={item.id}
+              item={item}
+              selectedIngredients={selectedIngredients}
+              setSelectedIngredients={setSelectedIngredients}
+            />
+          )
         })}
       </div>
     )
