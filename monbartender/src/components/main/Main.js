@@ -12,9 +12,9 @@ import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
 import ForgotPassword from '../forgotPassword/ForgotPassword';
 import SearchPage from '../searchPage/SearchPage';
-import PageBar from '../pageBar/PageBar';
 import ManagementPage from '../managementPage/ManagementPage';
 import CocktailRecipe from '../cocktailRecipe/CocktailRecipe';
+import UserBar from '../userBar/UserBar';
 
 function Main() {
   return (
@@ -26,7 +26,7 @@ function Main() {
         <Route exact path='/password-oublie' component={ForgotPassword} />
         <Route exact path='/recherche' component={SearchPage} />
         <Route exact path='/recettes' component={AllRecipesList} />
-        <Route path='/monbar' component={PageBar} />
+        <Route path='/monbar' component={UserBar} />
         <Route
           path='/gestion/modifier-cocktail-moment/'
           component={ModifierCocktailMoment}

@@ -1,0 +1,4 @@
+.user-bar {
+  display: flex;
+  flex-direction: column;
+}
