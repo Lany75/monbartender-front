@@ -1,30 +1,34 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
+import { DataGrid } from '@material-ui/data-grid';
+
 import UserBarIngredientList from '../../components/userBarIngredientList/UserBarIngredientList';
 
-const testListCategories = [
-  {
-    id: "66ca7575-284f-41f9-b468-7535be3a3c18",
-    nom: "alcool"
-  },
-  {
-    id: "f41e14e2-9bdd-47f4-95b4-1ff77022c630",
-    nom: "autre"
-  },
-  {
-    id: "64ba9cda-82b4-403f-8018-c954d3326fd9",
-    nom: "fruit"
-  },
-  {
-    id: "57459a23-14dc-43e7-b730-932cee95b477",
-    nom: "jus"
-  },
-  {
-    id: "a9a4b3ee-1e53-44cc-a5bb-f6e48d361f6a",
-    nom: "legume"
-  }
-];
+const userBar = {
+  id: "aabdd6c6-9209-4ff0-8c3b-fc3829444e20",
+  personneId: "mlanie.parry@gmail.com",
+  droits: false,
+  Ingredients: [
+    {
+      id: "ad1d8a81-7ae6-4f5e-83a3-64889d390f8a",
+      nom: "Eau Gazeuse",
+      CategorieIngredient: {
+        id: "52285198-dd1c-44d7-98b1-df2ef326e564",
+        nom: "SOFT"
+      }
+    },
+    {
+      id: "740367a4-dedf-4093-86d1-50eac62b2521",
+      nom: "Menthe",
+      CategorieIngredient:
+      {
+        id: "f41e14e2-9bdd-47f4-95b4-1ff77022c630",
+        nom: "AUTRE"
+      }
+    }
+  ]
+};
 
 describe('<UserBarIngredientList />', () => {
   let realUseContext;
@@ -36,41 +40,25 @@ describe('<UserBarIngredientList />', () => {
     React.useContext = realUseContext;
   });
 
-  describe('it tests case if listeCategoriesIngredients is undefined', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      listeCategoriesIngredients: undefined,
-    }));
+  jest.spyOn(React, 'useContext').mockImplementation(() => ({
+    bar: userBar,
+  }));
 
-    const userBarIngredientList = shallow(<UserBarIngredientList />);
+  const userBarIngredientList = shallow(<UserBarIngredientList />);
+  const ingredientsListTitle = userBarIngredientList.find('div.ingredients-list-title');
 
-    it('should contain a LoadingMessage component', () => {
-      expect(userBarIngredientList.find('LoadingMessage')).to.have.length(1);
-      expect(userBarIngredientList.find('div.ingredient-list')).to.have.length(0);
-    })
+  it('should contain a div witch className="ingredients-list-title" and text="Mon Bar"', () => {
+    expect(ingredientsListTitle).to.have.length(1);
+    expect(ingredientsListTitle.text()).to.be.equal('Mon Bar');
   })
 
-  describe('it tests case if listeCategoriesIngredients is defined', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      listeCategoriesIngredients: testListCategories,
-    }));
+  const divIngredientList = userBarIngredientList.find('div.ingredients-list');
 
-    const userBarIngredientList = shallow(<UserBarIngredientList />);
-    const divIngredientsList = userBarIngredientList.find('div.ingredients-list');
+  it('should contain a div witch className="ingredients-list"', () => {
+    expect(divIngredientList).to.have.length(1);
+  })
 
-    it('should contain a div witch className="ingredients-list"', () => {
-      expect(userBarIngredientList.find('LoadingMessage')).to.have.length(0);
-      expect(divIngredientsList).to.have.length(1);
-    })
-
-    const ingredientsListTitle = divIngredientsList.find('div.ingredients-list-title');
-
-    it('should contain a div witch className="ingredients-list-title" and text="Mon Bar"', () => {
-      expect(ingredientsListTitle).to.have.length(1);
-      expect(ingredientsListTitle.text()).to.be.equal('Mon Bar');
-    })
-
-    it('should contain 5 BarCategory components', () => {
-      expect(divIngredientsList.find('BarCategory')).to.have.length(5);
-    })
+  it('should contain 1 DataGrid component', () => {
+    expect(divIngredientList.find(DataGrid)).to.have.length(1);
   })
 })
