@@ -14,7 +14,7 @@ function BarProvider({ children }) {
   const getBarUser = () => {
     user &&
       accessToken &&
-      Axios.get(`${apiBaseURL}/api/v2/bars/`, {
+      Axios.get(`${apiBaseURL}/api/v2/bars/user`, {
         headers: {
           authorization: accessToken
         }

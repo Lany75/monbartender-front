@@ -91,8 +91,8 @@ describe('<ManagementPage />', () => {
       expect(tabComponents.get(4).props.label).to.be.equal('Des Verres');
     })
 
-    it('the sixth Tab component should have label="Des Admin"', () => {
-      expect(tabComponents.get(5).props.label).to.be.equal('Des Admin');
+    it('the sixth Tab component should have label="Des Utilisateurs"', () => {
+      expect(tabComponents.get(5).props.label).to.be.equal('Des Utilisateurs');
     })
 
     const tabPanelComponents = managementPage.find('TabPanel');
@@ -131,10 +131,10 @@ describe('<ManagementPage />', () => {
       expect(tp.find('ManageGlass')).to.have.length(1);
     })
 
-    it.skip('the sixth TabPanel component should have id="tp-manage-admin" and contain a ManageAdmin component', () => {
-      expect(tabPanelComponents.get(5).props.id).to.be.equal('tp-manage-admin');
-      const tp = managementPage.find('#tp-manage-admin');
-      expect(tp.find('ManageAdmin')).to.have.length(1);
+    it('the sixth TabPanel component should have id="tp-manage-user" and contain a ManageUsers component', () => {
+      expect(tabPanelComponents.get(5).props.id).to.be.equal('tp-manage-user');
+      const tp = managementPage.find('#tp-manage-user');
+      expect(tp.find('ManageUsers')).to.have.length(1);
     })
   })
 

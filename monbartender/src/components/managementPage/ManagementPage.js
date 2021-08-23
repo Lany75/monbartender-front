@@ -13,11 +13,12 @@ import { AuthContext } from '../../context/authContext';
 import { BarContext } from '../../context/barContext';
 
 import './ManagementPage.css';
+import ManageUsers from '../manageUsers/ManageUsers';
 
 const ManagementPage = () => {
   const { user } = React.useContext(AuthContext);
   const { bar } = React.useContext(BarContext);
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(5);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -42,7 +43,7 @@ const ManagementPage = () => {
               <Tab label="Des Ingrédients" id='management-tab-label' />
               <Tab label="Des Catégories d'Ingrédients" id='management-tab-label' />
               <Tab label="Des Verres" id='management-tab-label' />
-              <Tab label="Des Admin" id='management-tab-label' />
+              <Tab label="Des Utilisateurs" id='management-tab-label' />
             </Tabs>
           </Paper>
 
@@ -61,8 +62,8 @@ const ManagementPage = () => {
           <TabPanel id='tp-manage-glasses' value={value} index={4}>
             <ManageGlass />
           </TabPanel>
-          <TabPanel id='tp-manage-admin' value={value} index={5}>
-            GestionAdmin
+          <TabPanel id='tp-manage-user' value={value} index={5}>
+            <ManageUsers />
           </TabPanel>
         </>
       ) : (
