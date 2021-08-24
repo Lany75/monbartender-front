@@ -75,18 +75,20 @@ describe('<UserBarIngredientAdd />', () => {
     const userBarIngredientAdd = shallow(<UserBarIngredientAdd />);
     const formIngredientAdd = userBarIngredientAdd.find('form.bar-ingredient-add');
 
-    it('should contain a form witch className="ingredient-add"', () => {
+    it('should contain a form with className="bar-ingredient-add" and onSubmit attribute', () => {
       expect(userBarIngredientAdd.find('LoadingMessage')).to.have.length(0);
       expect(formIngredientAdd).to.have.length(1);
+      expect(formIngredientAdd.props()).to.have.property('onSubmit');
     })
 
-    it('should contain an Autocomplete component with className, options, getOptionLabel and renderInput attributes', () => {
+    it('should contain an Autocomplete component with className, options, getOptionLabel, onChange and renderInput attributes', () => {
       const ingredientAddInput = formIngredientAdd.find(Autocomplete);
 
       expect(ingredientAddInput).to.have.length(1);
       expect(ingredientAddInput.props()).to.have.property('className', 'ingredient-add-input');
       expect(ingredientAddInput.props()).to.have.property('options');
       expect(ingredientAddInput.props()).to.have.property('getOptionLabel');
+      expect(ingredientAddInput.props()).to.have.property('onChange');
       expect(ingredientAddInput.props()).to.have.property('renderInput');
     })
 

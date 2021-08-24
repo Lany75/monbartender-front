@@ -13,12 +13,6 @@ const UserBarIngredientList = () => {
 
   const columns = [
     {
-      field: 'id',
-      headerName: 'ID',
-      width: desktop ? 150 : 70,
-      sortable: false,
-    },
-    {
       field: 'ingredientName',
       headerName: 'Ingrédient',
       width: desktop ? 300 : 150,
@@ -41,7 +35,7 @@ const UserBarIngredientList = () => {
   return (
     <>
       <div className='ingredients-list-title'>Mon Bar</div>
-      <div className='ingredients-list' style={{ height: 110 + pageSize * 52, width: desktop ? '85%' : '100%', alignSelf: 'center' }}>
+      <div className='ingredients-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={ingredients}
           columns={columns}
