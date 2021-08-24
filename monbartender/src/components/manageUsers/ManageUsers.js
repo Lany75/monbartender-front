@@ -30,7 +30,7 @@ const ManageUsers = () => {
   return (
     <div className='manage-users'>
       <h4>LES UTILISATEURS</h4>
-      <UsersList users={usersList} />
+      <UsersList users={usersList} setUsers={setUsersList} />
     </div>
   )
 }
