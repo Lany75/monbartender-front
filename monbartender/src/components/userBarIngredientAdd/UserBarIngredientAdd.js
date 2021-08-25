@@ -28,8 +28,8 @@ const UserBarIngredientAdd = () => {
     })
 
     if (addedIngredient !== '' && !alreadyExist) {
-      Axios.post(`${apiBaseURL}/api/v2/bars/${addedIngredient.id}`,
-        {},
+      Axios.post(`${apiBaseURL}/api/v2/barsIgredients`,
+        { ingredientId: addedIngredient.id },
         {
           headers: {
             authorization: accessToken
