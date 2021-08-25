@@ -18,7 +18,7 @@ import ManageUsers from '../manageUsers/ManageUsers';
 const ManagementPage = () => {
   const { user } = React.useContext(AuthContext);
   const { bar } = React.useContext(BarContext);
-  const [value, setValue] = React.useState(5);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
