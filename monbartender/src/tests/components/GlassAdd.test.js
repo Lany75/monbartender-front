@@ -22,18 +22,18 @@ describe('<GlassAdd />', () => {
   }));
 
   const glassAdd = shallow(<GlassAdd />);
-  const disGlassAdd = glassAdd.find('div.glass-add');
+  const divGlassAdd = glassAdd.find('div.glass-add');
 
   it('should contain a div witch className="glass-add"', () => {
-    expect(disGlassAdd).to.have.length(1);
+    expect(divGlassAdd).to.have.length(1);
   })
 
   it("should contain a h4 tag witch text is 'AJOUT D'UN VERRE'", () => {
-    expect(disGlassAdd.find('h4')).to.have.length(1);
-    expect(disGlassAdd.find('h4').text()).to.be.equal("AJOUT D'UN VERRE");
+    expect(divGlassAdd.find('h4')).to.have.length(1);
+    expect(divGlassAdd.find('h4').text()).to.be.equal("AJOUT D'UN VERRE");
   })
 
-  const form = disGlassAdd.find('form.form-glass-add');
+  const form = divGlassAdd.find('form.form-glass-add');
 
   it('should contain a form tag witch className="form-glass-change" and have onSubmit attribute', () => {
     expect(form).to.have.length(1);

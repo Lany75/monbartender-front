@@ -130,14 +130,16 @@ describe('<IngredientSearchForm />', () => {
     expect(h3Tag2.text()).to.be.equal('Les filtres');
   })
 
-  it('should contain a p tag witch text="Supprimer les filtres"', () => {
+  it('should contain a p tag with text="Supprimer les filtres" and onClick attribute', () => {
     const pTag1 = titleRemove1.find('p');
     expect(pTag1).to.have.length(1);
     expect(pTag1.text()).to.be.equal('Supprimer les filtres');
+    expect(pTag1.props()).to.have.property('onClick');
 
     const pTag2 = titleRemove2.find('p');
     expect(pTag2).to.have.length(1);
     expect(pTag2.text()).to.be.equal('Supprimer les filtres');
+    expect(pTag2.props()).to.have.property('onClick');
   })
 
   const filtersList1 = filters1.find('div.filters-list');

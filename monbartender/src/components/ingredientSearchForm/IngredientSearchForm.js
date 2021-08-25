@@ -50,6 +50,10 @@ const IngredientSearchForm = ({ setSearchCocktails }) => {
     }
   }
 
+  const deleteFilters = () => {
+    setSelectedIngredients([]);
+  }
+
   return (
     <form className='ingredient-search-form' onSubmit={onSearch}>
       <div className='type-myingr'>
@@ -92,7 +96,7 @@ const IngredientSearchForm = ({ setSearchCocktails }) => {
       <div className='filters'>
         <div className='title-remove'>
           <h3>Les filtres</h3>
-          <p>Supprimer les filtres</p>
+          <p onClick={deleteFilters}>Supprimer les filtres</p>
         </div>
         <div className='filters-list'>
           {listeCategoriesIngredients && listeCategoriesIngredients.map(lci => {
