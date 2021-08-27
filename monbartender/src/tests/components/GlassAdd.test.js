@@ -22,25 +22,15 @@ describe('<GlassAdd />', () => {
   }));
 
   const glassAdd = shallow(<GlassAdd />);
-  const divGlassAdd = glassAdd.find('div.glass-add');
 
-  it('should contain a div witch className="glass-add"', () => {
-    expect(divGlassAdd).to.have.length(1);
+  const formGlassAdd = glassAdd.find('form.form-glass-add');
+
+  it('should contain a form tag witch className="form-glass-add" and with onSubmit attribute', () => {
+    expect(formGlassAdd).to.have.length(1);
+    expect(formGlassAdd.props()).to.have.property('onSubmit');
   })
 
-  it("should contain a h4 tag witch text is 'AJOUT D'UN VERRE'", () => {
-    expect(divGlassAdd.find('h4')).to.have.length(1);
-    expect(divGlassAdd.find('h4').text()).to.be.equal("AJOUT D'UN VERRE");
-  })
-
-  const form = divGlassAdd.find('form.form-glass-add');
-
-  it('should contain a form tag witch className="form-glass-change" and have onSubmit attribute', () => {
-    expect(form).to.have.length(1);
-    expect(form.props()).to.have.property('onSubmit');
-  })
-
-  const divGlassAddName = form.find('div#glass-add-name');
+  const divGlassAddName = formGlassAdd.find('div#glass-add-name');
 
   it('should contain a div witch id="glass-add-name"', () => {
     expect(divGlassAddName).to.have.length(1);
@@ -49,20 +39,20 @@ describe('<GlassAdd />', () => {
   it('should contain a TextField component witch have name, label and onChange attributes', () => {
     const textField = divGlassAddName.find(TextField);
     expect(textField).to.have.length(1);
-    expect(textField.props()).to.have.property('label', 'Nom');
+    expect(textField.props()).to.have.property('label', 'Nouveau verre');
     expect(textField.props()).to.have.property('name', 'glassName');
     expect(textField.props()).to.have.property('onChange');
   })
 
-  const btnAdd = form.find('div#glass-add-btn');
+  const btnAdd = formGlassAdd.find('div#glass-add-btn');
 
   it('should contain a div witch id="glass-add-btn"', () => {
     expect(btnAdd).to.have.length(1);
   })
 
-  it('should contain a submit Button with text="Ajouter"', () => {
+  it('should contain a submit Button with text="+"', () => {
     expect(btnAdd.find(Button)).to.have.length(1);
     expect(btnAdd.find(Button).props()).to.have.property('type', 'submit');
-    expect(btnAdd.find(Button).text()).to.be.equal('Ajouter');
+    expect(btnAdd.find(Button).text()).to.be.equal('+');
   })
 })

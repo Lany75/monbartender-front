@@ -6,7 +6,6 @@
 }
 
 .delete-ingredient-bar {
-  
   margin: 20px 0px 0px 10px;
 }
 
@@ -14,6 +13,7 @@
   .ingredients-list-title {
     font-size: 25px;
   }
+  
   .delete-ingredient-bar {
     display: flex;
     flex-direction: row;
