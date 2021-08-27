@@ -1,19 +1,18 @@
-.glass-add {
-  display: flex;
-  flex-direction: column;
-}
-
 .form-glass-add {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
 }
 
+#glass-add-name {
+  margin-right: 10px;
+}
 
 
 @media screen and (min-width: 769px) {
-  .glass-add {
-    width: 50%;
+  .form-glass-add {
+    margin: 20px 50px 0px 0px;
   }
+
 }

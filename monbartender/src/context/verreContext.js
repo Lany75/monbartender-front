@@ -7,7 +7,7 @@ export const VerreContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 function VerreProvider({ children }) {
-  const [listeVerres, setListeVerres] = useState();
+  const [listeVerres, setListeVerres] = useState([]);
 
   const getListeVerres = () => {
     Axios.get(`${apiBaseURL}/api/v2/glasses/`)

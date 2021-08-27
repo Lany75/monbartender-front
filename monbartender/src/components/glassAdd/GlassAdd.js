@@ -36,30 +36,27 @@ const GlassAdd = () => {
   }
 
   return (
-    <div className='glass-add'>
-      <h4>AJOUT D'UN VERRE</h4>
-      <form className='form-glass-add' onSubmit={addGlass}>
-        <div id='glass-add-name'>
-          <TextField
-            variant='outlined'
-            margin='normal'
-            label='Nom'
-            name='glassName'
-            value={glassName}
-            onChange={event => setGlassName(event.target.value)}
-          />
-        </div>
-        <div id='glass-add-btn'>
-          <Button
-            type='submit'
-            variant='contained'
-            color='primary'
-          >
-            Ajouter
-          </Button>
-        </div>
-      </form>
-    </div>
+    <form className='form-glass-add' onSubmit={addGlass}>
+      <div id='glass-add-name'>
+        <TextField
+          variant='outlined'
+          margin='normal'
+          label='Nouveau verre'
+          name='glassName'
+          value={glassName}
+          onChange={event => setGlassName(event.target.value)}
+        />
+      </div>
+      <div id='glass-add-btn'>
+        <Button
+          type='submit'
+          variant='contained'
+          color='primary'
+        >
+          +
+        </Button>
+      </div>
+    </form>
   )
 }
 

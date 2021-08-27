@@ -5,13 +5,13 @@
   margin: 15px 15px 20px 15px;
 }
 
+.ingredient-add-input {
+  margin-right: 10px;
+}
+
 
 @media screen and (min-width: 769px) {
   .bar-ingredient-add {
     margin: 30px 50px 30px 0px;
-  }
-  
-  .ingredient-add-input {
-    margin-right: 10px;
   }
 }
