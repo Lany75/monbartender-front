@@ -2,7 +2,7 @@ import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core";
 
 import GlassList from '../../components/glassList/GlassList';
 
@@ -62,6 +62,8 @@ describe('<GlassList />', () => {
     expect(dataGrid.props()).to.have.property('columns');
   })
 
+
+
   const divDeleteGlass = glassList.find('div.delete-glass');
 
   it('should contain a div with className="delete-glass"', () => {
@@ -80,45 +82,94 @@ describe('<GlassList />', () => {
     expect(divDeleteGlass.find('div.message')).to.have.length(1);
   })
 
-  const dialog = glassList.find(Dialog);
+  const dialogs = glassList.find(Dialog);
 
-  it('should contain a Dialog component with open and onClose attributes', () => {
-    expect(dialog).to.have.length(1);
-    expect(dialog.props()).to.have.property('open');
-    expect(dialog.props()).to.have.property('onClose');
+  it('should contain 2 Dialog components with open and onClose attributes', () => {
+    expect(dialogs).to.have.length(2);
+    dialogs.forEach(d => {
+      expect(d.props()).to.have.property('open');
+      expect(d.props()).to.have.property('onClose');
+    })
   })
 
-  const dialogTitle = dialog.find(DialogTitle);
+  describe('first Dialog component (modify glass dialog)', () => {
+    const modifyGlassDialog = dialogs.first();
+    const dialogTitle = modifyGlassDialog.find(DialogTitle);
 
-  it('should contain a DialogTitle component with id="alert-dialog-title" and text="Confirmer la suppression des verres"', () => {
-    expect(dialogTitle).to.have.length(1);
-    expect(dialogTitle.props()).to.have.property('id', 'alert-dialog-title');
-    expect(dialogTitle.text()).to.be.equal('Confirmer la suppression des verres');
+    it('should contain a DialogTitle component with id="form-dialog-title" and text="Modifier le verre"', () => {
+      expect(dialogTitle).to.have.length(1);
+      expect(dialogTitle.props()).to.have.property('id', 'form-dialog-title');
+      expect(dialogTitle.text()).to.be.equal('Modifier le verre');
+    })
+
+    const dialogContent = modifyGlassDialog.find(DialogContent);
+
+    it('should contain a DialogContent component', () => {
+      expect(dialogContent).to.have.length(1);
+    })
+
+    it('should contain a DialogContentText component with text="Corrigez le nom du verre"', () => {
+      expect(dialogContent.find(DialogContentText)).to.have.length(1);
+      expect(dialogContent.find(DialogContentText).text()).to.be.equal('Corrigez le nom du verre');
+    })
+
+    it('should contain a TextField component with label, value and onChange attribute', () => {
+      const textField = dialogContent.find(TextField);
+
+      expect(textField).to.have.length(1);
+      expect(textField.props()).to.have.property('label', 'Nom du verre');
+      expect(textField.props()).to.have.property('value');
+      expect(textField.props()).to.have.property('onChange');
+    })
+
+    const dialogActions = modifyGlassDialog.find(DialogActions);
+
+    it('should contain a DialogActions component', () => {
+      expect(dialogActions).to.have.length(1);
+    })
+
+    it('should contain 2 Button components with onClick attribute', () => {
+      const dialogAtionsButton = dialogActions.find(Button);
+      expect(dialogAtionsButton).to.have.length(2);
+      dialogAtionsButton.map(dab => {
+        expect(dab.props()).to.have.property('onClick');
+      })
+    })
   })
 
-  const dialogContent = dialog.find(DialogContent);
+  describe('second Dialog component (delete glass dialog)', () => {
+    const deleteGlassDialog = dialogs.last();
+    const dialogTitle = deleteGlassDialog.find(DialogTitle);
 
-  it('should contain a DialogContent component', () => {
-    expect(dialogContent).to.have.length(1);
-  })
+    it('should contain a DialogTitle component with id="alert-dialog-title" and text="Confirmer la suppression des verres"', () => {
+      expect(dialogTitle).to.have.length(1);
+      expect(dialogTitle.props()).to.have.property('id', 'alert-dialog-title');
+      expect(dialogTitle.text()).to.be.equal('Confirmer la suppression des verres');
+    })
 
-  it('should contain a DialogContentText component with id="alert-dialog-description" and text="Etes vous sûr de vouloir supprimer ces verres définitivement ?"', () => {
-    expect(dialogContent.find(DialogContentText)).to.have.length(1);
-    expect(dialogContent.find(DialogContentText).props()).to.have.property('id', 'alert-dialog-description');
-    expect(dialogContent.find(DialogContentText).text()).to.be.equal('Etes vous sûr de vouloir supprimer ces verres définitivement ?');
-  })
+    const dialogContent = deleteGlassDialog.find(DialogContent);
 
-  const dialogActions = dialog.find(DialogActions);
+    it('should contain a DialogContent component', () => {
+      expect(dialogContent).to.have.length(1);
+    })
 
-  it('should contain a DialogActions component', () => {
-    expect(dialogActions).to.have.length(1);
-  })
+    it('should contain a DialogContentText component with text="Etes vous sûr de vouloir supprimer ces verres définitivement ?"', () => {
+      expect(dialogContent.find(DialogContentText)).to.have.length(1);
+      expect(dialogContent.find(DialogContentText).text()).to.be.equal('Etes vous sûr de vouloir supprimer ces verres définitivement ?');
+    })
 
-  it('should contain 2 Button components with onClick attribute', () => {
-    const dialogAtionsButton = dialogActions.find(Button);
-    expect(dialogAtionsButton).to.have.length(2);
-    dialogAtionsButton.map(dab => {
-      expect(dab.props()).to.have.property('onClick');
+    const dialogActions = deleteGlassDialog.find(DialogActions);
+
+    it('should contain a DialogActions component', () => {
+      expect(dialogActions).to.have.length(1);
+    })
+
+    it('should contain 2 Button components with onClick attribute', () => {
+      const dialogAtionsButton = dialogActions.find(Button);
+      expect(dialogAtionsButton).to.have.length(2);
+      dialogAtionsButton.map(dab => {
+        expect(dab.props()).to.have.property('onClick');
+      })
     })
   })
 })

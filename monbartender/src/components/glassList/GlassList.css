@@ -6,6 +6,10 @@
   margin: 20px 0px 0px 10px;
 }
 
+.message {
+  color: red;
+}
+
 @media screen and (min-width: 769px) {
   .glass-board {
     width: 50%;
@@ -16,5 +20,9 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 30px 180px 30px 180px;
+  }
+
+  .message {
+    font-size: 20px;
   }
 }
