@@ -11,14 +11,13 @@ import './GlassList.css';
 
 import camelCaseText from '../../utils/cameCaseText';
 
-const GlassList = () => {
+const GlassList = ({ message, setMessage }) => {
   const { accessToken } = React.useContext(AuthContext);
   const { listeVerres, setListeVerres } = React.useContext(VerreContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [openDeleteGlassDialog, setOpenDeleteGlassDialog] = React.useState(false);
   const [openModifyGlassDialog, setOpenModifyGlassDialog] = React.useState(false);
   const [selectedRow, setSelectedRow] = React.useState([]);
-  const [message, setMessage] = React.useState('');
   const [oldGlassName, setOldGlassName] = React.useState('');
   const [newGlassName, setNewGlassName] = React.useState('');
   const [modifiedGlassId, setModifiedGlassId] = React.useState('');
@@ -50,18 +49,20 @@ const GlassList = () => {
 
   const confirmModification = () => {
     if (newGlassName !== oldGlassName) {
+      const name = newGlassName.replace(/\s+/g, ' ').trim();
+
       if (
-        !(/\S/.test(newGlassName) &&
-          newGlassName.length >= 2 &&
-          newGlassName.length <= 30)
+        !(/\S/.test(name) &&
+          name.length >= 2 &&
+          name.length <= 30)
       ) setMessage('Le nom doit avoir entre 2 et 30 caractères');
       else {
         if (
-          listeVerres.findIndex(verre => verre.nom === camelCaseText(newGlassName)) !== -1
+          listeVerres.findIndex(verre => verre.nom === camelCaseText(name)) !== -1
         ) setMessage('Ce verre existe déja');
         else {
           Axios.put(`${apiBaseURL}/api/v2/glasses/${modifiedGlassId}`,
-            { nom: newGlassName },
+            { nom: name },
             {
               headers: {
                 authorization: accessToken
