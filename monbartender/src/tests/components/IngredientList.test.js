@@ -2,6 +2,7 @@ import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { DataGrid } from '@material-ui/data-grid';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core";
 
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@material-ui/core';
 
@@ -99,6 +100,73 @@ describe('<IngredientList />', () => {
     expect(dataGrid).to.have.length(1);
     expect(dataGrid.props()).to.have.property('rows');
     expect(dataGrid.props()).to.have.property('columns');
+  })
+
+  const divDeleteIngredient = ingredientList.find('div.delete-ingredients');
+
+  it('should contain a div with className="delete-ingredients"', () => {
+    expect(divDeleteIngredient).to.have.length(1);
+  })
+
+  it('should contain a Button component with onClick attribute and text="Supprimer les ingrédients"', () => {
+    const deleteButton = divDeleteIngredient.find(Button);
+
+    expect(deleteButton).to.have.length(1);
+    expect(deleteButton.props()).to.have.property('onClick');
+    expect(deleteButton.text()).to.be.equal('Supprimer les ingrédients');
+  })
+
+  it('should contain a div with className="message"', () => {
+    expect(divDeleteIngredient.find('div.message')).to.have.length(1);
+  })
+
+  const dialogs = ingredientList.find(Dialog);
+
+  it('should contain 1 Dialog components with open and onClose attributes', () => {
+    expect(dialogs).to.have.length(1);
+    expect(dialogs.props()).to.have.property('open');
+    expect(dialogs.props()).to.have.property('onClose');
+
+    /*dialogs.forEach(d => {
+      expect(d.props()).to.have.property('open');
+      expect(d.props()).to.have.property('onClose');
+    })*/
+  })
+
+  describe('first Dialog component (delete ingredient dialog)', () => {
+    const deleteGlassDialog = dialogs.first();
+    const dialogTitle = deleteGlassDialog.find(DialogTitle);
+
+    it('should contain a DialogTitle component with id="alert-dialog-title" and text="Confirmer la suppression des ingrédients"', () => {
+      expect(dialogTitle).to.have.length(1);
+      expect(dialogTitle.props()).to.have.property('id', 'alert-dialog-title');
+      expect(dialogTitle.text()).to.be.equal('Confirmer la suppression des ingrédients');
+    })
+
+    const dialogContent = deleteGlassDialog.find(DialogContent);
+
+    it('should contain a DialogContent component', () => {
+      expect(dialogContent).to.have.length(1);
+    })
+
+    it('should contain a DialogContentText component with text="Etes vous sûr de vouloir supprimer ces ingrédients définitivement ?"', () => {
+      expect(dialogContent.find(DialogContentText)).to.have.length(1);
+      expect(dialogContent.find(DialogContentText).text()).to.be.equal('Etes vous sûr de vouloir supprimer ces ingrédients définitivement ?');
+    })
+
+    const dialogActions = deleteGlassDialog.find(DialogActions);
+
+    it('should contain a DialogActions component', () => {
+      expect(dialogActions).to.have.length(1);
+    })
+
+    it('should contain 2 Button components with onClick attribute', () => {
+      const dialogAtionsButton = dialogActions.find(Button);
+      expect(dialogAtionsButton).to.have.length(2);
+      dialogAtionsButton.map(dab => {
+        expect(dab.props()).to.have.property('onClick');
+      })
+    })
   })
 
   /*const paper = ingredientList.find(Paper);

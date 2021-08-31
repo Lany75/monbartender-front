@@ -1,32 +1,33 @@
 import React from 'react';
-//import Axios from "axios";
+import Axios from "axios";
 import { DataGrid } from '@material-ui/data-grid';
-import { /*Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField,*/ useMediaQuery } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, useMediaQuery } from '@material-ui/core';
 
 //import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@material-ui/core';
 //import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
-//import apiBaseURL from "../../env";
+import apiBaseURL from "../../env";
 
 //import LoadingMessage from '../loadingMessage/LoadingMessage';
 
 import { IngredientContext } from '../../context/ingredientContext';
-//import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../context/authContext';
 //import { BarContext } from '../../context/barContext';
 
 import './IngredientList.css';
 
-const IngredientList = (/*{ setIngredientClicked }*/) => {
-  //const { accessToken } = React.useContext(AuthContext);
-  const { listeIngredients/*, setListeIngredients */ } = React.useContext(IngredientContext);
+const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => {
+  const { accessToken } = React.useContext(AuthContext);
+  const { listeIngredients, setListeIngredients } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
+  const [selectedRow, setSelectedRow] = React.useState([]);
+  const [openDeleteIngredientDialog, setOpenDeleteIngredientDialog] = React.useState(false);
 
   //const { getBarUser } = React.useContext(BarContext);
 
   //const [page, setPage] = React.useState(0);
   //const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const desktop = useMediaQuery('(min-width:769px)');
-
 
   const columns = [
     {
@@ -41,6 +42,38 @@ const IngredientList = (/*{ setIngredientClicked }*/) => {
     }
   ];
 
+  const selectRow = (event) => {
+    setSelectedRow(event);
+    setMessage('');
+  }
+  const handleCloseDeleteIngredientsDialog = () => {
+    setOpenDeleteIngredientDialog(false);
+  };
+  const handleClickOpenDeleteIngredientsDialog = () => {
+    setOpenDeleteIngredientDialog(true);
+  };
+  const deleteIngredients = () => {
+    if (selectedRow.length > 0) handleClickOpenDeleteIngredientsDialog();
+    else setMessage('Aucun ingrédient sélectionné')
+  }
+
+  const confirmDeletion = () => {
+    Axios.delete(`${apiBaseURL}/api/v2/ingredients/`,
+      {
+        headers: {
+          authorization: accessToken
+        },
+        data: { deletedIngredients: selectedRow }
+      })
+      .then(reponse => {
+        setListeIngredients(reponse.data);
+      })
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
+      });
+
+    handleCloseDeleteIngredientsDialog();
+  }
   /*const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };*/
@@ -80,12 +113,43 @@ const IngredientList = (/*{ setIngredientClicked }*/) => {
           pagination
           checkboxSelection
           disableSelectionOnClick
-        //onSelectionModelChange={selectRow}
+          onSelectionModelChange={selectRow}
         //onCellClick={handleClickOpenModifyGlassDialog}
         />
       </div>
 
+      <div className='delete-ingredients'>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={deleteIngredients}
+        >
+          Supprimer les ingrédients
+        </Button>
+        <div className='message'>{message}</div>
+      </div>
 
+      <Dialog
+        open={openDeleteIngredientDialog}
+        onClose={handleCloseDeleteIngredientsDialog}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogTitle id='alert-dialog-title'>Confirmer la suppression des ingrédients</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Etes vous sûr de vouloir supprimer ces ingrédients définitivement ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDeleteIngredientsDialog} color='primary'>
+            Annuler
+          </Button>
+          <Button onClick={confirmDeletion} color='primary' autoFocus>
+            Confirmer
+          </Button>
+        </DialogActions>
+      </Dialog>
 
 
 

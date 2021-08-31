@@ -8,10 +8,12 @@ import './ManageIngredients.css';
 
 const ManageIngredients = () => {
   //const [ingredientClicked, setIngredientClicked] = useState();
+  const [message, setMessage] = React.useState('');
+
 
   return (
     <div className='manage-ingredients'>
-      <IngredientList /*setIngredientClicked={setIngredientClicked} */ />
+      <IngredientList message={message} setMessage={setMessage}/*setIngredientClicked={setIngredientClicked} */ />
       {/*<IngredientChange ingredient={ingredientClicked} setIngredient={setIngredientClicked} />
       <IngredientAdd />*/}
     </div>
