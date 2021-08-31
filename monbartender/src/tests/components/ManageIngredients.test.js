@@ -13,20 +13,20 @@ describe('<ManageIngredients />', () => {
     expect(divManageIngredients).to.have.length(1);
   })
 
-  it('should contain a h4 tag witch text="LES INGREDIENTS"', () => {
+  /*it('should contain a h4 tag witch text="LES INGREDIENTS"', () => {
     expect(divManageIngredients.find('h4')).to.have.length(1);
     expect(divManageIngredients.find('h4').text()).to.be.equal('LES INGREDIENTS');
-  })
+  })*/
 
   it('should contain an IngredientList component', () => {
     expect(divManageIngredients.find('IngredientList')).to.have.length(1);
   })
 
-  it('should contain an IngredientChange component', () => {
+  /*it('should contain an IngredientChange component', () => {
     expect(divManageIngredients.find('IngredientChange')).to.have.length(1);
-  })
+  })*/
 
-  it('should contain an IngredientAdd component', () => {
+  /*it('should contain an IngredientAdd component', () => {
     expect(divManageIngredients).to.contain(<IngredientAdd />);
-  })
+  })*/
 })
