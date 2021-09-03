@@ -12,7 +12,7 @@ import apiBaseURL from "../../env";
 
 import { IngredientContext } from '../../context/ingredientContext';
 import { AuthContext } from '../../context/authContext';
-//import { BarContext } from '../../context/barContext';
+import { BarContext } from '../../context/barContext';
 
 import './IngredientList.css';
 
@@ -22,8 +22,8 @@ const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => 
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
   const [openDeleteIngredientDialog, setOpenDeleteIngredientDialog] = React.useState(false);
-
-  //const { getBarUser } = React.useContext(BarContext);
+  const [ingredients, setIngredients] = React.useState([]);
+  const { getBarUser } = React.useContext(BarContext);
 
   //const [page, setPage] = React.useState(0);
   //const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -33,12 +33,18 @@ const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => 
     {
       field: 'id',
       headerName: 'ID',
-      width: desktop ? 300 : 150,
+      width: desktop ? 200 : 100,
+      hide: !desktop && true
     },
     {
       field: 'nom',
       headerName: 'Nom',
-      width: desktop ? 300 : 150,
+      width: desktop ? 200 : 150,
+    },
+    {
+      field: 'categorie',
+      headerName: 'Catégorie',
+      width: desktop ? 200 : 150,
     }
   ];
 
@@ -67,6 +73,7 @@ const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => 
       })
       .then(reponse => {
         setListeIngredients(reponse.data);
+        getBarUser();
       })
       .catch(error => {
         console.log("vous avez une erreur : ", error);
@@ -100,12 +107,20 @@ const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => 
       });
   }*/
 
+  React.useEffect(() => {
+    const ingredientTab = []
+    listeIngredients && listeIngredients.forEach(ingr => {
+      ingredientTab.push({ id: ingr.id, nom: ingr.nom, categorie: ingr.CategorieIngredient.nom })
+    })
+    setIngredients(ingredientTab);
+  }, [listeIngredients]);
+
   return (
     <>
       <h4>LES INGREDIENTS</h4>
       <div className='igredients-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
         <DataGrid
-          rows={listeIngredients}
+          rows={ingredients}
           columns={columns}
           pageSize={pageSize}
           onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
