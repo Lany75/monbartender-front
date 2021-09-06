@@ -1,32 +1,31 @@
 import React from 'react';
 import Axios from "axios";
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, useMediaQuery } from '@material-ui/core';
-
-//import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@material-ui/core';
-//import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField, useMediaQuery } from '@material-ui/core';
 
 import apiBaseURL from "../../env";
-
-//import LoadingMessage from '../loadingMessage/LoadingMessage';
 
 import { IngredientContext } from '../../context/ingredientContext';
 import { AuthContext } from '../../context/authContext';
 import { BarContext } from '../../context/barContext';
-
 import './IngredientList.css';
 
-const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => {
+import camelCaseText from '../../utils/cameCaseText';
+
+const IngredientList = ({ message, setMessage }) => {
   const { accessToken } = React.useContext(AuthContext);
-  const { listeIngredients, setListeIngredients } = React.useContext(IngredientContext);
+  const { getBarUser } = React.useContext(BarContext);
+  const { listeIngredients, setListeIngredients, listeCategoriesIngredients } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
+  const [openModifyIngredientDialog, setOpenModifyIngredientDialog] = React.useState(false);
   const [openDeleteIngredientDialog, setOpenDeleteIngredientDialog] = React.useState(false);
   const [ingredients, setIngredients] = React.useState([]);
-  const { getBarUser } = React.useContext(BarContext);
-
-  //const [page, setPage] = React.useState(0);
-  //const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [modifiedIngredientId, setModifiedIngredientId] = React.useState('');
+  const [oldIngredientName, setOldIngredientName] = React.useState('');
+  const [newIngredientName, setNewIngredientName] = React.useState('');
+  const [oldIngredientCategorie, setOldIngredientCategorie] = React.useState('');
+  const [newIngredientCategorie, setNewIngredientCategorie] = React.useState('');
   const desktop = useMediaQuery('(min-width:769px)');
 
   const columns = [
@@ -47,6 +46,53 @@ const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => 
       width: desktop ? 200 : 150,
     }
   ];
+
+  const handleChangeCategorie = (event) => {
+    setNewIngredientCategorie(event.target.value);
+  };
+  const handleClickOpenModifyIngredientDialog = (event) => {
+    setMessage('');
+    setModifiedIngredientId(event.row.id);
+    setOldIngredientName(event.row.nom);
+    setNewIngredientName(event.row.nom);
+    setOldIngredientCategorie(event.row.categorie);
+    setNewIngredientCategorie(event.row.categorie);
+    setOpenModifyIngredientDialog(true);
+  };
+  const handleCloseModifyIngredientDialog = () => {
+    setOpenModifyIngredientDialog(false);
+  };
+  const confirmModification = () => {
+    if (newIngredientName !== oldIngredientName || newIngredientCategorie !== oldIngredientCategorie) {
+      const name = newIngredientName.replace(/\s+/g, ' ').trim();
+      if (
+        !(/\S/.test(name) &&
+          name.length >= 2 &&
+          name.length <= 30)
+      ) setMessage('Le nom doit avoir entre 2 et 30 caractères');
+      else {
+        const indexIngr = listeIngredients.findIndex(ingr => ingr.nom === camelCaseText(name));
+        if (indexIngr !== -1 && listeIngredients[indexIngr].id !== modifiedIngredientId) setMessage('Cet ingrédient existe déja');
+        else {
+          Axios.put(`${apiBaseURL}/api/v2/ingredients/${modifiedIngredientId}`,
+            { nom: name, categorie: newIngredientCategorie },
+            {
+              headers: {
+                authorization: accessToken
+              }
+            })
+            .then(reponse => {
+              setListeIngredients(reponse.data);
+            })
+            .catch(error => {
+              console.log("vous avez une erreur : ", error);
+            });
+        }
+      }
+    }
+
+    handleCloseModifyIngredientDialog();
+  }
 
   const selectRow = (event) => {
     setSelectedRow(event);
@@ -81,31 +127,6 @@ const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => 
 
     handleCloseDeleteIngredientsDialog();
   }
-  /*const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };*/
-
-  /*const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };*/
-
-  /*const deleteIngredient = ingredientId => {
-    Axios.delete(`${apiBaseURL}/api/v2/ingredients/${ingredientId}`,
-      {
-        headers: {
-          authorization: accessToken
-        }
-      })
-      .then(reponse => {
-        setListeIngredients(reponse.data);
-        getBarUser();
-        setIngredientClicked(null);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-  }*/
 
   React.useEffect(() => {
     const ingredientTab = []
@@ -129,9 +150,56 @@ const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => 
           checkboxSelection
           disableSelectionOnClick
           onSelectionModelChange={selectRow}
-        //onCellClick={handleClickOpenModifyGlassDialog}
+          onCellClick={handleClickOpenModifyIngredientDialog}
         />
       </div>
+
+      <Dialog
+        open={openModifyIngredientDialog}
+        onClose={handleCloseModifyIngredientDialog}
+        aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Modifier l'ingrédient</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Corrigez le nom et/ou la catégorie de l'ingrédient
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Nom de l'ingrédient"
+            value={newIngredientName}
+            onChange={event => setNewIngredientName(event.target.value)}
+            fullWidth
+          />
+          <FormControl variant='outlined' id='form-control'>
+            <InputLabel id='label-categorie'>Catégorie</InputLabel>
+            <Select
+              className='form-control-select'
+              labelId='select-categorie'
+              id='select-categorie'
+              value={newIngredientCategorie}
+              onChange={handleChangeCategorie}
+              label='Catégorie'
+              style={{ width: 220 }}
+              required
+            >
+              {listeCategoriesIngredients && listeCategoriesIngredients.map(lci => {
+                return (
+                  <MenuItem value={lci.nom} key={lci.id}>{lci.nom}</MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModifyIngredientDialog} color="primary">
+            Annuler
+          </Button>
+          <Button onClick={confirmModification} color="primary">
+            Modifier
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <div className='delete-ingredients'>
         <Button
@@ -165,48 +233,6 @@ const IngredientList = (/*{ setIngredientClicked }*/{ message, setMessage }) => 
           </Button>
         </DialogActions>
       </Dialog>
-
-
-
-      {/*listeIngredients ? (
-        <Paper className='paper'>
-          <TableContainer className='table-container'>
-            <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell className='table-cell-head' align='right'>NOM</TableCell>
-                  <TableCell className='table-cell-head' align='right'>CATEGORIE</TableCell>
-                  <TableCell />
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {listeIngredients.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                  return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                      <TableCell onClick={() => setIngredientClicked(row)}>{row.id.split('-')[0]}</TableCell>
-                      <TableCell align='right' onClick={() => setIngredientClicked(row)}>{row.nom}</TableCell>
-                      <TableCell align='right' onClick={() => setIngredientClicked(row)}>{row.CategorieIngredient.nom}</TableCell>
-                      <TableCell align='right'><DeleteForeverIcon onClick={() => deleteIngredient(row.id)} /></TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer >
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={listeIngredients.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-          />
-        </Paper >
-      ) : (
-        <LoadingMessage message='Chargement ...' />
-      )*/}
     </>
   );
 }

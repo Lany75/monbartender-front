@@ -2,6 +2,10 @@
   margin: 20px 0px 0px 10px;
 }
 
+#form-control {
+  margin-top: 10px;
+}
+
 
 @media screen and (min-width: 769px) {
   .delete-ingredients {
