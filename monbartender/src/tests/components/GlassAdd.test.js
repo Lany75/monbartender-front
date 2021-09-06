@@ -22,7 +22,6 @@ describe('<GlassAdd />', () => {
   }));
 
   const glassAdd = shallow(<GlassAdd />);
-
   const formGlassAdd = glassAdd.find('form.form-glass-add');
 
   it('should contain a form tag witch className="form-glass-add" and with onSubmit attribute', () => {

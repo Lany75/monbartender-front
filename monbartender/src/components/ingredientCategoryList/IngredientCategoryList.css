@@ -1,11 +1,11 @@
-.category-board {
+/*.category-board {
   width: 100%;
-}
+}*/
 
 
 
 @media screen and (min-width: 769px) {
-  .category-board {
+  /*.category-board {
     width: 50%;
-  }
+  }*/
 }

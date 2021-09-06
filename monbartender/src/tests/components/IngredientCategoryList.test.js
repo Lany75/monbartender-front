@@ -85,6 +85,10 @@ describe('<IngredientCategoryList />', () => {
     expect(dataGrid.props()).to.have.property('rows');
     expect(dataGrid.props()).to.have.property('columns');
   })
+
+  it('should contain a div with className="message"', () => {
+    expect(categoriesList.find('div.message')).to.have.length(1);
+  })
   /*it('should contain a Paper component witch className="category-board"', () => {
     expect(categoryBoard).to.have.length(1);
     expect(categoryBoard.props()).to.have.property('className', 'category-board');

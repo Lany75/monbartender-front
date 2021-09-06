@@ -14,7 +14,7 @@ import { IngredientContext } from '../../context/ingredientContext';
 
 import './IngredientCategoryList.css';
 
-const IngredientCategoryList = (/*{ setCategoryClicked }*/) => {
+const IngredientCategoryList = ({ message, setMessage }/*{ setCategoryClicked }*/) => {
   //const { accessToken } = React.useContext(AuthContext);
   const { listeCategoriesIngredients/*, setListeCategoriesIngredients*/ } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
@@ -80,7 +80,7 @@ const IngredientCategoryList = (/*{ setCategoryClicked }*/) => {
       </div>
 
 
-
+      <div className='message'>{message}</div>
 
 
       {/*listeCategoriesIngredients ? (
