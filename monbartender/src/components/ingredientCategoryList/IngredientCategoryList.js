@@ -1,23 +1,25 @@
 import React from 'react';
-//import Axios from "axios";
+import Axios from "axios";
 import { DataGrid } from '@material-ui/data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, useMediaQuery } from '@material-ui/core';
 
 //import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@material-ui/core';
 //import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
-//import apiBaseURL from "../../env";
+import apiBaseURL from "../../env";
 
 //import LoadingMessage from '../loadingMessage/LoadingMessage';
 import { IngredientContext } from '../../context/ingredientContext';
-//import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../context/authContext';
 
 import './IngredientCategoryList.css';
 
 const IngredientCategoryList = ({ message, setMessage }/*{ setCategoryClicked }*/) => {
-  //const { accessToken } = React.useContext(AuthContext);
-  const { listeCategoriesIngredients/*, setListeCategoriesIngredients*/ } = React.useContext(IngredientContext);
+  const { accessToken } = React.useContext(AuthContext);
+  const { listeCategoriesIngredients, setListeCategoriesIngredients } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
+  const [selectedRow, setSelectedRow] = React.useState([]);
+  const [openDeleteCategoryDialog, setOpenDeleteCategoryDialog] = React.useState(false);
 
   //const [page, setPage] = React.useState(0);
   //const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -61,6 +63,39 @@ const IngredientCategoryList = ({ message, setMessage }/*{ setCategoryClicked }*
       });
   }*/
 
+  const selectRow = (event) => {
+    setSelectedRow(event);
+    setMessage('');
+  }
+  const handleCloseDeleteCategoryDialog = () => {
+    setOpenDeleteCategoryDialog(false);
+  };
+  const handleClickOpenDeleteCategoryDialog = () => {
+    setOpenDeleteCategoryDialog(true);
+  };
+  const deleteCategory = () => {
+    if (selectedRow.length > 0) handleClickOpenDeleteCategoryDialog();
+    else setMessage('Aucun ingrédient sélectionné')
+  }
+
+  const confirmDeletion = () => {
+    Axios.delete(`${apiBaseURL}/api/v2/categories/`,
+      {
+        headers: {
+          authorization: accessToken
+        },
+        data: { deletedCategories: selectedRow }
+      })
+      .then(reponse => {
+        setListeCategoriesIngredients(reponse.data);
+      })
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
+      });
+
+    handleCloseDeleteCategoryDialog();
+  }
+
   return (
     <>
       <h4>LES CATEGORIES D'INGREDIENTS</h4>
@@ -74,14 +109,43 @@ const IngredientCategoryList = ({ message, setMessage }/*{ setCategoryClicked }*
           pagination
           checkboxSelection
           disableSelectionOnClick
-        //onSelectionModelChange={selectRow}
+          onSelectionModelChange={selectRow}
         //onCellClick={handleClickOpenModifyGlassDialog}
         />
       </div>
 
+      <div className='delete-category'>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={deleteCategory}
+        >
+          Supprimer les catégories
+        </Button>
+        <div className='message'>{message}</div>
+      </div>
 
-      <div className='message'>{message}</div>
-
+      <Dialog
+        open={openDeleteCategoryDialog}
+        onClose={handleCloseDeleteCategoryDialog}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogTitle id='alert-dialog-title'>Confirmer la suppression des catégories</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Etes vous sûr de vouloir supprimer ces catégories définitivement ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDeleteCategoryDialog} color='primary'>
+            Annuler
+          </Button>
+          <Button onClick={confirmDeletion} color='primary' autoFocus>
+            Confirmer
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/*listeCategoriesIngredients ? (
         <Paper className='category-board'>
