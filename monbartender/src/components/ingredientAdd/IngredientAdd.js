@@ -10,7 +10,6 @@ import './IngredientAdd.css';
 
 import camelCaseText from '../../utils/cameCaseText';
 
-
 const IngredientAdd = ({ setMessage }) => {
   const { accessToken } = React.useContext(AuthContext);
   const { listeIngredients, listeCategoriesIngredients, setListeIngredients } = React.useContext(IngredientContext);
