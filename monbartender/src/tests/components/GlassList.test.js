@@ -62,8 +62,6 @@ describe('<GlassList />', () => {
     expect(dataGrid.props()).to.have.property('columns');
   })
 
-
-
   const divDeleteGlass = glassList.find('div.delete-glass');
 
   it('should contain a div with className="delete-glass"', () => {

@@ -9,23 +9,60 @@ const testAccessToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiMjFkNWE1Y2U2OGM1MjNlZTc
 const testListCategories = [
   {
     id: "66ca7575-284f-41f9-b468-7535be3a3c18",
-    nom: "alcool"
+    nom: "ALCOOL"
   },
   {
     id: "f41e14e2-9bdd-47f4-95b4-1ff77022c630",
-    nom: "autre"
+    nom: "AUTRE"
   },
   {
     id: "64ba9cda-82b4-403f-8018-c954d3326fd9",
-    nom: "fruit"
+    nom: "FRUIT"
   },
   {
     id: "57459a23-14dc-43e7-b730-932cee95b477",
-    nom: "jus"
+    nom: "JUS"
   },
   {
     id: "a9a4b3ee-1e53-44cc-a5bb-f6e48d361f6a",
-    nom: "legume"
+    nom: "LEGUME"
+  }
+];
+const testListIngredients = [
+  {
+    id: "ad1d8a81-7ae6-4f5e-83a3-64889d390f8a",
+    nom: "Eau Gazeuse",
+    CategorieIngredient: {
+      id: "52285198-dd1c-44d7-98b1-df2ef326e564",
+      nom: "SOFT"
+    }
+  },
+  {
+    id: "b233195d-a090-4b96-a76d-f016c842c472",
+    nom: "Jus De Citron Jaune",
+    CategorieIngredient:
+    {
+      id: "57459a23-14dc-43e7-b730-932cee95b477",
+      nom: "JUS"
+    }
+  },
+  {
+    id: "740367a4-dedf-4093-86d1-50eac62b2521",
+    nom: "Menthe",
+    CategorieIngredient:
+    {
+      id: "f41e14e2-9bdd-47f4-95b4-1ff77022c630",
+      nom: "AUTRE"
+    }
+  },
+  {
+    id: "bd799ef3-d7ae-4975-8be0-8f2397fa2b18",
+    nom: "Rhum",
+    CategorieIngredient:
+    {
+      id: "66ca7575-284f-41f9-b468-7535be3a3c18",
+      nom: "ALCOOL"
+    }
   }
 ];
 
@@ -41,36 +78,26 @@ describe('<IngredientAdd />', () => {
 
   jest.spyOn(React, 'useContext').mockImplementation(() => ({
     accessToken: testAccessToken,
+    listeIngredients: testListIngredients,
     listeCategoriesIngredients: testListCategories,
     setListeIngredients: jest.fn()
   }));
 
-  const ingredientAdd = shallow(<IngredientAdd />);
-  const divIngredientAdd = ingredientAdd.find(('div.ingredient-add'));
+  const ingredientAdd = shallow(<IngredientAdd setMessage={jest.fn()} />);
+  const form = ingredientAdd.find('form.form-ingredient-add');
 
-  it('should contain a div witch className="ingredient-add"', () => {
-    expect(divIngredientAdd).to.have.length(1);
-  })
-
-  it('should contain a h4 tag with text "AJOUT D\'UN INGREDIENT"', () => {
-    expect(divIngredientAdd.find('h4')).to.have.length(1);
-    expect(divIngredientAdd.find('h4').text()).to.be.equal("AJOUT D'UN INGREDIENT");
-  })
-
-  const form = divIngredientAdd.find('form.form-ingredient-add');
-
-  it('should contain a form tag witch className="form-ingredient-add" and have onSubmit attribute', () => {
+  it('should contain a form tag with className="form-ingredient-add" and onSubmit attribute', () => {
     expect(form).to.have.length(1);
     expect(form.props()).to.have.property('onSubmit');
   })
 
   const divIngredientAddName = form.find('div#ingredient-add-name');
 
-  it('should contain a div witch id="ingredient-add-name"', () => {
+  it('should contain a div with id="ingredient-add-name"', () => {
     expect(divIngredientAddName).to.have.length(1);
   })
 
-  it('should contain a TextField component witch have name, label and onChange attributes', () => {
+  it('should contain a TextField component with name, label and onChange attributes', () => {
     const textField = divIngredientAddName.find(TextField);
     expect(textField).to.have.length(1);
     expect(textField.props()).to.have.property('label', 'Nom');
@@ -80,7 +107,7 @@ describe('<IngredientAdd />', () => {
 
   const divIngredientCategories = form.find('div#ingredient-add-categories');
 
-  it('should contain a div witch id="ingredient-add-categories"', () => {
+  it('should contain a div with id="ingredient-add-categories"', () => {
     expect(divIngredientCategories).to.have.length(1);
   })
 
@@ -90,14 +117,14 @@ describe('<IngredientAdd />', () => {
     expect(formControl).to.have.length(1);
   })
 
-  it('should contain an InputLabel component witch id="label-categorie" and text="Catégorie"', () => {
+  it('should contain an InputLabel component with id="label-categorie" and text="Catégorie"', () => {
     expect(formControl.find(InputLabel)).to.have.length(1);
     expect(formControl.find(InputLabel).text()).to.be.equal('Catégorie');
   })
 
   const selectFormControl = formControl.find(Select);
 
-  it('should contain a Select component witch id="select-categorie"', () => {
+  it('should contain a Select component with id="select-categorie"', () => {
     expect(selectFormControl).to.have.length(1);
     expect(selectFormControl.props()).to.have.property('id', 'select-categorie');
   })
@@ -112,9 +139,9 @@ describe('<IngredientAdd />', () => {
     expect(btnAdd).to.have.length(1);
   })
 
-  it('should contain a submit Button with text="Ajouter"', () => {
+  it('should contain a submit Button with text="+"', () => {
     expect(btnAdd.find(Button)).to.have.length(1);
     expect(btnAdd.find(Button).props()).to.have.property('type', 'submit');
-    expect(btnAdd.find(Button).text()).to.be.equal('Ajouter');
+    expect(btnAdd.find(Button).text()).to.be.equal('+');
   })
 })
