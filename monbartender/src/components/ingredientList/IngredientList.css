@@ -1,21 +1,17 @@
-.table-container {
-  max-height: 380px;
+.delete-ingredients {
+  margin: 20px 0px 0px 10px;
 }
 
-.table-cell-head {
-  min-width: auto;
+#form-control {
+  margin-top: 10px;
 }
-
-
-
 
 
 @media screen and (min-width: 769px) {
-  .table-container {
-    max-height: 700px;
-  }
-  
-  .table-cell-head {
-    min-width: 170px;
+  .delete-ingredients {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px 180px 30px 180px;
   }
 }

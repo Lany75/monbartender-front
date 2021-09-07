@@ -1,33 +1,32 @@
 import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@material-ui/core';
+import { DataGrid } from '@material-ui/data-grid';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core";
 
 import IngredientCategoryList from '../../components/ingredientCategoryList/IngredientCategoryList';
-import LoadingMessage from '../../components/loadingMessage/LoadingMessage';
 
 const testAccessToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiMjFkNWE1Y2U2OGM1MjNlZTc0MzI5YjQ3ZDg0NGE3YmZjODRjZmYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiTcOpbGFuaWUgUEFSUlkiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1rcXhaSklwaThKNC9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BS0YwNW5Cb0tWRnBFaVVaY1JoTXpkYUVIWWJPbXBQUjN3L3Bob3RvLmpwZyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9tb25iYXJ0ZW5kZXIiLCJhdWQiOiJtb25iYXJ0ZW5kZXIiLCJhdXRoX3RpbWUiOjE2MjUwNjUwMzgsInVzZXJfaWQiOiJGTWRZSVFUb09pZTNmUjdNMDdSMXNjRm52SXcyIiwic3ViIjoiRk1kWUlRVG9PaWUzZlI3TTA3UjFzY0Zudkl3MiIsImlhdCI6MTYyNTEzODY4OCwiZXhwIjoxNjI1MTQyMjg4LCJlbWFpbCI6Im1sYW5pZS5wYXJyeUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNzMwMTM4MjY5NjkwOTY5Njc4MSJdLCJlbWFpbCI6WyJtbGFuaWUucGFycnlAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.Dki9I0nDE4b7kH5UbrDyhR6QEJXrCAP-c9crSZK7WQ6caTkeHMpKkHi_644CERig8wYdpsZbmGJI7eplKEfXq4GyQtdJqrpNNPcHkxl6-3KYZuSbg-G3oFbwGRo2dP6J2ARU9L-I3CHusBLas9c508HqZjwf5kwzzTzN7e7K93Ear31eAmpdxYrQm6Sfpm_llRUd3HW5lKpGSWRZc5JMcLRZ6jv1m_XWLqPWu5s0-wjYquRxcZLIwc2hm1kDJGoxk2TQnTKgRpDabgIREFcvriEkHD0yVODkgcOkanM6UgaPLU7x6Rg4vKi8FOITFuPxpeIFl_oxPcj0IwDVHzxwWg';
 const testListCategoriesIngredients = [
   {
     id: "66ca7575-284f-41f9-b468-7535be3a3c18",
-    nom: "alcool"
+    nom: "ALCOOL"
   },
   {
     id: "64ba9cda-82b4-403f-8018-c954d3326fd9",
-    nom: "fruit"
+    nom: "FRUIT"
   },
   {
     id: "57459a23-14dc-43e7-b730-932cee95b477",
-    nom: "jus"
+    nom: "JUS"
   },
   {
     id: "8e6d7f82-95f6-40d4-ac30-9462a157b66e",
-    nom: "liqueur"
+    nom: "LIQUEUR"
   },
   {
     id: "69ee0fd7-1489-4873-b036-dfeb9744d2e2",
-    nom: "sirop"
+    nom: "SIROP"
   }
 ]
 
@@ -41,77 +40,138 @@ describe('<IngredientCategoryList />', () => {
     React.useContext = realUseContext;
   });
 
-  describe('it tests case if listeCategoriesIngredients is undefined', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      accessToken: testAccessToken,
-      listeCategoriesIngredients: undefined,
-      setListeCategoriesIngredients: jest.fn(),
-    }));
+  jest.spyOn(React, 'useContext').mockImplementation(() => ({
+    accessToken: testAccessToken,
+    listeCategoriesIngredients: testListCategoriesIngredients,
+    setListeCategoriesIngredients: jest.fn()
+  }));
 
-    const ingredientCategoryList = shallow(<IngredientCategoryList />);
+  const categoriesList = shallow(<IngredientCategoryList />);
 
-    it('should contain a LoadingMessage component', () => {
-      expect(ingredientCategoryList.find(LoadingMessage)).to.have.length(1);
-      expect(ingredientCategoryList.find(Paper)).to.have.length(0);
+  it("should contain a h4 tag with text='LES CATEGORIES D'INGREDIENTS'", () => {
+    expect(categoriesList.find('h4')).to.have.length(1);
+    expect(categoriesList.find('h4').text()).to.be.equal("LES CATEGORIES D'INGREDIENTS");
+  })
+
+  const divCategoriesList = categoriesList.find('div.categories-list');
+
+  it('should contain a div with className="categories-list"', () => {
+    expect(divCategoriesList).to.have.length(1);
+  })
+
+  it('should contain a DataGrid component with rows and columns attributes', () => {
+    const dataGrid = divCategoriesList.find(DataGrid);
+    expect(dataGrid).to.have.length(1);
+    expect(dataGrid.props()).to.have.property('rows');
+    expect(dataGrid.props()).to.have.property('columns');
+  })
+
+  const divDeleteCategory = categoriesList.find('div.delete-category');
+
+  it('should contain a div with className="delete-category"', () => {
+    expect(divDeleteCategory).to.have.length(1);
+  })
+
+  it('should contain a Button component with onClick attribute and text="Supprimer les catégories"', () => {
+    const deleteButton = divDeleteCategory.find(Button);
+
+    expect(deleteButton).to.have.length(1);
+    expect(deleteButton.props()).to.have.property('onClick');
+    expect(deleteButton.text()).to.be.equal('Supprimer les catégories');
+  })
+
+  it('should contain a div with className="message"', () => {
+    expect(divDeleteCategory.find('div.message')).to.have.length(1);
+  })
+
+  const dialogs = categoriesList.find(Dialog);
+
+  it('should contain 2 Dialog components with open and onClose attributes', () => {
+    expect(dialogs).to.have.length(2);
+    dialogs.forEach(d => {
+      expect(d.props()).to.have.property('open');
+      expect(d.props()).to.have.property('onClose');
     })
   })
 
-  describe('it tests case if listeCategoriesIngredients is defined', () => {
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      accessToken: testAccessToken,
-      listeCategoriesIngredients: testListCategoriesIngredients,
-      setListeCategoriesIngredients: jest.fn(),
-    }));
+  describe('first Dialog component (modify category dialog)', () => {
+    const modifyCategoryDialog = dialogs.first();
+    const dialogTitle = modifyCategoryDialog.find(DialogTitle);
 
-    const ingredientCategoryList = shallow(<IngredientCategoryList />);
-    const categoryBoard = ingredientCategoryList.find(Paper);
-
-    it('should contain a Paper component witch className="category-board"', () => {
-      expect(categoryBoard).to.have.length(1);
-      expect(categoryBoard.props()).to.have.property('className', 'category-board');
+    it('should contain a DialogTitle component with id="form-dialog-title" and text="Modifier la catégorie"', () => {
+      expect(dialogTitle).to.have.length(1);
+      expect(dialogTitle.props()).to.have.property('id', 'form-dialog-title');
+      expect(dialogTitle.text()).to.be.equal('Modifier la catégorie');
     })
 
-    const tableContainer = categoryBoard.find(TableContainer);
+    const dialogContent = modifyCategoryDialog.find(DialogContent);
 
-    it('should contain a TableContainer component witch className=table-container', () => {
-      expect(tableContainer).to.have.length(1);
-      expect(tableContainer.props()).to.have.property('className', 'table-container');
+    it('should contain a DialogContent component', () => {
+      expect(dialogContent).to.have.length(1);
     })
 
-    const table = tableContainer.find(Table);
-
-    it('should contain a Table component', () => {
-      expect(table).to.have.length(1);
+    it('should contain a DialogContentText component with text="Corrigez le nom de la catégorie"', () => {
+      expect(dialogContent.find(DialogContentText)).to.have.length(1);
+      expect(dialogContent.find(DialogContentText).text()).to.be.equal('Corrigez le nom de la catégorie');
     })
 
-    const tableHead = table.find(TableHead);
+    it('should contain a TextField component with label, value and onChange attribute', () => {
+      const textField = dialogContent.find(TextField);
 
-    it('should contain a TableHead component', () => {
-      expect(tableHead).to.have.length(1);
+      expect(textField).to.have.length(1);
+      expect(textField.props()).to.have.property('label', 'Nom de la catégorie');
+      expect(textField.props()).to.have.property('value');
+      expect(textField.props()).to.have.property('onChange');
     })
 
-    const tableRow = tableHead.find(TableRow);
+    const dialogActions = modifyCategoryDialog.find(DialogActions);
 
-    it('should contain a TableRow component', () => {
-      expect(tableRow).to.have.length(1);
+    it('should contain a DialogActions component', () => {
+      expect(dialogActions).to.have.length(1);
     })
 
-    it('should contain 3 TableCell components', () => {
-      expect(tableRow.find(TableCell)).to.have.length(3);
+    it('should contain 2 Button components with onClick attribute', () => {
+      const dialogAtionsButton = dialogActions.find(Button);
+      expect(dialogAtionsButton).to.have.length(2);
+      dialogAtionsButton.map(dab => {
+        expect(dab.props()).to.have.property('onClick');
+      })
+    })
+  })
+
+  describe('second Dialog component (delete category dialog)', () => {
+    const deleteCategoryDialog = dialogs.last();
+    const dialogTitle = deleteCategoryDialog.find(DialogTitle);
+
+    it('should contain a DialogTitle component with id="alert-dialog-title" and text="Confirmer la suppression des catégories"', () => {
+      expect(dialogTitle).to.have.length(1);
+      expect(dialogTitle.props()).to.have.property('id', 'alert-dialog-title');
+      expect(dialogTitle.text()).to.be.equal('Confirmer la suppression des catégories');
     })
 
-    const tableBody = table.find(TableBody);
+    const dialogContent = deleteCategoryDialog.find(DialogContent);
 
-    it('should contain a TableBody component', () => {
-      expect(tableBody).to.have.length(1);
+    it('should contain a DialogContent component', () => {
+      expect(dialogContent).to.have.length(1);
     })
 
-    it('should contain 5 TableRow components', () => {
-      expect(tableBody.find(TableRow)).to.have.length(5);
+    it('should contain a DialogContentText component with text="Etes vous sûr de vouloir supprimer ces catégories définitivement ?"', () => {
+      expect(dialogContent.find(DialogContentText)).to.have.length(1);
+      expect(dialogContent.find(DialogContentText).text()).to.be.equal('Etes vous sûr de vouloir supprimer ces catégories définitivement ?');
     })
 
-    it('should contain a TablePagination component', () => {
-      expect(categoryBoard.find(TablePagination)).to.have.length(1);
+    const dialogActions = deleteCategoryDialog.find(DialogActions);
+
+    it('should contain a DialogActions component', () => {
+      expect(dialogActions).to.have.length(1);
+    })
+
+    it('should contain 2 Button components with onClick attribute', () => {
+      const dialogAtionsButton = dialogActions.find(Button);
+      expect(dialogAtionsButton).to.have.length(2);
+      dialogAtionsButton.map(dab => {
+        expect(dab.props()).to.have.property('onClick');
+      })
     })
   })
 })

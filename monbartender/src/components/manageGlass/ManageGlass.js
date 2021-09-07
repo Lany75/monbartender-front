@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import GlassAdd from '../glassAdd/GlassAdd';
-import GlassChange from '../glassChange/GlassChange';
-
 import GlassList from '../glassList/GlassList';
-
 import './ManageGlass.css';
 
 const ManageGlass = () => {
-  const [glassClicked, setGlassClicked] = useState();
+  const [message, setMessage] = React.useState('');
 
   return (
     <div className='manage-glass'>
-      <h4>LES VERRES</h4>
-      <GlassList setGlassClicked={setGlassClicked} />
-      <GlassChange glass={glassClicked} setGlass={setGlassClicked} />
-      <GlassAdd />
+      <GlassAdd setMessage={setMessage} />
+      <GlassList message={message} setMessage={setMessage} />
     </div>
   )
 }

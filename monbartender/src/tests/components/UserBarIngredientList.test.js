@@ -77,9 +77,9 @@ describe('<UserBarIngredientList />', () => {
     expect(divDeleteIngredientBar).to.have.length(1);
   })
 
-  const deleteButton = divDeleteIngredientBar.find(Button);
-
   it('should contain a Button component with onClick attribute and text="Supprimer les ingrédients"', () => {
+    const deleteButton = divDeleteIngredientBar.find(Button);
+
     expect(deleteButton).to.have.length(1);
     expect(deleteButton.props()).to.have.property('onClick');
     expect(deleteButton.text()).to.be.equal('Supprimer les ingrédients');
