@@ -12,35 +12,39 @@ import { BarContext } from '../../context/barContext';
 
 import './UserBarIngredientAdd.css';
 
-const UserBarIngredientAdd = () => {
+const UserBarIngredientAdd = ({ setMessage }) => {
   const { listeIngredients } = React.useContext(IngredientContext);
   const { accessToken } = React.useContext(AuthContext);
   const { bar, setBar } = React.useContext(BarContext);
-  const [addedIngredient, setAddedIngredient] = React.useState('');
+  const [addedIngredient, setAddedIngredient] = React.useState({ id: '', nom: '' });
   const [key, setKey] = React.useState(true);
 
   const addIngredient = event => {
     event.preventDefault();
 
-    let alreadyExist = false;
-    bar.Ingredients.forEach(el => {
-      if (el.id === addedIngredient.id) alreadyExist = true;
-    })
-
-    if (addedIngredient !== '' && !alreadyExist) {
-      Axios.post(`${apiBaseURL}/api/v2/barsIgredients`,
-        { ingredientId: addedIngredient.id },
-        {
-          headers: {
-            authorization: accessToken
-          }
-        })
-        .then(reponse => {
-          setBar(reponse.data);
-        })
-        .catch(error => {
-          console.log("vous avez une erreur : ", error);
-        });
+    if (
+      !(addedIngredient &&
+        /\S/.test(addedIngredient.nom))
+    ) setMessage("Aucun ingrédient à ajouter");
+    else {
+      if (
+        bar.Ingredients.findIndex(ingredient => ingredient.nom === addedIngredient.nom) !== -1
+      ) setMessage('Cet ingrédient est déjà dans votre bar');
+      else {
+        Axios.post(`${apiBaseURL}/api/v2/barsIgredients`,
+          { ingredientId: addedIngredient.id },
+          {
+            headers: {
+              authorization: accessToken
+            }
+          })
+          .then(reponse => {
+            setBar(reponse.data);
+          })
+          .catch(error => {
+            console.log("vous avez une erreur : ", error);
+          });
+      }
     }
     setAddedIngredient('');
     setKey(!key);
@@ -56,7 +60,10 @@ const UserBarIngredientAdd = () => {
             options={listeIngredients}
             getOptionLabel={option => option.nom}
             style={{ width: 200 }}
-            onChange={(event, value) => setAddedIngredient(value)}
+            onChange={(event, value) => {
+              setAddedIngredient(value)
+              setMessage('');
+            }}
             renderInput={params => (
               <TextField
                 {...params}

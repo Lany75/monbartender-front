@@ -5,10 +5,12 @@ import UserBarIngredientList from '../userBarIngredientList/UserBarIngredientLis
 import './UserBar.css';
 
 const UserBar = () => {
+  const [message, setMessage] = React.useState('');
+
   return (
     <div className='user-bar'>
-      <UserBarIngredientAdd />
-      <UserBarIngredientList />
+      <UserBarIngredientAdd setMessage={setMessage} />
+      <UserBarIngredientList message={message} setMessage={setMessage} />
     </div>
   )
 }
