@@ -24,11 +24,13 @@ const UsersList = ({ users, setUsers }) => {
 
   const setRight = modifyUser => {
     if (modifyUser.personneId !== 'mlanie.parry@gmail.com' && modifyUser.personneId !== user.email) {
-      Axios.put(`${apiBaseURL}/api/v2/bars/${modifyUser.personneId}`, {
-        headers: {
-          authorization: accessToken
-        }
-      })
+      Axios.put(`${apiBaseURL}/api/v2/bars/${modifyUser.personneId}`,
+        {},
+        {
+          headers: {
+            authorization: accessToken
+          }
+        })
         .then(reponse => {
           setUsers(reponse.data);
         })
