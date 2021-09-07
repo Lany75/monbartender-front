@@ -46,7 +46,6 @@ const GlassList = ({ message, setMessage }) => {
   const handleCloseModifyGlassDialog = () => {
     setOpenModifyGlassDialog(false);
   };
-
   const confirmModification = () => {
     if (newGlassName !== oldGlassName) {
       const name = newGlassName.replace(/\s+/g, ' ').trim();
@@ -91,12 +90,10 @@ const GlassList = ({ message, setMessage }) => {
   const handleClickOpenDeleteGlassDialog = () => {
     setOpenDeleteGlassDialog(true);
   };
-
   const deleteGlass = () => {
     if (selectedRow.length > 0) handleClickOpenDeleteGlassDialog();
-    else setMessage('Aucun ingrédient sélectionné')
+    else setMessage('Aucun verre sélectionné')
   }
-
   const confirmDeletion = () => {
     Axios.delete(`${apiBaseURL}/api/v2/glasses/`,
       {
