@@ -9,14 +9,13 @@ import { BarContext } from '../../context/barContext';
 import './UserBarIngredientList.css'
 import { AuthContext } from '../../context/authContext';
 
-const UserBarIngredientList = () => {
+const UserBarIngredientList = ({ message, setMessage }) => {
   const { bar, setBar } = React.useContext(BarContext);
   const { accessToken } = React.useContext(AuthContext);
   const [ingredients, setIngredients] = React.useState([]);
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
   const [open, setOpen] = React.useState(false);
-  const [message, setMessage] = React.useState('');
   const desktop = useMediaQuery('(min-width:769px)');
 
   const columns = [
@@ -42,12 +41,10 @@ const UserBarIngredientList = () => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const deleteIngredients = () => {
     if (selectedRow.length > 0) handleClickOpen();
     else setMessage('Aucun ingrédient sélectionné')
   }
-
   const confirmDeletion = () => {
     Axios.delete(`${apiBaseURL}/api/v2/barsIgredients/`, {
       headers: {
