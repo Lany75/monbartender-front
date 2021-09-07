@@ -41,12 +41,10 @@ const UserBarIngredientList = ({ message, setMessage }) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const deleteIngredients = () => {
     if (selectedRow.length > 0) handleClickOpen();
     else setMessage('Aucun ingrédient sélectionné')
   }
-
   const confirmDeletion = () => {
     Axios.delete(`${apiBaseURL}/api/v2/barsIgredients/`, {
       headers: {
