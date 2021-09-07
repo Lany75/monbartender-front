@@ -16,10 +16,14 @@ import './IngredientCategoryList.css';
 
 const IngredientCategoryList = ({ message, setMessage }/*{ setCategoryClicked }*/) => {
   const { accessToken } = React.useContext(AuthContext);
-  const { listeCategoriesIngredients, setListeCategoriesIngredients } = React.useContext(IngredientContext);
+  const { listeCategoriesIngredients, setListeCategoriesIngredients, getListeIngredients } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
   const [openDeleteCategoryDialog, setOpenDeleteCategoryDialog] = React.useState(false);
+  const [openModifyCategoryDialog, setOpenModifyCategoryDialog] = React.useState(false);
+  const [oldCategoryName, setOldCategoryName] = React.useState('');
+  const [newCategoryName, setNewCategoryName] = React.useState('');
+  const [modifiedCategoryId, setModifiedCategoryId] = React.useState('');
 
   //const [page, setPage] = React.useState(0);
   //const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -37,6 +41,51 @@ const IngredientCategoryList = ({ message, setMessage }/*{ setCategoryClicked }*
       width: desktop ? 300 : 150,
     }
   ];
+
+  const handleClickOpenModifyCategoryDialog = (event) => {
+    setMessage('');
+    setModifiedCategoryId(event.row.id);
+    setOldCategoryName(event.row.nom);
+    setNewCategoryName(event.row.nom);
+    setOpenModifyCategoryDialog(true);
+  }
+  const handleCloseModifyCategoryDialog = () => {
+    setOpenModifyCategoryDialog(false);
+  };
+  const confirmModification = () => {
+    if (newCategoryName !== oldCategoryName) {
+      const name = newCategoryName.replace(/\s+/g, ' ').trim();
+
+      if (
+        !(/\S/.test(name) &&
+          name.length >= 2 &&
+          name.length <= 30)
+      ) setMessage('Le nom doit avoir entre 2 et 30 caractères');
+      else {
+        if (
+          listeCategoriesIngredients.findIndex(category => category.nom === name.toUpperCase()) !== -1
+        ) setMessage('Cette catégorie existe déja');
+        else {
+          Axios.put(`${apiBaseURL}/api/v2/categories/${modifiedCategoryId}`,
+            { nom: name },
+            {
+              headers: {
+                authorization: accessToken
+              }
+            })
+            .then(reponse => {
+              setListeCategoriesIngredients(reponse.data);
+              getListeIngredients();
+            })
+            .catch(error => {
+              console.log("vous avez une erreur : ", error);
+            });
+        }
+      }
+    }
+
+    handleCloseModifyCategoryDialog();
+  }
 
   /*const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -77,7 +126,6 @@ const IngredientCategoryList = ({ message, setMessage }/*{ setCategoryClicked }*
     if (selectedRow.length > 0) handleClickOpenDeleteCategoryDialog();
     else setMessage('Aucun ingrédient sélectionné')
   }
-
   const confirmDeletion = () => {
     Axios.delete(`${apiBaseURL}/api/v2/categories/`,
       {
@@ -110,9 +158,37 @@ const IngredientCategoryList = ({ message, setMessage }/*{ setCategoryClicked }*
           checkboxSelection
           disableSelectionOnClick
           onSelectionModelChange={selectRow}
-        //onCellClick={handleClickOpenModifyGlassDialog}
+          onCellClick={handleClickOpenModifyCategoryDialog}
         />
       </div>
+
+      <Dialog
+        open={openModifyCategoryDialog}
+        onClose={handleCloseModifyCategoryDialog}
+        aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Modifier la catégorie</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Corrigez le nom de la catégorie
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Nom de la catégorie"
+            value={newCategoryName}
+            onChange={event => setNewCategoryName(event.target.value)}
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModifyCategoryDialog} color="primary">
+            Annuler
+          </Button>
+          <Button onClick={confirmModification} color="primary">
+            Modifier
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <div className='delete-category'>
         <Button
