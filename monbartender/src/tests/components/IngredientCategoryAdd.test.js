@@ -23,25 +23,14 @@ describe('<IngredientCategoryAdd />', () => {
   }));
 
   const ingredientCategoryAdd = shallow(<IngredientCategoryAdd />);
-  const divIngredientCategoryAdd = ingredientCategoryAdd.find('div.ingredient-category-add');
+  const formCategoryAdd = ingredientCategoryAdd.find('form.form-ingredient-category-add');
 
-  it('should contain a div witch className="ingredient-category-add"', () => {
-    expect(divIngredientCategoryAdd).to.have.length(1);
+  it('should contain a form tag with className="form-ingredient-category-add" and onSubmit attribute', () => {
+    expect(formCategoryAdd).to.have.length(1);
+    expect(formCategoryAdd.props()).to.have.property('onSubmit');
   })
 
-  it('should contain a h4 tag with text "AJOUT D\'UNE CATEGORIE D\'INGREDIENT"', () => {
-    expect(divIngredientCategoryAdd.find('h4')).to.have.length(1);
-    expect(divIngredientCategoryAdd.find('h4').text()).to.be.equal("AJOUT D'UNE CATEGORIE D'INGREDIENT");
-  })
-
-  const form = divIngredientCategoryAdd.find('form.form-ingredient-category-add');
-
-  it('should contain a form tag witch className="form-ingredient-category-add" and have onSubmit attribute', () => {
-    expect(form).to.have.length(1);
-    expect(form.props()).to.have.property('onSubmit');
-  })
-
-  const divIngredientCategoryAddName = form.find('div#ingredient-category-add-name');
+  const divIngredientCategoryAddName = formCategoryAdd.find('div#ingredient-category-add-name');
 
   it('should contain a div witch id="ingredient-category-add-name"', () => {
     expect(divIngredientCategoryAddName).to.have.length(1);
@@ -50,20 +39,20 @@ describe('<IngredientCategoryAdd />', () => {
   it('should contain a TextField component witch have name, label and onChange attributes', () => {
     const textField = divIngredientCategoryAddName.find(TextField);
     expect(textField).to.have.length(1);
-    expect(textField.props()).to.have.property('label', 'Nom');
+    expect(textField.props()).to.have.property('label', 'Nouvelle catégorie');
     expect(textField.props()).to.have.property('name', 'ingredientCategoryName');
     expect(textField.props()).to.have.property('onChange');
   })
 
-  const btnAdd = form.find('div#ingredient-category-add-btn');
+  const btnAdd = formCategoryAdd.find('div#ingredient-category-add-btn');
 
   it('should contain a div witch id="ingredient-category-add-btn"', () => {
     expect(btnAdd).to.have.length(1);
   })
 
-  it('should contain a submit Button with text="Ajouter"', () => {
+  it('should contain a submit Button with text="+"', () => {
     expect(btnAdd.find(Button)).to.have.length(1);
     expect(btnAdd.find(Button).props()).to.have.property('type', 'submit');
-    expect(btnAdd.find(Button).text()).to.be.equal('Ajouter');
+    expect(btnAdd.find(Button).text()).to.be.equal('+');
   })
 })
