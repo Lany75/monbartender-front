@@ -16,14 +16,12 @@ function AuthProvider({ children, user = null, signInWithEmailAndPassword, signI
   const [accessToken, setAccessToken] = useState(null);
 
   React.useEffect(() => {
-    if (user /*&& !accessToken*/) {
+    if (user) {
       user.getIdToken().then(res => {
         setAccessToken(res);
       });
     }
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  //console.log(accessToken);
 
   return (
     <AuthContext.Provider
