@@ -21,7 +21,7 @@ function CocktailProvider({ children }) {
   };
 
   const getCocktailsMoment = () => {
-    Axios.get(`${apiBaseURL}/api/v1/cocktails/cocktail-du-moment`)
+    Axios.get(`${apiBaseURL}/api/v2/cocktails/moment-cocktail`)
       .then(reponse => {
         setListeCocktailsMoment(reponse.data);
       })
