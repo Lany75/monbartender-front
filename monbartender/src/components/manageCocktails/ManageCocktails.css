@@ -1,0 +1,17 @@
+.manage-cocktails {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-delete-cocktails {
+  margin: 20px 10px 0px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 769px) {
+  .add-delete-cocktails {
+    margin: 30px 180px 30px 180px;
+  }
+}

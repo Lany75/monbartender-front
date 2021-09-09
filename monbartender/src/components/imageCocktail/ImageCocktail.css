@@ -13,6 +13,10 @@
 .image {
   width: 100%;
 }
+.manage-cocktail-image {
+  width: 50px;
+  height: 75px;
+}
 
 
 @media screen and (min-width: 769px) {
