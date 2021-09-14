@@ -64,8 +64,8 @@ describe('<ManagementPage />', () => {
 
     const tabComponents = paperTabs.find(Tab);
 
-    it('should contain 6 Tab components witch id is management-tab-label', () => {
-      expect(tabComponents).to.have.length(6);
+    it('should contain 7 Tab components witch id is management-tab-label', () => {
+      expect(tabComponents).to.have.length(7);
       tabComponents.find(Tab).map(pt => {
         expect(pt.props()).to.have.property('id', 'management-tab-label');
       })
@@ -87,18 +87,22 @@ describe('<ManagementPage />', () => {
       expect(tabComponents.get(3).props.label).to.be.equal("Des Catégories d'Ingrédients");
     })
 
-    it('the fifth Tab component should have label="Des Verres"', () => {
-      expect(tabComponents.get(4).props.label).to.be.equal('Des Verres');
+    it('the fifth Tab component should have label="Des Unités"', () => {
+      expect(tabComponents.get(4).props.label).to.be.equal('Des Unités');
     })
 
-    it('the sixth Tab component should have label="Des Utilisateurs"', () => {
-      expect(tabComponents.get(5).props.label).to.be.equal('Des Utilisateurs');
+    it('the sixth Tab component should have label="Des Verres"', () => {
+      expect(tabComponents.get(5).props.label).to.be.equal('Des Verres');
+    })
+
+    it('the seventh Tab component should have label="Des Utilisateurs"', () => {
+      expect(tabComponents.get(6).props.label).to.be.equal('Des Utilisateurs');
     })
 
     const tabPanelComponents = managementPage.find('TabPanel');
 
-    it('should contain 6 TabPanel components', () => {
-      expect(tabPanelComponents).to.have.length(6);
+    it('should contain 7 TabPanel components', () => {
+      expect(tabPanelComponents).to.have.length(7);
     })
 
     it('the first TabPanel component should have id="tp-manage-moment-cocktails" and contain a GestionCocktailMoment component', () => {
@@ -125,14 +129,20 @@ describe('<ManagementPage />', () => {
       expect(tp.find('ManageCategories')).to.have.length(1);
     })
 
-    it('the fifth TabPanel component should have id="tp-manage-glasses" and contain a ManageGlass component', () => {
-      expect(tabPanelComponents.get(4).props.id).to.be.equal('tp-manage-glasses');
+    it('the fifth TabPanel component should have id="tp-manage-unities" and contain a ManageGlass component', () => {
+      expect(tabPanelComponents.get(4).props.id).to.be.equal('tp-manage-unities');
+      const tp = managementPage.find('#tp-manage-unities');
+      expect(tp.find('ManageUnities')).to.have.length(1);
+    })
+
+    it('the sixth TabPanel component should have id="tp-manage-glasses" and contain a ManageGlass component', () => {
+      expect(tabPanelComponents.get(5).props.id).to.be.equal('tp-manage-glasses');
       const tp = managementPage.find('#tp-manage-glasses');
       expect(tp.find('ManageGlass')).to.have.length(1);
     })
 
-    it('the sixth TabPanel component should have id="tp-manage-user" and contain a ManageUsers component', () => {
-      expect(tabPanelComponents.get(5).props.id).to.be.equal('tp-manage-user');
+    it('the seventh TabPanel component should have id="tp-manage-user" and contain a ManageUsers component', () => {
+      expect(tabPanelComponents.get(6).props.id).to.be.equal('tp-manage-user');
       const tp = managementPage.find('#tp-manage-user');
       expect(tp.find('ManageUsers')).to.have.length(1);
     })

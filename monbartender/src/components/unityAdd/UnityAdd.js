@@ -8,12 +8,11 @@ const UnityAdd = () => {
   const { unitiesList } = React.useContext(IngredientContext);
   const [unityName, setUnityName] = React.useState('');
 
-  console.log(unitiesList);
-
   const addUnity = event => {
     event.preventDefault();
     const name = unityName.replace(/\s+/g, ' ').trim();
   }
+
   return (
     <form className='form-unity-add' onSubmit={addUnity}>
       <div id='unity-add-name'>
