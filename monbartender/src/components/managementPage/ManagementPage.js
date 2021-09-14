@@ -14,6 +14,7 @@ import { BarContext } from '../../context/barContext';
 
 import './ManagementPage.css';
 import ManageUsers from '../manageUsers/ManageUsers';
+import ManageUnities from '../manageUnities/ManageUnities';
 
 const ManagementPage = () => {
   const { user } = React.useContext(AuthContext);
@@ -42,6 +43,7 @@ const ManagementPage = () => {
               <Tab label="Des Cocktails" id='management-tab-label' />
               <Tab label="Des Ingrédients" id='management-tab-label' />
               <Tab label="Des Catégories d'Ingrédients" id='management-tab-label' />
+              <Tab label="Des Unités" id='management-tab-label' />
               <Tab label="Des Verres" id='management-tab-label' />
               <Tab label="Des Utilisateurs" id='management-tab-label' />
             </Tabs>
@@ -59,10 +61,13 @@ const ManagementPage = () => {
           <TabPanel id='tp-manage-categories' value={value} index={3}>
             <ManageCategories />
           </TabPanel>
-          <TabPanel id='tp-manage-glasses' value={value} index={4}>
+          <TabPanel id='tp-manage-unities' value={value} index={4}>
+            <ManageUnities />
+          </TabPanel>
+          <TabPanel id='tp-manage-glasses' value={value} index={5}>
             <ManageGlass />
           </TabPanel>
-          <TabPanel id='tp-manage-user' value={value} index={5}>
+          <TabPanel id='tp-manage-user' value={value} index={6}>
             <ManageUsers />
           </TabPanel>
         </>
