@@ -3,7 +3,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import { IngredientContext } from '../../context/ingredientContext';
 import { /*Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField,*/ useMediaQuery } from '@material-ui/core';
 
-const UnityList = () => {
+const UnityList = ({ message, setMessage }) => {
   const { unitiesList } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
   const desktop = useMediaQuery('(min-width:769px)');
@@ -38,6 +38,9 @@ const UnityList = () => {
         //onCellClick={handleClickOpenModifyGlassDialog}
         />
       </div>
+
+      <div className='message'>{message}</div>
+
     </>
   )
 }

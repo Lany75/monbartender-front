@@ -5,10 +5,12 @@ import UnityList from '../unityList/UnityList';
 import './ManageUnities.css';
 
 const ManageUnities = () => {
+  const [message, setMessage] = React.useState('');
+
   return (
     <div className='manage-unities'>
-      <UnityAdd />
-      <UnityList />
+      <UnityAdd setMessage={setMessage} />
+      <UnityList message={message} setMessage={setMessage} />
     </div>
   )
 }

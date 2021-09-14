@@ -58,4 +58,8 @@ describe('<UnityList />', () => {
     expect(dataGrid.props()).to.have.property('rows');
     expect(dataGrid.props()).to.have.property('columns');
   })
+
+  it('should contain a div with className="message"', () => {
+    expect(unityList.find('div.message')).to.have.length(1);
+  })
 })
