@@ -66,6 +66,7 @@ const testListCategories = [
     nom: "LEGUME"
   }
 ];
+
 describe('<IngredientList />', () => {
   let realUseContext;
   beforeEach(() => {
@@ -85,12 +86,6 @@ describe('<IngredientList />', () => {
   }));
 
   const ingredientList = shallow(<IngredientList />);
-
-  it('should contain a h4 tag with text="LES INGREDIENTS"', () => {
-    expect(ingredientList.find('h4')).to.have.length(1);
-    expect(ingredientList.find('h4').text()).to.be.equal('LES INGREDIENTS');
-  })
-
   const divIngredientsList = ingredientList.find('div.igredients-list');
 
   it('should contain a div with className="igredients-list"', () => {
