@@ -60,7 +60,7 @@ const IngredientAdd = ({ setMessage }) => {
         <TextField
           variant='outlined'
           margin='normal'
-          label='Nom'
+          label='Nouvel ingrédient'
           name='ingredientName'
           value={ingredientName}
           onChange={event => setIngredientName(event.target.value)}

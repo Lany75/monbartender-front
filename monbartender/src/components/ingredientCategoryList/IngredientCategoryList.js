@@ -92,7 +92,7 @@ const IngredientCategoryList = ({ message, setMessage }) => {
   };
   const deleteCategory = () => {
     if (selectedRow.length > 0) handleClickOpenDeleteCategoryDialog();
-    else setMessage('Aucun ingrédient sélectionné')
+    else setMessage('Aucune catégorie sélectionnée')
   }
   const confirmDeletion = () => {
     Axios.delete(`${apiBaseURL}/api/v2/categories/`,

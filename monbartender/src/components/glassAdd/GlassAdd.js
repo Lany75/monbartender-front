@@ -58,6 +58,7 @@ const GlassAdd = ({ setMessage }) => {
           name='glassName'
           value={glassName}
           onChange={event => setGlassName(event.target.value)}
+          required
         />
       </div>
       <div id='glass-add-btn'>

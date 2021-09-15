@@ -100,7 +100,7 @@ describe('<IngredientAdd />', () => {
   it('should contain a TextField component with name, label and onChange attributes', () => {
     const textField = divIngredientAddName.find(TextField);
     expect(textField).to.have.length(1);
-    expect(textField.props()).to.have.property('label', 'Nom');
+    expect(textField.props()).to.have.property('label', 'Nouvel ingrédient');
     expect(textField.props()).to.have.property('name', 'ingredientName');
     expect(textField.props()).to.have.property('onChange');
   })
