@@ -12,6 +12,11 @@ describe('<ManageUnities />', () => {
     expect(divManageUnities).to.have.length(1);
   })
 
+  it('should contain a h4 tag with text="LES UNITES"', () => {
+    expect(divManageUnities.find('h4')).to.have.length(1);
+    expect(divManageUnities.find('h4').text()).to.be.equal('LES UNITES');
+  })
+
   it('should contain a UnityAdd component', () => {
     expect(divManageUnities.find('UnityAdd')).to.have.length(1);
   })

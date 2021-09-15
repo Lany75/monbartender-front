@@ -43,12 +43,6 @@ describe('<UnityList />', () => {
   }));
 
   const unityList = shallow(<UnityList />);
-
-  it('should contain a h4 tag with text="LES UNITES"', () => {
-    expect(unityList.find('h4')).to.have.length(1);
-    expect(unityList.find('h4').text()).to.be.equal('LES UNITES');
-  })
-
   const divUnitiesList = unityList.find('div.unities-list');
 
   it('should contain a div with className="unities-list"', () => {
