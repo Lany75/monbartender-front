@@ -12,6 +12,11 @@ describe('<ManageCategories />', () => {
     expect(divManageCategories).to.have.length(1);
   })
 
+  it("should contain a h4 tag with text='LES CATEGORIES D'INGREDIENTS'", () => {
+    expect(divManageCategories.find('h4')).to.have.length(1);
+    expect(divManageCategories.find('h4').text()).to.be.equal("LES CATEGORIES D'INGREDIENTS");
+  })
+
   it('should contain an IngredientCategoryAdd component', () => {
     expect(divManageCategories.find('IngredientCategoryAdd')).to.have.length(1);
   })

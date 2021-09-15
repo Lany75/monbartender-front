@@ -114,7 +114,6 @@ const IngredientCategoryList = ({ message, setMessage }) => {
 
   return (
     <>
-      <h4>LES CATEGORIES D'INGREDIENTS</h4>
       <div className='categories-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={listeCategoriesIngredients}

@@ -9,6 +9,7 @@ export const IngredientContext = createContext();
 function IngredientProvider({ children }) {
   const [listeIngredients, setListeIngredients] = useState();
   const [listeCategoriesIngredients, setListeCategoriesIngredients] = useState();
+  const [unitiesList, setUnitiesList] = useState();
 
   const getListeIngredients = () => {
     Axios.get(`${apiBaseURL}/api/v2/ingredients/`)
@@ -30,14 +31,25 @@ function IngredientProvider({ children }) {
       });
   }
 
+  const getUnitiesList = () => {
+    Axios.get(`${apiBaseURL}/api/v2/unities`)
+      .then(reponse => {
+        setUnitiesList(reponse.data);
+      })
+      .catch(error => {
+        console.log("vous avez une erreur : ", error);
+      });
+  }
+
   React.useEffect(() => {
     getListeIngredients();
     getListeCategoriesIngredients();
+    getUnitiesList();
   }, []);
 
   return (
     <IngredientContext.Provider
-      value={{ listeIngredients, setListeIngredients, listeCategoriesIngredients, setListeCategoriesIngredients, getListeIngredients }}
+      value={{ listeIngredients, setListeIngredients, listeCategoriesIngredients, setListeCategoriesIngredients, getListeIngredients, unitiesList, setUnitiesList }}
     >
       {children}
     </IngredientContext.Provider>

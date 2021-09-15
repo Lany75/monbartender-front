@@ -1,4 +1,4 @@
-.form-ingredient-category-add {
+.form-unity-add {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -6,12 +6,13 @@
   margin: 0px 10px 20px 0px;
 }
 
-#ingredient-category-add-name {
+#unity-add-name {
   margin-right: 10px;
 }
 
+
 @media screen and (min-width: 769px) {
-  .form-ingredient-category-add {
+  .form-unity-add {
     margin: 0px 50px 20px 0px;
   }
 }
