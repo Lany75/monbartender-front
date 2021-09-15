@@ -9,7 +9,7 @@ const ManageUnities = () => {
 
   return (
     <div className='manage-unities'>
-      <h4>LES UNITES</h4>
+      <h4>LES UNITES DE QUANTITE</h4>
       <UnityAdd setMessage={setMessage} />
       <UnityList message={message} setMessage={setMessage} />
     </div>

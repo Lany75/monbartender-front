@@ -42,8 +42,6 @@ const ManagementPage = () => {
               <Tab label="Des Cocktails du Moment" id='management-tab-label' />
               <Tab label="Des Cocktails" id='management-tab-label' />
               <Tab label="Des Ingrédients" id='management-tab-label' />
-              <Tab label="Des Catégories d'Ingrédients" id='management-tab-label' />
-              <Tab label="Des Unités" id='management-tab-label' />
               <Tab label="Des Verres" id='management-tab-label' />
               <Tab label="Des Utilisateurs" id='management-tab-label' />
             </Tabs>
@@ -57,17 +55,13 @@ const ManagementPage = () => {
           </TabPanel>
           <TabPanel id='tp-manage-ingredients' value={value} index={2}>
             <ManageIngredients />
-          </TabPanel>
-          <TabPanel id='tp-manage-categories' value={value} index={3}>
             <ManageCategories />
-          </TabPanel>
-          <TabPanel id='tp-manage-unities' value={value} index={4}>
             <ManageUnities />
           </TabPanel>
-          <TabPanel id='tp-manage-glasses' value={value} index={5}>
+          <TabPanel id='tp-manage-glasses' value={value} index={3}>
             <ManageGlass />
           </TabPanel>
-          <TabPanel id='tp-manage-user' value={value} index={6}>
+          <TabPanel id='tp-manage-user' value={value} index={4}>
             <ManageUsers />
           </TabPanel>
         </>
