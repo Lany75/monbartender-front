@@ -14,7 +14,11 @@ const UnityList = ({ message, setMessage }) => {
   const { unitiesList, setUnitiesList } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [openDeleteUnityDialog, setOpenDeleteUnityDialog] = React.useState(false);
+  const [openModifyUnityDialog, setOpenModifyUnityDialog] = React.useState(false);
   const [selectedRow, setSelectedRow] = React.useState([]);
+  const [oldUnityName, setOldUnityName] = React.useState('');
+  const [newUnityName, setNewUnityName] = React.useState('');
+  const [modifiedUnityId, setModifiedUnityId] = React.useState('');
   const desktop = useMediaQuery('(min-width:769px)');
 
   const columns = [
@@ -29,6 +33,50 @@ const UnityList = ({ message, setMessage }) => {
       width: desktop ? 300 : 150,
     }
   ];
+
+  const handleClickOpenModifyUnityDialog = (event) => {
+    setMessage('');
+    setModifiedUnityId(event.row.id);
+    setOldUnityName(event.row.nom);
+    setNewUnityName(event.row.nom);
+    setOpenModifyUnityDialog(true);
+  };
+  const handleCloseModifyUnityDialog = () => {
+    setOpenModifyUnityDialog(false);
+  };
+  const confirmModification = () => {
+    if (newUnityName !== oldUnityName) {
+      const name = newUnityName.replace(/\s+/g, ' ').trim();
+
+      if (
+        !(/\S/.test(name) &&
+          name.length >= 1 &&
+          name.length <= 30)
+      ) setMessage('Le nom doit avoir entre 1 et 30 caractères');
+      else {
+        if (
+          unitiesList.findIndex(unite => unite.nom === name) !== -1
+        ) setMessage('Cette unité existe déja');
+        else {
+          Axios.put(`${apiBaseURL}/api/v2/unities/${modifiedUnityId}`,
+            { nom: name },
+            {
+              headers: {
+                authorization: accessToken
+              }
+            })
+            .then(reponse => {
+              setUnitiesList(reponse.data);
+            })
+            .catch(error => {
+              console.log("vous avez une erreur : ", error);
+            });
+        }
+      }
+    }
+
+    handleCloseModifyUnityDialog();
+  }
 
   const selectRow = (event) => {
     setSelectedRow(event);
@@ -76,9 +124,37 @@ const UnityList = ({ message, setMessage }) => {
           checkboxSelection
           disableSelectionOnClick
           onSelectionModelChange={selectRow}
-        //onCellClick={handleClickOpenModifyGlassDialog}
+          onCellClick={handleClickOpenModifyUnityDialog}
         />
       </div>
+
+      <Dialog
+        open={openModifyUnityDialog}
+        onClose={handleCloseModifyUnityDialog}
+        aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Modifier l'unité</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Corrigez le nom de l'unité
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Nom de l'unité"
+            value={newUnityName}
+            onChange={event => setNewUnityName(event.target.value)}
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModifyUnityDialog} color="primary">
+            Annuler
+          </Button>
+          <Button onClick={confirmModification} color="primary">
+            Modifier
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <div className='delete-unity'>
         <Button

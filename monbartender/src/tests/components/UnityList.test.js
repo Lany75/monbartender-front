@@ -82,18 +82,61 @@ describe('<UnityList />', () => {
 
   const dialogs = unityList.find(Dialog);
 
-  it('should contain 1 Dialog components with open and onClose attributes', () => {
-    expect(dialogs).to.have.length(1);
-    expect(dialogs.props()).to.have.property('open');
-    expect(dialogs.props()).to.have.property('onClose');
-    /*dialogs.forEach(d => {
+  it('should contain 2 Dialog components with open and onClose attributes', () => {
+    expect(dialogs).to.have.length(2);
+    dialogs.forEach(d => {
       expect(d.props()).to.have.property('open');
       expect(d.props()).to.have.property('onClose');
-    })*/
+    })
   })
 
-  describe('first Dialog component (delete unity dialog)', () => {
-    const deleteUnityDialog = dialogs.first();
+  describe('first Dialog component (modify unity dialog)', () => {
+    const modifyUnityDialog = dialogs.first();
+    const dialogTitle = modifyUnityDialog.find(DialogTitle);
+
+    it('should contain a DialogTitle component with id="form-dialog-title" and text="Modifier l`\'unité"', () => {
+      expect(dialogTitle).to.have.length(1);
+      expect(dialogTitle.props()).to.have.property('id', 'form-dialog-title');
+      expect(dialogTitle.text()).to.be.equal("Modifier l'unité");
+    })
+
+    const dialogContent = modifyUnityDialog.find(DialogContent);
+
+    it('should contain a DialogContent component', () => {
+      expect(dialogContent).to.have.length(1);
+    })
+
+    it('should contain a DialogContentText component with text="Corrigez le nom de l\'unité"', () => {
+      expect(dialogContent.find(DialogContentText)).to.have.length(1);
+      expect(dialogContent.find(DialogContentText).text()).to.be.equal("Corrigez le nom de l'unité");
+    })
+
+    it('should contain a TextField component with label, value and onChange attribute', () => {
+      const textField = dialogContent.find(TextField);
+
+      expect(textField).to.have.length(1);
+      expect(textField.props()).to.have.property('label', "Nom de l'unité");
+      expect(textField.props()).to.have.property('value');
+      expect(textField.props()).to.have.property('onChange');
+    })
+
+    const dialogActions = modifyUnityDialog.find(DialogActions);
+
+    it('should contain a DialogActions component', () => {
+      expect(dialogActions).to.have.length(1);
+    })
+
+    it('should contain 2 Button components with onClick attribute', () => {
+      const dialogAtionsButton = dialogActions.find(Button);
+      expect(dialogAtionsButton).to.have.length(2);
+      dialogAtionsButton.map(dab => {
+        expect(dab.props()).to.have.property('onClick');
+      })
+    })
+  })
+
+  describe('second Dialog component (delete unity dialog)', () => {
+    const deleteUnityDialog = dialogs.last();
     const dialogTitle = deleteUnityDialog.find(DialogTitle);
 
     it('should contain a DialogTitle component with id="alert-dialog-title" and text="Confirmer la suppression des unités"', () => {
