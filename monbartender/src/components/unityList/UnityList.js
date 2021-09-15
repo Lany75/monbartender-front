@@ -90,7 +90,7 @@ const UnityList = ({ message, setMessage }) => {
   };
   const deleteUnity = () => {
     if (selectedRow.length > 0) handleClickOpenDeleteUnityDialog();
-    else setMessage('Aucune unité sélectionné')
+    else setMessage('Aucune unité sélectionnée')
   }
   const confirmDeletion = () => {
     Axios.delete(`${apiBaseURL}/api/v2/unities/`,
