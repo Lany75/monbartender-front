@@ -3,17 +3,15 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  margin-right: 10px;
+  margin: 0px 10px 20px 0px;
 }
 
 #ingredient-category-add-name {
   margin-right: 10px;
 }
 
-
-
 @media screen and (min-width: 769px) {
   .form-ingredient-category-add {
-    margin: 20px 50px 0px 0px;
+    margin: 0px 50px 20px 0px;
   }
 }
