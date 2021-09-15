@@ -1,0 +1,12 @@
+.delete-unity {
+  margin: 20px 0px 0px 10px;
+}
+
+@media screen and (min-width: 769px) {
+  .delete-unity {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px 180px 30px 180px;
+  }
+}

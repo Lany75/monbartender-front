@@ -28,7 +28,7 @@ const UnityAdd = ({ setMessage }) => {
       ) setMessage('Cette unité existe déja');
       else {
         setMessage('');
-        Axios.post(`${apiBaseURL}/api/v2/unities`,
+        Axios.post(`${apiBaseURL}/api/v2/unities/`,
           { nom: name },
           {
             headers: {
