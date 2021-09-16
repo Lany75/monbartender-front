@@ -7,12 +7,14 @@ import apiBaseURL from "../../env";
 
 import { IngredientContext } from '../../context/ingredientContext';
 import { AuthContext } from '../../context/authContext';
+import { BarContext } from '../../context/barContext';
 
 import './IngredientCategoryList.css';
 
 const IngredientCategoryList = ({ message, setMessage }) => {
   const { accessToken } = React.useContext(AuthContext);
   const { listeCategoriesIngredients, setListeCategoriesIngredients, getListeIngredients } = React.useContext(IngredientContext);
+  const { getBarUser } = React.useContext(BarContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
   const [openDeleteCategoryDialog, setOpenDeleteCategoryDialog] = React.useState(false);
@@ -69,6 +71,7 @@ const IngredientCategoryList = ({ message, setMessage }) => {
             .then(reponse => {
               setListeCategoriesIngredients(reponse.data);
               getListeIngredients();
+              getBarUser();
             })
             .catch(error => {
               console.log("vous avez une erreur : ", error);
