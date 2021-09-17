@@ -248,8 +248,11 @@ describe('<ManageCocktails />', () => {
     expect(divAddDeleteCocktails).to.have.length(1);
   })
 
-  it('should contain 2 Button components', () => {
+  it.skip('should contain 2 Button components with onClick attribute', () => {
     const addDeleteButtons = divAddDeleteCocktails.find(Button);
     expect(addDeleteButtons).to.have.length(2);
+    addDeleteButtons.map(button => {
+      expect(button.props()).to.have.property('onClick');
+    })
   })
 })

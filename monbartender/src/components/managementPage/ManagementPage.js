@@ -13,7 +13,6 @@ import ManageCocktails from '../manageCocktails/ManageCocktails';
 import { AuthContext } from '../../context/authContext';
 import { BarContext } from '../../context/barContext';
 import './ManagementPage.css';
-import ManageUsers from '../manageUsers/ManageUsers';
 import ManageUnities from '../manageUnities/ManageUnities';
 
 const ManagementPage = () => {

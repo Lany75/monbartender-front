@@ -18,6 +18,10 @@
   height: 75px;
 }
 
+.manage-cocktail-img {
+  width: 150px;
+}
+
 
 @media screen and (min-width: 769px) {
   .img-cocktail-gestion {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import { DataGrid } from '@material-ui/data-grid';
 import { Button, /*Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField,*/ useMediaQuery } from '@material-ui/core';
 
@@ -8,6 +9,7 @@ import './ManageCocktails.css';
 
 const ManageCocktails = () => {
   const { listeCocktails } = React.useContext(CocktailContext);
+  let history = useHistory();
   const [pageSize, setPageSize] = React.useState(5);
   const desktop = useMediaQuery('(min-width:769px)');
 
@@ -36,6 +38,10 @@ const ManageCocktails = () => {
       )
     }
   ];
+
+  const addCocktail = () => {
+    history.push('/gestion/nouveau-cocktail/');
+  }
 
   return (
     <div className='manage-cocktails'>
@@ -67,7 +73,7 @@ const ManageCocktails = () => {
         <Button
           variant="contained"
           color="primary"
-        //onClick={addCocktail}
+          onClick={addCocktail}
         >
           +
         </Button>
