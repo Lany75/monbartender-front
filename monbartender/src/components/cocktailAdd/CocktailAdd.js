@@ -1,21 +1,15 @@
 import React from 'react';
-import { FormControlLabel, Radio, RadioGroup, TextField, InputLabel, MenuItem, FormControl, Select, Button } from '@material-ui/core';
-
-import ImageCocktail from '../imageCocktail/ImageCocktail';
-import { VerreContext } from '../../context/verreContext';
+import { InputLabel, MenuItem, FormControl, Select, Button } from '@material-ui/core';
 import './CocktailAdd.css';
+import { VerreContext } from '../../context/verreContext';
+import ImageCocktail from '../imageCocktail/ImageCocktail';
+import CocktailAddNameType from '../cocktailAddNameType/CocktailAddNameType';
 
 const CocktailAdd = () => {
   const { listeVerres } = React.useContext(VerreContext);
-  const [cocktailName, setcocktailName] = React.useState('');
-  const [typeCocktail, setTypeCocktail] = React.useState("false");
   const [refChosenImage, setRefChosenImage] = React.useState('img_cocktail/noImageFound.jpg')
   const [chosenImage, setChosenImage] = React.useState(null);
   const [chosenGlass, setChosenGlass] = React.useState('');
-
-  const handleChangeTypeCocktail = event => {
-    setTypeCocktail(event.target.value);
-  };
 
   const handleChangeImageCocktail = event => {
     if (event.target.files && event.target.files[0]) {
@@ -34,8 +28,6 @@ const CocktailAdd = () => {
 
   const addCocktail = (event) => {
     event.preventDefault();
-    console.log('nom : ', cocktailName);
-    console.log('alcoolisé : ', typeCocktail);
     console.log('image : ', refChosenImage);
     console.log('verre : ', chosenGlass);
   }
@@ -44,38 +36,9 @@ const CocktailAdd = () => {
     <div className='cocktail-add'>
       <div className='cocktail-add-title'>Ajout d'un cocktail</div>
       <form className='form-cocktail-add' onSubmit={addCocktail}>
-        <div className='cocktail-name-type'>
-          <TextField
-            variant='outlined'
-            margin='normal'
-            label='Nom du cocktail'
-            name='cocktailName'
-            value={cocktailName}
-            onChange={event => setcocktailName(event.target.value)}
-            style={{ width: 220 }}
-            required
-          />
-          <RadioGroup
-            id='type-cocktail'
-            name='alcool'
-            value={typeCocktail}
-            onChange={handleChangeTypeCocktail}
-          >
-            <FormControlLabel
-              value='true'
-              control={<Radio color='primary' />}
-              label='Avec alcool'
-            />
-            <FormControlLabel
-              value='false'
-              control={<Radio color='primary' />}
-              label='Sans alcool'
-            />
-          </RadioGroup>
-        </div>
+        <CocktailAddNameType />
 
         <div className='cocktail-add-img'>
-          <p id='p-image'>Image :</p>
           {!chosenImage ? (
             <ImageCocktail classe='manage-cocktail-img' reference={refChosenImage} />
           ) : (
@@ -124,6 +87,7 @@ const CocktailAdd = () => {
         </FormControl>
 
         <Button
+          style={{ marginTop: 50 }}
           type='submit'
           variant='contained'
           color='primary'
