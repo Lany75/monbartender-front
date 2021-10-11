@@ -17,20 +17,6 @@
   margin: 0px 10px 0px 10px;
 }
 
-.cocktail-add-img {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 10px 0px 20px 0px;
-}
-
-.manage-cocktail-img {
-  grid-column: 1/2;
-}
-.btn-choose-img {
-  grid-column: 2/3;
-  align-self: center;
-}
-
 @media screen and (min-width: 769px) {
   .cocktail-add-title {
     font-size: 25px;
