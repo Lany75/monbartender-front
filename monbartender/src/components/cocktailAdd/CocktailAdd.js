@@ -4,6 +4,7 @@ import './CocktailAdd.css';
 import CocktailAddNameType from '../cocktailAddNameType/CocktailAddNameType';
 import CocktailAddPhoto from '../cocktailAddPhoto/CocktailAddPhoto';
 import CocktailAddGlass from '../cocktailAddGlass/CocktailAddGlass';
+import CocktailAddIngredients from '../cocktailAddIngredients/CocktailAddIngredients';
 
 const CocktailAdd = () => {
   const addCocktail = (event) => {
@@ -17,7 +18,7 @@ const CocktailAdd = () => {
         <CocktailAddNameType />
         <CocktailAddPhoto />
         <CocktailAddGlass />
-
+        <CocktailAddIngredients />
         <Button
           style={{ marginTop: 50 }}
           type='submit'
