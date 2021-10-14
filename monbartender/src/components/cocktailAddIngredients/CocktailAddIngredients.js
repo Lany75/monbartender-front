@@ -9,7 +9,8 @@ const CocktailAddIngredients = () => {
   const { listeIngredients, unitiesList } = React.useContext(IngredientContext);
   const desktop = useMediaQuery('(min-width:769px)');
   const [pageSize, setPageSize] = React.useState(5);
-  const [openaddNewIngredientDialog, setOpenaddNewIngredientDialog] = React.useState(false);
+  const [openAddNewIngredientDialog, setOpenAddNewIngredientDialog] = React.useState(false);
+  const [openIngredientQuantityDialog, setOpenIngredientQuantityDialog] = React.useState(false);
   const [chosenIngredientId, setchosenIngredientId] = React.useState('');
   const [chosenIngredient, setChosenIngredient] = React.useState('');
   const [chosenQuantity, setChosenQuantity] = React.useState('');
@@ -58,11 +59,11 @@ const CocktailAddIngredients = () => {
   }
 
   const handleCloseAddNewIngredientDialog = () => {
-    setOpenaddNewIngredientDialog(false);
+    setOpenAddNewIngredientDialog(false);
   };
 
   const handleClickOpenaddNewIngredientDialog = (event) => {
-    setOpenaddNewIngredientDialog(true);
+    setOpenAddNewIngredientDialog(true);
   }
 
   const handleChangeChosenIngredient = (event) => {
@@ -110,6 +111,39 @@ const CocktailAddIngredients = () => {
     setMessage('');
   }
 
+  const openModifyIngredientQuantityDialog = (event) => {
+    console.log(event.row);
+    setchosenIngredientId(event.row.id);
+    setChosenIngredient(event.row.ingredient);
+    setChosenQuantity(event.row.quantite);
+    setChosenUnity(event.row.unite);
+    setOpenIngredientQuantityDialog(true)
+  }
+
+  const closeModifyIngredientQuantityDialog = () => {
+    setchosenIngredientId('');
+    setChosenIngredient('');
+    setChosenQuantity('');
+    setChosenUnity('');
+    setOpenIngredientQuantityDialog(false);
+  };
+
+  const cancelModifying = () => {
+    closeModifyIngredientQuantityDialog();
+  }
+
+  const confirmModification = () => {
+    const tabIngr = [...ingredients];
+    const index = tabIngr.findIndex(ingr => ingr.ingredient === (chosenIngredient))
+
+    if (chosenQuantity === '' || chosenUnity === '') {
+      tabIngr.splice(index, 1, { id: chosenIngredientId, ingredient: chosenIngredient, quantite: '', unite: '' })
+    } else {
+      tabIngr.splice(index, 1, { id: chosenIngredientId, ingredient: chosenIngredient, quantite: chosenQuantity, unite: chosenUnity })
+    }
+    setIngredients(tabIngr);
+    closeModifyIngredientQuantityDialog();
+  }
 
   return (
     <div className='cocktail-add-ingredients'>
@@ -124,7 +158,7 @@ const CocktailAddIngredients = () => {
           checkboxSelection
           disableSelectionOnClick
           onSelectionModelChange={selectRow}
-        //onCellClick={handleClickOpenModifyGlassDialog}
+          onCellClick={openModifyIngredientQuantityDialog}
         />
       </div>
       <div className='add-delete-ingredients'>
@@ -146,7 +180,7 @@ const CocktailAddIngredients = () => {
       </div>
 
       <Dialog
-        open={openaddNewIngredientDialog}
+        open={openAddNewIngredientDialog}
         onClose={handleCloseAddNewIngredientDialog}
         aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Ajout d'ingrédient</DialogTitle>
@@ -216,6 +250,60 @@ const CocktailAddIngredients = () => {
           </Button>
           <Button onClick={addIngredient} color="primary">
             Ajouter
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={openIngredientQuantityDialog}
+        onClose={closeModifyIngredientQuantityDialog}
+        aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Modification de la quantité</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Modifier la quantité pour l'ingrédient {chosenIngredient}
+          </DialogContentText>
+
+          <div className='data-new-ingredient'>
+            <TextField
+              variant='outlined'
+              margin='normal'
+              label='quantité'
+              name='ingredientQuantity'
+              type='number'
+              value={chosenQuantity}
+              onChange={event => setChosenQuantity(event.target.value)}
+              style={{ width: desktop ? 200 : 100 }}
+            />
+
+            <div className='quanity-unity'>
+              <FormControl variant='outlined' >
+                <InputLabel id='label-unity'>Unité</InputLabel>
+                <Select
+                  className='form-control-select'
+                  labelId='select-unity'
+                  id='select-unity'
+                  value={chosenUnity}
+                  onChange={handleChangeChosenUnity}
+                  label='Unité'
+                  style={{ width: desktop ? 200 : 120 }}
+                >
+                  {unitiesList && unitiesList.map(unity => {
+                    return (
+                      <MenuItem value={unity.nom} key={unity.id}>{unity.nom}</MenuItem>
+                    )
+                  })}
+                </Select>
+              </FormControl>
+            </div>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={cancelModifying} color="primary">
+            Annuler
+          </Button>
+          <Button onClick={confirmModification} color="primary">
+            Modifier
           </Button>
         </DialogActions>
       </Dialog>
