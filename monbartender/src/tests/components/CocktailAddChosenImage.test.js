@@ -2,7 +2,6 @@ import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import CocktailAddChosenImage from '../../components/cocktailAddChosenImage/CocktailAddChosenImage';
-import { itIT } from '@material-ui/data-grid';
 import ImageCocktail from '../../components/imageCocktail/ImageCocktail';
 
 describe('<CocktailAddChosenImage />', () => {
