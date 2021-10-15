@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from '@material-ui/core';
 import './CocktailAddPhoto.css';
-import ImageCocktail from '../imageCocktail/ImageCocktail';
+import CocktailAddChosenImage from "../cocktailAddChosenImage/CocktailAddChosenImage";
 
 const CocktailAddPhoto = () => {
   const [refChosenImage, setRefChosenImage] = React.useState('img_cocktail/noImageFound.jpg')
@@ -20,11 +20,7 @@ const CocktailAddPhoto = () => {
 
   return (
     <div className='cocktail-add-img'>
-      {!chosenImage ? (
-        <ImageCocktail classe='manage-cocktail-img' reference={refChosenImage} />
-      ) : (
-        <img src={chosenImage} alt='le cocktail' className='manage-cocktail-img' />
-      )}
+      <CocktailAddChosenImage chosenImage={chosenImage} refChosenImage={refChosenImage} />
       <label htmlFor="contained-button-file" className='btn-choose-img'>
         <input
           accept="image/*"
