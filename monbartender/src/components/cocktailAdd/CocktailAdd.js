@@ -28,7 +28,6 @@ const CocktailAdd = () => {
           Créer le cocktail
         </Button>
       </form>
-
     </div>
   )
 }
