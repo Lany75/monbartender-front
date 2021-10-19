@@ -222,7 +222,7 @@ const CocktailAddIngredients = () => {
               style={{ width: desktop ? 200 : 100 }}
             />
 
-            <div className='quanity-unity'>
+            <div className='quantity-unity'>
               <FormControl variant='outlined' >
                 <InputLabel id='label-unity'>Unité</InputLabel>
                 <Select
@@ -276,7 +276,7 @@ const CocktailAddIngredients = () => {
               style={{ width: desktop ? 200 : 100 }}
             />
 
-            <div className='quanity-unity'>
+            <div className='quantity-unity'>
               <FormControl variant='outlined' >
                 <InputLabel id='label-unity'>Unité</InputLabel>
                 <Select
