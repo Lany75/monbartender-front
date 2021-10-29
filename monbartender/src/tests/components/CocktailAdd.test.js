@@ -8,6 +8,7 @@ import CocktailAddPhoto from '../../components/cocktailAddPhoto/CocktailAddPhoto
 import CocktailAddGlass from '../../components/cocktailAddGlass/CocktailAddGlass';
 import CocktailAddIngredients from '../../components/cocktailAddIngredients/CocktailAddIngredients';
 import { Button } from '@material-ui/core';
+import CocktailAddSteps from '../../components/cocktailAddSteps/CocktailAddSteps';
 
 
 describe('<CocktailAdd />', () => {
@@ -45,6 +46,10 @@ describe('<CocktailAdd />', () => {
 
   it('should contain a CocktailAddIngredients component', () => {
     expect(formCocktailAdd.find(CocktailAddIngredients)).to.have.length(1);
+  })
+
+  it('should contain a CocktailAddSteps component', () => {
+    expect(formCocktailAdd.find(CocktailAddSteps)).to.have.length(1);
   })
 
   it('should contain a submit Button component with text "Créer le cocktail"', () => {

@@ -62,7 +62,7 @@ const CocktailAddIngredients = () => {
     setOpenAddNewIngredientDialog(false);
   };
 
-  const handleClickOpenaddNewIngredientDialog = (event) => {
+  const handleClickOpenAddNewIngredientDialog = (event) => {
     setOpenAddNewIngredientDialog(true);
   }
 
@@ -165,7 +165,7 @@ const CocktailAddIngredients = () => {
         <Button
           variant="contained"
           color="primary"
-          onClick={handleClickOpenaddNewIngredientDialog}
+          onClick={handleClickOpenAddNewIngredientDialog}
         >
           Ajouter un ingrédient
         </Button>
