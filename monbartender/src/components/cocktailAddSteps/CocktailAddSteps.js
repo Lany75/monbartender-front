@@ -4,8 +4,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, useMediaQuery } from '@material-ui/core';
 import './CocktailAddSteps.css';
 
-const CocktailAddSteps = () => {
-  const [steps, setSteps] = React.useState([])
+const CocktailAddSteps = ({ steps, setSteps }) => {
   const desktop = useMediaQuery('(min-width:769px)');
   const [pageSize, setPageSize] = React.useState(5);
   const [openAddNewStepDialog, setOpenAddNewStepDialog] = React.useState(false);

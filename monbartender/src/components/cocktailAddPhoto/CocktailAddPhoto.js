@@ -3,13 +3,13 @@ import { Button } from '@material-ui/core';
 import './CocktailAddPhoto.css';
 import CocktailAddChosenImage from "../cocktailAddChosenImage/CocktailAddChosenImage";
 
-const CocktailAddPhoto = () => {
-  const [refChosenImage, setRefChosenImage] = React.useState('img_cocktail/noImageFound.jpg')
+const CocktailAddPhoto = ({ refChosenImage, setRefChosenImage, setPhoto }) => {
   const [chosenImage, setChosenImage] = React.useState(null);
 
   const handleChangeImageCocktail = event => {
     if (event.target.files && event.target.files[0]) {
       setChosenImage(URL.createObjectURL(event.target.files[0]));
+      setPhoto(event.target.files[0]);
       setRefChosenImage('img_cocktail/' + event.target.files[0].name);
     }
   }

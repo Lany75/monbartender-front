@@ -2,9 +2,8 @@ import React from "react";
 import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 import { VerreContext } from "../../context/verreContext";
 
-const CocktailAddGlass = () => {
+const CocktailAddGlass = ({ chosenGlass, setChosenGlass }) => {
   const { listeVerres } = React.useContext(VerreContext);
-  const [chosenGlass, setChosenGlass] = React.useState('');
 
   const handleChangeChosenGlass = (event) => {
     setChosenGlass(event.target.value);

@@ -2,9 +2,7 @@ import React from "react";
 import { FormControlLabel, Radio, RadioGroup, TextField } from '@material-ui/core';
 import './CocktailAddNameType.css';
 
-const CocktailAddNameType = () => {
-  const [cocktailName, setcocktailName] = React.useState('');
-  const [typeCocktail, setTypeCocktail] = React.useState("false");
+const CocktailAddNameType = ({ cocktailName, setcocktailName, typeCocktail, setTypeCocktail }) => {
 
   const handleChangeTypeCocktail = event => {
     setTypeCocktail(event.target.value);

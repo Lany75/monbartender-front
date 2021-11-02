@@ -4,8 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import './CocktailAddIngredients.css';
 import { IngredientContext } from "../../context/ingredientContext";
 
-const CocktailAddIngredients = () => {
-  const [ingredients, setIngredients] = React.useState([])
+const CocktailAddIngredients = ({ ingredients, setIngredients }) => {
   const { listeIngredients, unitiesList } = React.useContext(IngredientContext);
   const desktop = useMediaQuery('(min-width:769px)');
   const [pageSize, setPageSize] = React.useState(5);
