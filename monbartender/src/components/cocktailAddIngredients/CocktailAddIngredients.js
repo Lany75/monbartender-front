@@ -63,6 +63,7 @@ const CocktailAddIngredients = () => {
   };
 
   const handleClickOpenAddNewIngredientDialog = (event) => {
+    setMessage('');
     setOpenAddNewIngredientDialog(true);
   }
 
@@ -112,12 +113,12 @@ const CocktailAddIngredients = () => {
   }
 
   const openModifyIngredientQuantityDialog = (event) => {
-    console.log(event.row);
+    setMessage('');
     setchosenIngredientId(event.row.id);
     setChosenIngredient(event.row.ingredient);
     setChosenQuantity(event.row.quantite);
     setChosenUnity(event.row.unite);
-    setOpenIngredientQuantityDialog(true)
+    setOpenIngredientQuantityDialog(true);
   }
 
   const closeModifyIngredientQuantityDialog = () => {

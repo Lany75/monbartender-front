@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextareaAutosize, TextField, useMediaQuery } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, useMediaQuery } from '@material-ui/core';
 import './CocktailAddSteps.css';
 
 const CocktailAddSteps = () => {
@@ -9,9 +9,12 @@ const CocktailAddSteps = () => {
   const desktop = useMediaQuery('(min-width:769px)');
   const [pageSize, setPageSize] = React.useState(5);
   const [openAddNewStepDialog, setOpenAddNewStepDialog] = React.useState(false);
+  const [openModifyStepDialog, setOpenModifyStepDialog] = React.useState(false);
   const [message, setMessage] = React.useState('');
   const [stepText, setStepText] = React.useState('');
   const [selectedRow, setSelectedRow] = React.useState([]);
+  const [stepId, setStepId] = React.useState('');
+  const [numEtape, setNumEtape] = React.useState('');
 
   const columns = [
     {
@@ -36,6 +39,7 @@ const CocktailAddSteps = () => {
   };
 
   const handleClickOpenAddNewStepDialog = (event) => {
+    setMessage('');
     setOpenAddNewStepDialog(true);
   }
 
@@ -76,7 +80,37 @@ const CocktailAddSteps = () => {
       setSteps(tabSteps);
 
     } else setMessage('Aucune étape sélectionnée')
+  }
 
+  const openModifyStepTextDialog = (event) => {
+    setMessage('');
+    setStepText(event.row.libelle);
+    setStepId(event.row.id);
+    setNumEtape(event.row.etape);
+    setOpenModifyStepDialog(true);
+  }
+
+  const closeModifyStepDialog = () => {
+    setStepText('');
+    setStepId('');
+    setNumEtape('');
+    setOpenModifyStepDialog(false);
+  };
+
+  const cancelModifying = () => {
+    closeModifyStepDialog();
+  }
+
+  const confirmModification = () => {
+    const tabSteps = [...steps];
+    const index = tabSteps.findIndex(step => step.id === (stepId));
+
+    if (stepText === '') setMessage('Modification impossible');
+    else {
+      tabSteps.splice(index, 1, { id: stepId, etape: numEtape, libelle: stepText })
+    }
+    setSteps(tabSteps);
+    closeModifyStepDialog();
   }
 
   return (
@@ -92,7 +126,7 @@ const CocktailAddSteps = () => {
           checkboxSelection
           disableSelectionOnClick
           onSelectionModelChange={selectRow}
-        //onCellClick={openModifyIngredientQuantityDialog}
+          onCellClick={openModifyStepTextDialog}
         />
       </div>
       <div className='add-delete-steps'>
@@ -141,6 +175,38 @@ const CocktailAddSteps = () => {
           </Button>
           <Button onClick={addStep} color="primary">
             Ajouter
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={openModifyStepDialog}
+        onClose={closeModifyStepDialog}
+        aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Modification d'étape</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Corriger le libellé de l'étape
+          </DialogContentText>
+          <div className='data-new-step'>
+            <TextField
+              variant='outlined'
+              margin='normal'
+              name='cocktailStep'
+              value={stepText}
+              onChange={event => setStepText(event.target.value)}
+              style={{ width: desktop ? 500 : 100 }}
+              multiline
+              rows={3}
+            />
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={cancelModifying} color="primary">
+            Annuler
+          </Button>
+          <Button onClick={confirmModification} color="primary">
+            Modifier
           </Button>
         </DialogActions>
       </Dialog>
