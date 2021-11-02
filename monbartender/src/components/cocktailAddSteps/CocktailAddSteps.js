@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, useMediaQuery } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, useMediaQuery } from '@material-ui/core';
 import './CocktailAddSteps.css';
 
 const CocktailAddSteps = () => {
@@ -38,8 +38,9 @@ const CocktailAddSteps = () => {
     setOpenAddNewStepDialog(false);
   };
 
-  const handleClickOpenAddNewStepDialog = (event) => {
+  const handleClickOpenAddNewStepDialog = () => {
     setMessage('');
+    setNumEtape(steps.length + 1);
     setOpenAddNewStepDialog(true);
   }
 
@@ -105,8 +106,7 @@ const CocktailAddSteps = () => {
     const tabSteps = [...steps];
     const index = tabSteps.findIndex(step => step.id === (stepId));
 
-    if (stepText === '') setMessage('Modification impossible');
-    else {
+    if (stepText !== '') {
       tabSteps.splice(index, 1, { id: stepId, etape: numEtape, libelle: stepText })
     }
     setSteps(tabSteps);
@@ -151,13 +151,11 @@ const CocktailAddSteps = () => {
         open={openAddNewStepDialog}
         onClose={handleCloseAddNewStepDialog}
         aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Ajout d'étape</DialogTitle>
+        <DialogTitle id="form-dialog-title">Ajout de l'étape {numEtape}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Indiquez le libellé à suivre pour l'étape {steps.length + 1}
-          </DialogContentText>
           <div className='data-new-step'>
             <TextField
+              label='libellé'
               variant='outlined'
               margin='normal'
               name='cocktailStep'
@@ -166,6 +164,7 @@ const CocktailAddSteps = () => {
               style={{ width: desktop ? 500 : 100 }}
               multiline
               rows={3}
+              autoFocus
             />
           </div>
         </DialogContent>
@@ -183,13 +182,32 @@ const CocktailAddSteps = () => {
         open={openModifyStepDialog}
         onClose={closeModifyStepDialog}
         aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Modification d'étape</DialogTitle>
+        <DialogTitle id="form-dialog-title">Modification de l'étape {numEtape}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Corriger le libellé de l'étape
-          </DialogContentText>
-          <div className='data-new-step'>
+          <div className='data-step'>
+
+            {/*<FormControl variant='outlined'>
+              <InputLabel id='label-etape'>Etape</InputLabel>
+              <Select
+                value={newNumEtape}
+                onChange={event => setNewNumEtape(event.target.value)}
+                label='Etape'
+                className='form-control-select'
+                style={{ width: desktop ? 200 : 240 }}
+              >
+                {
+                  steps.map(step => {
+                    return (
+                      <MenuItem value={step.etape} key={step.etape}>{step.etape}</MenuItem>
+                    )
+                  })
+                }
+              </Select>
+            </FormControl>
+              */}
+
             <TextField
+              label='nouveau libellé'
               variant='outlined'
               margin='normal'
               name='cocktailStep'
@@ -198,6 +216,7 @@ const CocktailAddSteps = () => {
               style={{ width: desktop ? 500 : 100 }}
               multiline
               rows={3}
+              autoFocus
             />
           </div>
         </DialogContent>

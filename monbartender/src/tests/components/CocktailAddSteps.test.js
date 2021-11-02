@@ -55,36 +55,29 @@ describe('<CocktailAddSteps />', () => {
 
   const dialogs = divCocktailAddSteps.find(Dialog);
 
-  it('should contain 1 Dialog components with open and onClose attributes', () => {
-    expect(dialogs).to.have.length(1);
+  it('should contain 2 Dialog components with open and onClose attributes', () => {
+    expect(dialogs).to.have.length(2);
 
-    expect(dialogs.props()).to.have.property('open');
-    expect(dialogs.props()).to.have.property('onClose');
-    /*dialogs.forEach(d => {
+    dialogs.forEach(d => {
       expect(d.props()).to.have.property('open');
       expect(d.props()).to.have.property('onClose');
-    })*/
+    })
   })
 
   describe('first Dialog component (add new step dialog)', () => {
     const addNewStepDialog = dialogs.first();
     const dialogTitle = addNewStepDialog.find(DialogTitle);
 
-    it('should contain a DialogTitle component with id="form-dialog-title" and text="Ajout d\'étape"', () => {
+    it('should contain a DialogTitle component with id="form-dialog-title" and text="Ajout de l\'étape "', () => {
       expect(dialogTitle).to.have.length(1);
       expect(dialogTitle.props()).to.have.property('id', 'form-dialog-title');
-      expect(dialogTitle.text()).to.be.equal('Ajout d\'étape');
+      expect(dialogTitle.text()).to.be.equal('Ajout de l\'étape ');
     })
 
     const dialogContent = addNewStepDialog.find(DialogContent);
 
     it('should contain a DialogContent component', () => {
       expect(dialogContent).to.have.length(1);
-    })
-
-    it('should contain a DialogContentText component with text="Indiquez le libellé à suivre pour l\'étape 1"', () => {
-      expect(dialogContent.find(DialogContentText)).to.have.length(1);
-      expect(dialogContent.find(DialogContentText).text()).to.be.equal('Indiquez le libellé à suivre pour l\'étape 1');
     })
 
     const dataNewStep = dialogContent.find('div.data-new-step');
@@ -102,6 +95,51 @@ describe('<CocktailAddSteps />', () => {
     })
 
     const dialogActions = addNewStepDialog.find(DialogActions);
+
+    it('should contain a DialogActions component', () => {
+      expect(dialogActions).to.have.length(1);
+    })
+
+    it('should contain 2 Button components with onClick attribute', () => {
+      const dialogAtionsButton = dialogActions.find(Button);
+      expect(dialogAtionsButton).to.have.length(2);
+      dialogAtionsButton.map(dab => {
+        expect(dab.props()).to.have.property('onClick');
+      })
+    })
+  })
+
+  describe('second Dialog component (modify step dialog)', () => {
+    const modifyStepDialog = dialogs.last();
+    const dialogTitle = modifyStepDialog.find(DialogTitle);
+
+    it('should contain a DialogTitle component with id="form-dialog-title" and text="Modification de l\'étape "', () => {
+      expect(dialogTitle).to.have.length(1);
+      expect(dialogTitle.props()).to.have.property('id', 'form-dialog-title');
+      expect(dialogTitle.text()).to.be.equal('Modification de l\'étape ');
+    })
+
+    const dialogContent = modifyStepDialog.find(DialogContent);
+
+    it('should contain a DialogContent component', () => {
+      expect(dialogContent).to.have.length(1);
+    })
+
+    const dataStep = dialogContent.find('div.data-step');
+
+    it('should contain a div with className="data-step"', () => {
+      expect(dataStep).to.have.length(1);
+    })
+
+    it('should contain a TextField component with value and onChange attribute', () => {
+      const textField = dataStep.find(TextField);
+
+      expect(textField).to.have.length(1);
+      expect(textField.props()).to.have.property('value');
+      expect(textField.props()).to.have.property('onChange');
+    })
+
+    const dialogActions = modifyStepDialog.find(DialogActions);
 
     it('should contain a DialogActions component', () => {
       expect(dialogActions).to.have.length(1);
