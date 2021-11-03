@@ -12,6 +12,19 @@ import CocktailAddSteps from '../../components/cocktailAddSteps/CocktailAddSteps
 
 
 describe('<CocktailAdd />', () => {
+  let realUseContext;
+  beforeEach(() => {
+    realUseContext = React.useContext;
+  });
+
+  afterEach(() => {
+    React.useContext = realUseContext;
+  });
+
+  jest.spyOn(React, 'useContext').mockImplementation(() => ({
+    setListeCocktails: jest.fn()
+  }));
+
   const cocktailAdd = shallow(<CocktailAdd />);
   const divCocktailAdd = cocktailAdd.find('div.cocktail-add');
 
