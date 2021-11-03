@@ -13,9 +13,11 @@ import CocktailAddGlass from '../cocktailAddGlass/CocktailAddGlass';
 import CocktailAddIngredients from '../cocktailAddIngredients/CocktailAddIngredients';
 import CocktailAddSteps from '../cocktailAddSteps/CocktailAddSteps';
 import { CocktailContext } from '../../context/cocktailContext';
+import { AuthContext } from '../../context/authContext';
 
 const CocktailAdd = () => {
   let history = useHistory();
+  const { accessToken } = React.useContext(AuthContext);
   const { setListeCocktails } = React.useContext(CocktailContext);
   const [cocktailName, setcocktailName] = React.useState('');
   const [typeCocktail, setTypeCocktail] = React.useState("false");
@@ -47,14 +49,20 @@ const CocktailAdd = () => {
       );
     }
 
-    Axios.post(`${apiBaseURL}/api/v2/cocktails/`, {
-      nomCocktail: cocktailName,
-      type: typeCocktail,
-      image: refChosenImage,
-      nomVerre: chosenGlass,
-      ingredients: ingredients,
-      etapes: steps
-    })
+    Axios.post(`${apiBaseURL}/api/v2/cocktails/`,
+      {
+        nomCocktail: cocktailName,
+        type: typeCocktail,
+        image: refChosenImage,
+        nomVerre: chosenGlass,
+        ingredients: ingredients,
+        etapes: steps
+      },
+      {
+        headers: {
+          authorization: accessToken
+        }
+      })
       .then(reponse => {
         setListeCocktails(reponse.data);
       })
