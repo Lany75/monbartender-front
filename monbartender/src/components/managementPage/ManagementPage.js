@@ -5,15 +5,14 @@ import TabPanel from '../tabPanel/TabPanel';
 import ManageIngredients from '../manageIngredients/ManageIngredients';
 import ManageCategories from '../manageCategories/ManageCategories';
 import GestionCocktailMoment from "../gestionCocktailMoment/GestionCocktailMoment";
-import GestionCocktails from "../gestionCocktails/GestionCocktails";
+//import GestionCocktails from "../gestionCocktails/GestionCocktails";
 import UnauthorizedPage from '../unauthorizedPage/UnauthorizedPage';
 import ManageGlass from '../manageGlass/ManageGlass';
-
+import ManageUsers from '../manageUsers/ManageUsers';
+import ManageCocktails from '../manageCocktails/ManageCocktails';
 import { AuthContext } from '../../context/authContext';
 import { BarContext } from '../../context/barContext';
-
 import './ManagementPage.css';
-import ManageUsers from '../manageUsers/ManageUsers';
 import ManageUnities from '../manageUnities/ManageUnities';
 
 const ManagementPage = () => {
@@ -51,7 +50,8 @@ const ManagementPage = () => {
             <GestionCocktailMoment />
           </TabPanel>
           <TabPanel id='tp-manage-cocktails' value={value} index={1}>
-            <GestionCocktails />
+            <ManageCocktails />
+            {/* <GestionCocktails />*/}
           </TabPanel>
           <TabPanel id='tp-manage-ingredients' value={value} index={2}>
             <ManageIngredients />

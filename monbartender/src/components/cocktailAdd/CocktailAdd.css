@@ -1,0 +1,28 @@
+.cocktail-add {
+  display: flex;
+  flex-direction: column;
+}
+
+.cocktail-add-title {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.form-cocktail-add {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px 0px 10px;
+}
+
+@media screen and (min-width: 769px) {
+  .cocktail-add-title {
+    font-size: 25px;
+  }
+
+  .form-cocktail-add {
+    margin: 0px 50px 0px 50px;
+  }
+} 

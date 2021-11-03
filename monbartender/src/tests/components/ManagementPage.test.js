@@ -103,10 +103,10 @@ describe('<ManagementPage />', () => {
       expect(tp.find('GestionCocktailMoment')).to.have.length(1);
     })
 
-    it('the second TabPanel component should have id="tp-manage-cocktails" and contain a GestionCocktails component', () => {
+    it('the second TabPanel component should have id="tp-manage-cocktails" and contain a ManageCocktails component', () => {
       expect(tabPanelComponents.get(1).props.id).to.be.equal('tp-manage-cocktails');
       const tp = managementPage.find('#tp-manage-cocktails');
-      expect(tp.find('GestionCocktails')).to.have.length(1);
+      expect(tp.find('ManageCocktails')).to.have.length(1);
     })
 
     it('the third TabPanel component should have id="tp-manage-ingredients" and contain a ManageIngredients component, a ManageCategories component and a ManageUnities component', () => {
