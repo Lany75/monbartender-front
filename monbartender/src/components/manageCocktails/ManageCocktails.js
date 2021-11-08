@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router';
 import Axios from "axios";
 import { DataGrid } from '@material-ui/data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, useMediaQuery } from '@material-ui/core';
@@ -7,19 +6,30 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import { refStorage } from "../../firebaseConfig";
 import apiBaseURL from "../../env";
 
+import './ManageCocktails.css';
 import { CocktailContext } from '../../context/cocktailContext';
 import { AuthContext } from '../../context/authContext';
 import ImageCocktail from '../imageCocktail/ImageCocktail';
-import './ManageCocktails.css';
+import DialogAddCocktail from '../dialogAddCocktail/DialogAddCocktail';
+import DialogErrorMessage from '../dialogErrorMessage/DialogErrorMessage';
 
 const ManageCocktails = () => {
   const { accessToken } = React.useContext(AuthContext);
   const { listeCocktails, setListeCocktails } = React.useContext(CocktailContext);
-  let history = useHistory();
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
   const desktop = useMediaQuery('(min-width:769px)');
   const [openDeleteCocktailDialog, setOpenDeleteCocktailDialog] = React.useState(false);
+  const [openModifyCocktailDialog, setOpenModifyCocktailDialog] = React.useState(false);
+  const [openAddCocktailDialog, setOpenAddCocktailDialog] = React.useState(false);
+  const [newCocktailName, setNewCocktailName] = React.useState('');
+  const [newTypeCocktail, setNewTypeCocktail] = React.useState('false');
+  const [oldCocktail, setOldCocktail] = React.useState({});
+  const [newRefChosenImage, setNewRefChosenImage] = React.useState('img_cocktail/noImageFound.jpg')
+  const [newPhoto, setNewPhoto] = React.useState(null);
+  const [newChosenGlass, setNewChosenGlass] = React.useState('');
+  const [newIngredients, setNewIngredients] = React.useState([])
+  const [openErrorMessageDialog, setOpenErrorMessageDialog] = React.useState(false);
 
   const columns = [
     {
@@ -47,9 +57,6 @@ const ManageCocktails = () => {
     }
   ];
 
-  const addCocktail = () => {
-    history.push('/gestion/nouveau-cocktail/');
-  }
 
   const selectRow = (event) => {
     setSelectedRow(event);
@@ -57,6 +64,7 @@ const ManageCocktails = () => {
 
   const deleteCocktails = () => {
     if (selectedRow.length > 0) handleOpenDeleteCocktailDialog();
+    else setOpenErrorMessageDialog(true);
   }
 
   const handleOpenDeleteCocktailDialog = () => {
@@ -74,7 +82,7 @@ const ManageCocktails = () => {
         const imgRef = refStorage.child(ref);
 
         imgRef.delete().then(() => {
-          console.log('photo supprimé de firebase')
+          console.log('photo supprimée de firebase')
         })
           .catch((err) => {
             console.log("error deleting file", err);
@@ -102,6 +110,35 @@ const ManageCocktails = () => {
     handleCloseDeleteCocktailDialog();
   }
 
+  const handleOpenModifyGlassDialog = (event) => {
+    console.log(event.row);
+    setOldCocktail(event.row);
+    setNewCocktailName(event.row.nom);
+    setNewTypeCocktail('' + event.row.alcool);
+    setNewRefChosenImage(event.row.photo);
+    setNewChosenGlass(event.row.Verre.nom)
+    setOpenModifyCocktailDialog(true);
+  }
+
+  const handleCloseModifyCocktailDialog = () => {
+    setOpenModifyCocktailDialog(false);
+  }
+
+  const confirmModification = () => {
+    console.log(oldCocktail);
+    console.log(newCocktailName);
+    console.log(newTypeCocktail);
+    console.log(newRefChosenImage);
+    console.log(newPhoto);
+    console.log(newChosenGlass);
+
+    handleCloseModifyCocktailDialog();
+  }
+
+  const handleOpenAddCocktailDialog = () => {
+    setOpenAddCocktailDialog(true);
+  }
+
   return (
     <div className='manage-cocktails'>
       <h4>LES COCKTAILS</h4>
@@ -116,7 +153,7 @@ const ManageCocktails = () => {
           checkboxSelection
           disableSelectionOnClick
           onSelectionModelChange={selectRow}
-        //onCellClick={handleClickOpenModifyGlassDialog}
+          onCellClick={handleOpenModifyGlassDialog}
         />
       </div>
 
@@ -132,12 +169,61 @@ const ManageCocktails = () => {
         <Button
           variant="contained"
           color="primary"
-          onClick={addCocktail}
+          onClick={handleOpenAddCocktailDialog}
         >
-          +
+          Ajouter un cocktail
         </Button>
       </div>
 
+      {/*<Dialog
+        open={openModifyCocktailDialog}
+        onClose={handleCloseModifyCocktailDialog}
+        aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Modifier le cocktail</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Corrigez les données du cocktail
+          </DialogContentText>
+          <CocktailAddNameType
+            cocktailName={newCocktailName}
+            setcocktailName={setNewCocktailName}
+            typeCocktail={newTypeCocktail}
+            setTypeCocktail={setNewTypeCocktail}
+          />
+          <CocktailAddPhoto
+            refChosenImage={newRefChosenImage}
+            setRefChosenImage={setNewRefChosenImage}
+            setPhoto={setNewPhoto}
+          />
+          <CocktailAddGlass
+            chosenGlass={newChosenGlass}
+            setChosenGlass={setNewChosenGlass}
+          />
+          <CocktailAddIngredients
+            ingredients={newIngredients}
+            setIngredients={setNewIngredients}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModifyCocktailDialog} color="primary">
+            Annuler
+          </Button>
+          <Button onClick={confirmModification} color="primary">
+            Modifier
+          </Button>
+        </DialogActions>
+      </Dialog>*/}
+
+      <DialogAddCocktail
+        openAddCocktailDialog={openAddCocktailDialog}
+        setOpenAddCocktailDialog={setOpenAddCocktailDialog}
+      />
+
+      <DialogErrorMessage
+        openErrorMessageDialog={openErrorMessageDialog}
+        setOpenErrorMessageDialog={setOpenErrorMessageDialog}
+        errorMessage={'Aucun cocktail sélectionné'}
+      />
 
       <Dialog
         open={openDeleteCocktailDialog}

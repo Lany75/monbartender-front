@@ -15,7 +15,6 @@ import SearchPage from '../searchPage/SearchPage';
 import ManagementPage from '../managementPage/ManagementPage';
 import CocktailRecipe from '../cocktailRecipe/CocktailRecipe';
 import UserBar from '../userBar/UserBar';
-import CocktailAdd from '../cocktailAdd/CocktailAdd';
 
 function Main() {
   return (
@@ -37,7 +36,6 @@ function Main() {
           path='/gestion/modifier-cocktail/:id'
           component={ModifierCocktail}
         />
-        <Route path='/gestion/nouveau-cocktail/' component={CocktailAdd} />
         <Route path='/gestion' component={ManagementPage} />
         <Route path='/cocktail/:id' component={CocktailRecipe} />
         <Route path='/mentions-legales' component={MentionsLegales} />

@@ -2,9 +2,9 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { DataGrid } from '@material-ui/data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, useMediaQuery } from '@material-ui/core';
-import './CocktailAddSteps.css';
+import './CocktailSteps.css';
 
-const CocktailAddSteps = ({ steps, setSteps }) => {
+const CocktailSteps = ({ steps, setSteps }) => {
   const desktop = useMediaQuery('(min-width:769px)');
   const [pageSize, setPageSize] = React.useState(5);
   const [openAddNewStepDialog, setOpenAddNewStepDialog] = React.useState(false);
@@ -24,12 +24,12 @@ const CocktailAddSteps = ({ steps, setSteps }) => {
     {
       field: 'etape',
       headerName: 'Etape',
-      width: 115,
+      width: desktop ? 115 : 95,
     },
     {
       field: 'libelle',
       headerName: 'Libellé',
-      width: desktop ? 425 : 100,
+      width: desktop ? 315 : 100,
     }
   ];
 
@@ -114,7 +114,7 @@ const CocktailAddSteps = ({ steps, setSteps }) => {
 
   return (
     <div className='cocktail-add-steps'>
-      <div className='cocktail-add-steps-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
+      <div className='cocktail-add-steps-list' style={{ height: 110 + pageSize * 52, width: '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={steps}
           columns={columns}
@@ -133,6 +133,7 @@ const CocktailAddSteps = ({ steps, setSteps }) => {
           variant="contained"
           color="primary"
           onClick={handleClickOpenAddNewStepDialog}
+          id='add-button'
         >
           Ajouter une étape
         </Button>
@@ -140,6 +141,7 @@ const CocktailAddSteps = ({ steps, setSteps }) => {
           variant="contained"
           color="primary"
           onClick={deleteSteps}
+          id='add-button'
         >
           Supprimer les étapes
         </Button>
@@ -233,4 +235,4 @@ const CocktailAddSteps = ({ steps, setSteps }) => {
   )
 }
 
-export default CocktailAddSteps;
+export default CocktailSteps;

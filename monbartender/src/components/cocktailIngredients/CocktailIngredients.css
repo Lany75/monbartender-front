@@ -1,0 +1,18 @@
+.cocktail-add-ingredients {
+  margin: 10px 0px 10px 0px;
+}
+
+.add-delete-ingredients {
+  display: flex;
+  flex-direction: row;
+}
+
+#add-button {
+  margin: 5px 2px 0px 2px;
+}
+
+@media screen and (min-width: 769px) {
+  .add-delete-ingredients {
+    justify-content: space-around;
+  }
+}

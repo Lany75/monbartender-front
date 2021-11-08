@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 import { VerreContext } from "../../context/verreContext";
 
-const CocktailAddGlass = ({ chosenGlass, setChosenGlass }) => {
+const CocktailGlass = ({ chosenGlass, setChosenGlass }) => {
   const { listeVerres } = React.useContext(VerreContext);
 
   const handleChangeChosenGlass = (event) => {
@@ -20,7 +20,6 @@ const CocktailAddGlass = ({ chosenGlass, setChosenGlass }) => {
         onChange={handleChangeChosenGlass}
         label='Verre'
         style={{ width: 220 }}
-        required
       >
         {listeVerres && listeVerres.map(glass => {
           return (
@@ -32,4 +31,4 @@ const CocktailAddGlass = ({ chosenGlass, setChosenGlass }) => {
   )
 }
 
-export default CocktailAddGlass;
+export default CocktailGlass;

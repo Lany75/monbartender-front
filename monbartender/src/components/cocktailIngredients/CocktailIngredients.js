@@ -1,10 +1,10 @@
 import React from "react";
 import { DataGrid } from '@material-ui/data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField, useMediaQuery } from '@material-ui/core';
-import './CocktailAddIngredients.css';
+import './CocktailIngredients.css';
 import { IngredientContext } from "../../context/ingredientContext";
 
-const CocktailAddIngredients = ({ ingredients, setIngredients }) => {
+const CocktailIngredients = ({ ingredients, setIngredients }) => {
   const { listeIngredients, unitiesList } = React.useContext(IngredientContext);
   const desktop = useMediaQuery('(min-width:769px)');
   const [pageSize, setPageSize] = React.useState(5);
@@ -21,13 +21,13 @@ const CocktailAddIngredients = ({ ingredients, setIngredients }) => {
     {
       field: 'id',
       headerName: 'ID',
-      width: desktop ? 200 : 100,
+      width: desktop ? 100 : 80,
       hide: !desktop && true
     },
     {
       field: 'ingredient',
       headerName: 'Ingredient',
-      width: desktop ? 200 : 150,
+      width: desktop ? 190 : 95,
     },
     {
       field: 'quantite',
@@ -42,7 +42,7 @@ const CocktailAddIngredients = ({ ingredients, setIngredients }) => {
     {
       field: 'quantiteUnite',
       headerName: 'Quantite',
-      width: desktop ? 140 : 100,
+      width: desktop ? 140 : 95,
       valueGetter: (params) =>
         `${params.getValue(params.id, 'quantite') || ''} ${params.getValue(params.id, 'unite') || ''
         }`,
@@ -147,7 +147,7 @@ const CocktailAddIngredients = ({ ingredients, setIngredients }) => {
 
   return (
     <div className='cocktail-add-ingredients'>
-      <div className='cocktail-add-ingredients-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
+      <div className='cocktail-add-ingredients-list' style={{ height: 110 + pageSize * 52, width: '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={ingredients}
           columns={columns}
@@ -166,6 +166,7 @@ const CocktailAddIngredients = ({ ingredients, setIngredients }) => {
           variant="contained"
           color="primary"
           onClick={handleClickOpenAddNewIngredientDialog}
+          id='add-button'
         >
           Ajouter un ingrédient
         </Button>
@@ -173,10 +174,11 @@ const CocktailAddIngredients = ({ ingredients, setIngredients }) => {
           variant="contained"
           color="primary"
           onClick={deleteIngredients}
+          id='add-button'
         >
           Supprimer les ingrédients
         </Button>
-        <div className='message'>{message}</div>
+        {/*<div className='message'>{message}</div>*/}
       </div>
 
       <Dialog
@@ -311,4 +313,4 @@ const CocktailAddIngredients = ({ ingredients, setIngredients }) => {
   )
 }
 
-export default CocktailAddIngredients;
+export default CocktailIngredients;

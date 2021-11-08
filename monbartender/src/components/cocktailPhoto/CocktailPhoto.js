@@ -1,9 +1,9 @@
 import React from "react";
-import { Button } from '@material-ui/core';
-import './CocktailAddPhoto.css';
-import CocktailAddChosenImage from "../cocktailAddChosenImage/CocktailAddChosenImage";
+import { Button } from "@material-ui/core";
+import './CocktailPhoto.css';
+import CocktailChosenImage from "../cocktailChosenImage/CocktailChosenImage";
 
-const CocktailAddPhoto = ({ refChosenImage, setRefChosenImage, setPhoto }) => {
+const CocktailPhoto = ({ refChosenImage, setRefChosenImage, setPhoto }) => {
   const [chosenImage, setChosenImage] = React.useState(null);
 
   const handleChangeImageCocktail = event => {
@@ -19,8 +19,8 @@ const CocktailAddPhoto = ({ refChosenImage, setRefChosenImage, setPhoto }) => {
   }
 
   return (
-    <div className='cocktail-add-img'>
-      <CocktailAddChosenImage chosenImage={chosenImage} refChosenImage={refChosenImage} />
+    <div className='cocktail-photo'>
+      <CocktailChosenImage chosenImage={chosenImage} refChosenImage={refChosenImage} />
       <label htmlFor="contained-button-file" className='btn-choose-img'>
         <input
           accept="image/*"
@@ -30,19 +30,26 @@ const CocktailAddPhoto = ({ refChosenImage, setRefChosenImage, setPhoto }) => {
           style={{ display: 'none' }}
           onChange={handleChangeImageCocktail}
         />
-        <Button variant="contained" color="primary" component="span">
-          Modifier
+        <Button
+          variant="contained"
+          color="primary"
+          component="span"
+          style={{ textAlign: 'center' }}
+        >
+          Modifier l'image
         </Button>
         <Button
           variant="contained"
           color="primary"
           onClick={resetImage}
+          id='delete-button'
         >
-          Supprimer
+          Supprimer l'image
         </Button>
       </label>
     </div>
   )
+
 }
 
-export default CocktailAddPhoto;
+export default CocktailPhoto;

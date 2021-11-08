@@ -1,8 +1,8 @@
 import React from "react";
-import './CocktailAddChosenImage.css';
+import './CocktailChosenImage.css';
 import ImageCocktail from "../imageCocktail/ImageCocktail";
 
-const CocktailAddChosenImage = ({ chosenImage, refChosenImage }) => {
+const CocktailChosenImage = ({ chosenImage, refChosenImage }) => {
   return (
     !chosenImage ? (
       <ImageCocktail classe='manage-cocktail-img' reference={refChosenImage} />
@@ -12,4 +12,4 @@ const CocktailAddChosenImage = ({ chosenImage, refChosenImage }) => {
   )
 }
 
-export default CocktailAddChosenImage;
+export default CocktailChosenImage;

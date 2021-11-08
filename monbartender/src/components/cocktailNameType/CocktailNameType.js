@@ -1,8 +1,8 @@
 import React from "react";
-import { FormControlLabel, Radio, RadioGroup, TextField } from '@material-ui/core';
-import './CocktailAddNameType.css';
+import { FormControlLabel, Radio, RadioGroup, TextField } from "@material-ui/core";
+import './CocktailNameType.css';
 
-const CocktailAddNameType = ({ cocktailName, setcocktailName, typeCocktail, setTypeCocktail }) => {
+const CocktailNameType = ({ cocktailName, setcocktailName, typeCocktail, setTypeCocktail }) => {
 
   const handleChangeTypeCocktail = event => {
     setTypeCocktail(event.target.value);
@@ -18,7 +18,6 @@ const CocktailAddNameType = ({ cocktailName, setcocktailName, typeCocktail, setT
         value={cocktailName}
         onChange={event => setcocktailName(event.target.value)}
         style={{ width: 220 }}
-        required
       />
       <RadioGroup
         id='type-cocktail'
@@ -41,4 +40,4 @@ const CocktailAddNameType = ({ cocktailName, setcocktailName, typeCocktail, setT
   )
 }
 
-export default CocktailAddNameType;
+export default CocktailNameType;
