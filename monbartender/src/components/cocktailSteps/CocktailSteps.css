@@ -1,7 +1,5 @@
 .cocktail-add-steps {
   margin: 0px 0px 10px 0px;
- /* display: flex;
-  flex-direction: column;*/
 }
 
 .add-delete-steps {
@@ -10,11 +8,6 @@
 }
 
 @media screen and (min-width: 769px) {
-/*  .cocktail-add-steps {
-    flex-direction: row;
-    justify-content: space-between;
-  }*/
-
   .add-delete-steps {
     justify-content: space-evenly;
   }

@@ -1,21 +1,16 @@
 import React from 'react';
-import Axios from "axios";
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, useMediaQuery } from '@material-ui/core';
-
-import { refStorage } from "../../firebaseConfig";
-import apiBaseURL from "../../env";
+import { Button, useMediaQuery } from '@material-ui/core';
 
 import './ManageCocktails.css';
 import { CocktailContext } from '../../context/cocktailContext';
-import { AuthContext } from '../../context/authContext';
 import ImageCocktail from '../imageCocktail/ImageCocktail';
 import DialogAddCocktail from '../dialogAddCocktail/DialogAddCocktail';
 import DialogErrorMessage from '../dialogErrorMessage/DialogErrorMessage';
+import DialogDeleteCocktail from '../dialogDeleteCocktail/DialogDeleteCocktail';
 
 const ManageCocktails = () => {
-  const { accessToken } = React.useContext(AuthContext);
-  const { listeCocktails, setListeCocktails } = React.useContext(CocktailContext);
+  const { listeCocktails } = React.useContext(CocktailContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
   const desktop = useMediaQuery('(min-width:769px)');
@@ -70,45 +65,6 @@ const ManageCocktails = () => {
   const handleOpenDeleteCocktailDialog = () => {
     setOpenDeleteCocktailDialog(true);
   };
-
-  const handleCloseDeleteCocktailDialog = () => {
-    setOpenDeleteCocktailDialog(false);
-  };
-
-  const deleteImageOnFirebase = refTab => {
-    refTab.forEach(ref => {
-      if (ref !== 'img_cocktail/noImageFound.jpg') {
-        // initialisation de la référence de l'image
-        const imgRef = refStorage.child(ref);
-
-        imgRef.delete().then(() => {
-          console.log('photo supprimée de firebase')
-        })
-          .catch((err) => {
-            console.log("error deleting file", err);
-          });
-      }
-    })
-  }
-
-  const confirmDeletion = () => {
-    Axios.delete(`${apiBaseURL}/api/v2/cocktails/`,
-      {
-        headers: {
-          authorization: accessToken
-        },
-        data: { deletedCocktails: selectedRow }
-      })
-      .then(reponse => {
-        deleteImageOnFirebase(reponse.data.images);
-        setListeCocktails(reponse.data.cocktails);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-
-    handleCloseDeleteCocktailDialog();
-  }
 
   const handleOpenModifyGlassDialog = (event) => {
     console.log(event.row);
@@ -225,27 +181,11 @@ const ManageCocktails = () => {
         errorMessage={'Aucun cocktail sélectionné'}
       />
 
-      <Dialog
-        open={openDeleteCocktailDialog}
-        onClose={handleCloseDeleteCocktailDialog}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='alert-dialog-title'>Confirmer la suppression des cocktails</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Etes vous sûr de vouloir supprimer ces cocktails définitivement ?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDeleteCocktailDialog} color='primary'>
-            Annuler
-          </Button>
-          <Button onClick={confirmDeletion} color='primary' autoFocus>
-            Confirmer
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DialogDeleteCocktail
+        openDeleteCocktailDialog={openDeleteCocktailDialog}
+        setOpenDeleteCocktailDialog={setOpenDeleteCocktailDialog}
+        selectedRow={selectedRow}
+      />
     </div>
   )
 }

@@ -114,7 +114,7 @@ const CocktailSteps = ({ steps, setSteps }) => {
 
   return (
     <div className='cocktail-add-steps'>
-      <div className='cocktail-add-steps-list' style={{ height: 110 + pageSize * 52, width: '100%', alignSelf: 'center' }}>
+      <div className='cocktail-steps-list' style={{ height: 110 + pageSize * 52, width: '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={steps}
           columns={columns}
@@ -145,7 +145,7 @@ const CocktailSteps = ({ steps, setSteps }) => {
         >
           Supprimer les étapes
         </Button>
-        <div className='message'>{message}</div>
+        {/*<div className='message'>{message}</div>*/}
       </div>
 
       <Dialog

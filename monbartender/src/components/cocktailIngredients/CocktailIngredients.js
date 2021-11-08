@@ -147,7 +147,7 @@ const CocktailIngredients = ({ ingredients, setIngredients }) => {
 
   return (
     <div className='cocktail-add-ingredients'>
-      <div className='cocktail-add-ingredients-list' style={{ height: 110 + pageSize * 52, width: '100%', alignSelf: 'center' }}>
+      <div className='cocktail-ingredients-list' style={{ height: 110 + pageSize * 52, width: '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={ingredients}
           columns={columns}

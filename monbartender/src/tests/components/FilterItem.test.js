@@ -1,7 +1,7 @@
 import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import { FormControlLabel, Checkbox } from "@material-ui/core";
+import { FormControlLabel } from "@material-ui/core";
 
 import FilterItem from '../../components/filterItem/FilterItem';
 
