@@ -118,12 +118,6 @@ const CocktailIngredients = ({ ingredients, setIngredients }) => {
         setIngredients={setIngredients}
       />
 
-      <DialogErrorMessage
-        openErrorMessageDialog={openErrorMessageDialog}
-        setOpenErrorMessageDialog={setOpenErrorMessageDialog}
-        errorMessage={'Aucun ingrédient sélectionné'}
-      />
-
       <DialogModifyIngredient
         openIngredientQuantityDialog={openIngredientQuantityDialog}
         setOpenIngredientQuantityDialog={setOpenIngredientQuantityDialog}
@@ -137,6 +131,12 @@ const CocktailIngredients = ({ ingredients, setIngredients }) => {
         setChosenUnity={setChosenUnity}
         ingredients={ingredients}
         setIngredients={setIngredients}
+      />
+
+      <DialogErrorMessage
+        openErrorMessageDialog={openErrorMessageDialog}
+        setOpenErrorMessageDialog={setOpenErrorMessageDialog}
+        errorMessage={'Aucun ingrédient sélectionné'}
       />
     </div>
   )

@@ -2,9 +2,10 @@ import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import CocktailSteps from '../../components/cocktailSteps/CocktailSteps';
 import DialogAddNewStep from '../../components/dialogAddNewStep/DialogAddNewStep';
+import DialogModifyStep from '../../components/dialogModifyStep/DialogModifyStep';
 
 describe('<CocktailSteps />', () => {
   const cocktailSteps = shallow(<CocktailSteps />);
@@ -54,57 +55,7 @@ describe('<CocktailSteps />', () => {
     expect(divCocktailSteps.find(DialogAddNewStep)).to.have.length(1);
   })
 
-  const dialog = divCocktailSteps.find(Dialog);
-
-  it('should contain 1 Dialog components with open and onClose attributes', () => {
-    expect(dialog).to.have.length(1);
-
-    expect(dialog.props()).to.have.property('open');
-    expect(dialog.props()).to.have.property('onClose');
-  })
-
-  describe('second Dialog component (modify step dialog)', () => {
-    const modifyStepDialog = dialog.last();
-    const dialogTitle = modifyStepDialog.find(DialogTitle);
-
-    it('should contain a DialogTitle component with id="form-dialog-title" and text="Modification de l\'étape "', () => {
-      expect(dialogTitle).to.have.length(1);
-      expect(dialogTitle.props()).to.have.property('id', 'form-dialog-title');
-      expect(dialogTitle.text()).to.be.equal('Modification de l\'étape ');
-    })
-
-    const dialogContent = modifyStepDialog.find(DialogContent);
-
-    it('should contain a DialogContent component', () => {
-      expect(dialogContent).to.have.length(1);
-    })
-
-    const dataStep = dialogContent.find('div.data-step');
-
-    it('should contain a div with className="data-step"', () => {
-      expect(dataStep).to.have.length(1);
-    })
-
-    it('should contain a TextField component with value and onChange attribute', () => {
-      const textField = dataStep.find(TextField);
-
-      expect(textField).to.have.length(1);
-      expect(textField.props()).to.have.property('value');
-      expect(textField.props()).to.have.property('onChange');
-    })
-
-    const dialogActions = modifyStepDialog.find(DialogActions);
-
-    it('should contain a DialogActions component', () => {
-      expect(dialogActions).to.have.length(1);
-    })
-
-    it('should contain 2 Button components with onClick attribute', () => {
-      const dialogAtionsButton = dialogActions.find(Button);
-      expect(dialogAtionsButton).to.have.length(2);
-      dialogAtionsButton.map(dab => {
-        expect(dab.props()).to.have.property('onClick');
-      })
-    })
+  it('should contain a DialogModifyStep component', () => {
+    expect(divCocktailSteps.find(DialogModifyStep)).to.have.length(1);
   })
 })

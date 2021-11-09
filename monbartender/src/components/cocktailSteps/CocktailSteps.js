@@ -1,19 +1,21 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, useMediaQuery } from '@material-ui/core';
+import { Button, useMediaQuery } from '@material-ui/core';
 import './CocktailSteps.css';
 import DialogAddNewStep from '../dialogAddNewStep/DialogAddNewStep';
+import DialogModifyStep from '../dialogModifyStep/DialogModifyStep';
+import DialogErrorMessage from '../dialogErrorMessage/DialogErrorMessage';
 
 const CocktailSteps = ({ steps, setSteps }) => {
   const desktop = useMediaQuery('(min-width:769px)');
   const [pageSize, setPageSize] = React.useState(5);
-  const [openAddNewStepDialog, setOpenAddNewStepDialog] = React.useState(false);
-  const [openModifyStepDialog, setOpenModifyStepDialog] = React.useState(false);
-  const [message, setMessage] = React.useState('');
   const [stepText, setStepText] = React.useState('');
   const [selectedRow, setSelectedRow] = React.useState([]);
   const [stepId, setStepId] = React.useState('');
   const [numEtape, setNumEtape] = React.useState('');
+  const [openAddNewStepDialog, setOpenAddNewStepDialog] = React.useState(false);
+  const [openModifyStepDialog, setOpenModifyStepDialog] = React.useState(false);
+  const [openErrorMessageDialog, setOpenErrorMessageDialog] = React.useState(false);
 
   const columns = [
     {
@@ -40,7 +42,6 @@ const CocktailSteps = ({ steps, setSteps }) => {
 
   const selectRow = (event) => {
     setSelectedRow(event);
-    setMessage('');
   }
 
   const deleteSteps = () => {
@@ -55,37 +56,14 @@ const CocktailSteps = ({ steps, setSteps }) => {
       })
       setSteps(tabSteps);
 
-    } else setMessage('Aucune étape sélectionnée')
+    } else setOpenErrorMessageDialog(true);
   }
 
   const openModifyStepTextDialog = (event) => {
-    setMessage('');
     setStepText(event.row.libelle);
     setStepId(event.row.id);
     setNumEtape(event.row.etape);
     setOpenModifyStepDialog(true);
-  }
-
-  const closeModifyStepDialog = () => {
-    setStepText('');
-    setStepId('');
-    setNumEtape('');
-    setOpenModifyStepDialog(false);
-  };
-
-  const cancelModifying = () => {
-    closeModifyStepDialog();
-  }
-
-  const confirmModification = () => {
-    const tabSteps = [...steps];
-    const index = tabSteps.findIndex(step => step.id === (stepId));
-
-    if (stepText !== '') {
-      tabSteps.splice(index, 1, { id: stepId, etape: numEtape, libelle: stepText })
-    }
-    setSteps(tabSteps);
-    closeModifyStepDialog();
   }
 
   return (
@@ -131,58 +109,24 @@ const CocktailSteps = ({ steps, setSteps }) => {
         setSteps={setSteps}
       />
 
-      <Dialog
-        open={openModifyStepDialog}
-        onClose={closeModifyStepDialog}
-        aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Modification de l'étape {numEtape}</DialogTitle>
-        <DialogContent>
-          <div className='data-step'>
+      <DialogModifyStep
+        openModifyStepDialog={openModifyStepDialog}
+        setOpenModifyStepDialog={setOpenModifyStepDialog}
+        steps={steps}
+        setSteps={setSteps}
+        stepText={stepText}
+        setStepText={setStepText}
+        stepId={stepId}
+        setStepId={setStepId}
+        numEtape={numEtape}
+        setNumEtape={setNumEtape}
+      />
 
-            {/*<FormControl variant='outlined'>
-              <InputLabel id='label-etape'>Etape</InputLabel>
-              <Select
-                value={newNumEtape}
-                onChange={event => setNewNumEtape(event.target.value)}
-                label='Etape'
-                className='form-control-select'
-                style={{ width: desktop ? 200 : 240 }}
-              >
-                {
-                  steps.map(step => {
-                    return (
-                      <MenuItem value={step.etape} key={step.etape}>{step.etape}</MenuItem>
-                    )
-                  })
-                }
-              </Select>
-            </FormControl>
-              */}
-
-            <TextField
-              label='nouveau libellé'
-              variant='outlined'
-              margin='normal'
-              name='cocktailStep'
-              value={stepText}
-              onChange={event => setStepText(event.target.value)}
-              style={{ width: desktop ? 500 : 100 }}
-              multiline
-              rows={3}
-              autoFocus
-            />
-          </div>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={cancelModifying} color="primary">
-            Annuler
-          </Button>
-          <Button onClick={confirmModification} color="primary">
-            Modifier
-          </Button>
-        </DialogActions>
-      </Dialog>
-
+      <DialogErrorMessage
+        openErrorMessageDialog={openErrorMessageDialog}
+        setOpenErrorMessageDialog={setOpenErrorMessageDialog}
+        errorMessage={'Aucune étape sélectionnée'}
+      />
     </div>
   )
 }
