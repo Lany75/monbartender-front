@@ -40,7 +40,7 @@ const DialogModifyStep = ({ openModifyStepDialog, setOpenModifyStepDialog, steps
           name='cocktailStep'
           value={stepText}
           onChange={event => setStepText(event.target.value)}
-          style={{ width: desktop ? 500 : 100 }}
+          style={{ width: desktop ? 500 : 240 }}
           multiline
           rows={3}
           autoFocus
