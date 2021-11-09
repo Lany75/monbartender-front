@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import { DataGrid } from '@material-ui/data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 import CocktailSteps from '../../components/cocktailSteps/CocktailSteps';
+import DialogAddNewStep from '../../components/dialogAddNewStep/DialogAddNewStep';
 
 describe('<CocktailSteps />', () => {
   const cocktailSteps = shallow(<CocktailSteps />);
@@ -49,64 +50,21 @@ describe('<CocktailSteps />', () => {
     expect(buttons.last().text()).to.be.equal('Supprimer les étapes');
   })
 
-  const dialogs = divCocktailSteps.find(Dialog);
-
-  it('should contain 2 Dialog components with open and onClose attributes', () => {
-    expect(dialogs).to.have.length(2);
-
-    dialogs.forEach(d => {
-      expect(d.props()).to.have.property('open');
-      expect(d.props()).to.have.property('onClose');
-    })
+  it('should contain a DialogAddNewStep component', () => {
+    expect(divCocktailSteps.find(DialogAddNewStep)).to.have.length(1);
   })
 
-  describe('first Dialog component (add new step dialog)', () => {
-    const addNewStepDialog = dialogs.first();
-    const dialogTitle = addNewStepDialog.find(DialogTitle);
+  const dialog = divCocktailSteps.find(Dialog);
 
-    it('should contain a DialogTitle component with id="form-dialog-title" and text="Ajout de l\'étape "', () => {
-      expect(dialogTitle).to.have.length(1);
-      expect(dialogTitle.props()).to.have.property('id', 'form-dialog-title');
-      expect(dialogTitle.text()).to.be.equal('Ajout de l\'étape ');
-    })
+  it('should contain 1 Dialog components with open and onClose attributes', () => {
+    expect(dialog).to.have.length(1);
 
-    const dialogContent = addNewStepDialog.find(DialogContent);
-
-    it('should contain a DialogContent component', () => {
-      expect(dialogContent).to.have.length(1);
-    })
-
-    const dataNewStep = dialogContent.find('div.data-new-step');
-
-    it('should contain a div with className="data-new-step"', () => {
-      expect(dataNewStep).to.have.length(1);
-    })
-
-    it('should contain a TextField component with value and onChange attribute', () => {
-      const textField = dataNewStep.find(TextField);
-
-      expect(textField).to.have.length(1);
-      expect(textField.props()).to.have.property('value');
-      expect(textField.props()).to.have.property('onChange');
-    })
-
-    const dialogActions = addNewStepDialog.find(DialogActions);
-
-    it('should contain a DialogActions component', () => {
-      expect(dialogActions).to.have.length(1);
-    })
-
-    it('should contain 2 Button components with onClick attribute', () => {
-      const dialogAtionsButton = dialogActions.find(Button);
-      expect(dialogAtionsButton).to.have.length(2);
-      dialogAtionsButton.map(dab => {
-        expect(dab.props()).to.have.property('onClick');
-      })
-    })
+    expect(dialog.props()).to.have.property('open');
+    expect(dialog.props()).to.have.property('onClose');
   })
 
   describe('second Dialog component (modify step dialog)', () => {
-    const modifyStepDialog = dialogs.last();
+    const modifyStepDialog = dialog.last();
     const dialogTitle = modifyStepDialog.find(DialogTitle);
 
     it('should contain a DialogTitle component with id="form-dialog-title" and text="Modification de l\'étape "', () => {
