@@ -7,12 +7,14 @@ import apiBaseURL from "../../env";
 
 import { IngredientContext } from '../../context/ingredientContext';
 import { AuthContext } from '../../context/authContext';
+import { BarContext } from '../../context/barContext';
 
 import './IngredientCategoryList.css';
 
 const IngredientCategoryList = ({ message, setMessage }) => {
   const { accessToken } = React.useContext(AuthContext);
   const { listeCategoriesIngredients, setListeCategoriesIngredients, getListeIngredients } = React.useContext(IngredientContext);
+  const { getBarUser } = React.useContext(BarContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
   const [openDeleteCategoryDialog, setOpenDeleteCategoryDialog] = React.useState(false);
@@ -69,6 +71,7 @@ const IngredientCategoryList = ({ message, setMessage }) => {
             .then(reponse => {
               setListeCategoriesIngredients(reponse.data);
               getListeIngredients();
+              getBarUser();
             })
             .catch(error => {
               console.log("vous avez une erreur : ", error);
@@ -92,7 +95,7 @@ const IngredientCategoryList = ({ message, setMessage }) => {
   };
   const deleteCategory = () => {
     if (selectedRow.length > 0) handleClickOpenDeleteCategoryDialog();
-    else setMessage('Aucun ingrédient sélectionné')
+    else setMessage('Aucune catégorie sélectionnée')
   }
   const confirmDeletion = () => {
     Axios.delete(`${apiBaseURL}/api/v2/categories/`,
@@ -114,7 +117,6 @@ const IngredientCategoryList = ({ message, setMessage }) => {
 
   return (
     <>
-      <h4>LES CATEGORIES D'INGREDIENTS</h4>
       <div className='categories-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={listeCategoriesIngredients}

@@ -5,15 +5,15 @@ import TabPanel from '../tabPanel/TabPanel';
 import ManageIngredients from '../manageIngredients/ManageIngredients';
 import ManageCategories from '../manageCategories/ManageCategories';
 import GestionCocktailMoment from "../gestionCocktailMoment/GestionCocktailMoment";
-import GestionCocktails from "../gestionCocktails/GestionCocktails";
+//import GestionCocktails from "../gestionCocktails/GestionCocktails";
 import UnauthorizedPage from '../unauthorizedPage/UnauthorizedPage';
 import ManageGlass from '../manageGlass/ManageGlass';
-
+import ManageUsers from '../manageUsers/ManageUsers';
+import ManageCocktails from '../manageCocktails/ManageCocktails';
 import { AuthContext } from '../../context/authContext';
 import { BarContext } from '../../context/barContext';
-
 import './ManagementPage.css';
-import ManageUsers from '../manageUsers/ManageUsers';
+import ManageUnities from '../manageUnities/ManageUnities';
 
 const ManagementPage = () => {
   const { user } = React.useContext(AuthContext);
@@ -41,7 +41,6 @@ const ManagementPage = () => {
               <Tab label="Des Cocktails du Moment" id='management-tab-label' />
               <Tab label="Des Cocktails" id='management-tab-label' />
               <Tab label="Des Ingrédients" id='management-tab-label' />
-              <Tab label="Des Catégories d'Ingrédients" id='management-tab-label' />
               <Tab label="Des Verres" id='management-tab-label' />
               <Tab label="Des Utilisateurs" id='management-tab-label' />
             </Tabs>
@@ -51,18 +50,18 @@ const ManagementPage = () => {
             <GestionCocktailMoment />
           </TabPanel>
           <TabPanel id='tp-manage-cocktails' value={value} index={1}>
-            <GestionCocktails />
+            <ManageCocktails />
+            {/* <GestionCocktails />*/}
           </TabPanel>
           <TabPanel id='tp-manage-ingredients' value={value} index={2}>
             <ManageIngredients />
-          </TabPanel>
-          <TabPanel id='tp-manage-categories' value={value} index={3}>
             <ManageCategories />
+            <ManageUnities />
           </TabPanel>
-          <TabPanel id='tp-manage-glasses' value={value} index={4}>
+          <TabPanel id='tp-manage-glasses' value={value} index={3}>
             <ManageGlass />
           </TabPanel>
-          <TabPanel id='tp-manage-user' value={value} index={5}>
+          <TabPanel id='tp-manage-user' value={value} index={4}>
             <ManageUsers />
           </TabPanel>
         </>

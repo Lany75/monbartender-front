@@ -1,0 +1,18 @@
+.form-unity-add {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0px 10px 20px 0px;
+}
+
+#unity-add-name {
+  margin-right: 10px;
+}
+
+
+@media screen and (min-width: 769px) {
+  .form-unity-add {
+    margin: 0px 50px 20px 0px;
+  }
+}

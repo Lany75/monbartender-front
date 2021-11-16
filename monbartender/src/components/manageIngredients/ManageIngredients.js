@@ -10,6 +10,7 @@ const ManageIngredients = () => {
 
   return (
     <div className='manage-ingredients'>
+      <h4>LES INGREDIENTS</h4>
       <IngredientAdd setMessage={setMessage} />
       <IngredientList message={message} setMessage={setMessage} />
     </div>

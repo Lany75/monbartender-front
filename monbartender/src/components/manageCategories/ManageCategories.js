@@ -9,6 +9,7 @@ const ManageCategories = () => {
 
   return (
     <div className='manage-categories'>
+      <h4>LES CATEGORIES D'INGREDIENTS</h4>
       <IngredientCategoryAdd setMessage={setMessage} />
       <IngredientCategoryList message={message} setMessage={setMessage} />
     </div>

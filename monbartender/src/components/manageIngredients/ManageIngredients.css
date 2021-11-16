@@ -5,13 +5,11 @@
 
 h4 {
   text-align: center;
-  margin: 30px;
+  margin: 30px 30px 20px 30px;
 }
-
-
 
 @media screen and (min-width: 769px) {
   h4 {
-    margin: 50px 50px 20px 50px;
+    margin: 30px 50px 10px 50px;
   }
 }

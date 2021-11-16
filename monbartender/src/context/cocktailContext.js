@@ -7,8 +7,8 @@ export const CocktailContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 function CocktailProvider({ children }) {
-  const [listeCocktails, setListeCocktails] = useState();
-  const [listeCocktailsMoment, setListeCocktailsMoment] = useState();
+  const [listeCocktails, setListeCocktails] = useState([]);
+  const [listeCocktailsMoment, setListeCocktailsMoment] = useState([]);
 
   const getListeCocktails = () => {
     Axios.get(`${apiBaseURL}/api/v2/cocktails`)

@@ -56,6 +56,7 @@ const IngredientCategoryAdd = ({ setMessage }) => {
           name='ingredientCategoryName'
           value={ingredientCategoryName}
           onChange={event => setIngredientCategoryName(event.target.value)}
+          required
         />
       </div>
       <div id='ingredient-category-add-btn'>

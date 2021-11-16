@@ -47,12 +47,6 @@ describe('<IngredientCategoryList />', () => {
   }));
 
   const categoriesList = shallow(<IngredientCategoryList />);
-
-  it("should contain a h4 tag with text='LES CATEGORIES D'INGREDIENTS'", () => {
-    expect(categoriesList.find('h4')).to.have.length(1);
-    expect(categoriesList.find('h4').text()).to.be.equal("LES CATEGORIES D'INGREDIENTS");
-  })
-
   const divCategoriesList = categoriesList.find('div.categories-list');
 
   it('should contain a div with className="categories-list"', () => {
