@@ -1,0 +1,14 @@
+.cocktail-add-steps {
+  margin: 0px 0px 10px 0px;
+}
+
+.add-delete-steps {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (min-width: 769px) {
+  .add-delete-steps {
+    justify-content: space-evenly;
+  }
+}

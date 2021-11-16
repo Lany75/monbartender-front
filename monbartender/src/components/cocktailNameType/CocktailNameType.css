@@ -1,0 +1,23 @@
+.cocktail-name-type {
+  margin: 0px 0px 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+#type-cocktail {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-left: 15px;
+}
+
+
+@media screen and (min-width: 769px) {
+  .cocktail-name-type {
+    flex-direction: row;
+  }
+
+  #type-cocktail {
+    flex-direction: column;
+  }
+}
