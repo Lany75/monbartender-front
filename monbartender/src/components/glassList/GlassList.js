@@ -5,9 +5,11 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 
 import apiBaseURL from "../../env";
 
+import './GlassList.css';
 import { AuthContext } from '../../context/authContext';
 import { VerreContext } from '../../context/verreContext';
-import './GlassList.css';
+import DialogDeleteGlass from '../dialogDeleteGlass/DialogDeleteGlass';
+import DialogErrorMessage from '../dialogErrorMessage/DialogErrorMessage';
 
 import camelCaseText from '../../utils/cameCaseText';
 
@@ -22,6 +24,7 @@ const GlassList = ({ message, setMessage }) => {
   const [newGlassName, setNewGlassName] = React.useState('');
   const [modifiedGlassId, setModifiedGlassId] = React.useState('');
   const desktop = useMediaQuery('(min-width:769px)');
+  const [openErrorMessageDialog, setOpenErrorMessageDialog] = React.useState(false);
 
   const columns = [
     {
@@ -84,32 +87,14 @@ const GlassList = ({ message, setMessage }) => {
     setSelectedRow(event);
     setMessage('');
   }
-  const handleCloseDeleteGlassDialog = () => {
-    setOpenDeleteGlassDialog(false);
-  };
-  const handleClickOpenDeleteGlassDialog = () => {
+
+  const handleOpenDeleteGlassDialog = () => {
     setOpenDeleteGlassDialog(true);
   };
-  const deleteGlass = () => {
-    if (selectedRow.length > 0) handleClickOpenDeleteGlassDialog();
-    else setMessage('Aucun verre sélectionné')
-  }
-  const confirmDeletion = () => {
-    Axios.delete(`${apiBaseURL}/api/v2/glasses/`,
-      {
-        headers: {
-          authorization: accessToken
-        },
-        data: { deletedGlasses: selectedRow }
-      })
-      .then(reponse => {
-        setListeVerres(reponse.data);
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
 
-    handleCloseDeleteGlassDialog();
+  const deleteGlass = () => {
+    if (selectedRow.length > 0) handleOpenDeleteGlassDialog();
+    else setOpenErrorMessageDialog(true);
   }
 
   return (
@@ -128,6 +113,17 @@ const GlassList = ({ message, setMessage }) => {
           onSelectionModelChange={selectRow}
           onCellClick={handleClickOpenModifyGlassDialog}
         />
+      </div>
+
+      <div className='delete-glass'>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={deleteGlass}
+        >
+          Supprimer les verres
+        </Button>
+        <div className='message'>{message}</div>
       </div>
 
       <Dialog
@@ -158,38 +154,18 @@ const GlassList = ({ message, setMessage }) => {
         </DialogActions>
       </Dialog>
 
-      <div className='delete-glass'>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={deleteGlass}
-        >
-          Supprimer les verres
-        </Button>
-        <div className='message'>{message}</div>
-      </div>
+      <DialogDeleteGlass
+        openDeleteGlassDialog={openDeleteGlassDialog}
+        setOpenDeleteGlassDialog={setOpenDeleteGlassDialog}
+        selectedRow={selectedRow}
+      />
 
-      <Dialog
-        open={openDeleteGlassDialog}
-        onClose={handleCloseDeleteGlassDialog}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='alert-dialog-title'>Confirmer la suppression des verres</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Etes vous sûr de vouloir supprimer ces verres définitivement ?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDeleteGlassDialog} color='primary'>
-            Annuler
-          </Button>
-          <Button onClick={confirmDeletion} color='primary' autoFocus>
-            Confirmer
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DialogErrorMessage
+        openErrorMessageDialog={openErrorMessageDialog}
+        setOpenErrorMessageDialog={setOpenErrorMessageDialog}
+        errorMessage={'Aucun verre sélectionné'}
+      />
+
     </>
   )
 }
