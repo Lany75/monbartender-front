@@ -10,7 +10,7 @@ const ManageGlass = () => {
   return (
     <div className='manage-glass'>
       <GlassAdd setMessage={setMessage} />
-      <GlassList message={message} setMessage={setMessage} />
+      <GlassList />
     </div>
   )
 }
