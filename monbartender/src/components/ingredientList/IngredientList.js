@@ -7,14 +7,13 @@ import apiBaseURL from "../../env";
 
 import { IngredientContext } from '../../context/ingredientContext';
 import { AuthContext } from '../../context/authContext';
-import { BarContext } from '../../context/barContext';
 import './IngredientList.css';
 
 import camelCaseText from '../../utils/cameCaseText';
+import DialogDeleteIngredient from '../dialogDeleteIngredient/DialogDeleteIngredient';
 
 const IngredientList = ({ message, setMessage }) => {
   const { accessToken } = React.useContext(AuthContext);
-  const { getBarUser } = React.useContext(BarContext);
   const { listeIngredients, setListeIngredients, listeCategoriesIngredients } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
@@ -98,34 +97,13 @@ const IngredientList = ({ message, setMessage }) => {
     setSelectedRow(event);
     setMessage('');
   }
-  const handleCloseDeleteIngredientsDialog = () => {
-    setOpenDeleteIngredientDialog(false);
-  };
+
   const handleClickOpenDeleteIngredientsDialog = () => {
     setOpenDeleteIngredientDialog(true);
   };
   const deleteIngredients = () => {
     if (selectedRow.length > 0) handleClickOpenDeleteIngredientsDialog();
     else setMessage('Aucun ingrédient sélectionné')
-  }
-
-  const confirmDeletion = () => {
-    Axios.delete(`${apiBaseURL}/api/v2/ingredients/`,
-      {
-        headers: {
-          authorization: accessToken
-        },
-        data: { deletedIngredients: selectedRow }
-      })
-      .then(reponse => {
-        setListeIngredients(reponse.data);
-        getBarUser();
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-
-    handleCloseDeleteIngredientsDialog();
   }
 
   React.useEffect(() => {
@@ -138,7 +116,7 @@ const IngredientList = ({ message, setMessage }) => {
 
   return (
     <>
-      <div className='igredients-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
+      <div className='ingredients-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={ingredients}
           columns={columns}
@@ -152,6 +130,24 @@ const IngredientList = ({ message, setMessage }) => {
           onCellClick={handleClickOpenModifyIngredientDialog}
         />
       </div>
+
+      <div className='delete-ingredients'>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={deleteIngredients}
+        >
+          Supprimer les ingrédients
+        </Button>
+        <div className='message'>{message}</div>
+      </div>
+
+
+      <DialogDeleteIngredient
+        openDeleteIngredientDialog={openDeleteIngredientDialog}
+        setOpenDeleteIngredientDialog={setOpenDeleteIngredientDialog}
+        selectedRow={selectedRow}
+      />
 
       <Dialog
         open={openModifyIngredientDialog}
@@ -196,39 +192,6 @@ const IngredientList = ({ message, setMessage }) => {
           </Button>
           <Button onClick={confirmModification} color="primary">
             Modifier
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      <div className='delete-ingredients'>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={deleteIngredients}
-        >
-          Supprimer les ingrédients
-        </Button>
-        <div className='message'>{message}</div>
-      </div>
-
-      <Dialog
-        open={openDeleteIngredientDialog}
-        onClose={handleCloseDeleteIngredientsDialog}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='alert-dialog-title'>Confirmer la suppression des ingrédients</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Etes vous sûr de vouloir supprimer ces ingrédients définitivement ?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDeleteIngredientsDialog} color='primary'>
-            Annuler
-          </Button>
-          <Button onClick={confirmDeletion} color='primary' autoFocus>
-            Confirmer
           </Button>
         </DialogActions>
       </Dialog>
