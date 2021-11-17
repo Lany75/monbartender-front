@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 import CocktailIngredients from '../../components/cocktailIngredients/CocktailIngredients';
 import DialogAddNewIngredient from '../../components/dialogAddNewIngredient/DialogAddNewIngredient';
 import DialogErrorMessage from '../../components/dialogErrorMessage/DialogErrorMessage';
-import DialogModifyIngredient from '../../components/dialogModifyIngredient/DialogModifyIngredient';
+import DialogModifyIngredientOfCocktail from '../../components/dialogModifyIngredientOfCocktail/DialogModifyIngredientOfCocktail';
 
 describe('<CocktailIngredients />', () => {
   const cocktailIngredients = shallow(<CocktailIngredients />);
@@ -60,7 +60,7 @@ describe('<CocktailIngredients />', () => {
     expect(divCocktailIngredients.find(DialogErrorMessage)).to.have.length(1);
   })
 
-  it('should contain a DialogModifyIngredient component', () => {
-    expect(divCocktailIngredients.find(DialogModifyIngredient)).to.have.length(1);
+  it('should contain a DialogModifyIngredientOfCocktail component', () => {
+    expect(divCocktailIngredients.find(DialogModifyIngredientOfCocktail)).to.have.length(1);
   })
 })
