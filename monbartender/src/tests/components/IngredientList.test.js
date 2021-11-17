@@ -5,6 +5,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField } from "@material-ui/core";
 
 import IngredientList from '../../components/ingredientList/IngredientList';
+import DialogDeleteIngredient from '../../components/dialogDeleteIngredient/DialogDeleteIngredient';
 
 const testAccessToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiMjFkNWE1Y2U2OGM1MjNlZTc0MzI5YjQ3ZDg0NGE3YmZjODRjZmYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiTcOpbGFuaWUgUEFSUlkiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1rcXhaSklwaThKNC9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BS0YwNW5Cb0tWRnBFaVVaY1JoTXpkYUVIWWJPbXBQUjN3L3Bob3RvLmpwZyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9tb25iYXJ0ZW5kZXIiLCJhdWQiOiJtb25iYXJ0ZW5kZXIiLCJhdXRoX3RpbWUiOjE2MjUwNjUwMzgsInVzZXJfaWQiOiJGTWRZSVFUb09pZTNmUjdNMDdSMXNjRm52SXcyIiwic3ViIjoiRk1kWUlRVG9PaWUzZlI3TTA3UjFzY0Zudkl3MiIsImlhdCI6MTYyNTEzODY4OCwiZXhwIjoxNjI1MTQyMjg4LCJlbWFpbCI6Im1sYW5pZS5wYXJyeUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNzMwMTM4MjY5NjkwOTY5Njc4MSJdLCJlbWFpbCI6WyJtbGFuaWUucGFycnlAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.Dki9I0nDE4b7kH5UbrDyhR6QEJXrCAP-c9crSZK7WQ6caTkeHMpKkHi_644CERig8wYdpsZbmGJI7eplKEfXq4GyQtdJqrpNNPcHkxl6-3KYZuSbg-G3oFbwGRo2dP6J2ARU9L-I3CHusBLas9c508HqZjwf5kwzzTzN7e7K93Ear31eAmpdxYrQm6Sfpm_llRUd3HW5lKpGSWRZc5JMcLRZ6jv1m_XWLqPWu5s0-wjYquRxcZLIwc2hm1kDJGoxk2TQnTKgRpDabgIREFcvriEkHD0yVODkgcOkanM6UgaPLU7x6Rg4vKi8FOITFuPxpeIFl_oxPcj0IwDVHzxwWg';
 const testListIngredients = [
@@ -79,16 +80,15 @@ describe('<IngredientList />', () => {
 
   jest.spyOn(React, 'useContext').mockImplementation(() => ({
     accessToken: testAccessToken,
-    getBarUser: jest.fn(),
     listeIngredients: testListIngredients,
     setListeIngredients: jest.fn(),
     listeCategoriesIngredients: testListCategories
   }));
 
   const ingredientList = shallow(<IngredientList />);
-  const divIngredientsList = ingredientList.find('div.igredients-list');
+  const divIngredientsList = ingredientList.find('div.ingredients-list');
 
-  it('should contain a div with className="igredients-list"', () => {
+  it('should contain a div with className="ingredients-list"', () => {
     expect(divIngredientsList).to.have.length(1);
   })
 
@@ -117,19 +117,20 @@ describe('<IngredientList />', () => {
     expect(divDeleteIngredient.find('div.message')).to.have.length(1);
   })
 
-  const dialogs = ingredientList.find(Dialog);
+  it('should contain a DialogDeleteIngredient component', () => {
+    expect(ingredientList.find(DialogDeleteIngredient)).to.have.length(1);
+  })
 
-  it('should contain 2 Dialog components with open and onClose attributes', () => {
-    expect(dialogs).to.have.length(2);
-    dialogs.forEach(d => {
-      expect(d.props()).to.have.property('open');
-      expect(d.props()).to.have.property('onClose');
-    })
+  const dialog = ingredientList.find(Dialog);
+
+  it('should contain 1 Dialog components with open and onClose attributes', () => {
+    expect(dialog).to.have.length(1);
+    expect(dialog.props()).to.have.property('open');
+    expect(dialog.props()).to.have.property('onClose');
   })
 
   describe('first Dialog component (modify ingredient dialog)', () => {
-    const modifyGlassDialog = dialogs.first();
-    const dialogTitle = modifyGlassDialog.find(DialogTitle);
+    const dialogTitle = dialog.find(DialogTitle);
 
     it("should contain a DialogTitle component with id='form-dialog-title' and text='Modifier l\'ingrédient'", () => {
       expect(dialogTitle).to.have.length(1);
@@ -137,7 +138,7 @@ describe('<IngredientList />', () => {
       expect(dialogTitle.text()).to.be.equal("Modifier l'ingrédient");
     })
 
-    const dialogContent = modifyGlassDialog.find(DialogContent);
+    const dialogContent = dialog.find(DialogContent);
 
     it('should contain a DialogContent component', () => {
       expect(dialogContent).to.have.length(1);
@@ -180,43 +181,7 @@ describe('<IngredientList />', () => {
       expect(selectFormControl.find(MenuItem)).to.have.length(5);
     })
 
-    const dialogActions = modifyGlassDialog.find(DialogActions);
-
-    it('should contain a DialogActions component', () => {
-      expect(dialogActions).to.have.length(1);
-    })
-
-    it('should contain 2 Button components with onClick attribute', () => {
-      const dialogAtionsButton = dialogActions.find(Button);
-      expect(dialogAtionsButton).to.have.length(2);
-      dialogAtionsButton.map(dab => {
-        expect(dab.props()).to.have.property('onClick');
-      })
-    })
-  })
-
-  describe('second Dialog component (delete ingredient dialog)', () => {
-    const deleteGlassDialog = dialogs.last();
-    const dialogTitle = deleteGlassDialog.find(DialogTitle);
-
-    it('should contain a DialogTitle component with id="alert-dialog-title" and text="Confirmer la suppression des ingrédients"', () => {
-      expect(dialogTitle).to.have.length(1);
-      expect(dialogTitle.props()).to.have.property('id', 'alert-dialog-title');
-      expect(dialogTitle.text()).to.be.equal('Confirmer la suppression des ingrédients');
-    })
-
-    const dialogContent = deleteGlassDialog.find(DialogContent);
-
-    it('should contain a DialogContent component', () => {
-      expect(dialogContent).to.have.length(1);
-    })
-
-    it('should contain a DialogContentText component with text="Etes vous sûr de vouloir supprimer ces ingrédients définitivement ?"', () => {
-      expect(dialogContent.find(DialogContentText)).to.have.length(1);
-      expect(dialogContent.find(DialogContentText).text()).to.be.equal('Etes vous sûr de vouloir supprimer ces ingrédients définitivement ?');
-    })
-
-    const dialogActions = deleteGlassDialog.find(DialogActions);
+    const dialogActions = dialog.find(DialogActions);
 
     it('should contain a DialogActions component', () => {
       expect(dialogActions).to.have.length(1);
