@@ -4,7 +4,7 @@ import { Button, useMediaQuery } from '@material-ui/core';
 import './CocktailIngredients.css';
 import DialogAddNewIngredient from "../dialogAddNewIngredient/DialogAddNewIngredient";
 import DialogErrorMessage from "../dialogErrorMessage/DialogErrorMessage";
-import DialogModifyIngredient from "../dialogModifyIngredient/DialogModifyIngredient";
+import DialogModifyIngredientOfCocktail from "../dialogModifyIngredientOfCocktail/DialogModifyIngredientOfCocktail";
 
 const CocktailIngredients = ({ ingredients, setIngredients }) => {
   const desktop = useMediaQuery('(min-width:769px)');
@@ -118,7 +118,7 @@ const CocktailIngredients = ({ ingredients, setIngredients }) => {
         setIngredients={setIngredients}
       />
 
-      <DialogModifyIngredient
+      <DialogModifyIngredientOfCocktail
         openIngredientQuantityDialog={openIngredientQuantityDialog}
         setOpenIngredientQuantityDialog={setOpenIngredientQuantityDialog}
         chosenIngredient={chosenIngredient}

@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField, useMediaQuery } from '@material-ui/core';
-import './DialogModifyIngredient.css';
+import './DialogModifyIngredientOfCocktail.css';
 import { IngredientContext } from "../../context/ingredientContext";
 
-const DialogModifyIngredient = ({ openIngredientQuantityDialog, setOpenIngredientQuantityDialog, chosenIngredient, setChosenIngredient, chosenIngredientId, setchosenIngredientId, chosenQuantity, setChosenQuantity, chosenUnity, setChosenUnity, ingredients, setIngredients }) => {
+const DialogModifyIngredientOfCocktail = ({ openIngredientQuantityDialog, setOpenIngredientQuantityDialog, chosenIngredient, setChosenIngredient, chosenIngredientId, setchosenIngredientId, chosenQuantity, setChosenQuantity, chosenUnity, setChosenUnity, ingredients, setIngredients }) => {
   const { unitiesList } = React.useContext(IngredientContext);
   const desktop = useMediaQuery('(min-width:769px)');
 
@@ -90,4 +90,4 @@ const DialogModifyIngredient = ({ openIngredientQuantityDialog, setOpenIngredien
   )
 }
 
-export default DialogModifyIngredient;
+export default DialogModifyIngredientOfCocktail;

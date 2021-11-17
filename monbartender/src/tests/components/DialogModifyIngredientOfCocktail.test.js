@@ -1,7 +1,7 @@
 import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import DialogModifyIngredient from '../../components/dialogModifyIngredient/DialogModifyIngredient';
+import DialogModifyIngredientOfCocktail from '../../components/dialogModifyIngredientOfCocktail/DialogModifyIngredientOfCocktail';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 
 const unitiesListTest = [
@@ -27,7 +27,7 @@ const unitiesListTest = [
   }
 ];
 
-describe('<DialogModifyIngredient />', () => {
+describe('<DialogModifyIngredientOfCocktail />', () => {
   let realUseContext;
   beforeEach(() => {
     realUseContext = React.useContext;
@@ -41,8 +41,8 @@ describe('<DialogModifyIngredient />', () => {
     unitiesList: unitiesListTest,
   }));
 
-  const dialogModifyIngredient = shallow(<DialogModifyIngredient />);
-  const dialog = dialogModifyIngredient.find(Dialog);
+  const dialogModifyIngredientOfCocktail = shallow(<DialogModifyIngredientOfCocktail />);
+  const dialog = dialogModifyIngredientOfCocktail.find(Dialog);
 
   it('should contain a Dialog component with open and onClose attributes', () => {
     expect(dialog).to.have.length(1);
