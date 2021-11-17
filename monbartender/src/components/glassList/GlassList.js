@@ -5,9 +5,9 @@ import { Button, useMediaQuery } from '@material-ui/core';
 import './GlassList.css';
 import { VerreContext } from '../../context/verreContext';
 import DialogDeleteGlass from '../dialogDeleteGlass/DialogDeleteGlass';
-import DialogErrorMessage from '../dialogErrorMessage/DialogErrorMessage';
-
 import DialogModifyGlass from '../dialogModifyGlass/DialogModifyGlass';
+import DialogAddNewGlass from '../dialogAddNewGlass/DialogAddNewGlass';
+import DialogErrorMessage from '../dialogErrorMessage/DialogErrorMessage';
 
 const GlassList = () => {
   const { listeVerres } = React.useContext(VerreContext);
@@ -18,6 +18,7 @@ const GlassList = () => {
   const desktop = useMediaQuery('(min-width:769px)');
   const [openErrorMessageDialog, setOpenErrorMessageDialog] = React.useState(false);
   const [clickedGlass, setClickedGlass] = React.useState({});
+  const [openAddNewGlassDialog, setOpenAddewGlassDialog] = React.useState(false);
 
   const columns = [
     {
@@ -50,9 +51,12 @@ const GlassList = () => {
     else setOpenErrorMessageDialog(true);
   }
 
+  const addGlass = () => {
+    setOpenAddewGlassDialog(true);
+  }
+
   return (
     <>
-      <h4>LES VERRES</h4>
       <div className='glasses-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={listeVerres}
@@ -76,7 +80,13 @@ const GlassList = () => {
         >
           Supprimer les verres
         </Button>
-        {/*<div className='message'>{message}</div>*/}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={addGlass}
+        >
+          Ajouter un verre
+        </Button>
       </div>
 
       <DialogModifyGlass
@@ -91,12 +101,16 @@ const GlassList = () => {
         selectedRow={selectedRow}
       />
 
+      <DialogAddNewGlass
+        openAddNewGlassDialog={openAddNewGlassDialog}
+        setOpenAddewGlassDialog={setOpenAddewGlassDialog}
+      />
+
       <DialogErrorMessage
         openErrorMessageDialog={openErrorMessageDialog}
         setOpenErrorMessageDialog={setOpenErrorMessageDialog}
         errorMessage={'Aucun verre sélectionné'}
       />
-
     </>
   )
 }

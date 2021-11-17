@@ -12,8 +12,9 @@ describe('<ManageGlass />', () => {
     expect(divManageGlass).to.have.length(1);
   })
 
-  it('should contain a GlassAdd component', () => {
-    expect(divManageGlass.find('GlassAdd')).to.have.length(1);
+  it('should contain a h4 tag with text="LES VERRES"', () => {
+    expect(divManageGlass.find('h4')).to.have.length(1);
+    expect(divManageGlass.find('h4').text()).to.be.equal('LES VERRES');
   })
 
   it('should contain a GlassList component', () => {

@@ -15,15 +15,15 @@ const ManageCocktails = () => {
   const [selectedRow, setSelectedRow] = React.useState([]);
   const desktop = useMediaQuery('(min-width:769px)');
   const [openDeleteCocktailDialog, setOpenDeleteCocktailDialog] = React.useState(false);
-  const [openModifyCocktailDialog, setOpenModifyCocktailDialog] = React.useState(false);
+  //const [openModifyCocktailDialog, setOpenModifyCocktailDialog] = React.useState(false);
   const [openAddCocktailDialog, setOpenAddCocktailDialog] = React.useState(false);
-  const [newCocktailName, setNewCocktailName] = React.useState('');
-  const [newTypeCocktail, setNewTypeCocktail] = React.useState('false');
-  const [oldCocktail, setOldCocktail] = React.useState({});
-  const [newRefChosenImage, setNewRefChosenImage] = React.useState('img_cocktail/noImageFound.jpg')
-  const [newPhoto, setNewPhoto] = React.useState(null);
-  const [newChosenGlass, setNewChosenGlass] = React.useState('');
-  const [newIngredients, setNewIngredients] = React.useState([])
+  //const [newCocktailName, setNewCocktailName] = React.useState('');
+  //const [newTypeCocktail, setNewTypeCocktail] = React.useState('false');
+  //const [oldCocktail, setOldCocktail] = React.useState({});
+  //const [newRefChosenImage, setNewRefChosenImage] = React.useState('img_cocktail/noImageFound.jpg')
+  //const [newPhoto, setNewPhoto] = React.useState(null);
+  //const [newChosenGlass, setNewChosenGlass] = React.useState('');
+  //const [newIngredients, setNewIngredients] = React.useState([])
   const [openErrorMessageDialog, setOpenErrorMessageDialog] = React.useState(false);
 
   const columns = [
@@ -66,7 +66,7 @@ const ManageCocktails = () => {
     setOpenDeleteCocktailDialog(true);
   };
 
-  const handleOpenModifyGlassDialog = (event) => {
+  /*const handleOpenModifyGlassDialog = (event) => {
     console.log(event.row);
     setOldCocktail(event.row);
     setNewCocktailName(event.row.nom);
@@ -74,13 +74,13 @@ const ManageCocktails = () => {
     setNewRefChosenImage(event.row.photo);
     setNewChosenGlass(event.row.Verre.nom)
     setOpenModifyCocktailDialog(true);
-  }
+  }*/
 
-  const handleCloseModifyCocktailDialog = () => {
+  /*const handleCloseModifyCocktailDialog = () => {
     setOpenModifyCocktailDialog(false);
-  }
+  }*/
 
-  const confirmModification = () => {
+  /*const confirmModification = () => {
     console.log(oldCocktail);
     console.log(newCocktailName);
     console.log(newTypeCocktail);
@@ -89,7 +89,7 @@ const ManageCocktails = () => {
     console.log(newChosenGlass);
 
     handleCloseModifyCocktailDialog();
-  }
+  }*/
 
   const handleOpenAddCocktailDialog = () => {
     setOpenAddCocktailDialog(true);
@@ -109,7 +109,7 @@ const ManageCocktails = () => {
           checkboxSelection
           disableSelectionOnClick
           onSelectionModelChange={selectRow}
-          onCellClick={handleOpenModifyGlassDialog}
+        //  onCellClick={handleOpenModifyGlassDialog}
         />
       </div>
 
