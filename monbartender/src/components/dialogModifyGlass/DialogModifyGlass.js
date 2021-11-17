@@ -81,7 +81,8 @@ const DialogModifyGlass = ({ openModifyGlassDialog, setOpenModifyGlassDialog, mo
           </DialogContentText>
           <TextField
             autoFocus
-            margin="dense"
+            variant='outlined'
+            margin='normal'
             label="Nom du verre"
             value={newGlassName}
             onChange={event => setNewGlassName(event.target.value)}
