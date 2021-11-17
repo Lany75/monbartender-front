@@ -8,6 +8,7 @@ import GlassList from '../../components/glassList/GlassList';
 import DialogErrorMessage from '../../components/dialogErrorMessage/DialogErrorMessage';
 import DialogDeleteGlass from '../../components/dialogDeleteGlass/DialogDeleteGlass';
 import DialogModifyGlass from '../../components/dialogModifyGlass/DialogModifyGlass';
+import DialogAddNewGlass from '../../components/dialogAddNewGlass/DialogAddNewGlass';
 
 const testListVerres = [
   {
@@ -43,12 +44,6 @@ describe('<GlassList />', () => {
   }));
 
   const glassList = shallow(<GlassList />);
-
-  it('should contain a h4 tag with text="LES VERRES"', () => {
-    expect(glassList.find('h4')).to.have.length(1);
-    expect(glassList.find('h4').text()).to.be.equal('LES VERRES');
-  })
-
   const divGlassesList = glassList.find('div.glasses-list');
 
   it('should contain a div with className="glasses-list"', () => {
@@ -68,12 +63,13 @@ describe('<GlassList />', () => {
     expect(divDeleteGlass).to.have.length(1);
   })
 
-  it('should contain a Button component with onClick attribute and text="Supprimer les verres"', () => {
-    const deleteButton = divDeleteGlass.find(Button);
+  it('should contain 2 Button components with onClick attribute', () => {
+    const deleteButtons = divDeleteGlass.find(Button);
 
-    expect(deleteButton).to.have.length(1);
-    expect(deleteButton.props()).to.have.property('onClick');
-    expect(deleteButton.text()).to.be.equal('Supprimer les verres');
+    expect(deleteButtons).to.have.length(2);
+    deleteButtons.map(db => {
+      expect(db.props()).to.have.property('onClick');
+    })
   })
 
   it('should contain a DialogModifyGlass component', () => {
@@ -82,6 +78,10 @@ describe('<GlassList />', () => {
 
   it('should contain a DialogDeleteGlass component', () => {
     expect(glassList.find(DialogDeleteGlass)).to.have.length(1);
+  })
+
+  it('should contain a DialogAddNewGlass component', () => {
+    expect(glassList.find(DialogAddNewGlass)).to.have.length(1);
   })
 
   it('should contain a DialogErrorMessage component', () => {
