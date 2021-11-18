@@ -1,11 +1,12 @@
 import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
-
-import IngredientAdd from '../../components/ingredientAdd/IngredientAdd';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+import DialogAddNewIngredient from '../../components/dialogAddNewIngredient/DialogAddNewIngredient';
+import DialogErrorMessage from '../../components/dialogErrorMessage/DialogErrorMessage';
 
 const testAccessToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiMjFkNWE1Y2U2OGM1MjNlZTc0MzI5YjQ3ZDg0NGE3YmZjODRjZmYiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiTcOpbGFuaWUgUEFSUlkiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1rcXhaSklwaThKNC9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BS0YwNW5Cb0tWRnBFaVVaY1JoTXpkYUVIWWJPbXBQUjN3L3Bob3RvLmpwZyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9tb25iYXJ0ZW5kZXIiLCJhdWQiOiJtb25iYXJ0ZW5kZXIiLCJhdXRoX3RpbWUiOjE2MjUwNjUwMzgsInVzZXJfaWQiOiJGTWRZSVFUb09pZTNmUjdNMDdSMXNjRm52SXcyIiwic3ViIjoiRk1kWUlRVG9PaWUzZlI3TTA3UjFzY0Zudkl3MiIsImlhdCI6MTYyNTEzODY4OCwiZXhwIjoxNjI1MTQyMjg4LCJlbWFpbCI6Im1sYW5pZS5wYXJyeUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNzMwMTM4MjY5NjkwOTY5Njc4MSJdLCJlbWFpbCI6WyJtbGFuaWUucGFycnlAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.Dki9I0nDE4b7kH5UbrDyhR6QEJXrCAP-c9crSZK7WQ6caTkeHMpKkHi_644CERig8wYdpsZbmGJI7eplKEfXq4GyQtdJqrpNNPcHkxl6-3KYZuSbg-G3oFbwGRo2dP6J2ARU9L-I3CHusBLas9c508HqZjwf5kwzzTzN7e7K93Ear31eAmpdxYrQm6Sfpm_llRUd3HW5lKpGSWRZc5JMcLRZ6jv1m_XWLqPWu5s0-wjYquRxcZLIwc2hm1kDJGoxk2TQnTKgRpDabgIREFcvriEkHD0yVODkgcOkanM6UgaPLU7x6Rg4vKi8FOITFuPxpeIFl_oxPcj0IwDVHzxwWg';
+
 const testListCategories = [
   {
     id: "66ca7575-284f-41f9-b468-7535be3a3c18",
@@ -28,6 +29,7 @@ const testListCategories = [
     nom: "LEGUME"
   }
 ];
+
 const testListIngredients = [
   {
     id: "ad1d8a81-7ae6-4f5e-83a3-64889d390f8a",
@@ -66,7 +68,7 @@ const testListIngredients = [
   }
 ];
 
-describe('<IngredientAdd />', () => {
+describe('<DialogAddNewIngredient />', () => {
   let realUseContext;
   beforeEach(() => {
     realUseContext = React.useContext;
@@ -83,35 +85,62 @@ describe('<IngredientAdd />', () => {
     setListeIngredients: jest.fn()
   }));
 
-  const ingredientAdd = shallow(<IngredientAdd setMessage={jest.fn()} />);
-  const form = ingredientAdd.find('form.form-ingredient-add');
+  const dialogAddNewIngredient = shallow(<DialogAddNewIngredient />);
+  const dialog = dialogAddNewIngredient.find(Dialog);
 
-  it('should contain a form tag with className="form-ingredient-add" and onSubmit attribute', () => {
-    expect(form).to.have.length(1);
-    expect(form.props()).to.have.property('onSubmit');
+  it('should contain a Dialog component with open and onClose attributes', () => {
+    expect(dialog).to.have.length(1);
+    expect(dialog.props()).to.have.property('open');
+    expect(dialog.props()).to.have.property('onClose');
   })
 
-  const divIngredientAddName = form.find('div#ingredient-add-name');
+  const dialogTitle = dialog.find(DialogTitle);
 
-  it('should contain a div with id="ingredient-add-name"', () => {
-    expect(divIngredientAddName).to.have.length(1);
+  it('should contain a DialogTitle component with id="form-dialog-title" and text="Ajout d\'un nouvel ingrédient"', () => {
+    expect(dialogTitle).to.have.length(1);
+    expect(dialogTitle.props()).to.have.property('id', 'form-dialog-title');
+    expect(dialogTitle.text()).to.be.equal('Ajout d\'un nouvel ingrédient');
   })
 
-  it('should contain a TextField component with name, label and onChange attributes', () => {
-    const textField = divIngredientAddName.find(TextField);
+  const dialogContent = dialog.find(DialogContent);
+
+  it('should contain a DialogContent component', () => {
+    expect(dialogContent).to.have.length(1);
+  })
+
+  it('should contain a DialogContentText component with text="Indiquez le nom et la catégorie de l\'ingrédient"', () => {
+    expect(dialogContent.find(DialogContentText)).to.have.length(1);
+    expect(dialogContent.find(DialogContentText).text()).to.be.equal('Indiquez le nom et la catégorie de l\'ingrédient');
+  })
+
+  const dataAddedIngredient = dialogContent.find('div.data-added-ingredient');
+
+  it('should contain a div with className="data-modified-ingredient"', () => {
+    expect(dataAddedIngredient).to.have.length(1);
+  })
+
+  const ingredientName = dataAddedIngredient.find('div.name');
+
+  it('should contain a div with className="name"', () => {
+    expect(ingredientName).to.have.length(1);
+  })
+
+  it('should contain a TextField component with label, value and onChange attribute', () => {
+    const textField = ingredientName.find(TextField);
+
     expect(textField).to.have.length(1);
-    expect(textField.props()).to.have.property('label', 'Nouvel ingrédient');
-    expect(textField.props()).to.have.property('name', 'ingredientName');
+    expect(textField.props()).to.have.property('label', "Nouvel ingrédient");
+    expect(textField.props()).to.have.property('value');
     expect(textField.props()).to.have.property('onChange');
   })
 
-  const divIngredientCategories = form.find('div#ingredient-add-categories');
+  const ingredientCategorie = dataAddedIngredient.find('div.categorie');
 
-  it('should contain a div with id="ingredient-add-categories"', () => {
-    expect(divIngredientCategories).to.have.length(1);
+  it('should contain a div with className="categorie"', () => {
+    expect(ingredientCategorie).to.have.length(1);
   })
 
-  const formControl = divIngredientCategories.find(FormControl);
+  const formControl = ingredientCategorie.find(FormControl);
 
   it('should contain a FormControl component', () => {
     expect(formControl).to.have.length(1);
@@ -133,15 +162,21 @@ describe('<IngredientAdd />', () => {
     expect(selectFormControl.find(MenuItem)).to.have.length(5);
   })
 
-  const btnAdd = form.find('div#ingredient-add-btn');
+  const dialogActions = dialog.find(DialogActions);
 
-  it('should contain a div witch id="ingredient-add-btn"', () => {
-    expect(btnAdd).to.have.length(1);
+  it('should contain a DialogActions component', () => {
+    expect(dialogActions).to.have.length(1);
   })
 
-  it('should contain a submit Button with text="+"', () => {
-    expect(btnAdd.find(Button)).to.have.length(1);
-    expect(btnAdd.find(Button).props()).to.have.property('type', 'submit');
-    expect(btnAdd.find(Button).text()).to.be.equal('+');
+  it('should contain 2 Button components with onClick attribute', () => {
+    const dialogAtionsButton = dialogActions.find(Button);
+    expect(dialogAtionsButton).to.have.length(2);
+    dialogAtionsButton.map(dab => {
+      expect(dab.props()).to.have.property('onClick');
+    })
+  })
+
+  it('should contain a DialogErrorMessage component', () => {
+    expect(dialogAddNewIngredient.find(DialogErrorMessage)).to.have.length(1);
   })
 })

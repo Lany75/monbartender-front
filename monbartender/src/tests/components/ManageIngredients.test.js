@@ -16,10 +16,6 @@ describe('<ManageIngredients />', () => {
     expect(divManageIngredients.find('h4').text()).to.be.equal('LES INGREDIENTS');
   })
 
-  it('should contain an IngredientAdd component', () => {
-    expect(divManageIngredients.find('IngredientAdd')).to.have.length(1);
-  })
-
   it('should contain an IngredientList component', () => {
     expect(divManageIngredients.find('IngredientList')).to.have.length(1);
   })

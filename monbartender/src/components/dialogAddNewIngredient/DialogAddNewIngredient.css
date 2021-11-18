@@ -1,0 +1,10 @@
+.data-added-ingredient {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 769px) {
+  .data-added-ingredient {
+    flex-direction: row;
+  }
+}
