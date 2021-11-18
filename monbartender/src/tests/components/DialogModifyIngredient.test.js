@@ -141,7 +141,6 @@ describe('<DialogModifyIngredient />', () => {
     expect(ingredientCategorie).to.have.length(1);
   })
 
-
   const formControl = ingredientCategorie.find(FormControl);
 
   it('should contain a FormControl component with id="form-control"', () => {

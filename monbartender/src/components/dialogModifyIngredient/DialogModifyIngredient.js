@@ -96,6 +96,7 @@ const DialogModifyIngredient = ({ openModifyIngredientDialog, setOpenModifyIngre
                 label="Nom de l'ingrédient"
                 value={newIngredientName}
                 onChange={event => setNewIngredientName(event.target.value)}
+                style={{ width: 220 }}
               />
             </div>
             <div className='categorie'>

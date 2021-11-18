@@ -6,16 +6,20 @@ import './IngredientList.css';
 import { IngredientContext } from '../../context/ingredientContext';
 import DialogDeleteIngredient from '../dialogDeleteIngredient/DialogDeleteIngredient';
 import DialogModifyIngredient from '../dialogModifyIngredient/DialogModifyIngredient';
+import DialogAddNewIngredient from '../dialogAddNewIngredient/DialogAddNewIngredient';
+import DialogErrorMessage from '../dialogErrorMessage/DialogErrorMessage';
 
-const IngredientList = ({ message, setMessage }) => {
+const IngredientList = () => {
+  const desktop = useMediaQuery('(min-width:769px)');
   const { listeIngredients } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
+  const [ingredients, setIngredients] = React.useState([]);
+  const [clickedIngredient, setClickedIngredient] = React.useState({});
   const [openModifyIngredientDialog, setOpenModifyIngredientDialog] = React.useState(false);
   const [openDeleteIngredientDialog, setOpenDeleteIngredientDialog] = React.useState(false);
-  const [ingredients, setIngredients] = React.useState([]);
-  const desktop = useMediaQuery('(min-width:769px)');
-  const [clickedIngredient, setClickedIngredient] = React.useState({});
+  const [openAddNewIngredientDialog, setOpenAddNewIngredientDialog] = React.useState(false);
+  const [openErrorMessageDialog, setOpenErrorMessageDialog] = React.useState(false);
 
   const columns = [
     {
@@ -37,22 +41,25 @@ const IngredientList = ({ message, setMessage }) => {
   ];
 
   const handleOpenModifyIngredientDialog = (event) => {
-    setMessage('');
     setClickedIngredient(event.row);
     setOpenModifyIngredientDialog(true);
   };
 
   const selectRow = (event) => {
     setSelectedRow(event);
-    setMessage('');
   }
 
-  const handleClickOpenDeleteIngredientsDialog = () => {
+  const handleOpenDeleteIngredientsDialog = () => {
     setOpenDeleteIngredientDialog(true);
   };
+
   const deleteIngredients = () => {
-    if (selectedRow.length > 0) handleClickOpenDeleteIngredientsDialog();
-    else setMessage('Aucun ingrédient sélectionné')
+    if (selectedRow.length > 0) handleOpenDeleteIngredientsDialog();
+    else setOpenErrorMessageDialog(true);
+  }
+
+  const addIngredient = () => {
+    setOpenAddNewIngredientDialog(true);
   }
 
   React.useEffect(() => {
@@ -88,9 +95,14 @@ const IngredientList = ({ message, setMessage }) => {
         >
           Supprimer les ingrédients
         </Button>
-        <div className='message'>{message}</div>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={addIngredient}
+        >
+          Ajouter un ingrédient
+        </Button>
       </div>
-
 
       <DialogDeleteIngredient
         openDeleteIngredientDialog={openDeleteIngredientDialog}
@@ -102,6 +114,17 @@ const IngredientList = ({ message, setMessage }) => {
         openModifyIngredientDialog={openModifyIngredientDialog}
         setOpenModifyIngredientDialog={setOpenModifyIngredientDialog}
         modifiedIngredient={clickedIngredient}
+      />
+
+      <DialogAddNewIngredient
+        openAddNewIngredientDialog={openAddNewIngredientDialog}
+        setOpenAddNewIngredientDialog={setOpenAddNewIngredientDialog}
+      />
+
+      <DialogErrorMessage
+        openErrorMessageDialog={openErrorMessageDialog}
+        setOpenErrorMessageDialog={setOpenErrorMessageDialog}
+        errorMessage={'Aucun ingrédient sélectionné'}
       />
     </>
   );

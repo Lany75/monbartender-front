@@ -7,6 +7,8 @@ import { Button } from "@material-ui/core";
 import IngredientList from '../../components/ingredientList/IngredientList';
 import DialogDeleteIngredient from '../../components/dialogDeleteIngredient/DialogDeleteIngredient';
 import DialogModifyIngredient from '../../components/dialogModifyIngredient/DialogModifyIngredient';
+import DialogAddNewIngredient from '../../components/dialogAddNewIngredient/DialogAddNewIngredient';
+import DialogErrorMessage from '../../components/dialogErrorMessage/DialogErrorMessage';
 
 const testListIngredients = [
   {
@@ -80,16 +82,13 @@ describe('<IngredientList />', () => {
     expect(divDeleteIngredient).to.have.length(1);
   })
 
-  it('should contain a Button component with onClick attribute and text="Supprimer les ingrédients"', () => {
-    const deleteButton = divDeleteIngredient.find(Button);
+  it('should contain 2 Button components with onClick attribute', () => {
+    const deleteButtons = divDeleteIngredient.find(Button);
 
-    expect(deleteButton).to.have.length(1);
-    expect(deleteButton.props()).to.have.property('onClick');
-    expect(deleteButton.text()).to.be.equal('Supprimer les ingrédients');
-  })
-
-  it('should contain a div with className="message"', () => {
-    expect(divDeleteIngredient.find('div.message')).to.have.length(1);
+    expect(deleteButtons).to.have.length(2);
+    deleteButtons.map(db => {
+      expect(db.props()).to.have.property('onClick');
+    })
   })
 
   it('should contain a DialogDeleteIngredient component', () => {
@@ -98,5 +97,13 @@ describe('<IngredientList />', () => {
 
   it('should contain a DialogModifyIngredient component', () => {
     expect(ingredientList.find(DialogModifyIngredient)).to.have.length(1);
+  })
+
+  it('should contain a DialogAddNewIngredient component', () => {
+    expect(ingredientList.find(DialogAddNewIngredient)).to.have.length(1);
+  })
+
+  it('should contain a DialogErrorMessage component', () => {
+    expect(ingredientList.find(DialogErrorMessage)).to.have.length(1);
   })
 })
