@@ -2,7 +2,7 @@ import React from "react";
 import { DataGrid } from '@material-ui/data-grid';
 import { Button, useMediaQuery } from '@material-ui/core';
 import './CocktailIngredients.css';
-import DialogAddNewIngredient from "../dialogAddNewIngredient/DialogAddNewIngredient";
+import DialogAddIngredientOfCocktail from "../dialogAddIngredientOfCocktail/DialogAddIngredientOfCocktail";
 import DialogErrorMessage from "../dialogErrorMessage/DialogErrorMessage";
 import DialogModifyIngredientOfCocktail from "../dialogModifyIngredientOfCocktail/DialogModifyIngredientOfCocktail";
 
@@ -111,7 +111,7 @@ const CocktailIngredients = ({ ingredients, setIngredients }) => {
         </Button>
       </div>
 
-      <DialogAddNewIngredient
+      <DialogAddIngredientOfCocktail
         openAddNewIngredientDialog={openAddNewIngredientDialog}
         setOpenAddNewIngredientDialog={setOpenAddNewIngredientDialog}
         ingredients={ingredients}

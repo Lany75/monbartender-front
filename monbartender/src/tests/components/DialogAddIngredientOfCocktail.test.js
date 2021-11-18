@@ -1,7 +1,7 @@
 import React from 'react'
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import DialogAddNewIngredient from '../../components/dialogAddNewIngredient/DialogAddNewIngredient';
+import DialogAddIngredientOfCocktail from '../../components/dialogAddIngredientOfCocktail/DialogAddIngredientOfCocktail';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
 import DialogErrorMessage from '../../components/dialogErrorMessage/DialogErrorMessage';
 
@@ -66,7 +66,7 @@ const unitiesListTest = [
   }
 ];
 
-describe('<DialogAddNewIngredient />', () => {
+describe('<DialogAddIngredientOfCocktail />', () => {
   let realUseContext;
   beforeEach(() => {
     realUseContext = React.useContext;
@@ -81,8 +81,8 @@ describe('<DialogAddNewIngredient />', () => {
     unitiesList: unitiesListTest,
   }));
 
-  const dialogAddNewIngredient = shallow(<DialogAddNewIngredient />);
-  const dialog = dialogAddNewIngredient.find(Dialog);
+  const dialogAddIngredientOfCocktail = shallow(<DialogAddIngredientOfCocktail />);
+  const dialog = dialogAddIngredientOfCocktail.find(Dialog);
 
   it('should contain a Dialog component with open and onClose attributes', () => {
     expect(dialog).to.have.length(1);
@@ -219,6 +219,6 @@ describe('<DialogAddNewIngredient />', () => {
   })
 
   it('should contain a DialogErrorMessage component', () => {
-    expect(dialogAddNewIngredient.find(DialogErrorMessage)).to.have.length(1);
+    expect(dialogAddIngredientOfCocktail.find(DialogErrorMessage)).to.have.length(1);
   })
 })

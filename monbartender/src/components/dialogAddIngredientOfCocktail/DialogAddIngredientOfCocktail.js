@@ -1,10 +1,10 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField, useMediaQuery } from '@material-ui/core';
-import './DialogAddNewIngredient.css';
+import './DialogAddIngredientOfCocktail.css';
 import { IngredientContext } from "../../context/ingredientContext";
 import DialogErrorMessage from "../dialogErrorMessage/DialogErrorMessage";
 
-const DialogAddNewIngredient = ({ openAddNewIngredientDialog, setOpenAddNewIngredientDialog, ingredients, setIngredients }) => {
+const DialogAddIngredientOfCocktail = ({ openAddNewIngredientDialog, setOpenAddNewIngredientDialog, ingredients, setIngredients }) => {
   const { listeIngredients, unitiesList } = React.useContext(IngredientContext);
   const desktop = useMediaQuery('(min-width:769px)');
   const [chosenIngredientId, setchosenIngredientId] = React.useState('');
@@ -146,4 +146,4 @@ const DialogAddNewIngredient = ({ openAddNewIngredientDialog, setOpenAddNewIngre
   )
 }
 
-export default DialogAddNewIngredient;
+export default DialogAddIngredientOfCocktail;
