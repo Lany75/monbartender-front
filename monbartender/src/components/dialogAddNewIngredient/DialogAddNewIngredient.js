@@ -1,60 +1,78 @@
 import React from "react";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField, useMediaQuery } from '@material-ui/core';
+import Axios from "axios";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+
+import apiBaseURL from "../../env";
+
 import './DialogAddNewIngredient.css';
-import { IngredientContext } from "../../context/ingredientContext";
+import { AuthContext } from '../../context/authContext';
+import { IngredientContext } from '../../context/ingredientContext';
 import DialogErrorMessage from "../dialogErrorMessage/DialogErrorMessage";
 
-const DialogAddNewIngredient = ({ openAddNewIngredientDialog, setOpenAddNewIngredientDialog, ingredients, setIngredients }) => {
-  const { listeIngredients, unitiesList } = React.useContext(IngredientContext);
-  const desktop = useMediaQuery('(min-width:769px)');
-  const [chosenIngredientId, setchosenIngredientId] = React.useState('');
-  const [chosenIngredient, setChosenIngredient] = React.useState('');
-  const [chosenQuantity, setChosenQuantity] = React.useState('');
-  const [chosenUnity, setChosenUnity] = React.useState('');
+import camelCaseText from '../../utils/cameCaseText';
+
+const DialogAddNewIngredient = ({ openAddNewIngredientDialog, setOpenAddNewIngredientDialog }) => {
+  const { accessToken } = React.useContext(AuthContext);
+  const { listeIngredients, listeCategoriesIngredients, setListeIngredients } = React.useContext(IngredientContext);
+  const [ingredientName, setIngredientName] = React.useState('');
+  const [ingredientCategorie, setIngredientCategorie] = React.useState('');
+  const [message, setMessage] = React.useState('');
   const [openErrorMessageDialog, setOpenErrorMessageDialog] = React.useState(false);
 
   const handleCloseAddNewIngredientDialog = () => {
     setOpenAddNewIngredientDialog(false);
-  };
-
-  const handleChangeChosenIngredient = (event) => {
-    setchosenIngredientId(listeIngredients.find(element => element.nom === event.target.value).id)
-    setChosenIngredient(event.target.value);
-  };
-
-  const handleChangeChosenUnity = (event) => {
-    setChosenUnity(event.target.value);
-  };
-
-  const cancelAdding = () => {
-    closeDialog();
   }
 
-  const closeDialog = () => {
-    setchosenIngredientId('');
-    setChosenIngredient('');
-    setChosenQuantity('');
-    setChosenUnity('');
+  const cancelAdding = () => {
+    setIngredientName('');
+    setIngredientCategorie('');
     handleCloseAddNewIngredientDialog();
   }
 
-  const addIngredient = () => {
-    if (chosenIngredient !== '') {
-      const tabIngr = [...ingredients];
+  const confirmAdding = () => {
+    const name = ingredientName.replace(/\s+/g, ' ').trim();
 
-      if (
-        tabIngr.findIndex(ingr => ingr.ingredient === (chosenIngredient)) !== -1
-      ) setOpenErrorMessageDialog(true);
-      else {
-        if (chosenQuantity === '' || chosenUnity === '') {
-          tabIngr.push({ id: chosenIngredientId, ingredient: chosenIngredient, quantite: '', unite: '' })
-        } else {
-          tabIngr.push({ id: chosenIngredientId, ingredient: chosenIngredient, quantite: chosenQuantity, unite: chosenUnity })
-        }
-        setIngredients(tabIngr);
-      }
-      closeDialog();
+    if (
+      !(/\S/.test(name) &&
+        name.length >= 2 &&
+        name.length <= 30)
+    ) {
+      setMessage('Le nom doit avoir entre 2 et 30 caractères');
+      setOpenErrorMessageDialog(true);
     }
+    else {
+      if (
+        listeIngredients.findIndex(ingr => ingr.nom === camelCaseText(name)) !== -1
+      ) {
+        setMessage('Cet ingrédient existe déja');
+        setIngredientName('');
+        setIngredientCategorie('');
+        setOpenErrorMessageDialog(true);
+      }
+      else {
+        if (ingredientCategorie === '') {
+          setMessage('La catégorie est obligatoire');
+          setOpenErrorMessageDialog(true);
+        } else {
+          Axios.post(`${apiBaseURL}/api/v2/ingredients/`,
+            { nom: name, categorie: ingredientCategorie },
+            {
+              headers: {
+                authorization: accessToken
+              }
+            })
+            .then(reponse => {
+              setListeIngredients(reponse.data);
+              setIngredientName('');
+              setIngredientCategorie('');
+            })
+            .catch(error => {
+              console.log("vous avez une erreur : ", error);
+            });
+        }
+      }
+    }
+    handleCloseAddNewIngredientDialog();
   }
 
   return (
@@ -63,67 +81,43 @@ const DialogAddNewIngredient = ({ openAddNewIngredientDialog, setOpenAddNewIngre
         open={openAddNewIngredientDialog}
         onClose={handleCloseAddNewIngredientDialog}
         aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Ajout d'ingrédient</DialogTitle>
+        <DialogTitle id="form-dialog-title">Ajout d'un nouvel ingrédient</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Choisissez l'ingrédient à ajouter
+            Indiquez le nom et la catégorie de l'ingrédient
           </DialogContentText>
 
-          <div className='data-new-ingredient'>
-            <div className='ingredient-name'>
+          <div className='data-added-ingredient'>
+            <div className='name'>
+              <TextField
+                variant='outlined'
+                margin='normal'
+                label='Nouvel ingrédient'
+                name='ingredientName'
+                value={ingredientName}
+                onChange={event => setIngredientName(event.target.value)}
+                style={{ width: 220 }}
+              />
+            </div>
+            <div className='categorie'>
               <FormControl variant='outlined' >
-                <InputLabel id='label-ingredient'>Ingrédient</InputLabel>
+                <InputLabel id='label-categorie'>Catégorie</InputLabel>
                 <Select
                   className='form-control-select'
-                  labelId='select-ingredient'
-                  id='select-ingredient'
-                  value={chosenIngredient}
-                  onChange={handleChangeChosenIngredient}
-                  label='Ingredient'
-                  style={{ width: desktop ? 200 : 240 }}
+                  labelId='select-categorie'
+                  id='select-categorie'
+                  value={ingredientCategorie}
+                  onChange={event => setIngredientCategorie(event.target.value)}
+                  label='Catégorie'
+                  style={{ width: 220 }}
                 >
-                  {listeIngredients && listeIngredients.map(ingredient => {
+                  {listeCategoriesIngredients && listeCategoriesIngredients.map(lci => {
                     return (
-                      <MenuItem value={ingredient.nom} key={ingredient.id}>{ingredient.nom} </MenuItem>
+                      <MenuItem value={lci.nom} key={lci.id}>{lci.nom}</MenuItem>
                     )
                   })}
                 </Select>
               </FormControl>
-            </div>
-
-            <div className='quantity-unity'>
-              <div className='quantity'>
-                <TextField
-                  variant='outlined'
-                  margin='normal'
-                  label='quantité'
-                  name='ingredientQuantity'
-                  type='number'
-                  value={chosenQuantity}
-                  onChange={event => setChosenQuantity(event.target.value)}
-                  style={{ width: 100 }}
-                />
-              </div>
-              <div className='unity'>
-                <FormControl variant='outlined' >
-                  <InputLabel id='label-unity'>Unité</InputLabel>
-                  <Select
-                    className='form-control-select'
-                    labelId='select-unity'
-                    id='select-unity'
-                    value={chosenUnity}
-                    onChange={handleChangeChosenUnity}
-                    label='Unité'
-                    style={{ width: desktop ? 150 : 120 }}
-                  >
-                    {unitiesList && unitiesList.map(unity => {
-                      return (
-                        <MenuItem value={unity.nom} key={unity.id}>{unity.nom}</MenuItem>
-                      )
-                    })}
-                  </Select>
-                </FormControl>
-              </div>
             </div>
           </div>
         </DialogContent>
@@ -131,7 +125,7 @@ const DialogAddNewIngredient = ({ openAddNewIngredientDialog, setOpenAddNewIngre
           <Button onClick={cancelAdding} color="primary">
             Annuler
           </Button>
-          <Button onClick={addIngredient} color="primary">
+          <Button onClick={confirmAdding} color="primary">
             Ajouter
           </Button>
         </DialogActions>
@@ -140,7 +134,7 @@ const DialogAddNewIngredient = ({ openAddNewIngredientDialog, setOpenAddNewIngre
       <DialogErrorMessage
         openErrorMessageDialog={openErrorMessageDialog}
         setOpenErrorMessageDialog={setOpenErrorMessageDialog}
-        errorMessage={'Ingrédient déja ajouté'}
+        errorMessage={message}
       />
     </>
   )

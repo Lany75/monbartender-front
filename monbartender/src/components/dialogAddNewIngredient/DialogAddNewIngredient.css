@@ -1,29 +1,10 @@
-.data-new-ingredient {
+.data-added-ingredient {
   display: flex;
   flex-direction: column;
 }
 
-.quantity-unity {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-}
-
-.unity {
-  margin-top: 16px;
-}
-
 @media screen and (min-width: 769px) {
-  .data-new-ingredient {
+  .data-added-ingredient {
     flex-direction: row;
-  }
-
-  .ingredient-name {
-    margin-top: 16px;
-  }
-
-  .quantity {
-    margin: 0px 5px 0px 5px;
   }
 }

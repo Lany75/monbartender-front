@@ -1,5 +1,18 @@
-.data-ingredient {
+.data-modified-ingredient {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 769px) {
+  .data-modified-ingredient {
+    flex-direction: row;
+  }
+
+  .categorie {
+    margin-top: 16px;
+  }
+
+  .name {
+    margin: 0px 5px 0px 0px;
+  }
 }

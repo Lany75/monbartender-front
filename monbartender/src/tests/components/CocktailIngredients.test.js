@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 import { DataGrid } from '@material-ui/data-grid';
 import { Button } from '@material-ui/core';
 import CocktailIngredients from '../../components/cocktailIngredients/CocktailIngredients';
-import DialogAddNewIngredient from '../../components/dialogAddNewIngredient/DialogAddNewIngredient';
+import DialogAddIngredientOfCocktail from '../../components/dialogAddIngredientOfCocktail/DialogAddIngredientOfCocktail';
 import DialogErrorMessage from '../../components/dialogErrorMessage/DialogErrorMessage';
-import DialogModifyIngredient from '../../components/dialogModifyIngredient/DialogModifyIngredient';
+import DialogModifyIngredientOfCocktail from '../../components/dialogModifyIngredientOfCocktail/DialogModifyIngredientOfCocktail';
 
 describe('<CocktailIngredients />', () => {
   const cocktailIngredients = shallow(<CocktailIngredients />);
@@ -52,15 +52,15 @@ describe('<CocktailIngredients />', () => {
     expect(buttons.last().text()).to.be.equal('Supprimer les ingrédients');
   })
 
-  it('should contain a DialogAddNewIngredient component', () => {
-    expect(divCocktailIngredients.find(DialogAddNewIngredient)).to.have.length(1);
+  it('should contain a DialogAddIngredientOfCocktail component', () => {
+    expect(divCocktailIngredients.find(DialogAddIngredientOfCocktail)).to.have.length(1);
   })
 
   it('should contain a DialogErrorMessage component', () => {
     expect(divCocktailIngredients.find(DialogErrorMessage)).to.have.length(1);
   })
 
-  it('should contain a DialogModifyIngredient component', () => {
-    expect(divCocktailIngredients.find(DialogModifyIngredient)).to.have.length(1);
+  it('should contain a DialogModifyIngredientOfCocktail component', () => {
+    expect(divCocktailIngredients.find(DialogModifyIngredientOfCocktail)).to.have.length(1);
   })
 })

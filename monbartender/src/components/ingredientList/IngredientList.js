@@ -1,32 +1,25 @@
 import React from 'react';
-import Axios from "axios";
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField, useMediaQuery } from '@material-ui/core';
+import { Button, useMediaQuery } from '@material-ui/core';
 
-import apiBaseURL from "../../env";
-
-import { IngredientContext } from '../../context/ingredientContext';
-import { AuthContext } from '../../context/authContext';
-import { BarContext } from '../../context/barContext';
 import './IngredientList.css';
+import { IngredientContext } from '../../context/ingredientContext';
+import DialogDeleteIngredient from '../dialogDeleteIngredient/DialogDeleteIngredient';
+import DialogModifyIngredient from '../dialogModifyIngredient/DialogModifyIngredient';
+import DialogAddNewIngredient from '../dialogAddNewIngredient/DialogAddNewIngredient';
+import DialogErrorMessage from '../dialogErrorMessage/DialogErrorMessage';
 
-import camelCaseText from '../../utils/cameCaseText';
-
-const IngredientList = ({ message, setMessage }) => {
-  const { accessToken } = React.useContext(AuthContext);
-  const { getBarUser } = React.useContext(BarContext);
-  const { listeIngredients, setListeIngredients, listeCategoriesIngredients } = React.useContext(IngredientContext);
+const IngredientList = () => {
+  const desktop = useMediaQuery('(min-width:769px)');
+  const { listeIngredients } = React.useContext(IngredientContext);
   const [pageSize, setPageSize] = React.useState(5);
   const [selectedRow, setSelectedRow] = React.useState([]);
+  const [ingredients, setIngredients] = React.useState([]);
+  const [clickedIngredient, setClickedIngredient] = React.useState({});
   const [openModifyIngredientDialog, setOpenModifyIngredientDialog] = React.useState(false);
   const [openDeleteIngredientDialog, setOpenDeleteIngredientDialog] = React.useState(false);
-  const [ingredients, setIngredients] = React.useState([]);
-  const [modifiedIngredientId, setModifiedIngredientId] = React.useState('');
-  const [oldIngredientName, setOldIngredientName] = React.useState('');
-  const [newIngredientName, setNewIngredientName] = React.useState('');
-  const [oldIngredientCategorie, setOldIngredientCategorie] = React.useState('');
-  const [newIngredientCategorie, setNewIngredientCategorie] = React.useState('');
-  const desktop = useMediaQuery('(min-width:769px)');
+  const [openAddNewIngredientDialog, setOpenAddNewIngredientDialog] = React.useState(false);
+  const [openErrorMessageDialog, setOpenErrorMessageDialog] = React.useState(false);
 
   const columns = [
     {
@@ -47,85 +40,26 @@ const IngredientList = ({ message, setMessage }) => {
     }
   ];
 
-  const handleChangeCategorie = (event) => {
-    setNewIngredientCategorie(event.target.value);
-  };
-  const handleClickOpenModifyIngredientDialog = (event) => {
-    setMessage('');
-    setModifiedIngredientId(event.row.id);
-    setOldIngredientName(event.row.nom);
-    setNewIngredientName(event.row.nom);
-    setOldIngredientCategorie(event.row.categorie);
-    setNewIngredientCategorie(event.row.categorie);
+  const handleOpenModifyIngredientDialog = (event) => {
+    setClickedIngredient(event.row);
     setOpenModifyIngredientDialog(true);
   };
-  const handleCloseModifyIngredientDialog = () => {
-    setOpenModifyIngredientDialog(false);
-  };
-  const confirmModification = () => {
-    if (newIngredientName !== oldIngredientName || newIngredientCategorie !== oldIngredientCategorie) {
-      const name = newIngredientName.replace(/\s+/g, ' ').trim();
-      if (
-        !(/\S/.test(name) &&
-          name.length >= 2 &&
-          name.length <= 30)
-      ) setMessage('Le nom doit avoir entre 2 et 30 caractères');
-      else {
-        const indexIngr = listeIngredients.findIndex(ingr => ingr.nom === camelCaseText(name));
-        if (indexIngr !== -1 && listeIngredients[indexIngr].id !== modifiedIngredientId) setMessage('Cet ingrédient existe déja');
-        else {
-          Axios.put(`${apiBaseURL}/api/v2/ingredients/${modifiedIngredientId}`,
-            { nom: name, categorie: newIngredientCategorie },
-            {
-              headers: {
-                authorization: accessToken
-              }
-            })
-            .then(reponse => {
-              setListeIngredients(reponse.data);
-            })
-            .catch(error => {
-              console.log("vous avez une erreur : ", error);
-            });
-        }
-      }
-    }
-
-    handleCloseModifyIngredientDialog();
-  }
 
   const selectRow = (event) => {
     setSelectedRow(event);
-    setMessage('');
   }
-  const handleCloseDeleteIngredientsDialog = () => {
-    setOpenDeleteIngredientDialog(false);
-  };
-  const handleClickOpenDeleteIngredientsDialog = () => {
+
+  const handleOpenDeleteIngredientsDialog = () => {
     setOpenDeleteIngredientDialog(true);
   };
+
   const deleteIngredients = () => {
-    if (selectedRow.length > 0) handleClickOpenDeleteIngredientsDialog();
-    else setMessage('Aucun ingrédient sélectionné')
+    if (selectedRow.length > 0) handleOpenDeleteIngredientsDialog();
+    else setOpenErrorMessageDialog(true);
   }
 
-  const confirmDeletion = () => {
-    Axios.delete(`${apiBaseURL}/api/v2/ingredients/`,
-      {
-        headers: {
-          authorization: accessToken
-        },
-        data: { deletedIngredients: selectedRow }
-      })
-      .then(reponse => {
-        setListeIngredients(reponse.data);
-        getBarUser();
-      })
-      .catch(error => {
-        console.log("vous avez une erreur : ", error);
-      });
-
-    handleCloseDeleteIngredientsDialog();
+  const addIngredient = () => {
+    setOpenAddNewIngredientDialog(true);
   }
 
   React.useEffect(() => {
@@ -138,7 +72,7 @@ const IngredientList = ({ message, setMessage }) => {
 
   return (
     <>
-      <div className='igredients-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
+      <div className='ingredients-list' style={{ height: 110 + pageSize * 52, width: desktop ? '66%' : '100%', alignSelf: 'center' }}>
         <DataGrid
           rows={ingredients}
           columns={columns}
@@ -149,56 +83,9 @@ const IngredientList = ({ message, setMessage }) => {
           checkboxSelection
           disableSelectionOnClick
           onSelectionModelChange={selectRow}
-          onCellClick={handleClickOpenModifyIngredientDialog}
+          onCellClick={handleOpenModifyIngredientDialog}
         />
       </div>
-
-      <Dialog
-        open={openModifyIngredientDialog}
-        onClose={handleCloseModifyIngredientDialog}
-        aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Modifier l'ingrédient</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Corrigez le nom et/ou la catégorie de l'ingrédient
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Nom de l'ingrédient"
-            value={newIngredientName}
-            onChange={event => setNewIngredientName(event.target.value)}
-            fullWidth
-          />
-          <FormControl variant='outlined' id='form-control'>
-            <InputLabel id='label-categorie'>Catégorie</InputLabel>
-            <Select
-              className='form-control-select'
-              labelId='select-categorie'
-              id='select-categorie'
-              value={newIngredientCategorie}
-              onChange={handleChangeCategorie}
-              label='Catégorie'
-              style={{ width: 220 }}
-              required
-            >
-              {listeCategoriesIngredients && listeCategoriesIngredients.map(lci => {
-                return (
-                  <MenuItem value={lci.nom} key={lci.id}>{lci.nom}</MenuItem>
-                )
-              })}
-            </Select>
-          </FormControl>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseModifyIngredientDialog} color="primary">
-            Annuler
-          </Button>
-          <Button onClick={confirmModification} color="primary">
-            Modifier
-          </Button>
-        </DialogActions>
-      </Dialog>
 
       <div className='delete-ingredients'>
         <Button
@@ -208,30 +95,37 @@ const IngredientList = ({ message, setMessage }) => {
         >
           Supprimer les ingrédients
         </Button>
-        <div className='message'>{message}</div>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={addIngredient}
+        >
+          Ajouter un ingrédient
+        </Button>
       </div>
 
-      <Dialog
-        open={openDeleteIngredientDialog}
-        onClose={handleCloseDeleteIngredientsDialog}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='alert-dialog-title'>Confirmer la suppression des ingrédients</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Etes vous sûr de vouloir supprimer ces ingrédients définitivement ?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDeleteIngredientsDialog} color='primary'>
-            Annuler
-          </Button>
-          <Button onClick={confirmDeletion} color='primary' autoFocus>
-            Confirmer
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DialogDeleteIngredient
+        openDeleteIngredientDialog={openDeleteIngredientDialog}
+        setOpenDeleteIngredientDialog={setOpenDeleteIngredientDialog}
+        selectedRow={selectedRow}
+      />
+
+      <DialogModifyIngredient
+        openModifyIngredientDialog={openModifyIngredientDialog}
+        setOpenModifyIngredientDialog={setOpenModifyIngredientDialog}
+        modifiedIngredient={clickedIngredient}
+      />
+
+      <DialogAddNewIngredient
+        openAddNewIngredientDialog={openAddNewIngredientDialog}
+        setOpenAddNewIngredientDialog={setOpenAddNewIngredientDialog}
+      />
+
+      <DialogErrorMessage
+        openErrorMessageDialog={openErrorMessageDialog}
+        setOpenErrorMessageDialog={setOpenErrorMessageDialog}
+        errorMessage={'Aucun ingrédient sélectionné'}
+      />
     </>
   );
 }
